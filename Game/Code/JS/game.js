@@ -16,22 +16,22 @@ phinalphase.Game.prototype = {
 
 
 
-
+console.log(this.map)
     this.map = this.game.add.tilemap('testlevel');
 
     //the first parameter is the tileset name as specified in Tiled, the second is the key to the asset
-
-    this.map.addTilesetImage('tileset1', 'gameTiles');
+    
+    this.map.addTilesetImage('tileset', 'gameTiles');
 
     //create layers
 
-    this.backgroundlayer = this.map.createLayer('bg');
+    this.backgroundlayer = this.map.createLayer('Tile Layer 2');
 
-    this.blockedLayer = this.map.createLayer('blockedLayer');
+    this.blockedLayer = this.map.createLayer('Tile Layer 1');
 
     //collision on blockedLayer
 
-    this.map.setCollisionBetween(1, 100000, true, 'blockedLayer');
+    this.map.setCollisionBetween(1, 100000, true, 'Tile Layer 1');
 
     //resizes the game world to match the layer dimensions
 
@@ -39,11 +39,13 @@ phinalphase.Game.prototype = {
 
 
 
-    this.player = this.game.add.sprite(100, 300, 'player');
-    this.player.scale.setTo(0.2, 0.2);
+    this.player = this.game.add.sprite(50, 200, 'player');
     this.game.physics.arcade.enable(this.player);
     this.player.body.gravity.y = 1000;
     this.game.camera.follow(this.player);
+
+
+    this.player.animations.add('idle', Phaser.Animation.generateFrameNames('Idle_', 0, 11, '', 3), 10, true);
 
   },
 
@@ -51,7 +53,7 @@ phinalphase.Game.prototype = {
 
   update: function () {
     this.game.physics.arcade.collide(this.player, this.blockedLayer, this.playerHit, null, this);
-
+    this.player.animations.play('idle');
   },
 
   render: function () {

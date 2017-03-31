@@ -17,11 +17,12 @@ phinalphase.Preload.prototype = {
  
     //load game assets
  
-    this.load.tilemap('testlevel', '../../Assets/testlevel.json', null, Phaser.Tilemap.TILED_JSON);
+    this.load.tilemap('testlevel', '../../Assets/levels/test/forest1.json', null, Phaser.Tilemap.TILED_JSON);
  
-    this.load.image('gameTiles', '../../Assets/Spritesheets and Tilesets/ci-fi/tileset1.png');
+    this.load.image('gameTiles', '../../Assets/levels/test/tileset.png');
+
  
-    this.load.spritesheet('player', '../../Assets/images/Players/Swordsman/Animations/Idle/Idle - Sprite Sheet.png', 540, 520);
+    this.load.atlas('player', '../../Assets/images/Players/Swordsman/hero1.png', '../../Assets/images/Players/Swordsman/hero1.json');
  
     this.load.image('saw', '../../Assets/Spritesheets and Tilesets/ci-fi/Objects/Saw.png');
  
