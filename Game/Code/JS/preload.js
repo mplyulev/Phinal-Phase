@@ -22,7 +22,7 @@ phinalphase.Preload.prototype = {
     this.load.image('gameTiles', '../../Assets/levels/test/tileset.png');
 
  
-    this.load.atlas('player', '../../Assets/images/Players/Swordsman/hero1.png', '../../Assets/images/Players/Swordsman/hero1.json');
+    this.load.atlas('playerNinja', '../../Assets/images/Players/Swordsman/hero1.png', '../../Assets/images/Players/Swordsman/hero1.json');
  
     this.load.image('saw', '../../Assets/Spritesheets and Tilesets/ci-fi/Objects/Saw.png');
  
