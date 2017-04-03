@@ -25,6 +25,8 @@ phinalphase.Preload.prototype = {
     this.load.atlas('playerNinja', '../../Assets/images/Players/Swordsman/hero1.png', '../../Assets/images/Players/Swordsman/hero1.json');
  
     this.load.image('saw', '../../Assets/Spritesheets and Tilesets/ci-fi/Objects/Saw.png');
+
+    this.load.image('mushroom', '../../Assets/Spritesheets and Tilesets/forest/Object/Mushroom_1.png');
  
  
   },
