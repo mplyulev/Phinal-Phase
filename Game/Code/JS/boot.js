@@ -1,7 +1,6 @@
 var phinalphase = phinalphase || {};
 
 phinalphase.Boot = function() {};
-console.log('asd ');
 
 phinalphase.Boot.prototype = {
 
