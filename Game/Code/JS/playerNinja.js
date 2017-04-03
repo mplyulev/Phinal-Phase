@@ -7,7 +7,6 @@ function createPlayerNinja(that) {
     that.playerNinja.isInAir = false;
     that.playerNinja.isAttacking = false;
 
-
     that.playerNinja.animations.add('idle', Phaser.Animation.generateFrameNames('Idle_', 0, 11, '', 3), 15, true);
     that.playerNinja.animations.add('run', Phaser.Animation.generateFrameNames('Run_', 0, 12, '', 3), 15, true);
     that.playerNinja.animations.add('jumpStart', Phaser.Animation.generateFrameNames('Jump Start_', 0, 9, '', 3), 25, true);
@@ -55,9 +54,9 @@ function updatePlayerNinja(that) {
         }
 
         if (((that.playerNinja.body.velocity.y > 0 &&
-            that.playerNinja.animations.currentAnim.name != 'run') ||
-            (that.playerNinja.body.velocity.y > 50 &&
-                that.playerNinja.animations.currentAnim.name == 'run'))) {
+                    that.playerNinja.animations.currentAnim.name != 'run') ||
+                (that.playerNinja.body.velocity.y > 50 &&
+                    that.playerNinja.animations.currentAnim.name == 'run'))) {
             that.playerNinja.animations.play('jumpFall');
         }
 
@@ -65,34 +64,34 @@ function updatePlayerNinja(that) {
             that.playerNinja.body.velocity.y = -700;
             that.playerNinja.animations.play('jumpStart');
             that.playerNinja.animations.currentAnim.loop = false;
-            that.playerNinja.animations.currentAnim.onComplete.add(function () { that.playerNinja.animations.play('jumpAir'); }, that);
+            that.playerNinja.animations.currentAnim.onComplete.add(function() { that.playerNinja.animations.play('jumpAir'); }, that);
         }
     }
 
-    // if (that.game.input.keyboard.isDown(Phaser.Keyboard.G) && !that.playerNinja.isAttacking) {
-    //     that.playerNinja.isAttacking = true;
-    //     that.playerNinja.body.gravity.y = 0;
-    //     that.playerNinja.body.velocity.y = 0;
-    //     console.log(that.playerNinja.body.overlapY)
-    //     if (!that.playerNinja.isInAir) {
-    //         that.playerNinja.y -= 20;
-    //     }
+    if (that.game.input.keyboard.isDown(Phaser.Keyboard.G) && !that.playerNinja.isAttacking) {
+        that.playerNinja.isAttacking = true;
+        that.playerNinja.body.gravity.y = 0;
+        that.playerNinja.body.velocity.y = 0;
+        console.log(that.playerNinja.body.overlapY)
+        if (!that.playerNinja.isInAir) {
+            that.playerNinja.y -= 20;
+        }
 
-    //     that.playerNinja.animations.play('attack1');
-
-
-    //     that.playerNinja.animations.currentAnim.loop = false;
-    //     that.playerNinja.animations.currentAnim.onComplete.add(function () {
-    //         setTimeout(function () {
-    //             that.playerNinja.isAttacking = false;
-    //         }.bind(that), 100);
+        that.playerNinja.animations.play('attack1');
 
 
+        that.playerNinja.animations.currentAnim.loop = false;
+        that.playerNinja.animations.currentAnim.onComplete.add(function() {
+            setTimeout(function() {
+                that.playerNinja.isAttacking = false;
+            }.bind(that), 100);
 
-    //         that.playerNinja.animations.play('idle');
-    //         that.playerNinja.y += 20;
-    //         that.playerNinja.body.gravity.y = 1000;
 
-    //     }, that);
-    // }
+
+            that.playerNinja.animations.play('idle');
+            that.playerNinja.y += 20;
+            that.playerNinja.body.gravity.y = 1000;
+
+        }, that);
+    }
 }
