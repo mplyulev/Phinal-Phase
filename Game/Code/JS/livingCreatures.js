@@ -28,12 +28,17 @@ phinalphase.Creature.prototype.addAnimation = function (animations) {
 
 };
 
-phinalphase.Creature.prototype.play = function (animation) {
-    // Phaser.AnimationManager.prototype.play.call(this.animations, animation);
+phinalphase.Creature.prototype.play = function (animation, looping, cb) {
     this.animations.play(animation);
 
     this.body.height = this.height;
     this.body.width = Math.abs(this.width);
+    if (looping === false) {
+        
+        this.animations.currentAnim.loop = false;
+        this.animations.currentAnim.onComplete.add(cb, this);
+    }
+
 };
 
 
