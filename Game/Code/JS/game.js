@@ -11,46 +11,54 @@ phinalphase.Game.prototype = {
   },
 
   create: function () {
-    
+    this.creatures = phinalphase.game.add.group();
+    this.players = phinalphase.game.add.group();
+    this.enemies = phinalphase.game.add.group();
+
     this.map = this.game.add.tilemap('testlevel');
 
     //the first parameter is the tileset name as specified in Tiled, the second is the key to the asset
 
-    this.map.addTilesetImage('tileset', 'gameTiles');
+    this.map.addTilesetImage('cifiSheet', 'gameTiles');
 
     //create layers
 
-    this.backgroundlayer = this.map.createLayer('background');
-    this.water = this.map.createLayer('water');
-    this.enemyObjects = this.map.createLayer('enemyObjects');
 
-    this.blockedLayer = this.map.createLayer('block');
+
+
+
+
+    this.backgroundlayer = this.map.createLayer('background');
+    this.backgroundlayer2 = this.map.createLayer('background2');
+    this.slime = this.map.createLayer('slime');
+    // this.enemyObjects = this.map.createLayer('enemyObjects');
+
+    this.blockedLayer = this.map.createLayer('blocks');
 
     //collision on blockedLayer
 
-    this.map.setCollisionBetween(1, 200000, true, 'block');
+    this.map.setCollisionBetween(1, 200000, true, 'blocks');
 
 
     //resizes the game world to match the layer dimensions
 
     this.backgroundlayer.resizeWorld();
 
+    phinalphase.оbjectGroupFromTiled('spikes', this.map, 'spikes', 'spikes');
+
+
+
 
     createPlayerCop(this);
     createPlayerNinja(this);
-    
-    // this.grp = this.game.add.group();
-    // this.grp.add(this.playerNinja);
-    // this.grp.prototype = Object.create(null);
-    // this.grp.prototype.play = function (a) {
-    //   console.log(a);
-    // }
-    // console.log(this.grp.children[0].name);
+
   },
 
-  // playerHit: function (player, blockedLayer) { },
 
   update: function () {
+    this.physics.arcade.overlap(phinalphase.players, phinalphase.spikes, function (player, spike) {
+      player.getHitted(spike);
+    }, null, this);
     updatePlayerNinja(this);
     updatePlayerCop(this);
   },
@@ -58,10 +66,10 @@ phinalphase.Game.prototype = {
   render: function () {
 
     this.game.debug.text(this.game.time.fps || '--', 20, 70, "#00ff00", "40px Courier");
-    this.game.debug.spriteBounds(this.playerNinja);
-    this.game.debug.spriteInfo(this.playerNinja, 32, 32);
-    this.game.debug.spriteBounds(this.playerCop);
-    this.game.debug.spriteInfo(this.playerCop, 32, 32);
+    // this.game.debug.spriteBounds(this.playerNinja);
+    // this.game.debug.spriteInfo(this.playerNinja, 32, 32);
+    // this.game.debug.spriteBounds(this.playerCop);
+    // this.game.debug.spriteInfo(this.playerCop, 32, 32);
   }
 
 };
