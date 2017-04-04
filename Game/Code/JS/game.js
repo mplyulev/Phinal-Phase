@@ -1,67 +1,67 @@
 var phinalphase = phinalphase || {};
 
-phinalphase.Game = function () { };
+phinalphase.Game = function() {};
 
 phinalphase.Game.prototype = {
 
-  preload: function () {
+    preload: function() {
 
-    this.game.time.advancedTiming = true;
+        this.game.time.advancedTiming = true;
 
-  },
+    },
 
-  create: function () {
-    
-    this.map = this.game.add.tilemap('testlevel');
+    create: function() {
 
-    //the first parameter is the tileset name as specified in Tiled, the second is the key to the asset
+        this.map = this.game.add.tilemap('testlevel');
 
-    this.map.addTilesetImage('tileset', 'gameTiles');
+        //the first parameter is the tileset name as specified in Tiled, the second is the key to the asset
 
-    //create layers
+        this.map.addTilesetImage('tileset', 'gameTiles');
 
-    this.backgroundlayer = this.map.createLayer('background');
-    this.water = this.map.createLayer('water');
-    this.enemyObjects = this.map.createLayer('enemyObjects');
+        //create layers
 
-    this.blockedLayer = this.map.createLayer('block');
+        this.backgroundlayer = this.map.createLayer('background');
+        this.water = this.map.createLayer('water');
+        this.enemyObjects = this.map.createLayer('enemyObjects');
 
-    //collision on blockedLayer
+        this.blockedLayer = this.map.createLayer('block');
 
-    this.map.setCollisionBetween(1, 200000, true, 'block');
+        //collision on blockedLayer
 
-
-    //resizes the game world to match the layer dimensions
-
-    this.backgroundlayer.resizeWorld();
+        this.map.setCollisionBetween(1, 200000, true, 'block');
 
 
-    createPlayerCop(this);
-    createPlayerNinja(this);
-    
-    // this.grp = this.game.add.group();
-    // this.grp.add(this.playerNinja);
-    // this.grp.prototype = Object.create(null);
-    // this.grp.prototype.play = function (a) {
-    //   console.log(a);
-    // }
-    // console.log(this.grp.children[0].name);
-  },
+        //resizes the game world to match the layer dimensions
 
-  // playerHit: function (player, blockedLayer) { },
+        this.backgroundlayer.resizeWorld();
 
-  update: function () {
-    updatePlayerNinja(this);
-    updatePlayerCop(this);
-  },
 
-  render: function () {
+        createPlayerCop(this);
+        createPlayerNinja(this);
 
-    this.game.debug.text(this.game.time.fps || '--', 20, 70, "#00ff00", "40px Courier");
-    this.game.debug.spriteBounds(this.playerNinja);
-    this.game.debug.spriteInfo(this.playerNinja, 32, 32);
-    this.game.debug.spriteBounds(this.playerCop);
-    this.game.debug.spriteInfo(this.playerCop, 32, 32);
-  }
+        // this.grp = this.game.add.group();
+        // this.grp.add(this.playerNinja);
+        // this.grp.prototype = Object.create(null);
+        // this.grp.prototype.play = function (a) {
+        //   console.log(a);
+        // }
+        // console.log(this.grp.children[0].name);
+    },
+
+    // playerHit: function (player, blockedLayer) { },
+
+    update: function() {
+        updatePlayerNinja(this);
+        updatePlayerCop(this);
+    },
+
+    render: function() {
+
+        this.game.debug.text(this.game.time.fps || '--', 20, 70, "#00ff00", "40px Courier");
+        this.game.debug.spriteBounds(this.playerNinja);
+        this.game.debug.spriteInfo(this.playerNinja, 32, 32);
+        // this.game.debug.spriteBounds(this.playerCop);
+        // this.game.debug.spriteInfo(this.playerCop, 32, 32);
+    }
 
 };
