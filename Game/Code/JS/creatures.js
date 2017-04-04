@@ -3,7 +3,7 @@ var phinalphase = phinalphase || {};
 
 // constructor for creatures
 
-phinalphase.Creature = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, animations) {
+phinalphase.Creature = function(game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, animations) {
     Phaser.Sprite.call(this, game, x, y, key, frame);
     this.game.physics.arcade.enable(this);
     this.body.gravity.y = gravity;
@@ -34,7 +34,7 @@ phinalphase.Creature.prototype.addAnimation = function (animations) {
     }
 };
 
-phinalphase.Creature.prototype.play = function (animation, looping, cb) {
+phinalphase.Creature.prototype.play = function(animation, looping, cb) {
     this.animations.play(animation);
     for (var key in this.animationsObject) {
         if (this.animationsObject.hasOwnProperty(key)) {
@@ -97,9 +97,9 @@ phinalphase.Creature.prototype.dying = function (dmgDealer) {
 };
 
 
-phinalphase.Player = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, animations) {
+phinalphase.Player = function(game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, animations) {
     phinalphase.Creature.call(this, game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, animations);
-    game.camera.follow(this);
+    // game.camera.follow(this);
     if (phinalphase.players != undefined) {
         phinalphase.players.add(this);
     } else {
@@ -112,7 +112,7 @@ phinalphase.Player.prototype = Object.create(phinalphase.Creature.prototype);
 phinalphase.Player.prototype.constructor = phinalphase.Player;
 
 
-phinalphase.Enemy = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, animations) {
+phinalphase.Enemy = function(game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, animations) {
     phinalphase.Creature.call(this, game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, animations);
     game.add.existing(this);
     if (phinalphase.enemies != undefined) {
@@ -124,6 +124,3 @@ phinalphase.Enemy = function (game, x, y, key, frame, gravity, anchorX, anchorY,
 }
 phinalphase.Enemy.prototype = Object.create(phinalphase.Creature.prototype);
 phinalphase.Enemy.prototype.constructor = phinalphase.Enemy;
-
-
-

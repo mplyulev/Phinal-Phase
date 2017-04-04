@@ -11,17 +11,18 @@ function createPlayerNinja(that) {
         block: ['block', 'Block Parry_', 0, 19, '', 3, 20, 0, 0]
     }
     that.playerNinja = new phinalphase.Player(that.game, 250, 350, 'playerNinja', 'Idle_000', 1000, 0.5, 1, -700, 300, anim);
-
-    that.playerNinja.jump = function () {
+    that.playerNinja.checkWorldBounds = true;
+    that.playerNinja.facing = "";
+    that.playerNinja.jump = function() {
         that.playerNinja.body.velocity.y = that.playerNinja.jumpHeight;
-        that.playerNinja.play('jumpStart', false, function () {
+        that.playerNinja.play('jumpStart', false, function() {
             if (this.animations.currentAnim.name == 'jumpStart') {
                 this.play('jumpAir');
             }
         });
     }
 
-    that.playerNinja.moveSides = function (sideNum) {
+    that.playerNinja.moveSides = function(sideNum) {
         that.playerNinja.scale.setTo(sideNum, 1);
         if (sideNum < 0) {
             that.playerNinja.body.velocity.x = -that.playerNinja.speedX;
@@ -35,7 +36,7 @@ function createPlayerNinja(that) {
         }
     }
 
-    that.playerNinja.stay = function () {
+    that.playerNinja.stay = function() {
         that.playerNinja.play('idle');
     }
 
