@@ -14,7 +14,7 @@ function createPlayerCop(that) {
     that.playerCop.facing = "";
     that.game.physics.arcade.enable(that.playerCop);
     that.playerCop.body.gravity.y = 1000;
-    that.game.camera.follow(that.playerCop);
+    // that.game.camera.follow(that.playerCop);
     that.playerCop.anchor.setTo(0.5, 1);
     that.playerCop.isInAir = false;
     that.playerCop.isAttacking = false;
@@ -64,25 +64,25 @@ function updatePlayerCop(that) {
             that.playerCop.body.velocity.x = 250;
             if (!that.playerCop.isInAir) {
                 that.playerCop.animations.play('run');
-            } else {
-                that.player
             }
+            // if (that.game.input.keyboard.isDown(Phaser.Keyboard.V) && !that.playerCop.isInAir) {   // sliding FIX
+            //     that.playerCop.body.velocity.x = 0;
+            // }
         } else if (that.game.input.keyboard.isDown(Phaser.Keyboard.A)) {
             that.playerCop.facing = "left";
             that.playerCop.scale.setTo(-1, 1);
             that.playerCop.body.velocity.x = -250;
             if (!that.playerCop.isInAir) {
                 that.playerCop.animations.play('run');
-            } else {
-                // that.playerCop.animations.play('jumpAir');
             }
-
+            // if (that.game.input.keyboard.isDown(Phaser.Keyboard.V) && !that.playerCop.isInAir) { // sliding FIX
+            //     that.playerCop.body.velocity.x = 0;
+            // }
 
         } else {
             if (!that.playerCop.isInAir && that.playerCop.animations.currentAnim.name != 'shoot') {
                 that.playerCop.animations.play('idle');
                 that.playerCop.body.height = that.playerCop.height;
-
             }
         }
 
@@ -112,12 +112,12 @@ function updatePlayerCop(that) {
                 })
                 if (that.playerCop.facing === "left") {
                     weapon.fireAngle = Phaser.ANGLE_LEFT;
-                    weapon.trackSprite(that.playerCop, -12, -29, false);
+                    weapon.trackSprite(that.playerCop, -35, -29, false);
                     weapon.fire();
                 }
                 if (that.playerCop.facing === "right") {
                     weapon.fireAngle = Phaser.ANGLE_RIGHT;
-                    weapon.trackSprite(that.playerCop, 12, -29, false);
+                    weapon.trackSprite(that.playerCop, 35, -29, false);
                     weapon.fire();
                 }
             }

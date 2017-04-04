@@ -11,23 +11,24 @@ function createPlayerNinja(that) {
         ['block', 'Block Parry_', 0, 19, '', 3, 20]
     ]
     that.playerNinja = new phinalphase.Player(that.game, 250, 350, 'playerNinja', 'Idle_000', 1000, 0.5, 1, -700, 300, anim);
-
-    that.playerNinja.jump = function () {
+    that.playerNinja.checkWorldBounds = true;
+    that.playerNinja.facing = "";
+    that.playerNinja.jump = function() {
         that.playerNinja.body.velocity.y = that.playerNinja.jumpHeight;
-        that.playerNinja.play('jumpStart', false, function () {
+        that.playerNinja.play('jumpStart', false, function() {
             if (this.animations.currentAnim.name == 'jumpStart') {
                 this.play('jumpAir');
             }
         });
     }
 
-    that.playerNinja.moveSides = function (sideNum) {
+    that.playerNinja.moveSides = function(sideNum) {
         that.playerNinja.scale.setTo(sideNum, 1);
         if (sideNum < 0) {
             that.playerNinja.body.velocity.x = -that.playerNinja.speedX;
         } else {
             that.playerNinja.body.velocity.x = that.playerNinja.speedX;
-        } 
+        }
         if (that.playerNinja.isInAir) {
             that.playerNinja.play('jumpAir');
         } else {
@@ -35,7 +36,7 @@ function createPlayerNinja(that) {
         }
     }
 
-    that.playerNinja.stay = function () {
+    that.playerNinja.stay = function() {
         that.playerNinja.play('idle');
     }
 }
@@ -52,9 +53,11 @@ function updatePlayerNinja(that) {
     }
     if (!that.playerNinja.isAttacking) {
         if (that.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-           that.playerNinja.move('RIGHT');
+            that.playerNinja.move('RIGHT');
+            that.playerNinja.facing = "right";
         } else if (that.game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
             that.playerNinja.move('LEFT');
+            that.playerNinja.facing = "left";
         } else {
             if (!that.playerNinja.isInAir) {
                 that.playerNinja.move();
@@ -70,7 +73,7 @@ function updatePlayerNinja(that) {
         if (that.game.input.keyboard.isDown(Phaser.Keyboard.L) && !that.playerNinja.isAttacking && that.playerNinja.canAttackAgain) {
             that.playerNinja.isAttacking = true;
             that.playerNinja.canAttackAgain = false;
-            that.playerNinja.play('attack1', false, function () {
+            that.playerNinja.play('attack1', false, function() {
                 if (that.playerNinja.isAttacking) {
                     that.playerNinja.play('idle');
                     that.playerNinja.isAttacking = false;
