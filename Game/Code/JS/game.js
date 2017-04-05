@@ -22,9 +22,19 @@ phinalphase.Game.prototype = {
         this.map.setCollisionBetween(1, 200000, true, 'blocks');
         phinalphase.оbjectGroupFromTiled('spikes', this.map, 'spikes', 'spikes');
         this.backgroundlayer.resizeWorld();
-        this.backgroundMusic = this.game.add.audio("backgroundMusic");
-        this.backgroundMusic.loop = true;
-        this.backgroundMusic.play();
+        var backgroundMusic1 = new buzz.sound("../../Assets/sound/forest", {
+            formats: ["ogg"],
+            preload: true,
+            autoplay: true,
+            loop: true
+        });
+        var backgroundMusic2 = new buzz.sound("../../Assets/sound/swamp", {
+            formats: ["ogg"],
+            preload: true,
+            autoplay: true,
+            loop: true
+        });
+
         createPlayerCop(this);
         createPlayerNinja(this);
 
