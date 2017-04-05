@@ -22,6 +22,7 @@ phinalphase.Game.prototype = {
         this.blockedLayer = this.map.createLayer('blocks');
         this.map.setCollisionBetween(1, 200000, true, 'blocks');
         phinalphase.оbjectGroupFromTiled('spikes', this.map, 'spikes', 'spikes');
+        phinalphase.оbjectGroupFromTiled('tree', this.map, 'spikes', 'tree');
         this.backgroundlayer.resizeWorld();
         var backgroundMusic1 = new buzz.sound("../../Assets/sound/forest", {
             formats: ["ogg"],

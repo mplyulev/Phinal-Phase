@@ -22,7 +22,6 @@ phinalphase.оbjectGroupFromTiled = function (type, map, layerName, groupName) {
         sprite.width = ele.width;
         sprite.height = ele.height;
         Object.keys(ele.properties).forEach(function (key) {
-            console.log(key);
             sprite[key] = ele.properties[key];
         });
     });

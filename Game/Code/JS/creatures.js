@@ -3,9 +3,10 @@ var phinalphase = phinalphase || {};
 
 // constructor for creatures
 
-phinalphase.Creature = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, animations) {
+phinalphase.Creature = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, health, animations) {
     Phaser.Sprite.call(this, game, x, y, key, frame);
     this.game.physics.arcade.enable(this);
+    this.health = health;
     this.body.gravity.y = gravity;
     this.anchor.setTo(anchorX, anchorY);
     this.jumpHeight = jumpHeight;
@@ -15,6 +16,7 @@ phinalphase.Creature = function (game, x, y, key, frame, gravity, anchorX, ancho
     this.canAttackAgain = true;
     this.alive = true;
     this.isFlinched = false;
+    this.canBeHitted = true;
     this.animationsObject = animations;
     if (animations) {
         this.addAnimation(animations);
@@ -130,6 +132,10 @@ phinalphase.Creature.prototype.act = function (act, cause) {
             return;
         }
 
+        if (act == 'STRIKED' && !this.canBeHitted) {
+            return;
+        }
+
         switch (act) {
 
             case 'UP': this.jump(); break;
@@ -148,6 +154,10 @@ phinalphase.Creature.prototype.act = function (act, cause) {
 
 phinalphase.Creature.prototype.getHitted = function (dmgDealer) {
     this.act('FLINCH');
+    this.health -= dmgDealer.dmg;
+    if (this.health <= 0) {
+        this.act('DIE');
+    }
 
 
 };
@@ -155,6 +165,7 @@ phinalphase.Creature.prototype.getHitted = function (dmgDealer) {
 phinalphase.Creature.prototype.flinch = function () {
     this.isAttacking = false;
     this.isFlinched = true;
+    this.canBeHitted = false;
     this.body.velocity.y = -300;
     if (this.scale.x <= 0) {
         this.body.velocity.x = 100;
@@ -165,9 +176,9 @@ phinalphase.Creature.prototype.flinch = function () {
     this.play(this.animationsObject.hurt[0], false, function () {
         this.isFlinched = false;
 
-        // phinalphase.game.time.events.add(3000, function () {
-        //     this.revive();
-        // }, this);
+        phinalphase.game.time.events.add(500, function () {
+            this.canBeHitted = true;
+        }, this);
     });
 
 
@@ -185,8 +196,8 @@ phinalphase.Creature.prototype.dying = function () {
 };
 
 
-phinalphase.Player = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, animations) {
-    phinalphase.Creature.call(this, game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, animations);
+phinalphase.Player = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, health, animations) {
+    phinalphase.Creature.call(this, game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, health, animations);
     // game.camera.follow(this);
     if (phinalphase.players != undefined) {
         phinalphase.players.add(this);
@@ -200,8 +211,8 @@ phinalphase.Player.prototype = Object.create(phinalphase.Creature.prototype);
 phinalphase.Player.prototype.constructor = phinalphase.Player;
 
 
-phinalphase.Enemy = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, animations) {
-    phinalphase.Creature.call(this, game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, animations);
+phinalphase.Enemy = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, health, animations) {
+    phinalphase.Creature.call(this, game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, health, animations);
     game.add.existing(this);
     if (phinalphase.enemies != undefined) {
         phinalphase.enemies.add(this);
