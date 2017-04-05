@@ -11,40 +11,38 @@ phinalphase.Game.prototype = {
     },
 
     create: function() {
+        this.creatures = phinalphase.game.add.group();
+        this.players = phinalphase.game.add.group();
+        this.enemies = phinalphase.game.add.group();
 
+        this.map = this.game.add.tilemap('testlevel');
 
-
-
-
-
-        //resizes the game world to match the layer dimensions
-
-        // this.backgroundlayer.resizeWorld();
-        this.blockedLayer.resizeWorld();
-
-        createPlayerCop(this);
-        createPlayerNinja(this);
-        console.log(window.innerWidth);
-        console.log(this.game.stage.width);
-        // this.grp = this.game.add.group();
-        // this.grp.add(this.playerNinja);
-        // this.grp.prototype = Object.create(null);
-        // this.grp.prototype.play = function (a) {
-        //   console.log(a);
-        // }
-        // console.log(this.grp.children[0].name);
-
-
-        this.backgroundMusic = this.game.add.audio('backgroundMusic');
+        this.map.addTilesetImage('cifiSheet', 'gameTiles');
+        this.backgroundlayer = this.map.createLayer('background');
+        this.backgroundlayer2 = this.map.createLayer('background2');
+        this.slime = this.map.createLayer('slime');
+        this.blockedLayer = this.map.createLayer('blocks');
+        this.map.setCollisionBetween(1, 200000, true, 'blocks');
+        phinalphase.оbjectGroupFromTiled('spikes', this.map, 'spikes', 'spikes');
+        this.backgroundlayer.resizeWorld();
+        this.backgroundMusic = this.game.add.audio("backgroundMusic");
         this.backgroundMusic.loop = true;
         this.backgroundMusic.play();
-
+        createPlayerCop(this);
+        createPlayerNinja(this);
 
     },
 
-    // playerHit: function (player, blockedLayer) { },
+
+
+
+
+
 
     update: function() {
+        this.physics.arcade.overlap(phinalphase.players, phinalphase.spikes, function(player, spike) {
+            player.getHitted(spike);
+        }, null, this);
 
         updatePlayerNinja(this);
         updatePlayerCop(this);
@@ -61,14 +59,15 @@ phinalphase.Game.prototype = {
         }
         if (!this.playerNinja.inCamera && this.playerCop.facing === "right") {
             this.playerCop.body.velocity.x = 0;
-
             if (this.playerNinja.facing === "left") {
                 this.playerNinja.body.velocity.x = 0;
             }
+
         }
         if (!this.playerCop.inCamera && this.playerNinja.facing === "right") {
             this.playerNinja.body.velocity.x = 0;
             if (this.playerCop.facing === "left") {
+                console.log("asdasad");
                 this.playerCop.body.velocity.x = 0;
             }
         }
