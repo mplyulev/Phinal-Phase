@@ -5,6 +5,14 @@
          "height":8,
          "name":"background",
          "opacity":1,
+         "properties":
+            {
+             "layerType":"background"
+            },
+         "propertytypes":
+            {
+             "layerType":"string"
+            },
          "type":"tilelayer",
          "visible":true,
          "width":60,
@@ -16,6 +24,14 @@
          "height":8,
          "name":"blocks",
          "opacity":1,
+         "properties":
+            {
+             "layerType":"block"
+            },
+         "propertytypes":
+            {
+             "layerType":"string"
+            },
          "type":"tilelayer",
          "visible":true,
          "width":60,
@@ -35,19 +51,21 @@
                     {
                      "dmg":10,
                      "sprite":"spikes",
-                     "type":"spikes"
+                     "type":"spikes",
+                     "usability":"damage"
                     },
                  "propertytypes":
                     {
                      "dmg":"int",
                      "sprite":"string",
-                     "type":"string"
+                     "type":"string",
+                     "usability":"string"
                     },
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":497.333333333333,
+                 "x":497.333,
                  "y":384
                 }, 
                 {
@@ -58,19 +76,21 @@
                     {
                      "dmg":10,
                      "sprite":"spikes",
-                     "type":"spikes"
+                     "type":"spikes",
+                     "usability":"damage"
                     },
                  "propertytypes":
                     {
                      "dmg":"int",
                      "sprite":"string",
-                     "type":"string"
+                     "type":"string",
+                     "usability":"string"
                     },
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":562.666666666667,
+                 "x":562.667,
                  "y":383.665
                 }, 
                 {
@@ -81,19 +101,21 @@
                     {
                      "dmg":10,
                      "sprite":"spikes",
-                     "type":"spikes"
+                     "type":"spikes",
+                     "usability":"damage"
                     },
                  "propertytypes":
                     {
                      "dmg":"int",
                      "sprite":"string",
-                     "type":"string"
+                     "type":"string",
+                     "usability":"string"
                     },
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":433.333333333333,
+                 "x":433.333,
                  "y":383.665
                 }, 
                 {
@@ -116,8 +138,8 @@
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":313.333333333333,
-                 "y":380.998333333333
+                 "x":313.333,
+                 "y":380.998
                 }],
          "opacity":1,
          "properties":

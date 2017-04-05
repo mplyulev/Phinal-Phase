@@ -21,7 +21,6 @@ function createPlayerNinja(that) {
 
 
 function updatePlayerNinja(that) {
-    that.game.physics.arcade.collide(that.playerNinja, that.blockedLayer, null, null, that);
     if (!that.playerNinja.isFlinched) {
         that.playerNinja.body.velocity.x = 0;
     }

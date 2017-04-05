@@ -1,28 +1,55 @@
 var phinalphase = phinalphase || {};
 
-phinalphase.Game = function() {};
+phinalphase.Game = function () { };
 
 phinalphase.Game.prototype = {
 
-    preload: function() {
+    preload: function () {
 
         this.game.time.advancedTiming = true;
 
     },
 
-    create: function() {
+    create: function () {
+        this.game.updatables = [];
 
-        this.map = this.game.add.tilemap('testlevel');
+        // var tiles = [
+        //     ['cifiSheet', 'gameTiles']
+        // ]
 
-        this.map.addTilesetImage('cifiSheet', 'gameTiles');
-        this.backgroundlayer = this.map.createLayer('background');
-        this.backgroundlayer2 = this.map.createLayer('background2');
-        this.slime = this.map.createLayer('slime');
-        this.blockedLayer = this.map.createLayer('blocks');
-        this.map.setCollisionBetween(1, 200000, true, 'blocks');
-        phinalphase.оbjectGroupFromTiled('spikes', this.map, 'spikes', 'spikes');
-        phinalphase.оbjectGroupFromTiled('tree', this.map, 'spikes', 'tree');
-        this.backgroundlayer.resizeWorld();
+        // var layers = [
+        //     ['backgroundlayer', 'background'],
+        //     ['blockedLayer', 'blocks']
+        // ]
+
+        // var objects = [
+        //     ['spikes', 'spikes', 'spikes'],
+        //     ['tree', 'spikes', 'tree']
+        // ]
+        // phinalphase.createMap('testlevel', tiles, layers, objects);
+
+        var tiles = [
+            ['gySheet', 'gameTiles']
+        ]
+
+        var layers = [
+            // ['bg', 'bgImg'],
+            ['backgroundlayer', 'background'],
+            ['backgroundlayer2', 'background2'],
+            ['blockedLayer', 'block']
+        ]
+
+        var objects = [
+            ['bush', 'objects', 'bush'],
+            ['crate', 'objects', 'crate']
+        ]
+        phinalphase.createMap('testlevel', tiles, layers, objects);
+
+        console.log(phinalphase.bush);
+
+
+
+
         var backgroundMusic1 = new buzz.sound("../../Assets/sound/forest", {
             formats: ["ogg"],
             preload: true,
@@ -39,6 +66,11 @@ phinalphase.Game.prototype = {
         createPlayerCop(this);
         createPlayerNinja(this);
 
+        this.game.updatables.push(function () {
+            updatePlayerNinja(this);
+            updatePlayerCop(this);
+        }.bind(this));
+
     },
 
 
@@ -47,13 +79,13 @@ phinalphase.Game.prototype = {
 
 
 
-    update: function() {
-        this.physics.arcade.overlap(phinalphase.players, phinalphase.spikes, function(player, spike) {
-            player.act('STRIKED', spike);
-        }, null, this);
+    update: function () {
+        this.game.updatables.forEach(function (f) {
+            f();
+        }, this);
+        
 
-        updatePlayerNinja(this);
-        updatePlayerCop(this);
+
         this.game.camera.deadzone = new Phaser.Rectangle(0, 0, 600, 400);
         // this.playerCop.body.moves = false;
         if (this.playerCop.x > this.playerNinja.x) {
@@ -103,7 +135,7 @@ phinalphase.Game.prototype = {
         }
     },
 
-    render: function() {
+    render: function () {
 
 
         this.game.debug.text(this.game.time.fps || '--', 20, 70, "#00ff00", "40px Courier");

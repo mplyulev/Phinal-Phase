@@ -152,14 +152,12 @@ phinalphase.Creature.prototype.act = function (act, cause) {
     }
 };
 
-phinalphase.Creature.prototype.getHitted = function (dmgDealer) {
-    this.act('FLINCH');
+phinalphase.Creature.prototype.getHitted = function (dmgDealer) {   
     this.health -= dmgDealer.dmg;
     if (this.health <= 0) {
         this.act('DIE');
     }
-
-
+    this.act('FLINCH');
 };
 
 phinalphase.Creature.prototype.flinch = function () {
