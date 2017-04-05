@@ -13,8 +13,12 @@ function createPlayerNinja(that) {
     that.playerNinja = new phinalphase.Player(that.game, 250, 350, 'playerNinja', 'Idle_000', 1000, 0.5, 1, -700, 300, anim);
     that.playerNinja.checkWorldBounds = true;
     that.playerNinja.facing = "";
+    that.playerNinja.body.collideWorldBounds = true;
+    that.playerNinja.jumpSound = that.game.add.audio("jumpSound");
+    that.playerNinja.jumpSound.volume = 0.4;
     that.playerNinja.jump = function() {
         that.playerNinja.body.velocity.y = that.playerNinja.jumpHeight;
+        that.playerNinja.jumpSound.play();
         that.playerNinja.play('jumpStart', false, function() {
             if (this.animations.currentAnim.name == 'jumpStart') {
                 this.play('jumpAir');

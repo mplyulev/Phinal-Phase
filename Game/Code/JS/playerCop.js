@@ -34,8 +34,21 @@ function createPlayerCop(that) {
     that.playerCop.animations.add('flyForward', Phaser.Animation.generateFrameNames('Jetpack Fly Forward_', 0, 11, '', 3), 25, true);
     that.playerCop.animations.add('flyShoot', Phaser.Animation.generateFrameNames('Jetpack Fly Shoot_', 0, 11, '', 3), 25, true);
     that.playerCop.animations.add('flyHurt', Phaser.Animation.generateFrameNames('Jetpack Fly Hurt_', 0, 9, '', 3), 25, true);
-
     // that.playerCop.animations.add('flyDownDust', Phaser.Animation.generateFrameNames('groundup000', 0, 30, '', 3), 25, true);
+
+    that.playerCop.jumpSound = that.game.add.audio("jumpSound");
+    that.playerCop.jumpSound.volume = 0.4;
+    that.playerCop.noEnergySound = that.game.add.audio("noEnergySound");
+    that.playerCop.shootSound = that.game.add.audio("shootSound");
+    // that.playerCop.footstepSound = that.game.add.audio("footstepSound");
+
+    that.playerCop.shootSoundAfterAnimation = function() {
+        that.playerCop.animations.currentAnim.loop = false;
+        that.playerCop.animations.currentAnim.onComplete.add(function() {
+            that.playerCop.shootSound.play();
+        });
+    }
+    that.playerCop.shootSound.volume = 0.1;
 
 }
 
@@ -46,6 +59,7 @@ function updatePlayerCop(that) {
     weapon.bullets.forEach(function(bullet) {
         if (bullet.body.velocity.x == 0 && bullet.body.velocity.y == 0) {
             bullet.kill();
+
         }
     })
 
@@ -54,6 +68,7 @@ function updatePlayerCop(that) {
         that.playerCop.isInAir = false;
     } else {
         that.playerCop.isInAir = true;
+
     }
     if (!that.playerCop.isAttacking) {
 
@@ -61,9 +76,11 @@ function updatePlayerCop(that) {
         if (that.game.input.keyboard.isDown(Phaser.Keyboard.D)) {
             that.playerCop.facing = "right";
             that.playerCop.scale.setTo(1, 1);
-            that.playerCop.body.velocity.x = 250;
+            that.playerCop.body.velocity.x = 300;
             if (!that.playerCop.isInAir) {
                 that.playerCop.animations.play('run');
+
+
             }
             // if (that.game.input.keyboard.isDown(Phaser.Keyboard.V) && !that.playerCop.isInAir) {   // sliding FIX
             //     that.playerCop.body.velocity.x = 0;
@@ -71,9 +88,10 @@ function updatePlayerCop(that) {
         } else if (that.game.input.keyboard.isDown(Phaser.Keyboard.A)) {
             that.playerCop.facing = "left";
             that.playerCop.scale.setTo(-1, 1);
-            that.playerCop.body.velocity.x = -250;
+            that.playerCop.body.velocity.x = -300;
             if (!that.playerCop.isInAir) {
                 that.playerCop.animations.play('run');
+
             }
             // if (that.game.input.keyboard.isDown(Phaser.Keyboard.V) && !that.playerCop.isInAir) { // sliding FIX
             //     that.playerCop.body.velocity.x = 0;
@@ -95,17 +113,21 @@ function updatePlayerCop(that) {
         if (that.game.input.keyboard.isDown(Phaser.Keyboard.W) && that.playerCop.body.blocked.down) {
             that.playerCop.body.velocity.y = -550;
             that.playerCop.animations.play('jumpStart');
+            that.playerCop.jumpSound.play();
             that.playerCop.animations.currentAnim.loop = false;
             that.playerCop.animations.currentAnim.onComplete.add(function() { that.playerCop.animations.play('jumpAir'); }, that);
         }
         // }
 
         if (that.game.input.keyboard.isDown(Phaser.Keyboard.V)) {
+            // that.playerCop.shootSound.play();
             if (that.playerCop.bullets > 0) {
                 that.playerCop.animations.play("shoot");
                 that.playerCop.body.height = that.playerCop.height;
                 that.playerCop.animations.currentAnim.loop = false;
                 that.playerCop.animations.currentAnim.onComplete.add(function() {
+
+
                     that.playerCop.animations.play("idle");
                     that.playerCop.body.height = that.playerCop.height;
 
@@ -114,11 +136,13 @@ function updatePlayerCop(that) {
                     weapon.fireAngle = Phaser.ANGLE_LEFT;
                     weapon.trackSprite(that.playerCop, -35, -29, false);
                     weapon.fire();
+
                 }
                 if (that.playerCop.facing === "right") {
                     weapon.fireAngle = Phaser.ANGLE_RIGHT;
                     weapon.trackSprite(that.playerCop, 35, -29, false);
                     weapon.fire();
+                    that.playerCop.shootSoundAfterAnimation();
                 }
             }
         }
@@ -137,24 +161,28 @@ function updatePlayerCop(that) {
                 that.playerCop.energy -= 0.2;
                 that.playerCop.animations.play("flyIdle");
                 that.playerCop.body.velocity.y -= 23;
+
             }
         }
 
 
         if (that.game.input.keyboard.isDown(Phaser.Keyboard.G) && that.game.input.keyboard.isDown(Phaser.Keyboard.V)) {
             that.playerCop.animations.play("shoot");
+            that.playerCop.shootSoundAfterAnimation();
         }
 
         if (that.game.input.keyboard.isDown(Phaser.Keyboard.G) && that.game.input.keyboard.isDown(Phaser.Keyboard.D)) {
             that.playerCop.animations.play("flyForward");
-            if (that.game.input.keyboard.isDown(Phaser.Keyboard.V))
+            if (that.game.input.keyboard.isDown(Phaser.Keyboard.V)) {
                 that.playerCop.animations.play("shoot");
+                that.playerCop.shootSoundAfterAnimation();
+            }
         }
         if (that.game.input.keyboard.isDown(Phaser.Keyboard.G) && that.game.input.keyboard.isDown(Phaser.Keyboard.A)) {
             that.playerCop.scale.setTo(-1, 1);
             that.playerCop.animations.play("flyForward");
             if (that.game.input.keyboard.isDown(Phaser.Keyboard.V))
-                that.playerCop.animations.play("shoot");
+                that.playerCop.shootSound.play();
         }
     }
 

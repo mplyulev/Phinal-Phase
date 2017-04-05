@@ -12,29 +12,15 @@ phinalphase.Game.prototype = {
 
     create: function() {
 
-        this.map = this.game.add.tilemap('testlevel');
 
-        //the first parameter is the tileset name as specified in Tiled, the second is the key to the asset
 
-        this.map.addTilesetImage('tileset', 'gameTiles');
 
-        //create layers
-
-        this.backgroundlayer = this.map.createLayer('background');
-        this.water = this.map.createLayer('water');
-        this.enemyObjects = this.map.createLayer('enemyObjects');
-
-        this.blockedLayer = this.map.createLayer('block');
-
-        //collision on blockedLayer
-
-        this.map.setCollisionBetween(1, 200000, true, 'block');
 
 
         //resizes the game world to match the layer dimensions
 
-        this.backgroundlayer.resizeWorld();
-
+        // this.backgroundlayer.resizeWorld();
+        this.blockedLayer.resizeWorld();
 
         createPlayerCop(this);
         createPlayerNinja(this);
@@ -47,6 +33,13 @@ phinalphase.Game.prototype = {
         //   console.log(a);
         // }
         // console.log(this.grp.children[0].name);
+
+
+        this.backgroundMusic = this.game.add.audio('backgroundMusic');
+        this.backgroundMusic.loop = true;
+        this.backgroundMusic.play();
+
+
     },
 
     // playerHit: function (player, blockedLayer) { },
@@ -68,15 +61,14 @@ phinalphase.Game.prototype = {
         }
         if (!this.playerNinja.inCamera && this.playerCop.facing === "right") {
             this.playerCop.body.velocity.x = 0;
+
             if (this.playerNinja.facing === "left") {
                 this.playerNinja.body.velocity.x = 0;
             }
-
         }
         if (!this.playerCop.inCamera && this.playerNinja.facing === "right") {
             this.playerNinja.body.velocity.x = 0;
             if (this.playerCop.facing === "left") {
-                console.log("asdasad");
                 this.playerCop.body.velocity.x = 0;
             }
         }
