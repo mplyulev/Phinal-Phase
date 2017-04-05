@@ -36,7 +36,6 @@ phinalphase.Preload.prototype = {
 
 
 
-
         this.load.image('bullet', '../../Assets/images/bullet2.png');
         this.load.atlas('playerNinja', '../../Assets/images/Players/Swordsman/hero1.png', '../../Assets/images/Players/Swordsman/hero1.json');
         this.load.atlas('playerCop', '../../Assets/images/Players/Cop/hero2.png', '../../Assets/images/Players/cop/hero2.json');
