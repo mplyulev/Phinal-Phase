@@ -1,0 +1,15 @@
+{ "columns":0,
+ "margin":0,
+ "name":"treesTilesheet",
+ "spacing":0,
+ "tilecount":1,
+ "tileheight":301,
+ "tiles":
+    {
+     "1":
+        {
+         "image":"Game\/Assets\/treesTilesheet.png"
+        }
+    },
+ "tilewidth":282
+}

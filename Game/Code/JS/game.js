@@ -16,6 +16,7 @@ phinalphase.Game.prototype = {
 
         this.map.addTilesetImage('cifiSheet', 'gameTiles');
         this.backgroundlayer = this.map.createLayer('background');
+        this.backgroundlayer.fixedToCamera = true;
         this.backgroundlayer2 = this.map.createLayer('background2');
         this.slime = this.map.createLayer('slime');
         this.blockedLayer = this.map.createLayer('blocks');
