@@ -3,7 +3,7 @@ var phinalphase = phinalphase || {};
 
 // constructor for creatures
 
-phinalphase.Creature = function(game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, animations) {
+phinalphase.Creature = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, animations) {
     Phaser.Sprite.call(this, game, x, y, key, frame);
     this.game.physics.arcade.enable(this);
     this.body.gravity.y = gravity;
@@ -34,7 +34,7 @@ phinalphase.Creature.prototype.addAnimation = function (animations) {
     }
 };
 
-phinalphase.Creature.prototype.play = function(animation, looping, cb) {
+phinalphase.Creature.prototype.play = function (animation, looping, cb) {
     this.animations.play(animation);
     for (var key in this.animationsObject) {
         if (this.animationsObject.hasOwnProperty(key)) {
@@ -72,32 +72,120 @@ phinalphase.Creature.prototype.play = function(animation, looping, cb) {
 };
 
 
-phinalphase.Creature.prototype.act = function (direction) {
-    if (this.alive && !this.isAttacking && !this.isFlinched) {
-        switch (direction) {
+phinalphase.Creature.prototype.jump = function () {
+    this.body.velocity.y = this.jumpHeight;
+    this.jumpSound.play();
+    this.play(this.animationsObject.jumpStart[0], false, function () {
+        if (this.animations.currentAnim.name == this.animationsObject.jumpStart[0]) {
+            this.play(this.animationsObject.jumpAir[0]);
+        }
+    });
+}
+
+
+phinalphase.Creature.prototype.moveSides = function (sideNum) {
+    this.scale.setTo(sideNum, 1);
+    if (sideNum < 0) {
+        this.body.velocity.x = -this.speedX;
+    } else {
+        this.body.velocity.x = this.speedX;
+    }
+    if (this.isInAir) {
+        this.play(this.animationsObject.jumpAir[0]);
+    } else {
+        this.play(this.animationsObject.run[0]);
+    }
+}
+
+phinalphase.Creature.prototype.stay = function () {
+    this.play(this.animationsObject.idle[0]);
+}
+
+phinalphase.Creature.prototype.attack = function () {
+    this.isAttacking = true;
+    this.play(this.animationsObject.attack[0], false, function () {
+        this.play(this.animationsObject.idle[0]);
+        this.isAttacking = false;
+    });
+}
+
+phinalphase.Creature.prototype.fall = function () {
+    this.play(this.animationsObject.jumpFall[0]);
+}
+
+
+
+
+
+
+
+phinalphase.Creature.prototype.act = function (act, cause) {
+    if (this.alive) {
+
+        if (act != 'DIE' && this.isFlinched) {
+            return;
+        }
+
+        if ((act != 'STRIKED' && act != 'DIE' && act != 'FLINCH') && this.isAttacking) {
+            return;
+        }
+
+        switch (act) {
+
             case 'UP': this.jump(); break;
             case 'LEFT': this.moveSides(-1); break;
             case 'RIGHT': this.moveSides(1); break;
             case 'ATTACK': this.attack(); break;
             case 'FALL': this.fall(); break;
+            case 'STRIKED': this.getHitted(cause); break;
+            case 'FLINCH': this.flinch(); break;
+            case 'DIE': this.dying(); break;
             default: this.stay();
         }
+
     }
 };
 
 phinalphase.Creature.prototype.getHitted = function (dmgDealer) {
-    this.dying();
+    this.act('FLINCH');
+
+
 };
 
-phinalphase.Creature.prototype.dying = function (dmgDealer) {
+phinalphase.Creature.prototype.flinch = function () {
+    this.isAttacking = false;
+    this.isFlinched = true;
+    this.body.velocity.y = -300;
+    if (this.scale.x <= 0) {
+        this.body.velocity.x = 100;
+    } else {
+        this.body.velocity.x = -100;
+    }
+
+    this.play(this.animationsObject.hurt[0], false, function () {
+        this.isFlinched = false;
+
+        // phinalphase.game.time.events.add(3000, function () {
+        //     this.revive();
+        // }, this);
+    });
+
+
+};
+
+phinalphase.Creature.prototype.dying = function () {
     this.alive = false;
     this.play(this.animationsObject.death[0], false, function () {
         this.kill();
+
+        phinalphase.game.time.events.add(3000, function () {
+            this.revive();
+        }, this);
     });
 };
 
 
-phinalphase.Player = function(game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, animations) {
+phinalphase.Player = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, animations) {
     phinalphase.Creature.call(this, game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, animations);
     // game.camera.follow(this);
     if (phinalphase.players != undefined) {
@@ -112,7 +200,7 @@ phinalphase.Player.prototype = Object.create(phinalphase.Creature.prototype);
 phinalphase.Player.prototype.constructor = phinalphase.Player;
 
 
-phinalphase.Enemy = function(game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, animations) {
+phinalphase.Enemy = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, animations) {
     phinalphase.Creature.call(this, game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, animations);
     game.add.existing(this);
     if (phinalphase.enemies != undefined) {

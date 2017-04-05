@@ -11,9 +11,6 @@ phinalphase.Game.prototype = {
     },
 
     create: function() {
-        this.creatures = phinalphase.game.add.group();
-        this.players = phinalphase.game.add.group();
-        this.enemies = phinalphase.game.add.group();
 
         this.map = this.game.add.tilemap('testlevel');
 
@@ -41,7 +38,7 @@ phinalphase.Game.prototype = {
 
     update: function() {
         this.physics.arcade.overlap(phinalphase.players, phinalphase.spikes, function(player, spike) {
-            player.getHitted(spike);
+            player.act('STRIKED', spike);
         }, null, this);
 
         updatePlayerNinja(this);
