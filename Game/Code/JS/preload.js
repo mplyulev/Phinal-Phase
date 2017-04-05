@@ -22,6 +22,7 @@ phinalphase.Preload.prototype = {
         this.load.image('gameTiles', '../../Assets/Spritesheets and Tilesets/ci-fi/Tiles/cifiSheet.png');
         this.load.image('background3', '../../assets/images/01trees.png');
         this.load.image('spikes', '../../Assets/Spritesheets and Tilesets/ci-fi/Tiles/spike.png');
+        this.load.image('tree', '../../Assets/Spritesheets and Tilesets/ci-fi/Objects/saw.png');
         this.load.image('bullet', '../../Assets/images/bullet2.png');
         this.load.atlas('playerNinja', '../../Assets/images/Players/Swordsman/hero1.png', '../../Assets/images/Players/Swordsman/hero1.json');
         this.load.atlas('playerCop', '../../Assets/images/Players/Cop/hero2.png', '../../Assets/images/Players/cop/hero2.json');
