@@ -20,12 +20,13 @@ phinalphase.Preload.prototype = {
         // this.load.tilemap('testlevel', '../../Assets/levels/test/forest1.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.tilemap('testlevel', '../../Assets/levels/test/cifi1.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.image('gameTiles', '../../Assets/Spritesheets and Tilesets/ci-fi/Tiles/cifiSheet.png');
+        this.load.image('background3', '../../assets/images/01trees.png');
         this.load.image('spikes', '../../Assets/Spritesheets and Tilesets/ci-fi/Tiles/spike.png');
         this.load.image('bullet', '../../Assets/images/bullet2.png');
         this.load.atlas('playerNinja', '../../Assets/images/Players/Swordsman/hero1.png', '../../Assets/images/Players/Swordsman/hero1.json');
         this.load.atlas('playerCop', '../../Assets/images/Players/Cop/hero2.png', '../../Assets/images/Players/cop/hero2.json');
 
-        this.game.load.audio('backgroundMusic', '../../Assets/sound/forest.ogg');
+
         this.game.load.audio('jumpSound', '../../Assets//sound/jump.mp3');
         this.game.load.audio('shootSound', '../../Assets//sound/launches/iceball.wav');
         this.game.load.audio('noEnergySound', '../../Assets//sound/powerDrain.ogg');
