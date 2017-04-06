@@ -1,16 +1,16 @@
 var phinalphase = phinalphase || {};
 
-phinalphase.Game = function () { };
+phinalphase.Game = function() {};
 
 phinalphase.Game.prototype = {
 
-    preload: function () {
+    preload: function() {
 
         this.game.time.advancedTiming = true;
 
     },
 
-    create: function () {
+    create: function() {
         this.game.updatables = [];
 
         // var tiles = [
@@ -66,24 +66,18 @@ phinalphase.Game.prototype = {
         createPlayerCop(this);
         createPlayerNinja(this);
 
-        this.game.updatables.push(function () {
+        this.game.updatables.push(function() {
             updatePlayerNinja(this);
             updatePlayerCop(this);
         }.bind(this));
 
     },
 
-
-
-
-
-
-
-    update: function () {
-        this.game.updatables.forEach(function (f) {
+    update: function() {
+        this.game.updatables.forEach(function(f) {
             f();
         }, this);
-        
+
 
 
         this.game.camera.deadzone = new Phaser.Rectangle(0, 0, 600, 400);
@@ -113,36 +107,18 @@ phinalphase.Game.prototype = {
         }
 
         {
-            // var medianX = (this.playerCop.body.x > this.playerNinja.body.x) ? (this.playerCop.body.x - this.playerNinja.body.x) : (this.playerNinja.body.x - this.playerCop.body.x);
-            // var medianY = (this.playerCop.body.y > this.playerNinja.body.y) ? (this.playerCop.body.y - this.playerNinja.body.y) : (this.playerNinja.body.y - this.playerCop.body.y);
-            // this.game.camera.focusOnXY(medianX, medianY);
-            // if (this.playerCop.body.x < this.game.camera.view.x) {
-            //     this.playerCop.stopMoveLeft();
-            // }
-            // if (this.playerNinja.body.x < this.game.camera.view.x) {
-            //     this.playerNinja.stopMoveLeft();
-            // }
-
-
-            // if (this.playerCop.body.right > this.game.camera.view.right) {
-            //     this.playerCop.stopMoveRight();
-            // }
-            // if (this.playerNinja.body.right > this.game.camera.view.right) {
-            //     this.playerNinja.stopMoveRight();
-            // }
-
 
         }
     },
 
-    render: function () {
+    render: function() {
 
 
-        this.game.debug.text(this.game.time.fps || '--', 20, 70, "#00ff00", "40px Courier");
-        this.game.debug.spriteBounds(this.playerNinja);
-        this.game.debug.spriteInfo(this.playerNinja, 32, 32);
-        this.game.debug.spriteBounds(this.playerCop);
-        this.game.debug.spriteInfo(this.playerCop, 532, 32);
+        // this.game.debug.text(this.game.time.fps || '--', 20, 70, "#00ff00", "40px Courier");
+        // this.game.debug.spriteBounds(this.playerNinja);
+        // this.game.debug.spriteInfo(this.playerNinja, 32, 32);
+        // this.game.debug.spriteBounds(this.playerCop);
+        // this.game.debug.spriteInfo(this.playerCop, 532, 32);
     }
 
 };
