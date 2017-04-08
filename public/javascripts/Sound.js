@@ -1,4 +1,4 @@
-  that.playerCop.walkingSound = new buzz.sound("/Assets//sound/footstep04", {
+  that.playerCop.walkingSound = new buzz.sound("/assets//sound/footstep04", {
       formats: ["ogg"],
       preload: true,
   });

@@ -12,29 +12,29 @@ function createPlayerNinja(that) {
     }
     that.playerNinja = new phinalphase.Player(that.game, 250, 350, 'playerNinja', 'Idle_000', 1000, 0.5, 1, -700, 300, 100, 100, anim);
     that.playerNinja.checkWorldBounds = true;
-    that.playerNinja.walkingSound = new buzz.sound("/Assets//sound/footstep09", {
+    that.playerNinja.walkingSound = new buzz.sound("/assets//sound/footstep09", {
         formats: ["ogg"],
         volume: 20,
         preload: true,
     });
-    that.playerNinja.jumpSound = new buzz.sound("/Assets//sound/jump", {
+    that.playerNinja.jumpSound = new buzz.sound("/assets//sound/jump", {
         formats: ["mp3"],
         volume: 60,
         preload: true,
     });
-    that.playerNinja.swordSound = new buzz.sound("/Assets//sound/sword", {
+    that.playerNinja.swordSound = new buzz.sound("/assets//sound/sword", {
         formats: ["wav"],
         volume: 60,
         preload: true,
     });
     that.playerNinja.swordSound.setSpeed(0.6);
 
-    that.playerNinja.hurtSound = new buzz.sound("/Assets//sound/pain2", {
+    that.playerNinja.hurtSound = new buzz.sound("/assets//sound/pain2", {
         formats: ["wav"],
         volume: 60,
         preload: true,
     });
-    that.playerNinja.dieSound = new buzz.sound("/Assets//sound/player/die", {
+    that.playerNinja.dieSound = new buzz.sound("/assets//sound/player/die", {
         formats: ["wav"],
         volume: 60,
         preload: true,

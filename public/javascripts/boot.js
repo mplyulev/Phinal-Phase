@@ -7,7 +7,7 @@ phinalphase.Boot.prototype = {
     preload: function() {
 
 
-        this.load.image('preloadbar', '/Assets/progress-bar.png');
+        this.load.image('preloadbar', '/assets/progress-bar.png');
 
     },
 

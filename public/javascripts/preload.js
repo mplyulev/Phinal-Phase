@@ -26,20 +26,20 @@ phinalphase.Preload.prototype = {
 
 
 
-        this.load.tilemap('testlevel', '/Assets/levels/test/gy1.json', null, Phaser.Tilemap.TILED_JSON);
-        this.load.image('gameTiles', '/Assets/Spritesheets and Tilesets/gy/Tiles/gySheet.png');
-        this.load.image('bg', '/Assets/Spritesheets and Tilesets/gy/BG.png');
-        this.load.image('bush', '/Assets/Spritesheets and Tilesets/gy/Objects/DeadBush.png');
-        this.load.image('crate', '/Assets/Spritesheets and Tilesets/gy/Objects/Crate.png');
-        this.load.image('healthbar', '/Assets/healthbar.png');
+        this.load.tilemap('testlevel', '/assets/levels/test/gy1.json', null, Phaser.Tilemap.TILED_JSON);
+        this.load.image('gameTiles', '/assets/Spritesheets and Tilesets/gy/Tiles/gySheet.png');
+        this.load.image('bg', '/assets/Spritesheets and Tilesets/gy/BG.png');
+        this.load.image('bush', '/assets/Spritesheets and Tilesets/gy/Objects/DeadBush.png');
+        this.load.image('crate', '/assets/Spritesheets and Tilesets/gy/Objects/Crate.png');
+        this.load.image('healthbar', '/assets/healthbar.png');
 
 
 
 
 
-        this.load.image('bullet', '/Assets/images/bullet2.png');
-        this.load.atlas('playerNinja', '/Assets/images/Players/Swordsman/hero1.png', '/Assets/images/Players/Swordsman/hero1.json');
-        this.load.atlas('playerCop', '/Assets/images/Players/Cop/hero2.png', '/Assets/images/Players/cop/hero2.json');
+        this.load.image('bullet', '/assets/images/bullet2.png');
+        this.load.atlas('playerNinja', '/assets/images/Players/Swordsman/hero1.png', '/assets/images/Players/Swordsman/hero1.json');
+        this.load.atlas('playerCop', '/assets/images/Players/Cop/hero2.png', '/assets/images/Players/cop/hero2.json');
 
 
 
