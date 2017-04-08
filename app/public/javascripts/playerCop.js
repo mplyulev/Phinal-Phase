@@ -19,41 +19,41 @@
 
      that.playerCop = new phinalphase.Player(that.game, 250, 350, 'playerCop', 'Idle_000', 1000, 0.5, 1, -600, 200, 100, 100, anim);
 
-     that.playerCop.noEnergySound = new buzz.sound("../../Assets//sound/powerDrain", {
+     that.playerCop.noEnergySound = new buzz.sound("/Assets//sound/powerDrain", {
          formats: ["ogg"],
          preload: true,
      });
 
-     that.playerCop.walkingSound = new buzz.sound("../../Assets//sound/footstep04", {
+     that.playerCop.walkingSound = new buzz.sound("/Assets//sound/footstep04", {
          formats: ["ogg"],
          volume: 20,
          preload: true,
      });
-     that.playerCop.jetPackSound = new buzz.sound("../../Assets//sound/jetpack", {
+     that.playerCop.jetPackSound = new buzz.sound("/Assets//sound/jetpack", {
          formats: ["mp3"],
          volume: 30,
          preload: true,
      });
-     that.playerCop.hurtSound = new buzz.sound("../../Assets//sound//player/pain", {
+     that.playerCop.hurtSound = new buzz.sound("/Assets//sound//player/pain", {
          formats: ["wav"],
          volume: 30,
          preload: true,
      });
-     that.playerCop.dieSound = new buzz.sound("../../Assets//sound//player/die", {
+     that.playerCop.dieSound = new buzz.sound("/Assets//sound//player/die", {
          formats: ["wav"],
          volume: 30,
          preload: true,
      });
-     that.playerCop.shootSound = new buzz.sound("../../Assets//sound/launches/iceball", {
+     that.playerCop.shootSound = new buzz.sound("/Assets//sound/launches/iceball", {
          formats: ["wav"],
          preload: true,
      });
-     that.playerCop.jumpSound = new buzz.sound("../../Assets//sound/jump", {
+     that.playerCop.jumpSound = new buzz.sound("/Assets//sound/jump", {
          formats: ["mp3"],
          preload: true,
          volume: 60
      });
-     that.playerCop.fallingSound = new buzz.sound("../../Assets//sound/falling", {
+     that.playerCop.fallingSound = new buzz.sound("/Assets//sound/falling", {
          formats: ["ogg"],
          preload: true,
          volume: 60

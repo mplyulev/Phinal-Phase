@@ -7,12 +7,11 @@ phinalphase.Boot.prototype = {
     preload: function() {
 
 
-        this.load.image('preloadbar', '../../Assets/progress-bar.png');
+        this.load.image('preloadbar', '/Assets/progress-bar.png');
 
     },
 
     create: function() {
-
 
         this.game.stage.backgroundColor = '#000';
 
