@@ -158,7 +158,6 @@
              that.playerCop.animations.play("flyForward");
              if (that.game.input.keyboard.isDown(Phaser.Keyboard.V)) {
                  that.playerCop.animations.play("shoot");
-
              }
          }
          if (that.game.input.keyboard.isDown(Phaser.Keyboard.G) && that.game.input.keyboard.isDown(Phaser.Keyboard.A)) {

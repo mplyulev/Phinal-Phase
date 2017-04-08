@@ -37,7 +37,10 @@ phinalphase.Game.prototype = {
             ['backgroundlayer', 'background'],
             ['backgroundlayer2', 'background2'],
             ['blockedLayer', 'block']
-        ]
+        ];
+
+        var blockedLayer = layers[2][0]
+        console.log(blockedLayer);
 
         var objects = [
             ['bush', 'objects', 'bush'],
@@ -62,6 +65,7 @@ phinalphase.Game.prototype = {
             autoplay: true,
             loop: true
         });
+
 
         createPlayerCop(this);
         createPlayerNinja(this);
@@ -114,11 +118,11 @@ phinalphase.Game.prototype = {
     render: function() {
 
 
-        // this.game.debug.text(this.game.time.fps || '--', 20, 70, "#00ff00", "40px Courier");
-        // this.game.debug.spriteBounds(this.playerNinja);
-        // this.game.debug.spriteInfo(this.playerNinja, 32, 32);
-        // this.game.debug.spriteBounds(this.playerCop);
-        // this.game.debug.spriteInfo(this.playerCop, 532, 32);
+        this.game.debug.text(this.game.time.fps || '--', 20, 70, "#00ff00", "40px Courier");
+        this.game.debug.spriteBounds(this.playerNinja);
+        this.game.debug.spriteInfo(this.playerNinja, 32, 32);
+        this.game.debug.spriteBounds(this.playerCop);
+        this.game.debug.spriteInfo(this.playerCop, 532, 32);
     }
 
 };

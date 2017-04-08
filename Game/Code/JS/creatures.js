@@ -11,7 +11,6 @@ phinalphase.Creature = function(game, x, y, key, frame, gravity, anchorX, anchor
     this.anchor.setTo(anchorX, anchorY);
     this.jumpHeight = jumpHeight;
     this.speedX = speedX;
-    // this.collideWorldBounds = collideWorldBounds;
     this.isInAir = false;
     this.isAttacking = false;
     this.canAttackAgain = true;
@@ -71,7 +70,6 @@ phinalphase.Creature.prototype.play = function(animation, looping, cb) {
         this.animations.currentAnim.loop = false;
         this.animations.currentAnim.onComplete.add(cb, this);
     }
-
 };
 
 
@@ -206,7 +204,7 @@ phinalphase.Creature.prototype.dying = function() {
     this.alive = false;
     this.play(this.animationsObject.death[0], false, function() {
         this.kill();
-
+        this.alive = true;
         phinalphase.game.time.events.add(3000, function() {
             this.revive();
         }, this);
@@ -214,9 +212,9 @@ phinalphase.Creature.prototype.dying = function() {
 };
 
 
+
 phinalphase.Player = function(game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, health, energy, animations) {
     phinalphase.Creature.call(this, game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, health, animations);
-    // game.camera.follow(this);
     this.energy = energy;
     if (phinalphase.players != undefined) {
         phinalphase.players.add(this);
@@ -224,8 +222,9 @@ phinalphase.Player = function(game, x, y, key, frame, gravity, anchorX, anchorY,
         phinalphase.players = phinalphase.game.add.group();
         phinalphase.players.add(this);
     }
-
 }
+
+
 phinalphase.Player.prototype = Object.create(phinalphase.Creature.prototype);
 phinalphase.Player.prototype.constructor = phinalphase.Player;
 
@@ -233,13 +232,9 @@ phinalphase.Player.prototype.fly = function() {
     this.play(this.animationsObject.flyIdle[0]);
     if (this.energy > 0.2) {
         this.energy -= 0.2;
-        console.log(this.energy);
         this.animations.play("flyIdle");
         this.body.velocity.y -= 23;
     }
-    // if (this.energy <= 0.2) {
-    //     // this.noEnergySound.play();
-    // }
 }
 phinalphase.Player.prototype.knockback = function() {
     this.play(this.animationsObject.knockback[0]);

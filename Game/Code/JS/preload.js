@@ -2,12 +2,12 @@ var phinalphase = phinalphase || {};
 
 //loading the game assets
 
-phinalphase.Preload = function () { };
+phinalphase.Preload = function() {};
 
 phinalphase.Preload.prototype = {
 
 
-    preload: function () {
+    preload: function() {
         //show loading screen
         this.preloadBar = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'preloadbar');
 
@@ -31,6 +31,7 @@ phinalphase.Preload.prototype = {
         this.load.image('bg', '../../Assets/Spritesheets and Tilesets/gy/BG.png');
         this.load.image('bush', '../../Assets/Spritesheets and Tilesets/gy/Objects/DeadBush.png');
         this.load.image('crate', '../../Assets/Spritesheets and Tilesets/gy/Objects/Crate.png');
+        this.load.image('healthbar', '../../Assets/healthbar.png');
 
 
 
@@ -41,13 +42,11 @@ phinalphase.Preload.prototype = {
         this.load.atlas('playerCop', '../../Assets/images/Players/Cop/hero2.png', '../../Assets/images/Players/cop/hero2.json');
 
 
-        this.game.load.audio('jumpSound', '../../Assets//sound/jump.mp3');
-        this.game.load.audio('shootSound', '../../Assets//sound/launches/iceball.wav');
-        this.game.load.audio('noEnergySound', '../../Assets//sound/powerDrain.ogg');
+
 
 
     },
-    create: function () {
+    create: function() {
 
         this.state.start('Game');
     }
