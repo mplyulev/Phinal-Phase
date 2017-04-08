@@ -53,13 +53,13 @@ phinalphase.Game.prototype = {
 
 
 
-        var backgroundMusic1 = new buzz.sound("/assets/sound/forest", {
+        var backgroundMusic1 = new buzz.sound("/assets/Sound/forest", {
             formats: ["ogg"],
             preload: true,
             autoplay: true,
             loop: true
         });
-        var backgroundMusic2 = new buzz.sound("/assets/sound/swamp", {
+        var backgroundMusic2 = new buzz.sound("/assets/Sound/swamp", {
             formats: ["ogg"],
             preload: true,
             autoplay: true,
