@@ -31,7 +31,7 @@ phinalphase.Preload.prototype = {
         this.load.image('bg', '/assets/Spritesheets and Tilesets/gy/BG.png');
         this.load.image('bush', '/assets/Spritesheets and Tilesets/gy/Objects/DeadBush.png');
         this.load.image('crate', '/assets/Spritesheets and Tilesets/gy/Objects/Crate.png');
-        this.load.image('healthbar', '/assets/healthbar.png');
+        // this.load.image('healthbar', '/assets/healthbar.png');
 
 
 
