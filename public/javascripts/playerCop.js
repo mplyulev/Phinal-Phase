@@ -19,41 +19,41 @@
 
      that.playerCop = new phinalphase.Player(that.game, 250, 350, 'playerCop', 'Idle_000', 1000, 0.5, 1, -600, 200, 100, 100, anim);
 
-     that.playerCop.noEnergySound = new buzz.sound("/assets//sound/powerDrain", {
+     that.playerCop.noEnergySound = new buzz.sound("/assets/Sound/powerDrain", {
          formats: ["ogg"],
          preload: true,
      });
 
-     that.playerCop.walkingSound = new buzz.sound("/assets//sound/footstep04", {
+     that.playerCop.walkingSound = new buzz.sound("/assets/Sound/footstep04", {
          formats: ["ogg"],
          volume: 20,
          preload: true,
      });
-     that.playerCop.jetPackSound = new buzz.sound("/assets//sound/jetpack", {
+     that.playerCop.jetPackSound = new buzz.sound("/assets/Sound/jetpack", {
          formats: ["mp3"],
          volume: 30,
          preload: true,
      });
-     that.playerCop.hurtSound = new buzz.sound("/assets//sound//player/pain", {
+     that.playerCop.hurtSound = new buzz.sound("/assets/Sound//player/pain", {
          formats: ["wav"],
          volume: 30,
          preload: true,
      });
-     that.playerCop.dieSound = new buzz.sound("/assets//sound//player/die", {
+     that.playerCop.dieSound = new buzz.sound("/assets/Sound//player/die", {
          formats: ["wav"],
          volume: 30,
          preload: true,
      });
-     that.playerCop.shootSound = new buzz.sound("/assets//sound/launches/iceball", {
+     that.playerCop.shootSound = new buzz.sound("/assets/Sound/launches/iceball", {
          formats: ["wav"],
          preload: true,
      });
-     that.playerCop.jumpSound = new buzz.sound("/assets//sound/jump", {
+     that.playerCop.jumpSound = new buzz.sound("/assets/Sound/jump", {
          formats: ["mp3"],
          preload: true,
          volume: 60
      });
-     that.playerCop.fallingSound = new buzz.sound("/assets//sound/falling", {
+     that.playerCop.fallingSound = new buzz.sound("/assets/Sound/falling", {
          formats: ["ogg"],
          preload: true,
          volume: 60
