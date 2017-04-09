@@ -73,7 +73,7 @@ function updatePlayerNinja(that) {
     if (!that.playerNinja.isFlinched) {
         that.playerNinja.body.velocity.x = 0;
     }
-    if (that.playerNinja.body.blocked.down) {
+    if (that.playerNinja.body.blocked.down || that.playerNinja.body.touching.down) {
         that.playerNinja.isInAir = false;
     } else {
         that.playerNinja.isInAir = true;
@@ -87,7 +87,7 @@ function updatePlayerNinja(that) {
             that.playerNinja.act();
         }
     }
-    if (that.playerNinja.body.velocity.y > 0) {
+    if (that.playerNinja.body.velocity.y > 0 && that.playerNinja.isInAir) {
         that.playerNinja.act('FALL');
     }
     if (that.game.input.keyboard.isDown(Phaser.Keyboard.UP) && !that.playerNinja.isInAir) {

@@ -48,11 +48,6 @@ phinalphase.Game.prototype = {
         ]
         phinalphase.createMap('testlevel', tiles, layers, objects);
 
-        console.log(phinalphase.bush);
-
-
-
-
         var backgroundMusic1 = new buzz.sound("/assets/Sound/forest", {
             formats: ["ogg"],
             preload: true,
