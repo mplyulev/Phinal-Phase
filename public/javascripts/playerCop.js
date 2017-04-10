@@ -119,16 +119,8 @@
              bullet.kill();
          }
      })
-     that.playerCop.playCopSounds()
-     if (!that.playerCop.isFlinched) {
-         that.playerCop.body.velocity.x = 0;
-     }
-
-     if (that.playerCop.body.blocked.down) {
-         that.playerCop.isInAir = false;
-     } else {
-         that.playerCop.isInAir = true;
-     }
+     that.playerCop.playCopSounds();
+     that.playerCop.updateCreature();
      if (that.game.input.keyboard.isDown(Phaser.Keyboard.D)) {
          that.playerCop.act('RIGHT');
          that.playerCop.facing = "right";
@@ -143,7 +135,7 @@
              that.playerCop.act();
          }
      }
-     if (that.playerCop.body.velocity.y > 0) {
+     if (that.playerCop.body.velocity.y > 0 && that.playerCop.isInAir) {
          that.playerCop.act('FALL');
      }
      if (that.game.input.keyboard.isDown(Phaser.Keyboard.W) && !that.playerCop.isInAir) {

@@ -14,7 +14,11 @@ phinalphase.оbjectGroupFromTiled = function(type, map, layerName, groupName) {
     phinalphase[groupName] = phinalphase.game.add.group();
 
     phinalphase[groupName].enableBody = true;
-
+    
+    phinalphase.game.updatables.push(function() {
+        phinalphase.game.physics.arcade.collide(phinalphase[groupName], phinalphase[groupName]);
+    })
+    
     var uabs = [];
     res.forEach(function(ele) {
         var sprite = phinalphase[groupName].create(ele.x, ele.y, ele.properties.sprite);

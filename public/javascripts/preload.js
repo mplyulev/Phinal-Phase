@@ -28,17 +28,17 @@ phinalphase.Preload.prototype = {
 
         this.load.tilemap('testlevel', '/assets/levels/test/newMap.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.image('gameTiles', '/assets/Spritesheets and Tilesets/forest/Tiles/forest.png');
-        this.load.image('tree1', '/assets/Spritesheets and Tilesets/forest/Оbject/Tree_2.png');
-        this.load.image('tree2', '/assets/Spritesheets and Tilesets/forest/Оbject/Tree_3.png');
-        this.load.image('sign', '/assets/Spritesheets and Tilesets/forest/Оbject/Sign_2.png');
-        this.load.image('stone', '/assets/Spritesheets and Tilesets/forest/Оbject/Stone.png');
-        this.load.image('mush1', '/assets/Spritesheets and Tilesets/forest/Оbject/Mushroom_1.png');
-        this.load.image('mush2', '/assets/Spritesheets and Tilesets/forest/Оbject/Mushroom_2.png');
-        this.load.image('crate', '/assets/Spritesheets and Tilesets/forest/Оbject/Crate.png');
-        this.load.image('bush1', '/assets/Spritesheets and Tilesets/forest/Оbject/Bush (1).png');
-        this.load.image('bush2', '/assets/Spritesheets and Tilesets/forest/Оbject/Bush (2).png');
-        this.load.image('bush3', '/assets/Spritesheets and Tilesets/forest/Оbject/Bush (3).png');
-        this.load.image('bush4', '/assets/Spritesheets and Tilesets/forest/Оbject/Bush (4).png');
+        this.load.image('tree1', '/assets/Spritesheets and Tilesets/forest/object/Tree_2.png');
+        this.load.image('tree2', '/assets/Spritesheets and Tilesets/forest/object/Tree_3.png');
+        this.load.image('sign', '/assets/Spritesheets and Tilesets/forest/object/Sign_2.png');
+        this.load.image('stone', '/assets/Spritesheets and Tilesets/forest/object/Stone.png');
+        this.load.image('mush1', '/assets/Spritesheets and Tilesets/forest/object/Mushroom_1.png');
+        this.load.image('mush2', '/assets/Spritesheets and Tilesets/forest/object/Mushroom_2.png');
+        this.load.image('crate', '/assets/Spritesheets and Tilesets/forest/object/Crate.png');
+        this.load.image('bush1', '/assets/Spritesheets and Tilesets/forest/object/Bush (1).png');
+        this.load.image('bush2', '/assets/Spritesheets and Tilesets/forest/object/Bush (2).png');
+        this.load.image('bush3', '/assets/Spritesheets and Tilesets/forest/object/Bush (3).png');
+        this.load.image('bush4', '/assets/Spritesheets and Tilesets/forest/object/Bush (4).png');
         this.load.image('background', '/assets/images/background/PARALLAX/background.png');
         this.load.image('rocks', '/assets/images/background/PARALLAX/rocks.png');
         this.load.image('cloud', '/assets/images/cloud.png');
