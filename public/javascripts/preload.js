@@ -26,11 +26,30 @@ phinalphase.Preload.prototype = {
 
 
 
-        this.load.tilemap('testlevel', '/assets/levels/test/gy1.json', null, Phaser.Tilemap.TILED_JSON);
-        this.load.image('gameTiles', '/assets/Spritesheets and Tilesets/gy/Tiles/gySheet.png');
-        this.load.image('bg', '/assets/Spritesheets and Tilesets/gy/BG.png');
-        this.load.image('bush', '/assets/Spritesheets and Tilesets/gy/Objects/DeadBush.png');
-        this.load.image('crate', '/assets/Spritesheets and Tilesets/gy/Objects/Crate.png');
+        this.load.tilemap('testlevel', '/assets/levels/test/newMap.json', null, Phaser.Tilemap.TILED_JSON);
+        this.load.image('gameTiles', '/assets/Spritesheets and Tilesets/forest/Tiles/forest.png');
+        this.load.image('tree1', '/assets/Spritesheets and Tilesets/forest/Оbject/Tree_2.png');
+        this.load.image('tree2', '/assets/Spritesheets and Tilesets/forest/Оbject/Tree_3.png');
+        this.load.image('sign', '/assets/Spritesheets and Tilesets/forest/Оbject/Sign_2.png');
+        this.load.image('stone', '/assets/Spritesheets and Tilesets/forest/Оbject/Stone.png');
+        this.load.image('mush1', '/assets/Spritesheets and Tilesets/forest/Оbject/Mushroom_1.png');
+        this.load.image('mush2', '/assets/Spritesheets and Tilesets/forest/Оbject/Mushroom_2.png');
+        this.load.image('crate', '/assets/Spritesheets and Tilesets/forest/Оbject/Crate.png');
+        this.load.image('bush1', '/assets/Spritesheets and Tilesets/forest/Оbject/Bush (1).png');
+        this.load.image('bush2', '/assets/Spritesheets and Tilesets/forest/Оbject/Bush (2).png');
+        this.load.image('bush3', '/assets/Spritesheets and Tilesets/forest/Оbject/Bush (3).png');
+        this.load.image('bush4', '/assets/Spritesheets and Tilesets/forest/Оbject/Bush (4).png');
+        this.load.image('background', '/assets/images/background/PARALLAX/background.png');
+        this.load.image('rocks', '/assets/images/background/PARALLAX/rocks.png');
+        this.load.image('cloud', '/assets/images/cloud.png');
+        this.load.image('cloud2', '/assets/images/cloud2.png');
+        this.load.image('cloud3', '/assets/images/cloud3.png');
+        this.load.image('cloud4', '/assets/images/cloud4.png');
+        this.load.image('cloud5', '/assets/images/cloud5.png');
+
+        // this.load.image('bg', '/assets/Spritesheets and Tilesets/gy/BG.png');
+        // this.load.image('bush', '/assets/Spritesheets and Tilesets/gy/Objects/DeadBush.png');
+        // this.load.image('crate', '/assets/Spritesheets and Tilesets/gy/Objects/Crate.png');
         // this.load.image('healthbar', '/assets/healthbar.png');
 
 

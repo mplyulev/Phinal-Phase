@@ -1,6 +1,6 @@
 var phinalphase = phinalphase || {};
 
-phinalphase.game = new Phaser.Game(800, 500, Phaser.AUTO, '');
+phinalphase.game = new Phaser.Game(800, 600, Phaser.AUTO, '');
 
 phinalphase.game.state.add('Boot', phinalphase.Boot);
 

@@ -29,24 +29,34 @@ phinalphase.Game.prototype = {
         // phinalphase.createMap('testlevel', tiles, layers, objects);
 
         var tiles = [
-            ['gySheet', 'gameTiles']
+            ['forest', 'gameTiles']
         ]
 
         var layers = [
             // ['bg', 'bgImg'],
-            ['backgroundlayer', 'background'],
-            ['backgroundlayer2', 'background2'],
-            ['blockedLayer', 'block']
+            // ['background', 'background'],
+
+            ['blockedLayer', 'block'],
+            // ["water", "water"],
+
+
         ];
 
-        var blockedLayer = layers[2][0]
-        console.log(blockedLayer);
 
+        // console.log(blockedLayer);
+        // this.game.add.sprite(200, 200, 'cloud');
         var objects = [
-            ['bush', 'objects', 'bush'],
-            ['crate', 'objects', 'crate']
+            ["background", "object", "background"],
+            ["rocks", "object", "rocks"],
+            ["tree", "object", "tree"],
+            ["movable", "object", "tree"],
+            // ["tree", "object", "tree"],
+            // ['bush', 'objects', 'bush'],
+            // ['crate', 'object', 'crate']
         ]
+
         phinalphase.createMap('testlevel', tiles, layers, objects);
+
 
         var backgroundMusic1 = new buzz.sound("/assets/Sound/forest", {
             formats: ["ogg"],
@@ -64,6 +74,9 @@ phinalphase.Game.prototype = {
 
         createPlayerCop(this);
         createPlayerNinja(this);
+        phinalphase.createClouds();
+
+
 
         this.game.updatables.push(function() {
             updatePlayerNinja(this);
@@ -76,6 +89,7 @@ phinalphase.Game.prototype = {
         this.game.updatables.forEach(function(f) {
             f();
         }, this);
+
 
 
 

@@ -17,7 +17,7 @@
      }
 
 
-     that.playerCop = new phinalphase.Player(that.game, 250, 350, 'playerCop', 'Idle_000', 1000, 0.5, 1, -600, 200, 100, 100, anim);
+     that.playerCop = new phinalphase.Player(that.game, 250, 350, 'playerCop', 'Idle_000', 1000, 0.5, 1, -600, 300, 100, 100, anim);
 
      that.playerCop.noEnergySound = new buzz.sound("/assets/Sound/powerDrain", {
          formats: ["ogg"],
