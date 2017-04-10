@@ -3,7 +3,7 @@ var phinalphase = phinalphase || {};
 
 // constructor for creatures
 
-phinalphase.Creature = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, health, animations) {
+phinalphase.Creature = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, health, animations, skills) {
     Phaser.Sprite.call(this, game, x, y, key, frame);
     this.game.physics.arcade.enable(this);
     this.health = health;
@@ -11,6 +11,7 @@ phinalphase.Creature = function (game, x, y, key, frame, gravity, anchorX, ancho
     this.anchor.setTo(anchorX, anchorY);
     this.jumpHeight = jumpHeight;
     this.speedX = speedX;
+    this.wasMoving = false;
     this.isInAir = false;
     this.isAttacking = false;
     this.canAttackAgain = true;
@@ -24,6 +25,15 @@ phinalphase.Creature = function (game, x, y, key, frame, gravity, anchorX, ancho
     if (animations) {
         this.addAnimation(animations);
     }
+    if (skills) {
+        this.skills = [];
+        skills.forEach(function (skill) {
+            if (skill.type == 'buff') {
+                this.skills.push(new phinalphase.BuffSkill(this, skill.enerReq, skill.key, skill.frame, skill.duration, skill.cooldown, skill.anim, skill.effects, skill.afterEffects));
+            }
+        }, this);
+    }
+
 
 }
 phinalphase.Creature.prototype = Object.create(Phaser.Sprite.prototype);
@@ -40,6 +50,12 @@ phinalphase.Creature.prototype.addAnimation = function (animations) {
 };
 
 phinalphase.Creature.prototype.play = function (animation, looping, cb) {
+    if (this.body.velocity.x) {
+        this.wasMoving = true;
+    } else {
+        this.wasMoving = false;
+    }
+
     this.animations.play(animation);
     for (var key in this.animationsObject) {
         if (this.animationsObject.hasOwnProperty(key)) {
@@ -117,13 +133,6 @@ phinalphase.Creature.prototype.stay = function () {
 }
 
 phinalphase.Creature.prototype.attack = function () {
-    if (this.body.velocity.x != 0) {
-        if (this.body.velocity.x < 0) {
-            this.body.velocity.x = this.speedX;
-        } else {
-            this.body.velocity.x = -this.speedX;
-        }
-    }
     this.isAttacking = true;
     this.play(this.animationsObject.attack[0], false, function () {
         this.play(this.animationsObject.idle[0]);
@@ -150,6 +159,15 @@ phinalphase.Creature.prototype.act = function (act, cause) {
             return;
         }
 
+        if ((act == 'ATTACK' || act == 'SKILL') && !this.skills[0].isOnCD) {
+            if (this.wasMoving) {
+                if (this.body.velocity.x < 0) {
+                    this.body.velocity.x = this.speedX;
+                } else {
+                    this.body.velocity.x = -this.speedX;
+                }
+            }
+        }
         switch (act) {
 
             case 'UP':
@@ -184,6 +202,9 @@ phinalphase.Creature.prototype.act = function (act, cause) {
                 break;
             case 'FLYFORWARD':
                 this.flyForward();
+                break;
+            case 'SKILL':
+                this.skills[cause].use();
                 break;
             default:
                 this.stay();
@@ -233,10 +254,26 @@ phinalphase.Creature.prototype.dying = function () {
     });
 };
 
+phinalphase.Creature.prototype.updateCreature = function () {
+    if (!this.isFlinched) {
+        this.body.velocity.x = 0;
+    }
+    if (this.body.blocked.down || this.body.touching.down) {
+        this.isInAir = false;
+    } else {
+        this.isInAir = true;
+    }
+    this.children.forEach(function (skill) {
+        if (skill.aura) {
+            skill.animations.play(skill.name);
+        }
+    }, this);
+}
 
 
-phinalphase.Player = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, health, energy, animations) {
-    phinalphase.Creature.call(this, game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, health, animations);
+
+phinalphase.Player = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, health, energy, animations, skills) {
+    phinalphase.Creature.call(this, game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, health, animations, skills);
     this.energy = energy;
     if (phinalphase.players != undefined) {
         phinalphase.players.add(this);
@@ -268,8 +305,8 @@ phinalphase.Player.prototype.flyForward = function () {
 
 
 
-phinalphase.Enemy = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, health, animations) {
-    phinalphase.Creature.call(this, game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, health, animations);
+phinalphase.Enemy = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, health, animations, skills) {
+    phinalphase.Creature.call(this, game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, health, animations, skills);
     game.add.existing(this);
     if (phinalphase.enemies != undefined) {
         phinalphase.enemies.add(this);

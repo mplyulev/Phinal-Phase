@@ -11,6 +11,7 @@ router.get('/', function(req, res, next) {
     {script: "/javascripts/tiledObjects.js"},
     {script: "/javascripts/map.js"},
     {script: "/javascripts/Sound.js"},
+    {script: "/javascripts/skill.js"},
     {script: "/javascripts/creatures.js"},
     {script: "/javascripts/playerNinja.js"},
     {script: "/javascripts/playerCop.js"},
