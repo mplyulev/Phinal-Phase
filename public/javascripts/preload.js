@@ -26,7 +26,7 @@ phinalphase.Preload.prototype = {
 
 
 
-        this.load.tilemap('testlevel', '/assets/levels/test/newMap.json', null, Phaser.Tilemap.TILED_JSON);
+        this.load.tilemap('testlevel', '/assets/levels/test/NewMap.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.image('gameTiles', '/assets/Spritesheets and Tilesets/forest/Tiles/forest.png');
         this.load.image('tree1', '/assets/Spritesheets and Tilesets/forest/object/Tree_2.png');
         this.load.image('tree2', '/assets/Spritesheets and Tilesets/forest/object/Tree_3.png');
