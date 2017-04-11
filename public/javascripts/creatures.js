@@ -159,15 +159,6 @@ phinalphase.Creature.prototype.act = function (act, cause) {
             return;
         }
 
-        if ((act == 'ATTACK' || act == 'SKILL') && !this.skills[0].isOnCD) {
-            if (this.wasMoving) {
-                if (this.body.velocity.x < 0) {
-                    this.body.velocity.x = this.speedX;
-                } else {
-                    this.body.velocity.x = -this.speedX;
-                }
-            }
-        }
         switch (act) {
 
             case 'UP':
@@ -255,6 +246,9 @@ phinalphase.Creature.prototype.dying = function () {
 };
 
 phinalphase.Creature.prototype.updateCreature = function () {
+    if (isNaN(this.body.velocity.y)) {
+        this.body.velocity.y = 20;
+    }
     if (!this.isFlinched) {
         this.body.velocity.x = 0;
     }
@@ -269,6 +263,28 @@ phinalphase.Creature.prototype.updateCreature = function () {
         }
     }, this);
 }
+
+phinalphase.Creature.prototype.overlapGlitchHandle = function (other) {
+    if (!this.body.touching.down && this.body.overlapX != 0) {
+        if (this.x > other.x) {
+            
+            if (this.scale.x > 0) {
+                other.body.x -= Math.abs(Math.abs(this.body.overlapX) - (Math.abs(other.width) + Math.abs(this.width)));
+            } else {
+                other.body.x -= Math.abs(this.body.overlapX);
+            }
+        } else {
+            if (this.scale.x > 0) {
+                other.body.x += Math.abs(this.body.overlapX);
+            } else {
+                other.body.x += Math.abs(Math.abs(this.body.overlapX) - (Math.abs(other.width) + Math.abs(this.width)));
+            }
+        }
+
+    }
+
+}
+
 
 
 

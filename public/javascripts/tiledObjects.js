@@ -80,6 +80,7 @@ phinalphase.оbjectGroupFromTiled = function(type, map, layerName, groupName) {
                 }, null, this);
                 this.physics.arcade.overlap(phinalphase.players, phinalphase[groupName], function(player, object) {
                     object.colided = false;
+                    player.overlapGlitchHandle(object);
                 }, null, this);
             }.bind(phinalphase.game));
             return;

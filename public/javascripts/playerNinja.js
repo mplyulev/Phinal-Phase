@@ -1,4 +1,6 @@
-function createPlayerNinja(that) {
+var phinalphase = phinalphase || {};
+
+phinalphase.createPlayerNinja = function (that) {
     var anim = {
         idle: ['idle', 'Idle_', 0, 11, '', 3, 15, 0, 0],
         run: ['run', 'Run_', 0, 12, '', 3, 15, 0, 0],
@@ -19,7 +21,7 @@ function createPlayerNinja(that) {
             frame: 'pop_explosion0001',
             duration: 10,
             cooldown: 15,
-            anim: ['pop', 'pop_explosion', 1, 18, '', 4, 15],       
+            anim: ['pop', 'pop_explosion', 1, 18, '', 4, 15],
             effects: {
                 speedX: 300 + 50
             },
@@ -87,7 +89,7 @@ function createPlayerNinja(that) {
     }
 }
 
-function updatePlayerNinja(that) {
+phinalphase.updatePlayerNinja = function (that) {
     that.playerNinja.playNinjaSounds();
     that.playerNinja.updateCreature();
     if (that.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {

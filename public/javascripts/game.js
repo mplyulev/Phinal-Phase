@@ -1,16 +1,16 @@
 var phinalphase = phinalphase || {};
 
-phinalphase.Game = function() {};
+phinalphase.Game = function () { };
 
 phinalphase.Game.prototype = {
 
-    preload: function() {
+    preload: function () {
 
         this.game.time.advancedTiming = true;
 
     },
 
-    create: function() {
+    create: function () {
         this.game.updatables = [];
 
         // var tiles = [
@@ -72,21 +72,21 @@ phinalphase.Game.prototype = {
         });
 
 
-        createPlayerCop(this);
-        createPlayerNinja(this);
+        phinalphase.createPlayerCop(this);
+        phinalphase.createPlayerNinja(this);
         phinalphase.createClouds();
 
 
 
-        this.game.updatables.push(function() {
-            updatePlayerNinja(this);
-            updatePlayerCop(this);
+        this.game.updatables.push(function () {
+            phinalphase.updatePlayerNinja(this);
+            phinalphase.updatePlayerCop(this);
         }.bind(this));
 
     },
 
-    update: function() {
-        this.game.updatables.forEach(function(f) {
+    update: function () {
+        this.game.updatables.forEach(function (f) {
             f();
         }, this);
 
@@ -114,7 +114,6 @@ phinalphase.Game.prototype = {
         if (!this.playerCop.inCamera && this.playerNinja.facing === "right") {
             this.playerNinja.body.velocity.x = 0;
             if (this.playerCop.facing === "left") {
-                console.log("asdasad");
                 this.playerCop.body.velocity.x = 0;
             }
         }
@@ -124,12 +123,14 @@ phinalphase.Game.prototype = {
         }
     },
 
-    render: function() {
+    render: function () {
 
 
         this.game.debug.text(this.game.time.fps || '--', 20, 70, "#00ff00", "40px Courier");
         this.game.debug.spriteBounds(this.playerNinja);
         this.game.debug.spriteInfo(this.playerNinja, 32, 32);
+        this.game.debug.bodyInfo(this.playerNinja, 100, 150);
+        this.game.debug.body(this.playerNinja);
         this.game.debug.spriteBounds(this.playerCop);
         this.game.debug.spriteInfo(this.playerCop, 532, 32);
     }

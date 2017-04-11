@@ -27,18 +27,18 @@ phinalphase.Preload.prototype = {
 
 
         this.load.tilemap('testlevel', '/assets/levels/test/NewMap.json', null, Phaser.Tilemap.TILED_JSON);
-        this.load.image('gameTiles', '/assets/Spritesheets and Tilesets/forest/Tiles/forest.png');
-        this.load.image('tree1', '/assets/Spritesheets and Tilesets/forest/object/Tree_2.png');
-        this.load.image('tree2', '/assets/Spritesheets and Tilesets/forest/object/Tree_3.png');
-        this.load.image('sign', '/assets/Spritesheets and Tilesets/forest/object/Sign_2.png');
-        this.load.image('stone', '/assets/Spritesheets and Tilesets/forest/object/Stone.png');
-        this.load.image('mush1', '/assets/Spritesheets and Tilesets/forest/object/Mushroom_1.png');
-        this.load.image('mush2', '/assets/Spritesheets and Tilesets/forest/object/Mushroom_2.png');
-        this.load.image('crate', '/assets/Spritesheets and Tilesets/forest/object/Crate.png');
-        this.load.image('bush1', '/assets/Spritesheets and Tilesets/forest/object/Bush (1).png');
-        this.load.image('bush2', '/assets/Spritesheets and Tilesets/forest/object/Bush (2).png');
-        this.load.image('bush3', '/assets/Spritesheets and Tilesets/forest/object/Bush (3).png');
-        this.load.image('bush4', '/assets/Spritesheets and Tilesets/forest/object/Bush (4).png');
+        this.load.image('gameTiles', '/assets/SpritesheetsАndTilesets/forest/Tiles/forest.png');
+        this.load.image('tree1', '/assets/SpritesheetsАndTilesets/forest/object/Tree_2.png');
+        this.load.image('tree2', '/assets/SpritesheetsАndTilesets/forest/object/Tree_3.png');
+        this.load.image('sign', '/assets/SpritesheetsАndTilesets/forest/object/Sign_2.png');
+        this.load.image('stone', '/assets/SpritesheetsАndTilesets/forest/object/Stone.png');
+        this.load.image('mush1', '/assets/SpritesheetsАndTilesets/forest/object/Mushroom_1.png');
+        this.load.image('mush2', '/assets/SpritesheetsАndTilesets/forest/object/Mushroom_2.png');
+        this.load.image('crate', '/assets/SpritesheetsАndTilesets/forest/object/Crate.png');
+        this.load.image('bush1', '/assets/SpritesheetsАndTilesets/forest/object/Bush(1).png');
+        this.load.image('bush2', '/assets/SpritesheetsАndTilesets/forest/object/Bush(2).png');
+        this.load.image('bush3', '/assets/SpritesheetsАndTilesets/forest/object/Bush(3).png');
+        this.load.image('bush4', '/assets/SpritesheetsАndTilesets/forest/object/Bush(4).png');
         this.load.image('background', '/assets/images/background/PARALLAX/background.png');
         this.load.image('rocks', '/assets/images/background/PARALLAX/rocks.png');
         this.load.image('cloud', '/assets/images/cloud.png');
