@@ -19,9 +19,8 @@ phinalphase.Preload.prototype = {
 
         // this.load.tilemap('testlevel', '../../Assets/levels/test/forest1.json', null, Phaser.Tilemap.TILED_JSON);
         // this.load.tilemap('testlevel', '../../Assets/levels/test/cifi1.json', null, Phaser.Tilemap.TILED_JSON);
-        // this.load.image('gameTiles', '../../Assets/Spritesheets and Tilesets/ci-fi/Tiles/cifiSheet.png');
+        // this.load.image('gameTiles', '../../Assets/SpritesheetsandTilesets/ci-fi/Tiles/cifiSheet.png');
         // this.load.image('background3', '../../assets/images/01trees.png');
-        // this.load.image('spikes', '../../Assets/Spritesheets and Tilesets/ci-fi/Tiles/spike.png');
         // this.load.image('tree', '../../Assets/Spritesheets and Tilesets/ci-fi/Objects/saw.png');
 
 
@@ -39,6 +38,15 @@ phinalphase.Preload.prototype = {
         this.load.image('bush2', '/assets/SpritesheetsАndTilesets/forest/object/Bush(2).png');
         this.load.image('bush3', '/assets/SpritesheetsАndTilesets/forest/object/Bush(3).png');
         this.load.image('bush4', '/assets/SpritesheetsАndTilesets/forest/object/Bush(4).png');
+        this.load.image('bush', '/assets/SpritesheetsАndTilesets/forest/object/bushDamage.png');
+        this.load.image('skeleton', '/assets/SpritesheetsАndTilesets/forest/object/Skeleton.png');
+        this.load.image('cutTree', '/assets/SpritesheetsАndTilesets/forest/object/Tree_1.png');
+        this.load.image('cross', '/assets/SpritesheetsАndTilesets/forest/object/Tomb2.png');
+        this.load.image('cross2', '/assets/SpritesheetsАndTilesets/forest/object/Tomb1.png');
+        this.load.image('leftPlatform', '/assets/SpritesheetsАndTilesets/forest/object/platform3.png');
+        this.load.image('rightPlatform', '/assets/SpritesheetsАndTilesets/forest/Tiles/15.png');
+
+        // this.load.image('spike', '/assets/SpritesheetsandTilesets/ci-fi/Tiles/spike.png');
         this.load.image('background', '/assets/images/background/PARALLAX/background.png');
         this.load.image('rocks', '/assets/images/background/PARALLAX/rocks.png');
         this.load.image('cloud', '/assets/images/cloud.png');
