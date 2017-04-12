@@ -55,7 +55,7 @@ phinalphase.оbjectGroupFromTiled = function(type, map, layerName, groupName) {
                 ele.body.collideWorldBounds = true;
                 ele.colided = false;
                 ele.body.gravity.y = 1000;
-                ele.body.mass = -1000;
+                ele.body.drag.x = 3000;
                 ele.anchor.setTo(0.5, 0.5);
             }, this);
             phinalphase.game.updatables.push(function() {

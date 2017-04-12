@@ -10,6 +10,7 @@ phinalphase.Creature = function (game, x, y, key, frame, gravity, anchorX, ancho
     this.body.gravity.y = gravity;
     this.anchor.setTo(anchorX, anchorY);
     this.jumpHeight = jumpHeight;
+    this.body.maxVelocity = jumpHeight;
     this.speedX = speedX;
     this.wasMoving = false;
     this.isInAir = false;
@@ -265,19 +266,25 @@ phinalphase.Creature.prototype.updateCreature = function () {
 }
 
 phinalphase.Creature.prototype.overlapGlitchHandle = function (other) {
+    var overlap = Math.abs(this.body.overlapX);
+    var backOverlap = Math.abs(Math.abs(this.body.overlapX) - (Math.abs(other.width) + Math.abs(this.width)));
+    if (other.body.touching.up) {
+        overlap *= 1.5;
+        backOverlap *= 1.5;
+    }
     if (!this.body.touching.down && this.body.overlapX != 0) {
         if (this.x > other.x) {
-            
+
             if (this.scale.x > 0) {
-                other.body.x -= Math.abs(Math.abs(this.body.overlapX) - (Math.abs(other.width) + Math.abs(this.width)));
+                other.body.velocity.x -= backOverlap;
             } else {
-                other.body.x -= Math.abs(this.body.overlapX);
+                other.body.velocity.x -= overlap;
             }
         } else {
             if (this.scale.x > 0) {
-                other.body.x += Math.abs(this.body.overlapX);
+                other.body.velocity.x += overlap;
             } else {
-                other.body.x += Math.abs(Math.abs(this.body.overlapX) - (Math.abs(other.width) + Math.abs(this.width)));
+                other.body.velocity.x += backOverlap;
             }
         }
 
@@ -312,7 +319,10 @@ phinalphase.Player.prototype.fly = function () {
     }
 }
 phinalphase.Player.prototype.knockback = function () {
-    this.play(this.animationsObject.knockback[0]);
+    this.isAttacking = true;
+    this.play(this.animationsObject.knockback[0], false, function() {
+        this.isAttacking = false;
+    }.bind(this));
 }
 phinalphase.Player.prototype.flyForward = function () {
     this.play(this.animationsObject.flyForward[0]);

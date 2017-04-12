@@ -14,7 +14,7 @@ phinalphase.createPlayerCop = function (that) {
         flyForward: ['flyForward', 'Jetpack Fly Forward_', 0, 11, '', 3, 25, 0, 0],
         flyShoot: ['flyShoot', 'Jetpack Fly Shoot_', 0, 11, '', 3, 25, 0, 0],
         flyHurt: ['flyHurt', 'Jetpack Fly Hurt_', 0, 9, '', 3, 25, 0, 0],
-        knockback: ['knockback', 'Knockback_', 0, 15, '', 3, 25, 0, 0] // da se fixne . s cropa  ne stava  . . 
+        knockback: ['knockback', 'Knockback_', 0, 15, '', 3, 25, 5, 0] // da se fixne . s cropa  ne stava  . . 
     }
 
 

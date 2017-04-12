@@ -63,8 +63,13 @@ phinalphase.BuffSkill.prototype.use = function () {
     }
 }
 
-phinalphase.DmgSkill = function (user, energyReq) {
+phinalphase.DmgSkill = function (user, energyReq, key, frame) {
     phinalphase.Skill.call(this, user, energyReq);
+    //Dmg
+    //weapon
+    //animation
+    //collide
+
 }
 
 
