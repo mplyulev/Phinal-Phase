@@ -14,11 +14,11 @@ phinalphase.оbjectGroupFromTiled = function(type, map, layerName, groupName) {
     phinalphase[groupName] = phinalphase.game.add.group();
 
     phinalphase[groupName].enableBody = true;
-    
+
     phinalphase.game.updatables.push(function() {
         phinalphase.game.physics.arcade.collide(phinalphase[groupName], phinalphase[groupName]);
     })
-    
+
     var uabs = [];
     res.forEach(function(ele) {
         var sprite = phinalphase[groupName].create(ele.x, ele.y, ele.properties.sprite);
@@ -47,6 +47,32 @@ phinalphase.оbjectGroupFromTiled = function(type, map, layerName, groupName) {
             }.bind(phinalphase.game));
 
         }
+        if (uab == 'movingPlatform') {
+            phinalphase.game.updatables.push(function() {
+                this.physics.arcade.collide(phinalphase.players, phinalphase[groupName], function(player, groupName) {}, null, this);
+            }.bind(phinalphase.game));
+            phinalphase[groupName].children.forEach(function(element) {
+                // random movement on x axis ??
+
+                // phinalphase.game.time.events.loop(2000, function() {
+                //     if (element.body.x > 1500 && element.body.x < 3000) {
+                //         var plusOrMinus = Math.random() < 0.5 ? -1 : 1;
+                //         element.body.x = Math.random() * 100 * plusOrMinus;
+                //     }
+                // }, this)
+
+                // kill platform if it leaves world bounds
+                element.events.onOutOfBounds.add(elementKill, this);
+                element.checkWorldBounds = true;
+
+                function elementKill(element) {
+                    element.destroy();
+                }
+
+
+            });
+        }
+
 
 
         if (uab == 'movable') {
