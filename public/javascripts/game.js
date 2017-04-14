@@ -13,20 +13,7 @@ phinalphase.Game.prototype = {
     create: function() {
         this.game.updatables = [];
 
-        // var tiles = [
-        //     ['cifiSheet', 'gameTiles']
-        // ]
-
-        // var layers = [
-        //     ['backgroundlayer', 'background'],
-        //     ['blockedLayer', 'blocks']
-        // ]
-
-        // var objects = [
-        //     ['spikes', 'spikes', 'spikes'],
-        //     ['tree', 'spikes', 'tree']
-        // ]
-        // phinalphase.createMap('testlevel', tiles, layers, objects);
+   
 
         var tiles = [
             ['forest', 'gameTiles']
@@ -51,11 +38,17 @@ phinalphase.Game.prototype = {
             ["tree", "object", "tree"],
             ["movable", "object", "tree"],
             ["bush", "objectsDamage", "bush"],
-            ["skeleton", "sceneObjects", "skeleton"],
-            ["cutTree", "sceneObjects", "tree"],
+            ["skeleton", "sceneObjects", "sceneObject"],
+            ["cutTree", "sceneObjects", "sceneObject"],
             ["movingPlatform", "movingPlatform", "movingPlatform"],
-            // ["movingPlatform", "movingPlatform", "movingPlatform"],
-            ["cross", "sceneObjects", "cross"],
+            ["staticPlatform", "movingPlatform", "static"],
+            ["saw", "saw", "saw"],
+            ["saw", "sawHorizontal", "sawHorizontal"],
+            ["sign2", "sceneObjects", "sceneObject"],
+            ["cross", "sceneObjects", "sceneObject"],
+            ["acid", "objectsDamage", "acid"],
+          
+           
 
 
             // ["spike", "object", "tree"],

@@ -21,7 +21,7 @@ phinalphase.Preload.prototype = {
         // this.load.tilemap('testlevel', '../../Assets/levels/test/cifi1.json', null, Phaser.Tilemap.TILED_JSON);
         // this.load.image('gameTiles', '../../Assets/SpritesheetsandTilesets/ci-fi/Tiles/cifiSheet.png');
         // this.load.image('background3', '../../assets/images/01trees.png');
-        // this.load.image('tree', '../../Assets/Spritesheets and Tilesets/ci-fi/Objects/saw.png');
+
 
 
 
@@ -42,9 +42,12 @@ phinalphase.Preload.prototype = {
         this.load.image('skeleton', '/assets/SpritesheetsАndTilesets/forest/object/Skeleton.png');
         this.load.image('cutTree', '/assets/SpritesheetsАndTilesets/forest/object/Tree_1.png');
         this.load.image('cross', '/assets/SpritesheetsАndTilesets/forest/object/Tomb2.png');
+        this.load.image('saw', '/assets/SpritesheetsАndTilesets/forest/object/Saw.png');
         this.load.image('cross2', '/assets/SpritesheetsАndTilesets/forest/object/Tomb1.png');
         this.load.image('leftPlatform', '/assets/SpritesheetsАndTilesets/forest/object/platform3.png');
-        this.load.image('rightPlatform', '/assets/SpritesheetsАndTilesets/forest/Tiles/15.png');
+        this.load.image('acid', '/assets/SpritesheetsАndTilesets/forest/object/acid.png');
+        this.load.image('sign2', '/assets/SpritesheetsАndTilesets/gy/Objects/ArrowSign.png');
+ 
 
         // this.load.image('spike', '/assets/SpritesheetsandTilesets/ci-fi/Tiles/spike.png');
         this.load.image('background', '/assets/images/background/PARALLAX/background.png');
