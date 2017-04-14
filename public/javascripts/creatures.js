@@ -11,6 +11,7 @@ phinalphase.Creature = function (game, x, y, key, frame, gravity, anchorX, ancho
     this.anchor.setTo(anchorX, anchorY);
     this.jumpHeight = jumpHeight;
     this.body.maxVelocity = jumpHeight;
+    this.body.minVelocity = -jumpHeight;
     this.speedX = speedX;
     this.wasMoving = false;
     this.isInAir = false;
@@ -29,9 +30,16 @@ phinalphase.Creature = function (game, x, y, key, frame, gravity, anchorX, ancho
     if (skills) {
         this.skills = [];
         skills.forEach(function (skill) {
-            if (skill.type == 'buff') {
-                this.skills.push(new phinalphase.BuffSkill(this, skill.enerReq, skill.key, skill.frame, skill.duration, skill.cooldown, skill.anim, skill.effects, skill.afterEffects));
+            if (skill.type == 'aurabuff') {
+                this.skills.push(new phinalphase.AuraSkillBuff(this, skill.enerReq, skill.key, skill.frame, skill.cooldown, skill.userAnim, skill.stop, skill.duration, skill.anim, skill.effects, skill.afterEffects));
             }
+            if (skill.type == 'auradmg') {
+                this.skills.push(new phinalphase.AuraSkillDmg(this, skill.enerReq, skill.key, skill.frame, skill.cooldown, skill.userAnim, skill.stop, skill.duration, skill.anim, skill.dmg, skill.enemyCollide));
+            }
+            if (skill.type == 'proj') {
+                this.skills.push(new phinalphase.Projectile(this, skill.energyReq, skill.key, skill.frame, skill.cooldown, skill.userAnim, skill.stop, skill.dmg, skill.enemyCollide, skill.bullet, skill.offsetX, skill.offsetY));
+            }
+
         }, this);
     }
 
@@ -98,9 +106,14 @@ phinalphase.Creature.prototype.play = function (animation, looping, cb) {
     }
 
     if (looping === false) {
-
         this.animations.currentAnim.loop = false;
         this.animations.currentAnim.onComplete.add(cb, this);
+        var curr = this.animations.currentAnim.onComplete;
+        phinalphase.game.time.events.add(10000, function () {
+            if (curr._bindings.length > 0) {
+                curr._bindings.pop();
+            }
+        }, this);
     }
 };
 
@@ -206,7 +219,7 @@ phinalphase.Creature.prototype.act = function (act, cause) {
 };
 
 phinalphase.Creature.prototype.getHitted = function (dmgDealer) {
-    this.health -= dmgDealer.dmg;
+    this.health -= dmgDealer.damage;
     if (this.health <= 0) {
         this.act('DIE');
     }
@@ -320,7 +333,7 @@ phinalphase.Player.prototype.fly = function () {
 }
 phinalphase.Player.prototype.knockback = function () {
     this.isAttacking = true;
-    this.play(this.animationsObject.knockback[0], false, function() {
+    this.play(this.animationsObject.knockback[0], false, function () {
         this.isAttacking = false;
     }.bind(this));
 }
@@ -333,7 +346,6 @@ phinalphase.Player.prototype.flyForward = function () {
 
 phinalphase.Enemy = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, health, animations, skills) {
     phinalphase.Creature.call(this, game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, health, animations, skills);
-    game.add.existing(this);
     if (phinalphase.enemies != undefined) {
         phinalphase.enemies.add(this);
     } else {
