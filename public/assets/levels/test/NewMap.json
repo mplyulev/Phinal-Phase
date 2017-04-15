@@ -24,7 +24,7 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":1991.51666666667,
+                 "width":1991.52,
                  "x":0,
                  "y":-5
                 }, 
@@ -279,7 +279,7 @@
                  "visible":true,
                  "width":74.75,
                  "x":7880.47,
-                 "y":143.75
+                 "y":209.083333333333
                 }, 
                 {
                  "height":54,
@@ -370,8 +370,8 @@
                  "type":"",
                  "visible":true,
                  "width":1984.85,
-                 "x":1989.15575757576,
-                 "y":-3.75757575757572
+                 "x":1989.16,
+                 "y":-3.75758
                 }, 
                 {
                  "height":650,
@@ -394,7 +394,7 @@
                  "visible":true,
                  "width":1984.85,
                  "x":5944.36,
-                 "y":-0.333333333333329
+                 "y":-0.333333
                 }, 
                 {
                  "height":650,
@@ -416,8 +416,8 @@
                  "type":"",
                  "visible":true,
                  "width":1984.85,
-                 "x":3966.72060606061,
-                 "y":-6.09090906060606
+                 "x":3966.72,
+                 "y":-6.09091
                 }, 
                 {
                  "height":650,
@@ -439,8 +439,8 @@
                  "type":"",
                  "visible":true,
                  "width":1984.85,
-                 "x":7926.11333333333,
-                 "y":-0.333333333333329
+                 "x":7926.11,
+                 "y":-0.333333
                 }, 
                 {
                  "height":650,
@@ -531,8 +531,8 @@
                  "type":"",
                  "visible":true,
                  "width":2036,
-                 "x":1983.15151515152,
-                 "y":-665.030303030303
+                 "x":1983.15,
+                 "y":-665.03
                 }, 
                 {
                  "height":1548,
@@ -577,8 +577,8 @@
                  "type":"",
                  "visible":true,
                  "width":120,
-                 "x":2048,
-                 "y":248
+                 "x":2093.33333333333,
+                 "y":285.333333333333
                 }, 
                 {
                  "height":1548,
@@ -624,7 +624,7 @@
                  "visible":true,
                  "width":282,
                  "x":6703,
-                 "y":207
+                 "y":206
                 }, 
                 {
                  "height":1548,
@@ -669,31 +669,8 @@
                  "type":"",
                  "visible":true,
                  "width":78,
-                 "x":7806.9697,
-                 "y":112
-                }, 
-                {
-                 "height":78,
-                 "id":458,
-                 "name":"",
-                 "properties":
-                    {
-                     "sprite":"crate",
-                     "type":"crate",
-                     "usability":"movable"
-                    },
-                 "propertytypes":
-                    {
-                     "sprite":"string",
-                     "type":"string",
-                     "usability":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":78,
-                 "x":7551,
-                 "y":499
+                 "x":7805.63666666667,
+                 "y":178.666666666667
                 }, 
                 {
                  "height":47.25,
@@ -717,6 +694,52 @@
                  "width":74.75,
                  "x":494.625,
                  "y":526.375
+                }, 
+                {
+                 "height":78,
+                 "id":476,
+                 "name":"",
+                 "properties":
+                    {
+                     "sprite":"crate",
+                     "type":"crate",
+                     "usability":"movable"
+                    },
+                 "propertytypes":
+                    {
+                     "sprite":"string",
+                     "type":"string",
+                     "usability":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":78,
+                 "x":401,
+                 "y":498.333333333333
+                }, 
+                {
+                 "height":80,
+                 "id":477,
+                 "name":"",
+                 "properties":
+                    {
+                     "sprite":"leftPlatform",
+                     "type":"movingPlatform",
+                     "usability":"movingPlatform"
+                    },
+                 "propertytypes":
+                    {
+                     "sprite":"string",
+                     "type":"string",
+                     "usability":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":120,
+                 "x":1942,
+                 "y":232
                 }],
          "offsetx":3.0303,
          "offsety":0,
@@ -869,29 +892,6 @@
                  "width":150,
                  "x":6510,
                  "y":428
-                }, 
-                {
-                 "height":40.5,
-                 "id":446,
-                 "name":"",
-                 "properties":
-                    {
-                     "sprite":"mush1",
-                     "type":"mushroom",
-                     "usability":"none"
-                    },
-                 "propertytypes":
-                    {
-                     "sprite":"string",
-                     "type":"string",
-                     "usability":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":52,
-                 "x":6698.5,
-                 "y":473
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -952,14 +952,14 @@
                  "y":16
                 }, 
                 {
-                 "height":40,
-                 "id":431,
+                 "height":40.5,
+                 "id":446,
                  "name":"",
                  "properties":
                     {
-                     "sprite":"potion",
-                     "type":"potion",
-                     "usability":"healing"
+                     "sprite":"mush1",
+                     "type":"mushroom",
+                     "usability":"poison"
                     },
                  "propertytypes":
                     {
@@ -970,9 +970,32 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":40,
-                 "x":1280,
-                 "y":524
+                 "width":52,
+                 "x":6698.5,
+                 "y":473
+                }, 
+                {
+                 "height":40.5,
+                 "id":478,
+                 "name":"",
+                 "properties":
+                    {
+                     "sprite":"mush1",
+                     "type":"mushroom",
+                     "usability":"poison"
+                    },
+                 "propertytypes":
+                    {
+                     "sprite":"string",
+                     "type":"string",
+                     "usability":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":52,
+                 "x":920,
+                 "y":537.75
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -992,14 +1015,14 @@
                  "name":"",
                  "properties":
                     {
-                     "dmg":"20",
+                     "damage":"20",
                      "sprite":"bush",
                      "type":"bush",
                      "usability":"damage"
                     },
                  "propertytypes":
                     {
-                     "dmg":"string",
+                     "damage":"string",
                      "sprite":"string",
                      "type":"string",
                      "usability":"string"
@@ -1010,406 +1033,6 @@
                  "width":132,
                  "x":1583.5,
                  "y":512.5
-                }, 
-                {
-                 "height":85.5,
-                 "id":261,
-                 "name":"",
-                 "properties":
-                    {
-                     "dmg":"20",
-                     "sprite":"bush",
-                     "type":"bush",
-                     "usability":"damage"
-                    },
-                 "propertytypes":
-                    {
-                     "dmg":"string",
-                     "sprite":"string",
-                     "type":"string",
-                     "usability":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":132,
-                 "x":1670,
-                 "y":513.25
-                }, 
-                {
-                 "height":85.5,
-                 "id":263,
-                 "name":"",
-                 "properties":
-                    {
-                     "dmg":"20",
-                     "sprite":"bush",
-                     "type":"bush",
-                     "usability":"damage"
-                    },
-                 "propertytypes":
-                    {
-                     "dmg":"string",
-                     "sprite":"string",
-                     "type":"string",
-                     "usability":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":132,
-                 "x":1756.67,
-                 "y":517.25
-                }, 
-                {
-                 "height":85.5,
-                 "id":264,
-                 "name":"",
-                 "properties":
-                    {
-                     "dmg":"20",
-                     "sprite":"bush",
-                     "type":"bush",
-                     "usability":"damage"
-                    },
-                 "propertytypes":
-                    {
-                     "dmg":"string",
-                     "sprite":"string",
-                     "type":"string",
-                     "usability":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":132,
-                 "x":1839.33,
-                 "y":517.25
-                }, 
-                {
-                 "height":85.5,
-                 "id":266,
-                 "name":"",
-                 "properties":
-                    {
-                     "dmg":"20",
-                     "sprite":"bush",
-                     "type":"bush",
-                     "usability":"damage"
-                    },
-                 "propertytypes":
-                    {
-                     "dmg":"string",
-                     "sprite":"string",
-                     "type":"string",
-                     "usability":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":132,
-                 "x":1923.33,
-                 "y":518.583
-                }, 
-                {
-                 "height":85.5,
-                 "id":267,
-                 "name":"",
-                 "properties":
-                    {
-                     "dmg":"20",
-                     "sprite":"bush",
-                     "type":"bush",
-                     "usability":"damage"
-                    },
-                 "propertytypes":
-                    {
-                     "dmg":"string",
-                     "sprite":"string",
-                     "type":"string",
-                     "usability":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":132,
-                 "x":2006,
-                 "y":519.917
-                }, 
-                {
-                 "height":85.5,
-                 "id":268,
-                 "name":"",
-                 "properties":
-                    {
-                     "dmg":"20",
-                     "sprite":"bush",
-                     "type":"bush",
-                     "usability":"damage"
-                    },
-                 "propertytypes":
-                    {
-                     "dmg":"string",
-                     "sprite":"string",
-                     "type":"string",
-                     "usability":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":132,
-                 "x":2080.67,
-                 "y":518.583
-                }, 
-                {
-                 "height":85.5,
-                 "id":269,
-                 "name":"",
-                 "properties":
-                    {
-                     "dmg":"20",
-                     "sprite":"bush",
-                     "type":"bush",
-                     "usability":"damage"
-                    },
-                 "propertytypes":
-                    {
-                     "dmg":"string",
-                     "sprite":"string",
-                     "type":"string",
-                     "usability":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":132,
-                 "x":2148.67,
-                 "y":519.917
-                }, 
-                {
-                 "height":85.5,
-                 "id":270,
-                 "name":"",
-                 "properties":
-                    {
-                     "dmg":"20",
-                     "sprite":"bush",
-                     "type":"bush",
-                     "usability":"damage"
-                    },
-                 "propertytypes":
-                    {
-                     "dmg":"string",
-                     "sprite":"string",
-                     "type":"string",
-                     "usability":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":132,
-                 "x":2243.33,
-                 "y":521.25
-                }, 
-                {
-                 "height":85.5,
-                 "id":271,
-                 "name":"",
-                 "properties":
-                    {
-                     "dmg":"20",
-                     "sprite":"bush",
-                     "type":"bush",
-                     "usability":"damage"
-                    },
-                 "propertytypes":
-                    {
-                     "dmg":"string",
-                     "sprite":"string",
-                     "type":"string",
-                     "usability":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":132,
-                 "x":2336,
-                 "y":521.25
-                }, 
-                {
-                 "height":85.5,
-                 "id":272,
-                 "name":"",
-                 "properties":
-                    {
-                     "dmg":"20",
-                     "sprite":"bush",
-                     "type":"bush",
-                     "usability":"damage"
-                    },
-                 "propertytypes":
-                    {
-                     "dmg":"string",
-                     "sprite":"string",
-                     "type":"string",
-                     "usability":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":132,
-                 "x":2415,
-                 "y":522.25
-                }, 
-                {
-                 "height":85.5,
-                 "id":273,
-                 "name":"",
-                 "properties":
-                    {
-                     "dmg":"20",
-                     "sprite":"bush",
-                     "type":"bush",
-                     "usability":"damage"
-                    },
-                 "propertytypes":
-                    {
-                     "dmg":"string",
-                     "sprite":"string",
-                     "type":"string",
-                     "usability":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":132,
-                 "x":2513,
-                 "y":525.25
-                }, 
-                {
-                 "height":85.5,
-                 "id":274,
-                 "name":"",
-                 "properties":
-                    {
-                     "dmg":"20",
-                     "sprite":"bush",
-                     "type":"bush",
-                     "usability":"damage"
-                    },
-                 "propertytypes":
-                    {
-                     "dmg":"string",
-                     "sprite":"string",
-                     "type":"string",
-                     "usability":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":132,
-                 "x":2648,
-                 "y":524.25
-                }, 
-                {
-                 "height":85.5,
-                 "id":275,
-                 "name":"",
-                 "properties":
-                    {
-                     "dmg":"20",
-                     "sprite":"bush",
-                     "type":"bush",
-                     "usability":"damage"
-                    },
-                 "propertytypes":
-                    {
-                     "dmg":"string",
-                     "sprite":"string",
-                     "type":"string",
-                     "usability":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":132,
-                 "x":2755,
-                 "y":526.25
-                }, 
-                {
-                 "height":85.5,
-                 "id":276,
-                 "name":"",
-                 "properties":
-                    {
-                     "dmg":"20",
-                     "sprite":"bush",
-                     "type":"bush",
-                     "usability":"damage"
-                    },
-                 "propertytypes":
-                    {
-                     "dmg":"string",
-                     "sprite":"string",
-                     "type":"string",
-                     "usability":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":132,
-                 "x":2845,
-                 "y":530.25
-                }, 
-                {
-                 "height":85.5,
-                 "id":277,
-                 "name":"",
-                 "properties":
-                    {
-                     "dmg":"20",
-                     "sprite":"bush",
-                     "type":"bush",
-                     "usability":"damage"
-                    },
-                 "propertytypes":
-                    {
-                     "dmg":"string",
-                     "sprite":"string",
-                     "type":"string",
-                     "usability":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":132,
-                 "x":2912,
-                 "y":530.25
-                }, 
-                {
-                 "height":85.5,
-                 "id":278,
-                 "name":"",
-                 "properties":
-                    {
-                     "dmg":"20",
-                     "sprite":"bush",
-                     "type":"bush",
-                     "usability":"damage"
-                    },
-                 "propertytypes":
-                    {
-                     "dmg":"string",
-                     "sprite":"string",
-                     "type":"string",
-                     "usability":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":132,
-                 "x":2588,
-                 "y":523.25
                 }, 
                 {
                  "height":51,
@@ -1456,8 +1079,8 @@
                  "type":"",
                  "visible":true,
                  "width":68.4091,
-                 "x":3390.23666666667,
-                 "y":512.757666666667
+                 "x":3390.24,
+                 "y":512.758
                 }, 
                 {
                  "height":63.5,
@@ -1681,8 +1304,358 @@
                  "type":"",
                  "visible":true,
                  "width":67.75,
-                 "x":4221.17,
-                 "y":513.167
+                 "x":4218.17,
+                 "y":511.667
+                }, 
+                {
+                 "height":85.5,
+                 "id":469,
+                 "name":"",
+                 "properties":
+                    {
+                     "damage":"20",
+                     "sprite":"bush",
+                     "type":"bush",
+                     "usability":"damage"
+                    },
+                 "propertytypes":
+                    {
+                     "damage":"string",
+                     "sprite":"string",
+                     "type":"string",
+                     "usability":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":132,
+                 "x":2318,
+                 "y":514.583333333333
+                }, 
+                {
+                 "height":85.5,
+                 "id":464,
+                 "name":"",
+                 "properties":
+                    {
+                     "damage":"20",
+                     "sprite":"bush",
+                     "type":"bush",
+                     "usability":"damage"
+                    },
+                 "propertytypes":
+                    {
+                     "damage":"string",
+                     "sprite":"string",
+                     "type":"string",
+                     "usability":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":132,
+                 "x":1854,
+                 "y":514.583333333333
+                }, 
+                {
+                 "height":85.5,
+                 "id":465,
+                 "name":"",
+                 "properties":
+                    {
+                     "damage":"20",
+                     "sprite":"bush",
+                     "type":"bush",
+                     "usability":"damage"
+                    },
+                 "propertytypes":
+                    {
+                     "damage":"string",
+                     "sprite":"string",
+                     "type":"string",
+                     "usability":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":132,
+                 "x":1932.66666666667,
+                 "y":514.583333333333
+                }, 
+                {
+                 "height":85.5,
+                 "id":467,
+                 "name":"",
+                 "properties":
+                    {
+                     "damage":"20",
+                     "sprite":"bush",
+                     "type":"bush",
+                     "usability":"damage"
+                    },
+                 "propertytypes":
+                    {
+                     "damage":"string",
+                     "sprite":"string",
+                     "type":"string",
+                     "usability":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":132,
+                 "x":2132.66666666667,
+                 "y":514.583333333333
+                }, 
+                {
+                 "height":85.5,
+                 "id":471,
+                 "name":"",
+                 "properties":
+                    {
+                     "damage":"20",
+                     "sprite":"bush",
+                     "type":"bush",
+                     "usability":"damage"
+                    },
+                 "propertytypes":
+                    {
+                     "damage":"string",
+                     "sprite":"string",
+                     "type":"string",
+                     "usability":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":132,
+                 "x":2490,
+                 "y":513.25
+                }, 
+                {
+                 "height":85.5,
+                 "id":472,
+                 "name":"",
+                 "properties":
+                    {
+                     "damage":"20",
+                     "sprite":"bush",
+                     "type":"bush",
+                     "usability":"damage"
+                    },
+                 "propertytypes":
+                    {
+                     "damage":"string",
+                     "sprite":"string",
+                     "type":"string",
+                     "usability":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":132,
+                 "x":2571.33333333333,
+                 "y":514.583333333333
+                }, 
+                {
+                 "height":85.5,
+                 "id":462,
+                 "name":"",
+                 "properties":
+                    {
+                     "damage":"20",
+                     "sprite":"bush",
+                     "type":"bush",
+                     "usability":"damage"
+                    },
+                 "propertytypes":
+                    {
+                     "damage":"string",
+                     "sprite":"string",
+                     "type":"string",
+                     "usability":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":132,
+                 "x":1765.33333333333,
+                 "y":513.916666666667
+                }, 
+                {
+                 "height":85.5,
+                 "id":468,
+                 "name":"",
+                 "properties":
+                    {
+                     "damage":"20",
+                     "sprite":"bush",
+                     "type":"bush",
+                     "usability":"damage"
+                    },
+                 "propertytypes":
+                    {
+                     "damage":"string",
+                     "sprite":"string",
+                     "type":"string",
+                     "usability":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":132,
+                 "x":2219.33333333333,
+                 "y":514.583333333333
+                }, 
+                {
+                 "height":85.5,
+                 "id":470,
+                 "name":"",
+                 "properties":
+                    {
+                     "damage":"20",
+                     "sprite":"bush",
+                     "type":"bush",
+                     "usability":"damage"
+                    },
+                 "propertytypes":
+                    {
+                     "damage":"string",
+                     "sprite":"string",
+                     "type":"string",
+                     "usability":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":132,
+                 "x":2408.66666666667,
+                 "y":514.583333333333
+                }, 
+                {
+                 "height":85.5,
+                 "id":474,
+                 "name":"",
+                 "properties":
+                    {
+                     "damage":"20",
+                     "sprite":"bush",
+                     "type":"bush",
+                     "usability":"damage"
+                    },
+                 "propertytypes":
+                    {
+                     "damage":"string",
+                     "sprite":"string",
+                     "type":"string",
+                     "usability":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":132,
+                 "x":2766,
+                 "y":515.916666666667
+                }, 
+                {
+                 "height":85.5,
+                 "id":475,
+                 "name":"",
+                 "properties":
+                    {
+                     "damage":"20",
+                     "sprite":"bush",
+                     "type":"bush",
+                     "usability":"damage"
+                    },
+                 "propertytypes":
+                    {
+                     "damage":"string",
+                     "sprite":"string",
+                     "type":"string",
+                     "usability":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":132,
+                 "x":2868.66666666667,
+                 "y":518.583333333333
+                }, 
+                {
+                 "height":85.5,
+                 "id":461,
+                 "name":"",
+                 "properties":
+                    {
+                     "damage":"20",
+                     "sprite":"bush",
+                     "type":"bush",
+                     "usability":"damage"
+                    },
+                 "propertytypes":
+                    {
+                     "damage":"string",
+                     "sprite":"string",
+                     "type":"string",
+                     "usability":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":132,
+                 "x":1682,
+                 "y":513.25
+                }, 
+                {
+                 "height":85.5,
+                 "id":466,
+                 "name":"",
+                 "properties":
+                    {
+                     "damage":"20",
+                     "sprite":"bush",
+                     "type":"bush",
+                     "usability":"damage"
+                    },
+                 "propertytypes":
+                    {
+                     "damage":"string",
+                     "sprite":"string",
+                     "type":"string",
+                     "usability":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":132,
+                 "x":2030,
+                 "y":515.916666666667
+                }, 
+                {
+                 "height":85.5,
+                 "id":473,
+                 "name":"",
+                 "properties":
+                    {
+                     "damage":"20",
+                     "sprite":"bush",
+                     "type":"bush",
+                     "usability":"damage"
+                    },
+                 "propertytypes":
+                    {
+                     "damage":"string",
+                     "sprite":"string",
+                     "type":"string",
+                     "usability":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":132,
+                 "x":2676.66666666667,
+                 "y":515.916666666667
                 }],
          "offsetx":3.5,
          "offsety":0.5,
@@ -1695,23 +1668,23 @@
         }, 
         {
          "draworder":"topdown",
-         "height":10,
+         "height":0,
          "name":"sawHorizontal",
          "objects":[
                 {
-                 "height":109.090909090909,
+                 "height":109.091,
                  "id":439,
                  "name":"",
                  "properties":
                     {
-                     "dmg":"20",
+                     "damage":"20",
                      "sprite":"saw",
                      "type":"sawHorizontal",
                      "usability":"damageMovingHorizontal"
                     },
                  "propertytypes":
                     {
-                     "dmg":"string",
+                     "damage":"string",
                      "sprite":"string",
                      "type":"string",
                      "usability":"string"
@@ -1719,9 +1692,9 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":109.090909090909,
-                 "x":4376.60606060606,
-                 "y":158.606060606061
+                 "width":109.091,
+                 "x":4427.27666666667,
+                 "y":143.272666666667
                 }, 
                 {
                  "height":109.091,
@@ -1729,14 +1702,14 @@
                  "name":"",
                  "properties":
                     {
-                     "dmg":"20",
+                     "damage":"20",
                      "sprite":"saw",
                      "type":"sawHorizontal",
                      "usability":"damageMovingHorizontal"
                     },
                  "propertytypes":
                     {
-                     "dmg":"string",
+                     "damage":"string",
                      "sprite":"string",
                      "type":"string",
                      "usability":"string"
@@ -1745,8 +1718,8 @@
                  "type":"",
                  "visible":true,
                  "width":109.091,
-                 "x":6983.4545,
-                 "y":433.4545
+                 "x":6983.45,
+                 "y":433.454
                 }, 
                 {
                  "height":109.091,
@@ -1754,14 +1727,14 @@
                  "name":"",
                  "properties":
                     {
-                     "dmg":"20",
+                     "damage":"20",
                      "sprite":"saw",
                      "type":"sawHorizontal",
                      "usability":"damageMovingHorizontal"
                     },
                  "propertytypes":
                     {
-                     "dmg":"string",
+                     "damage":"string",
                      "sprite":"string",
                      "type":"string",
                      "usability":"string"
@@ -1770,18 +1743,18 @@
                  "type":"",
                  "visible":true,
                  "width":109.091,
-                 "x":5271.4545,
-                 "y":179.4545
+                 "x":5271.45,
+                 "y":179.454
                 }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
-         "width":200,
+         "width":0,
          "x":0,
          "y":0
         }, 
         {
-         "data":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABIAAAARAAAAEQAAABEAAAARAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABIAAAARAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEgAAABEAAAARAAAAEQAAABEAAAARAAAAEQAAABEAAAARAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwAAAA4AAAAOAAAADgAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARAABgDgAAAA4AAAANAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANAADADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAANAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAAAADgAAAA4AAAAOAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAGAOAAAADgAAAA0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA0AAMAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8AAAAOAAAADgAAAA4AAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEQAAYA4AAAAOAAAADQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQAAwA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwAAAA4AAAAOAAAADgAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARAABgDgAAAA4AAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAAEQAAABEAAAARAAAAEQAAABEAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANAADADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAAEQAAABEAAAARAAAAEQAAABEAAAARAAAAEQAAABEAAAARAAAAEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAAAADgAAAA4AAAAOAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAABEAAAARAAAAEQAAABEAAAARAAAAEQAAABEAAAARAAAAEQAAABEAAAARAAAAEQAAABEAAAARAAAAEQAAABEAAAARAAAAEQAAABEAAAARAAAAEQAAABEAAAARAAAADAAAAA0AAGANAABgDQAAYA0AAGANAABgDQAAYA0AAGANAABgDQAAYA0AAGANAABgDQAAYA0AAGANAABgDQAAYA0AAGANAABgDQAAYA0AAGANAABgDQAAYA0AAGANAABgDQAAYA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA8AAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA0AAMAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASAAAAEQAAABEAAAARAAAAEQAAAA4AAAAOAAAADgAAAA4AAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+         "data":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABIAAAARAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEgAAABEAAAARAAAAEQAAABEAAAARAAAAEQAAABEAAAARAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEgAAABEAAAARAAAAEQAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARAABgDgAAAA4AAAANAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANAADADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAANAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAAAADgAAAA4AAAAOAAAADQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAGAOAAAADgAAAA0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA0AAMAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8AAAAOAAAADgAAAA4AAAANAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEQAAYA4AAAAOAAAADQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQAAwA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwAAAA4AAAAOAAAADgAAAA4AAAARAAAAEQAAABEAAAARAAAAEQAAABEAAAARAAAAEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARAABgDgAAAA4AAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAAEQAAABEAAAARAAAAEQAAABEAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANAADADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAAEQAAABEAAAARAAAAEQAAABEAAAARAAAAEQAAABEAAAARAAAAEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAAAADgAAAA4AAAAOAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAABEAAAARAAAAEQAAABEAAAARAAAAEQAAABEAAAARAAAAEQAAABEAAAARAAAAEQAAABEAAAARAAAAEQAAABEAAAARAAAAEQAAABEAAAARAAAAEQAAABEAAAARAAAADAAAAA0AAGANAABgDQAAYA0AAGANAABgDQAAYA0AAGANAABgDQAAYA0AAGANAABgDQAAYA0AAGANAABgDQAAYA0AAGANAABgDQAAYA0AAGANAABgDQAAYA0AAGANAABgDQAAYA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA8AAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA0AAMAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAADgAAAA4AAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASAAAAEQAAABEAAAARAAAAEQAAAA4AAAAOAAAADgAAAA4AAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
          "encoding":"base64",
          "height":10,
          "name":"block",
@@ -1823,14 +1796,14 @@
                  "name":"",
                  "properties":
                     {
-                     "dmg":"20",
+                     "damage":"20",
                      "sprite":"saw",
                      "type":"saw",
                      "usability":"damageMoving"
                     },
                  "propertytypes":
                     {
-                     "dmg":"string",
+                     "damage":"string",
                      "sprite":"string",
                      "type":"string",
                      "usability":"string"
@@ -1839,8 +1812,8 @@
                  "type":"",
                  "visible":true,
                  "width":102.667,
-                 "x":4001.03363636364,
-                 "y":277.150848484849
+                 "x":3999.69666666667,
+                 "y":243.817666666667
                 }, 
                 {
                  "height":102.667,
@@ -1848,14 +1821,14 @@
                  "name":"",
                  "properties":
                     {
-                     "dmg":"20",
+                     "damage":"20",
                      "sprite":"saw",
                      "type":"saw",
                      "usability":"damageMoving"
                     },
                  "propertytypes":
                     {
-                     "dmg":"string",
+                     "damage":"string",
                      "sprite":"string",
                      "type":"string",
                      "usability":"string"
@@ -1864,8 +1837,8 @@
                  "type":"",
                  "visible":true,
                  "width":102.667,
-                 "x":3595.33666666667,
-                 "y":283.212121212121
+                 "x":3591.34,
+                 "y":249.878666666667
                 }, 
                 {
                  "height":102.667,
@@ -1873,14 +1846,14 @@
                  "name":"",
                  "properties":
                     {
-                     "dmg":"20",
+                     "damage":"20",
                      "sprite":"saw",
                      "type":"saw",
                      "usability":"damageMoving"
                     },
                  "propertytypes":
                     {
-                     "dmg":"string",
+                     "damage":"string",
                      "sprite":"string",
                      "type":"string",
                      "usability":"string"
@@ -1889,8 +1862,8 @@
                  "type":"",
                  "visible":true,
                  "width":102.667,
-                 "x":4996.36787878788,
-                 "y":404.485151515152
+                 "x":4994.37,
+                 "y":446.485
                 }, 
                 {
                  "height":102.667,
@@ -1898,14 +1871,14 @@
                  "name":"",
                  "properties":
                     {
-                     "dmg":"20",
+                     "damage":"20",
                      "sprite":"saw",
                      "type":"saw",
                      "usability":"damageMoving"
                     },
                  "propertytypes":
                     {
-                     "dmg":"string",
+                     "damage":"string",
                      "sprite":"string",
                      "type":"string",
                      "usability":"string"
@@ -1914,8 +1887,8 @@
                  "type":"",
                  "visible":true,
                  "width":102.667,
-                 "x":7226.6665,
-                 "y":440.6665
+                 "x":7228.67,
+                 "y":482.666
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1972,31 +1945,8 @@
                  "type":"",
                  "visible":true,
                  "width":120,
-                 "x":1770.3,
-                 "y":308.485
-                }, 
-                {
-                 "height":80,
-                 "id":355,
-                 "name":"",
-                 "properties":
-                    {
-                     "sprite":"leftPlatform",
-                     "type":"movingPlatform",
-                     "usability":"movingPlatform"
-                    },
-                 "propertytypes":
-                    {
-                     "sprite":"string",
-                     "type":"string",
-                     "usability":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":120,
-                 "x":1912.73,
-                 "y":202.424
+                 "x":1799.63333333333,
+                 "y":347.151666666667
                 }, 
                 {
                  "height":80,
@@ -2041,8 +1991,8 @@
                  "type":"",
                  "visible":true,
                  "width":120,
-                 "x":2206.67,
-                 "y":150.909
+                 "x":2277.33666666667,
+                 "y":232.242333333333
                 }, 
                 {
                  "height":80,
@@ -2064,8 +2014,8 @@
                  "type":"",
                  "visible":true,
                  "width":120,
-                 "x":2388.48,
-                 "y":96.3636
+                 "x":2483.14666666667,
+                 "y":336.3636
                 }, 
                 {
                  "height":80,
@@ -2225,7 +2175,7 @@
                  "type":"",
                  "visible":true,
                  "width":120,
-                 "x":5054.42424242424,
+                 "x":5054.42,
                  "y":312
                 }, 
                 {
@@ -2258,7 +2208,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":461,
+ "nextobjectid":479,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":64,

@@ -67,7 +67,7 @@ phinalphase.AuraSkillBuff.prototype = Object.create(phinalphase.AuraSkill.protot
 phinalphase.AuraSkillBuff.prototype.constructor = phinalphase.AuraSkillBuff;
 phinalphase.AuraSkillBuff.prototype.use = function () {
     if (!this.isOnCD) {
-        this.user.isAttacking = true;
+        this.user.busy = true;
         this.isOnCD = true;
         phinalphase.game.time.events.add(this.cooldown * 1000, function () {
             this.isOnCD = false;
@@ -85,7 +85,7 @@ phinalphase.AuraSkillBuff.prototype.use = function () {
         this.aura.animations.currentAnim.onComplete.add(function () {
             this.aura.kill();
             this.aura.aura = false;
-            this.user.isAttacking = false;
+            this.user.busy = false;
             this.aura.animations.currentAnim.onComplete._bindings.pop();
             phinalphase.game.time.events.add(this.duration * 1000, function () {
                 this.afterEffects(this.user);
@@ -107,7 +107,7 @@ phinalphase.AuraSkillDmg.prototype = Object.create(phinalphase.AuraSkill.prototy
 phinalphase.AuraSkillDmg.prototype.constructor = phinalphase.AuraSkillDmg;
 phinalphase.AuraSkillDmg.prototype.use = function () {
     if (!this.isOnCD) {
-        this.user.isAttacking = true;
+        this.user.busy = true;
         this.isOnCD = true;
         phinalphase.game.time.events.add(this.cooldown * 1000, function () {
             this.isOnCD = false;
@@ -118,7 +118,7 @@ phinalphase.AuraSkillDmg.prototype.use = function () {
             this.user.animations.stop();
         }
         phinalphase.game.time.events.add(1000, function () {
-            this.user.isAttacking = false;
+            this.user.busy = false;
         }, this);
 
 
@@ -196,16 +196,16 @@ phinalphase.Projectile.prototype.use = function () {
     if (this.weapon.bullets.countLiving() == this.bullet.number) {
         return;
     }
-    this.user.isAttacking = true;
+    this.user.busy = true;
     this.user.play(this.userAnim, false, function () {
         if (!this.stop) {
-            this.user.isAttacking = false;
+            this.user.busy = false;
         }
     }.bind(this));
     if (this.stop) {
         this.user.animations.stop();
         phinalphase.game.time.events.add(500, function () {
-            this.user.isAttacking = false;
+            this.user.busy = false;
         }, this);
     }
 

@@ -18,7 +18,7 @@ phinalphase.createPlayerCop = function (that) {
     }
 
 
-    that.playerCop = new phinalphase.Player(that.game, 250, 350, 'playerCop', 'Idle_000', 1000, 0.5, 1, -600, 300, 100, 100, anim);
+    that.playerCop = new phinalphase.Player(that.game, 250, 350, 'playerCop', 'Idle_000', 1000, 0.5, 1, -600, 1300, 100, 100, anim);
 
     that.playerCop.noEnergySound = new buzz.sound("/assets/Sound/powerDrain", {
         formats: ["ogg"],
@@ -76,9 +76,9 @@ phinalphase.createPlayerCop = function (that) {
 
 
     that.playerCop.playCopSounds = function () {
-        if (that.game.input.keyboard.isDown(Phaser.Keyboard.D) && !that.playerCop.isInAir && !that.playerCop.isAttacking) {
+        if (that.game.input.keyboard.isDown(Phaser.Keyboard.D) && !that.playerCop.isInAir && !that.playerCop.busy) {
             that.playerCop.walkingSound.play();
-        } else if (that.game.input.keyboard.isDown(Phaser.Keyboard.A) && !that.playerCop.isInAir && !that.playerCop.isAttacking) {
+        } else if (that.game.input.keyboard.isDown(Phaser.Keyboard.A) && !that.playerCop.isInAir && !that.playerCop.busy) {
             that.playerCop.walkingSound.play();
         }
         if (that.game.input.keyboard.isDown(Phaser.Keyboard.W) && that.playerCop.body.blocked.down) {

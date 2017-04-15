@@ -91,8 +91,27 @@ phinalphase.оbjectGroupFromTiled = function(type, map, layerName, groupName) {
          if (uab == "healing")  {
             phinalphase.game.updatables.push(function() {
                 this.physics.arcade.overlap(phinalphase.players, phinalphase[groupName], function(player, element) {
+                    if (player.health<=80) {
                     player.health+=20;
+                }
+                if (player.health>=80 && player.health<100) {
+                    player.health = 100 ;
+                }
                     player.healSound.play();
+                     element.body=  null;
+                     element.kill();
+                }, null, this);
+            }.bind(phinalphase.game));   
+        }   
+         if (uab == "poison")  {
+            phinalphase.game.updatables.push(function() {
+                this.physics.arcade.overlap(phinalphase.players, phinalphase[groupName], function(player, element) {
+             this.camera.shake(0.05,2000)  ;
+             this.camera.flash(0xff0000, 2000);
+           //???????
+        
+                   
+                     element.body=  null;
                      element.kill();
                 }, null, this);
             }.bind(phinalphase.game));   

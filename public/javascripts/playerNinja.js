@@ -116,9 +116,9 @@ phinalphase.createPlayerNinja = function (that) {
 
 
     that.playerNinja.playNinjaSounds = function () {
-        if (that.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT) && !that.playerNinja.isInAir && !that.playerNinja.isAttacking) {
+        if (that.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT) && !that.playerNinja.isInAir && !that.playerNinja.busy) {
             that.playerNinja.walkingSound.play();
-        } else if (that.game.input.keyboard.isDown(Phaser.Keyboard.LEFT) && !that.playerNinja.isInAir && !that.playerNinja.isAttacking) {
+        } else if (that.game.input.keyboard.isDown(Phaser.Keyboard.LEFT) && !that.playerNinja.isInAir && !that.playerNinja.busy) {
             that.playerNinja.walkingSound.play();
         }
         if (that.game.input.keyboard.isDown(Phaser.Keyboard.UP) && that.playerNinja.body.blocked.down) {

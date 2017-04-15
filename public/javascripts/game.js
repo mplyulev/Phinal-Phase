@@ -47,8 +47,9 @@ phinalphase.Game.prototype = {
             ["cross", "sceneObjects", "sceneObject"],
             ["acid", "objectsDamage", "acid"],
             ["potion", "potion", "potion"],
-            ["potion", "potion", "potion"],
-            ["mushroom", "sceneObjects", "mushroom"],
+            ["tree", "sceneObjects", "sceneObject"],
+        
+            ["mushroom", "potion", "mushroom"],
             ["bush5", "sceneObjects", "bush5"],
              ['crate', 'object', 'crate']
   

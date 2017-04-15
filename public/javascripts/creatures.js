@@ -15,7 +15,7 @@ phinalphase.Creature = function (game, x, y, key, frame, gravity, anchorX, ancho
     this.speedX = speedX;
     this.wasMoving = false;
     this.isInAir = false;
-    this.isAttacking = false;
+    this.busy = false;
     this.canAttackAgain = true;
     this.alive = true;
     this.isFlinched = false;
@@ -147,10 +147,10 @@ phinalphase.Creature.prototype.stay = function () {
 }
 
 phinalphase.Creature.prototype.attack = function () {
-    this.isAttacking = true;
+    this.busy = true;
     this.play(this.animationsObject.attack[0], false, function () {
         this.play(this.animationsObject.idle[0]);
-        this.isAttacking = false;
+        this.busy = false;
     });
 }
 
@@ -165,7 +165,7 @@ phinalphase.Creature.prototype.act = function (act, cause) {
             return;
         }
 
-        if ((act != 'STRIKED' && act != 'DIE' && act != 'FLINCH') && this.isAttacking) {
+        if ((act != 'STRIKED' && act != 'DIE' && act != 'FLINCH') && this.busy) {
             return;
         }
 
@@ -228,7 +228,7 @@ phinalphase.Creature.prototype.getHitted = function (dmgDealer) {
 };
 
 phinalphase.Creature.prototype.flinch = function () {
-    this.isAttacking = false;
+    this.busy = false;
     this.isFlinched = true;
     this.canBeHitted = false;
     this.body.velocity.y = -300;
@@ -333,9 +333,9 @@ phinalphase.Player.prototype.fly = function () {
     }
 }
 phinalphase.Player.prototype.knockback = function () {
-    this.isAttacking = true;
+    this.busy = true;
     this.play(this.animationsObject.knockback[0], false, function () {
-        this.isAttacking = false;
+        this.busy = false;
     }.bind(this));
 }
 phinalphase.Player.prototype.flyForward = function () {
