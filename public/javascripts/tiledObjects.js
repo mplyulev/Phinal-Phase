@@ -56,7 +56,8 @@ phinalphase.оbjectGroupFromTiled = function(type, map, layerName, groupName) {
             }.bind(phinalphase.game));
              phinalphase[groupName].children.forEach(function(element) {
                  element.anchor.setTo(0.5,0.5);
-                 element.body.velocity.y = -470;
+                 element.body.velocity.y = -250;
+               
                   phinalphase.game.time.events.loop(0.01, function() {
          element.angle+=15;
             });
@@ -68,56 +69,60 @@ phinalphase.оbjectGroupFromTiled = function(type, map, layerName, groupName) {
            }
 
 
- if (uab == "potion")  {
 
- }
-
-   if (uab == 'damageMovingHorizontal') {
+        if (uab == 'damageMovingHorizontal') {
             phinalphase.game.updatables.push(function() {
                 this.physics.arcade.overlap(phinalphase.players, phinalphase[groupName], function(player, groupName) {
                     player.act('STRIKED', groupName);
-                }, null, this);
-            }.bind(phinalphase.game));
-             phinalphase[groupName].children.forEach(function(element) {
-                 element.anchor.setTo(0.5,0.5);
-                 element.body.velocity.x = -500;
-                  phinalphase.game.time.events.loop(0.01, function() {
-         element.angle+=15;
-            });
-             phinalphase.game.time.events.loop(1500, function() {
-         element.body.velocity.x =   element.body.velocity.x*(-1);
-          element.angle =  element.angle*(-1);
-            });
+                }, null, this);}.bind(phinalphase.game));
+                phinalphase[groupName].children.forEach(function(element) {
+                    element.anchor.setTo(0.5,0.5);
+                    element.body.velocity.x = -400;
+                    phinalphase.game.time.events.loop(0.01, function() {
+                        element.angle+=15;
+                    });
+                    phinalphase.game.time.events.loop(1500, function() {
+                        element.body.velocity.x =   element.body.velocity.x*(-1);
+                        element.angle =  element.angle*(-1);
+                    });
              },this);
            }
 
-
+         if (uab == "healing")  {
+            phinalphase.game.updatables.push(function() {
+                this.physics.arcade.overlap(phinalphase.players, phinalphase[groupName], function(player, element) {
+                    player.health+=20;
+                    player.healSound.play();
+                     element.kill();
+                }, null, this);
+            }.bind(phinalphase.game));   
+        }   
 
         if (uab == 'movingPlatform') {
             phinalphase.game.updatables.push(function() {
                 this.physics.arcade.collide(phinalphase.players, phinalphase[groupName], function(player, groupName) {}, null, this);
-            }.bind(phinalphase.game));
-            phinalphase[groupName].children.forEach(function(element) {
-                element.body.velocity.x = 100;
-                element.body.immovable = true;
-                phinalphase.game.time.events.loop(2000, function() {
-                    element.body.velocity.x =  element.body.velocity.x*(-1);  
-                }, this)
-                element.events.onOutOfBounds.add(elementKill, this);
-                element.checkWorldBounds = true;
-                function elementKill(element) {
-                    element.kill();
-                }
+                }.bind(phinalphase.game));
+                phinalphase[groupName].children.forEach(function(element) {
+                    element.body.velocity.x = 100;
+                    element.body.immovable = true;
+                    phinalphase.game.time.events.loop(2000, function() {
+                        element.body.velocity.x =  element.body.velocity.x*(-1);  
+                    }, this)
+                    element.events.onOutOfBounds.add(elementKill, this);
+                    element.checkWorldBounds = true;
+                    function elementKill(element) {
+                        element.kill();
+                    }
             });
         }
 
 
-  if (uab == 'static') {
+        if (uab == 'static') {
             phinalphase.game.updatables.push(function() {
                 this.physics.arcade.collide(phinalphase.players, phinalphase[groupName], function(player, groupName) {}, null, this);
-            }.bind(phinalphase.game));
-            phinalphase[groupName].children.forEach(function(element) {
-                element.body.immovable=true;
+                }.bind(phinalphase.game));
+                phinalphase[groupName].children.forEach(function(element) {
+                    element.body.immovable=true;
             }, this);
   }
   

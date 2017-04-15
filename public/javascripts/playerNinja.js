@@ -106,7 +106,11 @@ phinalphase.createPlayerNinja = function (that) {
         volume: 60,
         preload: true,
     });
-
+    that.playerNinja.healSound = new buzz.sound("/assets/Sound/spell3", {
+        formats: ["wav"],
+        preload: true,
+        volume: 60
+    });   
 
 
 

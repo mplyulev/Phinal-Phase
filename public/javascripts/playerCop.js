@@ -65,6 +65,11 @@ phinalphase.createPlayerCop = function (that) {
         preload: true,
         volume: 60
     });
+        that.playerCop.healSound = new buzz.sound("/assets/Sound/spell3", {
+        formats: ["wav"],
+        preload: true,
+        volume: 60
+    });
 
 
 
@@ -115,7 +120,7 @@ phinalphase.createPlayerCop = function (that) {
     //  that.healthbarShape = null;
     that.playerCop.weapon.trackSprite(that.playerCop, 14, 0);
     that.playerCop.weapon.bullets.forEach((b) => {
-        b.scale.setTo(0.5, 0.5);
+        b.scale.setTo(0.25, 0.25);
         b.body.updateBounds();
     }, that);
 }

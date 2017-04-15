@@ -12,6 +12,7 @@ phinalphase.createMap = function(map, tiles, layers, objects) {
             if (ele[0] === "background") {
                 phinalphase.оbjectGroupFromTiled(ele[0], this.map, ele[1], ele[2]);
             }
+           
             console.log(ele);
         }, this);
         this[ele[0]] = this.map.createLayer(ele[1]);

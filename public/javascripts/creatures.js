@@ -220,6 +220,7 @@ phinalphase.Creature.prototype.act = function (act, cause) {
 
 phinalphase.Creature.prototype.getHitted = function (dmgDealer) {
     this.health -= dmgDealer.damage;
+    console.log(this.health);
     if (this.health <= 0) {
         this.act('DIE');
     }

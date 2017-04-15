@@ -38,6 +38,7 @@ phinalphase.Preload.prototype = {
         this.load.image('bush2', '/assets/SpritesheetsАndTilesets/forest/object/Bush(2).png');
         this.load.image('bush3', '/assets/SpritesheetsАndTilesets/forest/object/Bush(3).png');
         this.load.image('bush4', '/assets/SpritesheetsАndTilesets/forest/object/Bush(4).png');
+        this.load.image('bush5', '/assets/SpritesheetsАndTilesets/forest/object/Bush(5).png');
         this.load.image('bush', '/assets/SpritesheetsАndTilesets/forest/object/bushDamage.png');
         this.load.image('skeleton', '/assets/SpritesheetsАndTilesets/forest/object/Skeleton.png');
         this.load.image('cutTree', '/assets/SpritesheetsАndTilesets/forest/object/Tree_1.png');
@@ -49,6 +50,7 @@ phinalphase.Preload.prototype = {
         this.load.image('potion', '/assets/SpritesheetsАndTilesets/forest/object/potion.png');
         this.load.image('meteorite', '/assets/SpritesheetsАndTilesets/forest/object/meteorite.png');
         this.load.image('sign2', '/assets/SpritesheetsАndTilesets/gy/Objects/ArrowSign.png');
+        this.load.image('crate', '/assets/SpritesheetsandTilesets/forest/Objects/Crate.png');
  
 
         // this.load.image('spike', '/assets/SpritesheetsandTilesets/ci-fi/Tiles/spike.png');
@@ -62,7 +64,7 @@ phinalphase.Preload.prototype = {
 
         // this.load.image('bg', '/assets/Spritesheets and Tilesets/gy/BG.png');
         // this.load.image('bush', '/assets/Spritesheets and Tilesets/gy/Objects/DeadBush.png');
-        // this.load.image('crate', '/assets/Spritesheets and Tilesets/gy/Objects/Crate.png');
+
         // this.load.image('healthbar', '/assets/healthbar.png');
 
 

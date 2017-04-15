@@ -21,8 +21,7 @@ phinalphase.Game.prototype = {
 
         var layers = [
             // ['bg', 'bgImg'],
-            // ['water', 'background'],
-
+          
             ['blockedLayer', 'block'],
             // ["water", "water"],
 
@@ -43,12 +42,16 @@ phinalphase.Game.prototype = {
             ["movingPlatform", "movingPlatform", "movingPlatform"],
             ["staticPlatform", "movingPlatform", "static"],
             ["saw", "saw", "saw"],
-            ["saw", "sawHorizontal", "sawHorizontal"],
+            ["sawHorizontal", "sawHorizontal", "sawHorizontal"],
             ["sign2", "sceneObjects", "sceneObject"],
             ["cross", "sceneObjects", "sceneObject"],
             ["acid", "objectsDamage", "acid"],
             ["potion", "potion", "potion"],
-            ["meteorite", "meteorite", "meteorite"],
+            ["potion", "potion", "potion"],
+            ["mushroom", "sceneObjects", "mushroom"],
+            ["bush5", "sceneObjects", "bush5"],
+             ['crate', 'object', 'crate']
+  
           
            
 
@@ -56,7 +59,7 @@ phinalphase.Game.prototype = {
             // ["spike", "object", "tree"],
             // ["tree", "object", "tree"],
             // ['bush', 'objects', 'bush'],
-            // ['crate', 'object', 'crate']
+           
         ]
 
         phinalphase.createMap('testlevel', tiles, layers, objects);
