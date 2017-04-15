@@ -1,19 +1,24 @@
 var phinalphase = phinalphase || {};
 
-phinalphase.Game = function() {};
+phinalphase.Game = function () { };
 
 phinalphase.Game.prototype = {
 
-    preload: function() {
+    preload: function () {
 
         this.game.time.advancedTiming = true;
 
     },
 
-    create: function() {
-        this.game.updatables = [];
+    create: function () {
+        this.game.updatables = [function () {
+            if (!phinalphase.players.children[0].alive && !phinalphase.players.children[1].alive) {
+                // phinalphase.game.state.start('Boot', true, false);
+                window.location = '';
+            }
+        }];
 
-   
+
 
         var tiles = [
             ['forest', 'gameTiles']
@@ -21,7 +26,7 @@ phinalphase.Game.prototype = {
 
         var layers = [
             // ['bg', 'bgImg'],
-          
+
             ['blockedLayer', 'block'],
             // ["water", "water"],
 
@@ -48,19 +53,19 @@ phinalphase.Game.prototype = {
             ["acid", "objectsDamage", "acid"],
             ["potion", "potion", "potion"],
             ["tree", "sceneObjects", "sceneObject"],
-        
+
             ["mushroom", "potion", "mushroom"],
             ["bush5", "sceneObjects", "bush5"],
-             ['crate', 'object', 'crate']
-  
-          
-           
+            ['crate', 'object', 'crate']
+
+
+
 
 
             // ["spike", "object", "tree"],
             // ["tree", "object", "tree"],
             // ['bush', 'objects', 'bush'],
-           
+
         ]
 
         phinalphase.createMap('testlevel', tiles, layers, objects);
@@ -86,15 +91,15 @@ phinalphase.Game.prototype = {
 
 
 
-        this.game.updatables.push(function() {
+        this.game.updatables.push(function () {
             phinalphase.updatePlayerNinja(this);
             phinalphase.updatePlayerCop(this);
         }.bind(this));
 
     },
 
-    update: function() {
-        this.game.updatables.forEach(function(f) {
+    update: function () {
+        this.game.updatables.forEach(function (f) {
             f();
         }, this);
 
@@ -103,23 +108,21 @@ phinalphase.Game.prototype = {
 
         this.game.camera.deadzone = new Phaser.Rectangle(0, 0, 600, 400);
         // this.playerCop.body.moves = false;
-        if (this.playerCop.x > this.playerNinja.x) {
+        if ((this.playerCop.x > this.playerNinja.x && this.playerCop.alive)|| !this.playerNinja.alive) {
             this.game.camera.follow(this.playerCop);
             this.game.camera.focusOnXY(this.playerCop.x + 54, this.playerCop.y);
 
-        }
-        if (this.playerCop.x < this.playerNinja.x) {
+        } else {
             this.game.camera.follow(this.playerNinja);
             this.game.camera.focusOnXY(this.playerNinja.x + 54, this.playerNinja.y)
         }
-
-
-        {
+        if (this.playerCop.x < this.playerNinja.x) {
 
         }
+
     },
 
-    render: function() {
+    render: function () {
 
 
         this.game.debug.text(this.game.time.fps || '--', 20, 70, "#00ff00", "40px Courier");

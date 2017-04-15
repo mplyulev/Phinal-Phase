@@ -8,6 +8,7 @@ phinalphase.Creature = function (game, x, y, key, frame, gravity, anchorX, ancho
     this.game.physics.arcade.enable(this);
     this.health = 100;
     this.energy = 100;
+    this.lives = 3;
     this.energyRegen = energyRegen;
     this.defense = defense;
     this.body.gravity.y = gravity;
@@ -269,10 +270,30 @@ phinalphase.Creature.prototype.dying = function () {
     this.alive = false;
     this.play(this.animationsObject.death[0], false, function () {
         this.kill();
-        this.alive = true;
-        phinalphase.game.time.events.add(3000, function () {
-            this.revive();
-        }, this);
+        if (this instanceof phinalphase.Player) {
+            if (phinalphase.players.children.indexOf(this) == 0) {
+                var otherPlayer = phinalphase.players.children[1];
+            } else {
+                var otherPlayer = phinalphase.players.children[0];
+            }
+
+            phinalphase.game.time.events.add(3000, function () {
+                if (this.lives > 0) {
+                    this.lives--;
+                    this.alive = true;
+                    this.x = otherPlayer.x;
+                    this.y = otherPlayer.y;
+                    this.body.velocity.y = 0;
+                    this.body.velocity.x = 0;
+                    this.canBeHitted = false;
+                    this.revive();
+                    phinalphase.game.time.events.add(2000, function () {
+                        this.canBeHitted = true;
+                    }, this);
+
+                }
+            }, this);
+        }
     });
 };
 
@@ -298,6 +319,18 @@ phinalphase.Creature.prototype.updateCreature = function () {
         this.energy += this.energyRegen;
     } else if (this.energy < 100) {
         this.energy = 100;
+    }
+
+    if (phinalphase.game.world.height < this.y) {
+        this.act('DIE');
+    }
+
+    if (this.body.velocity.y < this.jumpHeight) {
+        this.body.velocity.y = this.jumpHeight;
+    }
+
+    if (this.body.velocity.y > Math.abs(this.jumpHeight)) {
+        this.body.velocity.y = Math.abs(this.jumpHeight);
     }
 }
 

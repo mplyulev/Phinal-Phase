@@ -73,9 +73,7 @@ phinalphase.createPlayerCop = function (that) {
                 }
                 
                 that.user.play(that.userAnim);
-                if (that.user.body.velocity.y >= (-Math.abs(that.user.jumpHeight))) {
-                    that.user.body.velocity.y -= 23;
-                }
+                that.user.body.velocity.y -= 23;               
                 
             }
         }
