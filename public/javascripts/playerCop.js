@@ -115,7 +115,7 @@ phinalphase.createPlayerCop = function (that) {
     //  that.healthbarShape = null;
     that.playerCop.weapon.trackSprite(that.playerCop, 14, 0);
     that.playerCop.weapon.bullets.forEach((b) => {
-        b.scale.setTo(0.25, 0.25);
+        b.scale.setTo(0.5, 0.5);
         b.body.updateBounds();
     }, that);
 }

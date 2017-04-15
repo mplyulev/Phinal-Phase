@@ -56,11 +56,11 @@ phinalphase.оbjectGroupFromTiled = function(type, map, layerName, groupName) {
             }.bind(phinalphase.game));
              phinalphase[groupName].children.forEach(function(element) {
                  element.anchor.setTo(0.5,0.5);
-                 element.body.velocity.y = -370;
+                 element.body.velocity.y = -470;
                   phinalphase.game.time.events.loop(0.01, function() {
          element.angle+=15;
             });
-             phinalphase.game.time.events.loop(1000, function() {
+             phinalphase.game.time.events.loop(1500, function() {
          element.body.velocity.y =   element.body.velocity.y*(-1);
          element.angle =  element.angle*(-1);
             });
@@ -68,14 +68,7 @@ phinalphase.оbjectGroupFromTiled = function(type, map, layerName, groupName) {
            }
 
 
-   if (uab == 'moon') {
-         console.log(phinalphase.players);
- phinalphase[groupName].children.forEach(function(element) {
-            element.alpha = 0.4;
-            console.log(phinalphase.players);
-            element.fixedToCamera = true ;
-             },this);
-   }
+ if (uab == "potion")  {}
 
    if (uab == 'damageMovingHorizontal') {
             phinalphase.game.updatables.push(function() {
@@ -89,7 +82,7 @@ phinalphase.оbjectGroupFromTiled = function(type, map, layerName, groupName) {
                   phinalphase.game.time.events.loop(0.01, function() {
          element.angle+=15;
             });
-             phinalphase.game.time.events.loop(1000, function() {
+             phinalphase.game.time.events.loop(1500, function() {
          element.body.velocity.x =   element.body.velocity.x*(-1);
           element.angle =  element.angle*(-1);
             });
@@ -104,6 +97,7 @@ phinalphase.оbjectGroupFromTiled = function(type, map, layerName, groupName) {
             }.bind(phinalphase.game));
             phinalphase[groupName].children.forEach(function(element) {
                 element.body.velocity.x = 100;
+                element.body.immovable = true;
                 phinalphase.game.time.events.loop(2000, function() {
                     element.body.velocity.x =  element.body.velocity.x*(-1);
                    

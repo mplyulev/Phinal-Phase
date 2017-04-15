@@ -47,6 +47,8 @@ phinalphase.Game.prototype = {
             ["sign2", "sceneObjects", "sceneObject"],
             ["cross", "sceneObjects", "sceneObject"],
             ["acid", "objectsDamage", "acid"],
+            ["potion", "potion", "potion"],
+            ["meteorite", "meteorite", "meteorite"],
           
            
 

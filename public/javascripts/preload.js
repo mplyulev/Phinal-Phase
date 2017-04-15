@@ -46,6 +46,8 @@ phinalphase.Preload.prototype = {
         this.load.image('cross2', '/assets/SpritesheetsАndTilesets/forest/object/Tomb1.png');
         this.load.image('leftPlatform', '/assets/SpritesheetsАndTilesets/forest/object/platform3.png');
         this.load.image('acid', '/assets/SpritesheetsАndTilesets/forest/object/acid.png');
+        this.load.image('potion', '/assets/SpritesheetsАndTilesets/forest/object/potion.png');
+        this.load.image('meteorite', '/assets/SpritesheetsАndTilesets/forest/object/meteorite.png');
         this.load.image('sign2', '/assets/SpritesheetsАndTilesets/gy/Objects/ArrowSign.png');
  
 
