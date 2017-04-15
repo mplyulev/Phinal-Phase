@@ -68,7 +68,9 @@ phinalphase.оbjectGroupFromTiled = function(type, map, layerName, groupName) {
            }
 
 
- if (uab == "potion")  {}
+ if (uab == "potion")  {
+
+ }
 
    if (uab == 'damageMovingHorizontal') {
             phinalphase.game.updatables.push(function() {
@@ -99,8 +101,7 @@ phinalphase.оbjectGroupFromTiled = function(type, map, layerName, groupName) {
                 element.body.velocity.x = 100;
                 element.body.immovable = true;
                 phinalphase.game.time.events.loop(2000, function() {
-                    element.body.velocity.x =  element.body.velocity.x*(-1);
-                   
+                    element.body.velocity.x =  element.body.velocity.x*(-1);  
                 }, this)
                 element.events.onOutOfBounds.add(elementKill, this);
                 element.checkWorldBounds = true;

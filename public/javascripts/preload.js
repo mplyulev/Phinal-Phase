@@ -71,6 +71,7 @@ phinalphase.Preload.prototype = {
 
         this.load.image('bullet', '/assets/images/bullet2.png');
         this.load.atlas('playerNinja', '/assets/images/Players/Swordsman/hero1.png', '/assets/images/Players/Swordsman/hero1.json');
+        this.load.spritesheet('fireball', '/assets/images/Players/Swordsman/fireball.png', 333, 199);
         this.load.atlas('popAura', '/assets/images/Players/Swordsman/pop.png', '/assets/images/Players/Swordsman/pop.json');
         this.load.atlas('playerCop', '/assets/images/Players/Cop/hero2.png', '/assets/images/Players/Cop/hero2.json');
 

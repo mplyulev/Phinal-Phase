@@ -15,19 +15,60 @@ phinalphase.createPlayerNinja = function (that) {
 
     var skills = [
         {
-            type: 'buff',
+            type: 'aurabuff',
             enerReq: 10,
             key: 'popAura',
-            frame: 'pop_explosion0001',
-            duration: 10,
+            frame: 'pop_explosion0001',    
             cooldown: 15,
-            anim: ['pop', 'pop_explosion', 1, 18, '', 4, 15],
-            effects: {
-                speedX: 300 + 50
+            userAnim: anim.block[0],
+            stop: true,
+            duration: 10,
+            anim: ['pop', 'pop_explosion', 1, 18, '', 4, 15],                     
+            effects: function (that) {
+                that.speedX += 100;
             },
-            afterEffects: {
-                speedX: 350 - 50
-            }
+            afterEffects: function (that) {
+                that.speedX -= 100;
+            }       
+        },
+        // {
+        //     type: 'auradmg',
+        //     enerReq: 10,
+        //     key: 'popAura',
+        //     frame: 'pop_explosion0001',
+        //     duration: 10,
+        //     cooldown: 15,
+        //     anim: ['pop', 'pop_explosion', 1, 18, '', 4, 15],
+        //     dmg: 10,
+        //     enemyCollide: function (enemy) {
+
+        //     },
+        //     userAnim: anim.block[0],
+        //     stop: true
+        // },
+
+        {
+            type: 'proj',
+            enerReq: 10,
+            key: 'fireball',
+            frame: 'fireball',
+            cooldown: 1,
+            userAnim: anim.block[0],
+            stop: true,
+            dmg: 10,
+            enemyCollide: function() {
+
+            },
+            bullet: {
+                number: 1,
+                killType: 'KILL_CAMERA_BOUNDS',
+                speed: 500,
+                scaleX: 0.3,
+                scaleY: 0.3,
+                repeat: true
+            },
+            offsetX: 0,
+            offsetY: -30
 
         }
     ]
@@ -122,6 +163,9 @@ phinalphase.updatePlayerNinja = function (that) {
 
     if (that.game.input.keyboard.isDown(Phaser.Keyboard.O)) {
         that.playerNinja.act('SKILL', 0);
+    }
+    if (that.game.input.keyboard.isDown(Phaser.Keyboard.P)) {
+        that.playerNinja.act('SKILL', 1);
     }
 
 }
