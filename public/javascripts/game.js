@@ -125,6 +125,7 @@ phinalphase.Game.prototype = {
 
         this.game.debug.text(this.game.time.fps || '--', 20, 70, "#00ff00", "40px Courier");
         this.game.debug.spriteBounds(this.playerNinja);
+        this.game.debug.spriteBounds(this.playerNinja.skills[2].weapon);
         this.game.debug.spriteInfo(this.playerNinja, 32, 32);
         this.game.debug.bodyInfo(this.playerNinja, 100, 150);
         this.game.debug.body(this.playerNinja);

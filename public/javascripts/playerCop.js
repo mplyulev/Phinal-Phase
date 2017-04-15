@@ -14,12 +14,75 @@ phinalphase.createPlayerCop = function (that) {
         flyForward: ['flyForward', 'Jetpack Fly Forward_', 0, 11, '', 3, 25, 0, 0],
         flyShoot: ['flyShoot', 'Jetpack Fly Shoot_', 0, 11, '', 3, 25, 0, 0],
         flyHurt: ['flyHurt', 'Jetpack Fly Hurt_', 0, 9, '', 3, 25, 0, 0],
-        knockback: ['knockback', 'Knockback_', 0, 15, '', 3, 25, 5, 0] // da se fixne . s cropa  ne stava  . . 
+        knockback: ['knockback', 'Knockback_', 0, 15, '', 3, 25, 5, 0]
     }
 
+    var skills = [
+        {
+            type: 'proj',
+            enerReq: 5,
+            key: 'bullet',
+            frame: 'bullet',
+            cooldown: 0.75,
+            userAnim: anim.attack[0],
+            stop: false,
+            dmg: 10,
+            enemyCollide: function () {
 
-    that.playerCop = new phinalphase.Player(that.game, 250, 350, 'playerCop', 'Idle_000', 1000, 0.5, 1, -600, 300, 100, 100, anim);
+            },
+            bullet: {
+                number: 30,
+                killType: 'KILL_CAMERA_BOUNDS',
+                speed: 750,
+                scaleX: 0.2,
+                scaleY: 0.2,
+            },
+            offsetX: 10,
+            offsetY: -30
+        },
+        {
+            type: 'melee',
+            enerReq: 10,
+            key: undefined,
+            frame: undefined,
+            cooldown: 0,
+            userAnim: anim.knockback[0],
+            stop: false,
+            dmg: 5,
+            enemyCollide: function () {
 
+            },
+            weapon: {
+                offsetX: 60,
+                offsetY: -30,
+                height: 50,
+                width: 50
+            }
+        },
+        {
+            type: 'special',
+            enerReq: 0.5,
+            key: undefined,
+            frame: undefined,
+            cooldown: 0,
+            userAnim: anim.flyIdle[0],
+            stop: false,
+            special: function (that) {
+                if (!that.checkEnergy()) {
+                    return;
+                }
+                
+                that.user.play(that.userAnim);
+                if (that.user.body.velocity.y >= (-Math.abs(that.user.jumpHeight))) {
+                    that.user.body.velocity.y -= 23;
+                }
+                
+            }
+        }
+    ]
+
+
+    that.playerCop = new phinalphase.Player(that.game, 250, 350, 'playerCop', 'Idle_000', 1000, 0.5, 1, -600, 300, 0.1, 5, anim, skills);
     that.playerCop.noEnergySound = new buzz.sound("/assets/Sound/powerDrain", {
         formats: ["ogg"],
         preload: true,
@@ -66,9 +129,9 @@ phinalphase.createPlayerCop = function (that) {
 
 
     that.playerCop.playCopSounds = function () {
-        if (that.game.input.keyboard.isDown(Phaser.Keyboard.D) && !that.playerCop.isInAir && !that.playerCop.isAttacking) {
+        if (that.game.input.keyboard.isDown(Phaser.Keyboard.D) && !that.playerCop.isInAir && !that.playerCop.busy) {
             that.playerCop.walkingSound.play();
-        } else if (that.game.input.keyboard.isDown(Phaser.Keyboard.A) && !that.playerCop.isInAir && !that.playerCop.isAttacking) {
+        } else if (that.game.input.keyboard.isDown(Phaser.Keyboard.A) && !that.playerCop.isInAir && !that.playerCop.busy) {
             that.playerCop.walkingSound.play();
         }
         if (that.game.input.keyboard.isDown(Phaser.Keyboard.W) && that.playerCop.body.blocked.down) {
@@ -99,27 +162,14 @@ phinalphase.createPlayerCop = function (that) {
 
 
 
-    that.playerCop.weapon = that.game.add.weapon(30, "bullet");
-    that.playerCop.weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
-    that.playerCop.weapon.bulletSpeed = 750;
     that.playerCop.checkWorldBounds = true;
-    that.playerCop.weapon.fireRate = 770;
     //  that.healthbarShape = null;
-    that.playerCop.weapon.trackSprite(that.playerCop, 14, 0);
-    that.playerCop.weapon.bullets.forEach((b) => {
-        b.scale.setTo(0.25, 0.25);
-        b.body.updateBounds();
-    }, that);
+
+
 }
 
 
 phinalphase.updatePlayerCop = function (that) {
-    that.game.physics.arcade.collide(that.playerCop.weapon.bullets, this.blockedLayer, null, null, that);
-    that.playerCop.weapon.bullets.forEach(function (bullet) {
-        if (bullet.body.velocity.x == 0 && bullet.body.velocity.y == 0) {
-            bullet.kill();
-        }
-    })
     that.playerCop.playCopSounds();
     that.playerCop.updateCreature();
     if (that.game.input.keyboard.isDown(Phaser.Keyboard.D)) {
@@ -144,25 +194,13 @@ phinalphase.updatePlayerCop = function (that) {
 
     }
     if (that.game.input.keyboard.isDown(Phaser.Keyboard.V)) {
-        that.playerCop.act('ATTACK');
-        if (that.playerCop.facing === "left") {
-            that.playerCop.weapon.fireAngle = Phaser.ANGLE_LEFT;
-            that.playerCop.weapon.trackSprite(that.playerCop, -35, -29, false);
-            that.playerCop.weapon.fire();
-
-        }
-        if (that.playerCop.facing === "right") {
-            that.playerCop.weapon.fireAngle = Phaser.ANGLE_RIGHT;
-            that.playerCop.weapon.trackSprite(that.playerCop, 35, -29, false);
-            that.playerCop.weapon.fire();
-
-        }
+        that.playerCop.act('SKILL', 0);
     }
     if (that.game.input.keyboard.isDown(Phaser.Keyboard.G)) {
-        that.playerCop.act('FLY');
+        that.playerCop.act('SKILL', 2);
     }
     if (that.game.input.keyboard.isDown(Phaser.Keyboard.B)) {
-        that.playerCop.act('KNOCKBACK');
+        that.playerCop.act('SKILL', 1);
     }
     if (that.game.input.keyboard.isDown(Phaser.Keyboard.G) && that.game.input.keyboard.isDown(Phaser.Keyboard.D)) {
         that.playerCop.act('FLYFORWARD');

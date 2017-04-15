@@ -17,6 +17,15 @@ phinalphase.Skill = function (user, energyReq, key, frame, cooldown, userAnim, s
 
 };
 
+phinalphase.Skill.prototype.checkEnergy = function () {
+    if ((this.user.energy - this.energyReq) >= 0) {
+        this.user.energy -= this.energyReq;
+        return true;
+    } else {
+        return false;
+    }
+}
+
 phinalphase.Attack = function (user, energyReq, key, frame, cooldown, userAnim, stop, dmg, enemyCollide) {
     phinalphase.Skill.call(this, user, energyReq, key, frame, cooldown, userAnim, stop);
     this.damage = dmg;
@@ -38,6 +47,66 @@ phinalphase.Buff.prototype = Object.create(phinalphase.Skill.prototype);
 phinalphase.Buff.prototype.constructor = phinalphase.Buff;
 
 
+phinalphase.Block = function (user, energyReq, key, frame, cooldown, userAnim, stop, bonusDefense) {
+    phinalphase.Skill.call(this, user, energyReq, key, frame, cooldown, userAnim, stop);
+    this.bonusDefense = bonusDefense;
+
+}
+
+phinalphase.Block.prototype = Object.create(phinalphase.Skill.prototype);
+phinalphase.Block.prototype.constructor = phinalphase.Block;
+phinalphase.Block.prototype.use = function () {
+    if (!this.user.busy) {
+        this.user.busy = true;
+        this.user.play(this.userAnim, false, function () {
+            this.user.busy = false;
+        }.bind(this));
+    }
+};
+
+
+
+phinalphase.MeleeAttack = function (user, energyReq, key, frame, cooldown, userAnim, stop, dmg, enemyCollide, weapon) {
+    phinalphase.Attack.call(this, user, energyReq, key, frame, cooldown, userAnim, stop, dmg, enemyCollide);
+    this.weapon = phinalphase.game.make.sprite(weapon.offsetX, weapon.offsetY);
+    this.weapon.height = weapon.height;
+    this.weapon.width = weapon.width;
+    this.weapon.anchor.setTo(0.5, 1);
+    phinalphase.game.physics.arcade.enable(this.weapon);
+    this.user.addChild(this.weapon);
+    this.weapon.kill();
+}
+
+phinalphase.MeleeAttack.prototype = Object.create(phinalphase.Skill.prototype);
+phinalphase.MeleeAttack.prototype.constructor = phinalphase.MeleeAttack;
+phinalphase.MeleeAttack.prototype.use = function () {
+
+    if (!this.user.busy) {
+        this.user.busy = true;
+        if (!this.checkEnergy()) {
+            this.user.busy = false;
+            return;
+        }
+        this.weapon.revive();
+        var collideFunction = function () {
+            phinalphase.game.physics.arcade.overlap(phinalphase[this.userEnemy], this.weapon, function (weapon, enemy) {
+                enemy.act('STRIKED', this);
+                this.enemyCollide(enemy);
+            }, null, this);
+        }.bind(this);
+        this.user.play(this.userAnim, false, function () {
+            phinalphase.game.updatables.splice(phinalphase.game.updatables.indexOf(collideFunction), 1);
+            this.user.play(this.user.animationsObject.idle[0]);
+            this.user.busy = false;
+            this.weapon.kill();
+        }.bind(this));
+
+
+        phinalphase.game.updatables.push(collideFunction);
+    }
+}
+
+
 phinalphase.AuraSkill = function (user, energyReq, key, frame, cooldown, userAnim, stop, duration, anim, effects, afterEffects, dmg, enemyCollide) {
     if (this instanceof phinalphase.AuraSkillBuff) {
         phinalphase.Buff.call(this, user, energyReq, key, frame, cooldown, userAnim, stop, duration, effects, afterEffects);
@@ -55,7 +124,8 @@ phinalphase.AuraSkill = function (user, energyReq, key, frame, cooldown, userAni
     this.aura.kill();
 }
 
-
+phinalphase.AuraSkill.prototype = Object.create(phinalphase.Skill.prototype);
+phinalphase.AuraSkill.prototype.constructor = phinalphase.AuraSkill;
 
 
 phinalphase.AuraSkillBuff = function (user, energyReq, key, frame, cooldown, userAnim, stop, duration, anim, effects, afterEffects) {
@@ -67,8 +137,12 @@ phinalphase.AuraSkillBuff.prototype = Object.create(phinalphase.AuraSkill.protot
 phinalphase.AuraSkillBuff.prototype.constructor = phinalphase.AuraSkillBuff;
 phinalphase.AuraSkillBuff.prototype.use = function () {
     if (!this.isOnCD) {
-        this.user.isAttacking = true;
+        this.user.busy = true;
         this.isOnCD = true;
+        if (!this.checkEnergy()) {
+            this.isOnCD = false;
+            return;
+        }
         phinalphase.game.time.events.add(this.cooldown * 1000, function () {
             this.isOnCD = false;
         }, this);
@@ -85,7 +159,7 @@ phinalphase.AuraSkillBuff.prototype.use = function () {
         this.aura.animations.currentAnim.onComplete.add(function () {
             this.aura.kill();
             this.aura.aura = false;
-            this.user.isAttacking = false;
+            this.user.busy = false;
             this.aura.animations.currentAnim.onComplete._bindings.pop();
             phinalphase.game.time.events.add(this.duration * 1000, function () {
                 this.afterEffects(this.user);
@@ -107,8 +181,12 @@ phinalphase.AuraSkillDmg.prototype = Object.create(phinalphase.AuraSkill.prototy
 phinalphase.AuraSkillDmg.prototype.constructor = phinalphase.AuraSkillDmg;
 phinalphase.AuraSkillDmg.prototype.use = function () {
     if (!this.isOnCD) {
-        this.user.isAttacking = true;
+        this.user.busy = true;
         this.isOnCD = true;
+        if (!this.checkEnergy()) {
+            this.isOnCD = false;
+            return;
+        }
         phinalphase.game.time.events.add(this.cooldown * 1000, function () {
             this.isOnCD = false;
         }, this);
@@ -118,7 +196,7 @@ phinalphase.AuraSkillDmg.prototype.use = function () {
             this.user.animations.stop();
         }
         phinalphase.game.time.events.add(1000, function () {
-            this.user.isAttacking = false;
+            this.user.busy = false;
         }, this);
 
 
@@ -126,7 +204,7 @@ phinalphase.AuraSkillDmg.prototype.use = function () {
         this.aura.aura = true;
 
         var collideFunction = function () {
-            phinalphase.game.physics.arcade.overlap(phinalphase[this.userEnemy], this.aura, function (enemy, aura) {
+            phinalphase.game.physics.arcade.overlap(phinalphase[this.userEnemy], this.aura, function (aura, enemy) {
                 enemy.act('STRIKED', this);
                 this.enemyCollide(enemy);
             }, null, this);
@@ -157,9 +235,6 @@ phinalphase.Projectile = function (user, energyReq, key, frame, cooldown, userAn
     this.bullet = bullet;
     this.weapon = phinalphase.game.add.weapon(bullet.number, key);
     this.weapon.bulletKillType = Phaser.Weapon[bullet.killType];
-    // if (bullet.killType == 'KILL_LIFESPAN') {
-    //     this.weapon.bulletLifespan = bullet.lifespan || 5;
-    // }
     this.weapon.bulletSpeed = bullet.speed;
     this.weapon.fireRate = cooldown * 1000;
 
@@ -168,6 +243,7 @@ phinalphase.Projectile = function (user, energyReq, key, frame, cooldown, userAn
         phinalphase.game.physics.arcade.overlap(phinalphase[this.userEnemy], this.weapon.bullets, function (enemy, bullet) {
             enemy.act('STRIKED', this);
             this.enemyCollide(enemy);
+            bullet.kill();
         }, null, this);
     }.bind(this);
     phinalphase.game.updatables.push(collideFunction);
@@ -196,16 +272,19 @@ phinalphase.Projectile.prototype.use = function () {
     if (this.weapon.bullets.countLiving() == this.bullet.number) {
         return;
     }
-    this.user.isAttacking = true;
+    if (!this.checkEnergy()) {
+        return;
+    }
+    this.user.busy = true;
     this.user.play(this.userAnim, false, function () {
         if (!this.stop) {
-            this.user.isAttacking = false;
+            this.user.busy = false;
         }
     }.bind(this));
     if (this.stop) {
         this.user.animations.stop();
         phinalphase.game.time.events.add(500, function () {
-            this.user.isAttacking = false;
+            this.user.busy = false;
         }, this);
     }
 
@@ -215,5 +294,19 @@ phinalphase.Projectile.prototype.use = function () {
     } else {
         this.weapon.fireAngle = Phaser.ANGLE_LEFT;
     }
-    this.weapon.fire();
+    this.weapon.fire()
+}
+
+
+
+
+phinalphase.Special = function (user, energyReq, key, frame, cooldown, userAnim, stop, special) {
+    phinalphase.Skill.call(this, user, energyReq, key, frame, cooldown, userAnim, stop);
+    this.special = special;
+}
+
+phinalphase.Special.prototype = Object.create(phinalphase.Skill.prototype);
+phinalphase.Special.prototype.constructor = phinalphase.Special;
+phinalphase.Special.prototype.use = function () {
+    this.special(this);
 }

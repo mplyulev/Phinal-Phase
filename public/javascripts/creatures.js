@@ -3,19 +3,20 @@ var phinalphase = phinalphase || {};
 
 // constructor for creatures
 
-phinalphase.Creature = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, health, animations, skills) {
+phinalphase.Creature = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, energyRegen, defense, animations, skills) {
     Phaser.Sprite.call(this, game, x, y, key, frame);
     this.game.physics.arcade.enable(this);
-    this.health = health;
+    this.health = 100;
+    this.energy = 100;
+    this.energyRegen = energyRegen;
+    this.defense = defense;
     this.body.gravity.y = gravity;
     this.anchor.setTo(anchorX, anchorY);
     this.jumpHeight = jumpHeight;
-    this.body.maxVelocity = jumpHeight;
-    this.body.minVelocity = -jumpHeight;
     this.speedX = speedX;
     this.wasMoving = false;
     this.isInAir = false;
-    this.isAttacking = false;
+    this.busy = false;
     this.canAttackAgain = true;
     this.alive = true;
     this.isFlinched = false;
@@ -37,8 +38,18 @@ phinalphase.Creature = function (game, x, y, key, frame, gravity, anchorX, ancho
                 this.skills.push(new phinalphase.AuraSkillDmg(this, skill.enerReq, skill.key, skill.frame, skill.cooldown, skill.userAnim, skill.stop, skill.duration, skill.anim, skill.dmg, skill.enemyCollide));
             }
             if (skill.type == 'proj') {
-                this.skills.push(new phinalphase.Projectile(this, skill.energyReq, skill.key, skill.frame, skill.cooldown, skill.userAnim, skill.stop, skill.dmg, skill.enemyCollide, skill.bullet, skill.offsetX, skill.offsetY));
+                this.skills.push(new phinalphase.Projectile(this, skill.enerReq, skill.key, skill.frame, skill.cooldown, skill.userAnim, skill.stop, skill.dmg, skill.enemyCollide, skill.bullet, skill.offsetX, skill.offsetY));
             }
+            if (skill.type == 'melee') {
+                this.skills.push(new phinalphase.MeleeAttack(this, skill.enerReq, skill.key, skill.frame, skill.cooldown, skill.userAnim, skill.stop, skill.dmg, skill.enemyCollide, skill.weapon));
+            }
+            if (skill.type == 'block') {
+                this.skills.push(new phinalphase.Block(this, skill.enerReq, skill.key, skill.frame, skill.cooldown, skill.userAnim, skill.stop, skill.bonusDefense));
+            }
+            if (skill.type == 'special') {
+                this.skills.push(new phinalphase.Special(this, skill.enerReq, skill.key, skill.frame, skill.cooldown, skill.userAnim, skill.stop, skill.special))
+            }
+
 
         }, this);
     }
@@ -93,27 +104,40 @@ phinalphase.Creature.prototype.play = function (animation, looping, cb) {
     } else {
         this.body.height = this.height;
     }
-    if (cropX != undefined) {
-        if (cropX <= 0) {
-            this.body.width = (Math.abs(this.width) - cropX);
-            this.x += cropX;
-        } else {
-            this.body.width = (Math.abs(this.width) + cropX);
-        }
+    var diff = Math.abs(this.width) - this.body.width;
 
+    if (diff > 0) {
+        this.body.offset.setTo(diff / 2, 0);
     } else {
-        this.body.width = Math.abs(this.width);
+        this.body.offset.setTo(0, 0);
     }
+
+
+    // if (cropX != undefined) {
+    //     if (cropX <= 0) {
+    //         this.body.width = (Math.abs(this.width) - cropX);
+    //         this.x += cropX;
+    //     } else {
+    //         this.body.width = (Math.abs(this.width) + cropX);
+    //     }
+
+    // } else {
+    //     this.body.width = Math.abs(this.width);
+    // }
 
     if (looping === false) {
         this.animations.currentAnim.loop = false;
         this.animations.currentAnim.onComplete.add(cb, this);
-        var curr = this.animations.currentAnim.onComplete;
-        phinalphase.game.time.events.add(10000, function () {
-            if (curr._bindings.length > 0) {
-                curr._bindings.pop();
-            }
-        }, this);
+        var current = {
+            anim: this.animations.currentAnim.onComplete,
+            cb: cb,
+            clearBind: clearBind
+        }
+        var clearBind = function () {
+            this.anim._bindings.splice(this.anim._bindings.indexOf(this.cb), 1);
+            this.anim._bindings.splice(this.anim._bindings.indexOf(this.clearBind), 1);
+        }.bind(current);
+        this.animations.currentAnim.onComplete.add(clearBind, this);
     }
 };
 
@@ -147,10 +171,10 @@ phinalphase.Creature.prototype.stay = function () {
 }
 
 phinalphase.Creature.prototype.attack = function () {
-    this.isAttacking = true;
+    this.busy = true;
     this.play(this.animationsObject.attack[0], false, function () {
         this.play(this.animationsObject.idle[0]);
-        this.isAttacking = false;
+        this.busy = false;
     });
 }
 
@@ -165,7 +189,7 @@ phinalphase.Creature.prototype.act = function (act, cause) {
             return;
         }
 
-        if ((act != 'STRIKED' && act != 'DIE' && act != 'FLINCH') && this.isAttacking) {
+        if ((act != 'STRIKED' && act != 'DIE' && act != 'FLINCH') && this.busy) {
             return;
         }
 
@@ -184,9 +208,6 @@ phinalphase.Creature.prototype.act = function (act, cause) {
             case 'RIGHT':
                 this.moveSides(1);
                 break;
-            case 'ATTACK':
-                this.attack();
-                break;
             case 'FALL':
                 this.fall();
                 break;
@@ -198,12 +219,6 @@ phinalphase.Creature.prototype.act = function (act, cause) {
                 break;
             case 'DIE':
                 this.dying();
-                break;
-            case 'FLY':
-                this.fly();
-                break;
-            case 'KNOCKBACK':
-                this.knockback();
                 break;
             case 'FLYFORWARD':
                 this.flyForward();
@@ -219,7 +234,9 @@ phinalphase.Creature.prototype.act = function (act, cause) {
 };
 
 phinalphase.Creature.prototype.getHitted = function (dmgDealer) {
-    this.health -= dmgDealer.damage;
+    if (dmgDealer.damage - this.defense > 0) {
+        this.health -= (dmgDealer.damage - this.defense);
+    }
     if (this.health <= 0) {
         this.act('DIE');
     }
@@ -227,7 +244,7 @@ phinalphase.Creature.prototype.getHitted = function (dmgDealer) {
 };
 
 phinalphase.Creature.prototype.flinch = function () {
-    this.isAttacking = false;
+    this.busy = false;
     this.isFlinched = true;
     this.canBeHitted = false;
     this.body.velocity.y = -300;
@@ -276,6 +293,12 @@ phinalphase.Creature.prototype.updateCreature = function () {
             skill.animations.play(skill.name);
         }
     }, this);
+
+    if (this.energy < 100 && this.energy + this.energyRegen <= 100) {
+        this.energy += this.energyRegen;
+    } else if (this.energy < 100) {
+        this.energy = 100;
+    }
 }
 
 phinalphase.Creature.prototype.overlapGlitchHandle = function (other) {
@@ -308,9 +331,8 @@ phinalphase.Creature.prototype.overlapGlitchHandle = function (other) {
 
 
 
-phinalphase.Player = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, health, energy, animations, skills) {
-    phinalphase.Creature.call(this, game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, health, animations, skills);
-    this.energy = energy;
+phinalphase.Player = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, energyRegen, defense, animations, skills) {
+    phinalphase.Creature.apply(this, arguments);
     if (phinalphase.players != undefined) {
         phinalphase.players.add(this);
     } else {
@@ -323,20 +345,6 @@ phinalphase.Player = function (game, x, y, key, frame, gravity, anchorX, anchorY
 phinalphase.Player.prototype = Object.create(phinalphase.Creature.prototype);
 phinalphase.Player.prototype.constructor = phinalphase.Player;
 
-phinalphase.Player.prototype.fly = function () {
-    this.play(this.animationsObject.flyIdle[0]);
-    if (this.energy > 0.2) {
-        this.energy -= 0.2;
-        this.animations.play("flyIdle");
-        this.body.velocity.y -= 23;
-    }
-}
-phinalphase.Player.prototype.knockback = function () {
-    this.isAttacking = true;
-    this.play(this.animationsObject.knockback[0], false, function () {
-        this.isAttacking = false;
-    }.bind(this));
-}
 phinalphase.Player.prototype.flyForward = function () {
     this.play(this.animationsObject.flyForward[0]);
 }
@@ -344,8 +352,8 @@ phinalphase.Player.prototype.flyForward = function () {
 
 
 
-phinalphase.Enemy = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, health, animations, skills) {
-    phinalphase.Creature.call(this, game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, health, animations, skills);
+phinalphase.Enemy = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, energyRegen, defense, animations, skills) {
+    phinalphase.Creature.apply(this, arguments);
     if (phinalphase.enemies != undefined) {
         phinalphase.enemies.add(this);
     } else {

@@ -7,7 +7,7 @@ phinalphase.createPlayerNinja = function (that) {
         jumpStart: ['jumpStart', 'Jump Start_', 0, 11, '', 3, 15, 0, 0],
         jumpAir: ['jumpAir', 'Jump On Air_', 0, 0, '', 3, 15, 0, 0],
         jumpFall: ['jumpFall', 'Jump Fall_', 0, 0, '', 3, 15, 0, 0],
-        attack: ['attack1', 'Attack_', 0, 13, '', 3, 15, 11, 0],
+        attack: ['attack1', 'Attack_', 0, 13, '', 3, 20, 11, 0],
         hurt: ['hurt', 'Hurt_', 0, 11, '', 3, 20, 0, 0],
         death: ['death', 'Death_', 0, 19, '', 3, 20, 10, 0],
         block: ['block', 'Block Parry_', 0, 19, '', 3, 20, 0, 0]
@@ -18,18 +18,18 @@ phinalphase.createPlayerNinja = function (that) {
             type: 'aurabuff',
             enerReq: 10,
             key: 'popAura',
-            frame: 'pop_explosion0001',    
+            frame: 'pop_explosion0001',
             cooldown: 15,
             userAnim: anim.block[0],
             stop: true,
             duration: 10,
-            anim: ['pop', 'pop_explosion', 1, 18, '', 4, 15],                     
+            anim: ['pop', 'pop_explosion', 1, 18, '', 4, 15],
             effects: function (that) {
                 that.speedX += 100;
             },
             afterEffects: function (that) {
                 that.speedX -= 100;
-            }       
+            }
         },
         // {
         //     type: 'auradmg',
@@ -56,7 +56,7 @@ phinalphase.createPlayerNinja = function (that) {
             userAnim: anim.block[0],
             stop: true,
             dmg: 10,
-            enemyCollide: function() {
+            enemyCollide: function () {
 
             },
             bullet: {
@@ -69,10 +69,38 @@ phinalphase.createPlayerNinja = function (that) {
             },
             offsetX: 0,
             offsetY: -30
+        },
+        {
+            type: 'melee',
+            enerReq: 10,
+            key: undefined,
+            frame: undefined,
+            cooldown: 0,
+            userAnim: anim.attack[0],
+            stop: false,
+            dmg: 10,
+            enemyCollide: function () {
 
+            },
+            weapon: {
+                offsetX: 60,
+                offsetY: -30,
+                height: 50,
+                width: 50
+            }
+        },
+        {
+            type: 'block',
+            enerReq: 0,
+            key: undefined,
+            frame: undefined,
+            cooldown: 0,
+            userAnim: anim.block[0],
+            stop: false,
+            bonusDefense: 5
         }
     ]
-    that.playerNinja = new phinalphase.Player(that.game, 250, 350, 'playerNinja', 'Idle_000', 1000, 0.5, 1, -700, 300, 100, 100, anim, skills);
+    that.playerNinja = new phinalphase.Player(that.game, 250, 350, 'playerNinja', 'Idle_000', 1000, 0.5, 1, -700, 300, 0.1, 0, anim, skills);
     that.playerNinja.checkWorldBounds = true;
     that.playerNinja.walkingSound = new buzz.sound("/assets/Sound/footstep09", {
         formats: ["ogg"],
@@ -107,9 +135,9 @@ phinalphase.createPlayerNinja = function (that) {
 
 
     that.playerNinja.playNinjaSounds = function () {
-        if (that.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT) && !that.playerNinja.isInAir && !that.playerNinja.isAttacking) {
+        if (that.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT) && !that.playerNinja.isInAir && !that.playerNinja.busy) {
             that.playerNinja.walkingSound.play();
-        } else if (that.game.input.keyboard.isDown(Phaser.Keyboard.LEFT) && !that.playerNinja.isInAir && !that.playerNinja.isAttacking) {
+        } else if (that.game.input.keyboard.isDown(Phaser.Keyboard.LEFT) && !that.playerNinja.isInAir && !that.playerNinja.busy) {
             that.playerNinja.walkingSound.play();
         }
         if (that.game.input.keyboard.isDown(Phaser.Keyboard.UP) && that.playerNinja.body.blocked.down) {
@@ -150,7 +178,7 @@ phinalphase.updatePlayerNinja = function (that) {
     }
 
     if (that.game.input.keyboard.isDown(Phaser.Keyboard.L)) {
-        that.playerNinja.act('ATTACK');
+        that.playerNinja.act('SKILL', 2);
     }
 
     if (that.game.input.keyboard.isDown(Phaser.Keyboard.O)) {
@@ -158,6 +186,9 @@ phinalphase.updatePlayerNinja = function (that) {
     }
     if (that.game.input.keyboard.isDown(Phaser.Keyboard.P)) {
         that.playerNinja.act('SKILL', 1);
+    }
+    if (that.game.input.keyboard.isDown(Phaser.Keyboard.K)) {
+        that.playerNinja.act('SKILL', 3);
     }
 
 }
