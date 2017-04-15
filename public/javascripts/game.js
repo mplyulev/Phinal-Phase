@@ -13,20 +13,7 @@ phinalphase.Game.prototype = {
     create: function() {
         this.game.updatables = [];
 
-        // var tiles = [
-        //     ['cifiSheet', 'gameTiles']
-        // ]
-
-        // var layers = [
-        //     ['backgroundlayer', 'background'],
-        //     ['blockedLayer', 'blocks']
-        // ]
-
-        // var objects = [
-        //     ['spikes', 'spikes', 'spikes'],
-        //     ['tree', 'spikes', 'tree']
-        // ]
-        // phinalphase.createMap('testlevel', tiles, layers, objects);
+   
 
         var tiles = [
             ['forest', 'gameTiles']
@@ -34,8 +21,7 @@ phinalphase.Game.prototype = {
 
         var layers = [
             // ['bg', 'bgImg'],
-            // ['water', 'background'],
-
+          
             ['blockedLayer', 'block'],
             // ["water", "water"],
 
@@ -51,17 +37,30 @@ phinalphase.Game.prototype = {
             ["tree", "object", "tree"],
             ["movable", "object", "tree"],
             ["bush", "objectsDamage", "bush"],
-            ["skeleton", "sceneObjects", "skeleton"],
-            ["cutTree", "sceneObjects", "tree"],
+            ["skeleton", "sceneObjects", "sceneObject"],
+            ["cutTree", "sceneObjects", "sceneObject"],
             ["movingPlatform", "movingPlatform", "movingPlatform"],
-            // ["movingPlatform", "movingPlatform", "movingPlatform"],
-            ["cross", "sceneObjects", "cross"],
+            ["staticPlatform", "movingPlatform", "static"],
+            ["saw", "saw", "saw"],
+            ["sawHorizontal", "sawHorizontal", "sawHorizontal"],
+            ["sign2", "sceneObjects", "sceneObject"],
+            ["cross", "sceneObjects", "sceneObject"],
+            ["acid", "objectsDamage", "acid"],
+            ["potion", "potion", "potion"],
+            ["tree", "sceneObjects", "sceneObject"],
+        
+            ["mushroom", "potion", "mushroom"],
+            ["bush5", "sceneObjects", "bush5"],
+             ['crate', 'object', 'crate']
+  
+          
+           
 
 
             // ["spike", "object", "tree"],
             // ["tree", "object", "tree"],
             // ['bush', 'objects', 'bush'],
-            // ['crate', 'object', 'crate']
+           
         ]
 
         phinalphase.createMap('testlevel', tiles, layers, objects);

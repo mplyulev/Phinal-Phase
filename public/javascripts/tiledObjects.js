@@ -45,34 +45,106 @@ phinalphase.оbjectGroupFromTiled = function(type, map, layerName, groupName) {
                     player.act('STRIKED', groupName);
                 }, null, this);
             }.bind(phinalphase.game));
-
         }
+
+
+           if (uab == 'damageMoving') {
+            phinalphase.game.updatables.push(function() {
+                this.physics.arcade.overlap(phinalphase.players, phinalphase[groupName], function(player, groupName) {
+                    player.act('STRIKED', groupName);
+                }, null, this);
+            }.bind(phinalphase.game));
+             phinalphase[groupName].children.forEach(function(element) {
+                 element.anchor.setTo(0.5,0.5);
+                 element.body.velocity.y = -250;
+               
+                  phinalphase.game.time.events.loop(0.01, function() {
+         element.angle+=15;
+            });
+             phinalphase.game.time.events.loop(1500, function() {
+         element.body.velocity.y =   element.body.velocity.y*(-1);
+         element.angle =  element.angle*(-1);
+            });
+             },this);
+           }
+
+
+
+        if (uab == 'damageMovingHorizontal') {
+            phinalphase.game.updatables.push(function() {
+                this.physics.arcade.overlap(phinalphase.players, phinalphase[groupName], function(player, groupName) {
+                    player.act('STRIKED', groupName);
+                }, null, this);}.bind(phinalphase.game));
+                phinalphase[groupName].children.forEach(function(element) {
+                    element.anchor.setTo(0.5,0.5);
+                    element.body.velocity.x = -400;
+                    phinalphase.game.time.events.loop(0.01, function() {
+                        element.angle+=15;
+                    });
+                    phinalphase.game.time.events.loop(1500, function() {
+                        element.body.velocity.x =   element.body.velocity.x*(-1);
+                        element.angle =  element.angle*(-1);
+                    });
+             },this);
+           }
+
+         if (uab == "healing")  {
+            phinalphase.game.updatables.push(function() {
+                this.physics.arcade.overlap(phinalphase.players, phinalphase[groupName], function(player, element) {
+                    if (player.health<=80) {
+                    player.health+=20;
+                }
+                if (player.health>=80 && player.health<100) {
+                    player.health = 100 ;
+                }
+                    player.healSound.play();
+                     element.body=  null;
+                     element.kill();
+                }, null, this);
+            }.bind(phinalphase.game));   
+        }   
+         if (uab == "poison")  {
+            phinalphase.game.updatables.push(function() {
+                this.physics.arcade.overlap(phinalphase.players, phinalphase[groupName], function(player, element) {
+             this.camera.shake(0.05,2000)  ;
+             this.camera.flash(0xff0000, 2000);
+           //???????
+        
+                   
+                     element.body=  null;
+                     element.kill();
+                }, null, this);
+            }.bind(phinalphase.game));   
+        }   
+
         if (uab == 'movingPlatform') {
             phinalphase.game.updatables.push(function() {
                 this.physics.arcade.collide(phinalphase.players, phinalphase[groupName], function(player, groupName) {}, null, this);
-            }.bind(phinalphase.game));
-            phinalphase[groupName].children.forEach(function(element) {
-                // random movement on x axis ??
-
-                // phinalphase.game.time.events.loop(2000, function() {
-                //     if (element.body.x > 1500 && element.body.x < 3000) {
-                //         var plusOrMinus = Math.random() < 0.5 ? -1 : 1;
-                //         element.body.x = Math.random() * 100 * plusOrMinus;
-                //     }
-                // }, this)
-
-                // kill platform if it leaves world bounds
-                element.events.onOutOfBounds.add(elementKill, this);
-                element.checkWorldBounds = true;
-
-                function elementKill(element) {
-                    element.destroy();
-                }
-
-
+                }.bind(phinalphase.game));
+                phinalphase[groupName].children.forEach(function(element) {
+                    element.body.velocity.x = 100;
+                    element.body.immovable = true;
+                    phinalphase.game.time.events.loop(2000, function() {
+                        element.body.velocity.x =  element.body.velocity.x*(-1);  
+                    }, this)
+                    element.events.onOutOfBounds.add(elementKill, this);
+                    element.checkWorldBounds = true;
+                    function elementKill(element) {
+                        element.kill();
+                    }
             });
         }
 
+
+        if (uab == 'static') {
+            phinalphase.game.updatables.push(function() {
+                this.physics.arcade.collide(phinalphase.players, phinalphase[groupName], function(player, groupName) {}, null, this);
+                }.bind(phinalphase.game));
+                phinalphase[groupName].children.forEach(function(element) {
+                    element.body.immovable=true;
+            }, this);
+  }
+  
 
 
         if (uab == 'movable') {

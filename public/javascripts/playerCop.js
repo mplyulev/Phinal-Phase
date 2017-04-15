@@ -123,6 +123,16 @@ phinalphase.createPlayerCop = function (that) {
         volume: 60
     });
     that.playerCop.shootSound.setSpeed(2.2);
+        that.playerCop.meleeSound = new buzz.sound("/assets/Sound/meleCop", {
+        formats: ["wav"],
+        preload: true,
+        volume: 60
+    });
+        that.playerCop.healSound = new buzz.sound("/assets/Sound/spell3", {
+        formats: ["wav"],
+        preload: true,
+        volume: 60
+    });
 
 
 
@@ -148,6 +158,9 @@ phinalphase.createPlayerCop = function (that) {
         }
         if (that.game.input.keyboard.isDown(Phaser.Keyboard.G) && that.playerCop.energy > 0.2) {
             that.playerCop.jetPackSound.play();
+        }
+        if (that.game.input.keyboard.isDown(Phaser.Keyboard.B)) {
+            that.playerCop.meleeSound.play();
         }
         if (that.playerCop.isFlinched) {
             that.playerCop.hurtSound.play();

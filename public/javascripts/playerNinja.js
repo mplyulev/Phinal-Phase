@@ -124,12 +124,21 @@ phinalphase.createPlayerNinja = function (that) {
         volume: 60,
         preload: true,
     });
+    that.playerNinja.powerUpSound = new buzz.sound("/assets/Sound/teleport", {
+        formats: ["wav"],
+        volume: 60,
+        preload: true,
+    });
     that.playerNinja.dieSound = new buzz.sound("/assets/Sound/player/die", {
         formats: ["wav"],
         volume: 60,
         preload: true,
     });
-
+    that.playerNinja.healSound = new buzz.sound("/assets/Sound/spell3", {
+        formats: ["wav"],
+        preload: true,
+        volume: 60
+    });   
 
 
 
@@ -148,6 +157,9 @@ phinalphase.createPlayerNinja = function (that) {
         }
         if (that.game.input.keyboard.isDown(Phaser.Keyboard.L)) {
             that.playerNinja.swordSound.play();
+        }
+        if (that.game.input.keyboard.isDown(Phaser.Keyboard.O)) {
+            that.playerNinja.powerUpSound.play();
         }
         if (that.playerNinja.isFlinched) {
             that.playerNinja.hurtSound.play();
