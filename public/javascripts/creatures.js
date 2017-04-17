@@ -160,7 +160,7 @@ phinalphase.Creature.prototype.moveSides = function (sideNum) {
     } else {
         this.body.velocity.x = this.speedX;
     }
-    if (this.isInAir) {
+    if (this.isInAir && (this instanceof phinalphase.PlayerFirstTeam || this instanceof phinalphase.PlayerSecondTeam)) {
         this.play(this.animationsObject.jumpAir[0]);
     } else {
         this.play(this.animationsObject.run[0]);
@@ -270,30 +270,7 @@ phinalphase.Creature.prototype.dying = function () {
     this.alive = false;
     this.play(this.animationsObject.death[0], false, function () {
         this.kill();
-        if (this instanceof phinalphase.Player) {
-            if (phinalphase.players.children.indexOf(this) == 0) {
-                var otherPlayer = phinalphase.players.children[1];
-            } else {
-                var otherPlayer = phinalphase.players.children[0];
-            }
-
-            phinalphase.game.time.events.add(3000, function () {
-                if (this.lives > 0) {
-                    this.lives--;
-                    this.alive = true;
-                    this.x = otherPlayer.x;
-                    this.y = otherPlayer.y;
-                    this.body.velocity.y = 0;
-                    this.body.velocity.x = 0;
-                    this.canBeHitted = false;
-                    this.revive();
-                    phinalphase.game.time.events.add(2000, function () {
-                        this.canBeHitted = true;
-                    }, this);
-
-                }
-            }, this);
-        }
+        this.respawn();
     });
 };
 
@@ -362,37 +339,68 @@ phinalphase.Creature.prototype.overlapGlitchHandle = function (other) {
 }
 
 
+phinalphase.Creature.prototype.respawn = function () {
+    phinalphase.game.time.events.add(3000, function () {
+
+        this.alive = true;
+        this.children.forEach(function (child) {
+            child.children.forEach(function (child2) {
+                child2.kill();
+            }, this);
+            child.kill();
+        }, this);
+        this.x = phinalphase.spawns.children[0].x;
+        this.y = phinalphase.spawns.children[0].y;
+        phinalphase.spawns.children.push(phinalphase.spawns.children.shift());
+        this.body.velocity.y = 0;
+        this.body.velocity.x = 0;
+        this.canBeHitted = false;
+        this.revive();
+        phinalphase.game.time.events.add(1000, function () {
+            this.canBeHitted = true;
+        }, this);
+
+    }, this);
+}
 
 
-phinalphase.Player = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, energyRegen, defense, animations, skills) {
+
+
+
+
+phinalphase.PlayerFirstTeam = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, energyRegen, defense, animations, skills) {
     phinalphase.Creature.apply(this, arguments);
-    if (phinalphase.players != undefined) {
-        phinalphase.players.add(this);
+    if (phinalphase.team1 != undefined) {
+        phinalphase.team1.add(this);
     } else {
-        phinalphase.players = phinalphase.game.add.group();
-        phinalphase.players.add(this);
+        phinalphase.team1 = phinalphase.game.add.group();
+        phinalphase.players.add(phinalphase.team1);
+        phinalphase.team1.add(this);
     }
+    this.kill();
+    this.respawn();
 }
 
 
-phinalphase.Player.prototype = Object.create(phinalphase.Creature.prototype);
-phinalphase.Player.prototype.constructor = phinalphase.Player;
-
-phinalphase.Player.prototype.flyForward = function () {
-    this.play(this.animationsObject.flyForward[0]);
-}
+phinalphase.PlayerFirstTeam.prototype = Object.create(phinalphase.Creature.prototype);
+phinalphase.PlayerFirstTeam.prototype.constructor = phinalphase.PlayerFirstTeam;
 
 
 
 
-phinalphase.Enemy = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, energyRegen, defense, animations, skills) {
+
+
+phinalphase.PlayerSecondTeam = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, energyRegen, defense, animations, skills) {
     phinalphase.Creature.apply(this, arguments);
-    if (phinalphase.enemies != undefined) {
-        phinalphase.enemies.add(this);
+    if (phinalphase.team2 != undefined) {
+        phinalphase.team2.add(this);
     } else {
-        phinalphase.enemies = phinalphase.game.add.group();
-        phinalphase.enemies.add(this);
+        phinalphase.team2 = phinalphase.game.add.group();
+        phinalphase.players.add(phinalphase.team2);
+        phinalphase.team2.add(this);
     }
+    this.kill();
+    this.respawn();
 }
-phinalphase.Enemy.prototype = Object.create(phinalphase.Creature.prototype);
-phinalphase.Enemy.prototype.constructor = phinalphase.Enemy;
+phinalphase.PlayerSecondTeam.prototype = Object.create(phinalphase.Creature.prototype);
+phinalphase.PlayerSecondTeam.prototype.constructor = phinalphase.PlayerSecondTeam;

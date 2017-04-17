@@ -9,10 +9,10 @@ phinalphase.Skill = function (user, energyReq, key, frame, cooldown, userAnim, s
     this.userAnim = userAnim;
     this.stop = stop;
 
-    if (this.user instanceof phinalphase.Player) {
-        this.userEnemy = 'enemies';
+    if (this.user instanceof phinalphase.PlayerFirstTeam) {
+        this.userEnemy = 'team2';
     } else {
-        this.userEnemy = 'players';
+        this.userEnemy = 'team1';
     }
 
 };
@@ -58,8 +58,10 @@ phinalphase.Block.prototype.constructor = phinalphase.Block;
 phinalphase.Block.prototype.use = function () {
     if (!this.user.busy) {
         this.user.busy = true;
+        this.user.defense = this.bonusDefense;
         this.user.play(this.userAnim, false, function () {
             this.user.busy = false;
+            this.user.defense = -this.bonusDefense;
         }.bind(this));
     }
 };
@@ -234,7 +236,8 @@ phinalphase.Projectile = function (user, energyReq, key, frame, cooldown, userAn
     phinalphase.Attack.call(this, user, energyReq, key, frame, cooldown, userAnim, stop, dmg, enemyCollide);
     this.bullet = bullet;
     this.weapon = phinalphase.game.add.weapon(bullet.number, key);
-    this.weapon.bulletKillType = Phaser.Weapon[bullet.killType];
+    this.weapon.bulletKillType = Phaser.Weapon.KILL_LIFESPAN;
+    this.weapon.bulletLifespan = 5000;
     this.weapon.bulletSpeed = bullet.speed;
     this.weapon.fireRate = cooldown * 1000;
 
@@ -250,6 +253,8 @@ phinalphase.Projectile = function (user, energyReq, key, frame, cooldown, userAn
     this.weapon.bullets.forEach(function (p) {
         p.anchor.setTo(0.5, 0.5);
         p.scale.setTo(bullet.scaleX, bullet.scaleY);
+        p.body.width = p.width -20;
+        p.body.height = p.height -10;
     }, this);
 
     if (bullet.repeat) {
