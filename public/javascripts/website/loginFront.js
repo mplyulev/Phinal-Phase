@@ -1,15 +1,24 @@
 $(function() {
+$("#audio")[0].play();
     $('#login').delay(1000).fadeIn(1500);
 $("#register").on("click", function (event) { 
      $('#login').fadeOut(1000);
     event.preventDefault();
+
+    // registration form
     $("#registrationWrapper").delay(1700).fadeIn(1500);    
 });  
 $("#loginLink").on('click', function(event) {
     event.preventDefault();
     $('#registrationWrapper').fadeOut(1500);
+    $("#name,#password,#passwordConfirm,#email").val('');
+    $("#nameValidation").fadeOut(1000);
+    $("#emailValidation").fadeOut(1000);
+    $("#passwordValidation").fadeOut(1000);
+    $("#passwordConfirmValidation").fadeOut(1000);
     $('#login').delay(1500).fadeIn(1500);
 });
+
 var nameRegexp = /^[a-zA-Z ]+$/;
  $("#name").on("blur", function () {
   var nameInput = $("#name").val();
@@ -69,9 +78,19 @@ $("#registerButton").on('click', function (event) {
 
 $("#username").on("focus", function() {
     $("#username").val("");
+    
     $("#usernameValidation").fadeOut(1000);
-})
+});
 
+ 
+// login form 
+
+$("#usernameLogin,#key").on('focus',function (){
+    $('#backendLoginMessage').fadeOut(1000);
+})
+//  $('registerButton').click( function() {
+//         $('form-horizontal').submit();
+//     });
  
 
 });

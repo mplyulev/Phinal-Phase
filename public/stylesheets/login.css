@@ -190,8 +190,18 @@ input[type="text"] {
  
 #nameValidation,#emailValidation,#passwordValidation,#passwordConfirmValidation,#usernameValidation {
     color:  #D21C1E;
+    text-align: center;
 }
  
+ #backendLoginMessage { 
+      color:  #D21C1E;
+    text-align: center;
+ }
+ @media all and (max-width:700px) { /* screen size until 500px */
+    #backendLoginMessage {
+        font-size: 0.8em; /* 0.8x default size */
+        }
+    }
  #registerButton {
      background-color:#D21C1E;
      outline : hidden;

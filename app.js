@@ -23,16 +23,22 @@ MongoClient.connect(uri, function(err, database) {
     database.close();
  
 });
-var db = monk(uri);
-// var users = db.get("users");
-// console.log(users);
-// users.insert({ name: 'Pesho', bigdata:"123"});
-// users.find().then(function (data) {
-//     console.log(data);
-// });
- 
+  db = monk(uri);
 
  
+
+ var app = express();
+app.use(function(req, res, next) {
+    req.db = db;
+    next();
+});
+
+
+// usersList = db.create("users");
+// users.insert([{ username: 'misho' ,  password: '1234' }]);
+// users.find().then(function (data) {
+//     console.log(data);
+// })
 
 //routes
 var login = require('./routes/login');
@@ -42,12 +48,6 @@ var users = require('./routes/users');
 var pp = require('./routes/pp');
 
 
-var app = express();
-
-app.use(function(req, res, next) {
-    req.db = db;
-    next();
-});
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -64,29 +64,27 @@ app.use(cookieParser());
 app.use(session({secret:"phinalphase1234"}));
 app.use(router);
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); 
-// app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));  
-// app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));  
+ 
 
 
 
 function requireLogin (req, res, next)  {
-    if (req.session.username == "asd") {
+    if (req.session.userId != undefined) {
           next();       
     }
     else  {
-         console.log("greshka"); 
-        res.redirect('/login');
+         res.redirect('login',{message:"asdas"});
     }
 }
 
 app.use('/login', login);
+app.use('/', requireLogin,index);
 app.use('/pp', pp);
 
 
 app.use('/registration', registration);
-app.use('/',requireLogin, index);
-app.use('/users',requireLogin, users);
+
+app.use('/users', users);
 
 
 

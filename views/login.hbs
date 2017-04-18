@@ -27,14 +27,17 @@ src="https://code.jquery.com/jquery-3.2.1.min.js"
                     <form role="form" action="/login" method="post" id="login-form" autocomplete="off">
                         <div class="form-group">
                             <label for="usernameLogin" class="sr-only">Username</label>
-                            <input type="text" name="usernameLogin" id="usernameLogin" class="form-control" placeholder="Username">
+                            <input type="text" name="usernameLogin" id="usernameLogin" class="form-control" placeholder="    Username">
                         </div>
                         <div class="form-group">
                             <label for="key" class="sr-only">Password</label>
                             <input type="password" name="key" id="key" class="form-control" placeholder="Password">
                         </div>
-                     
+						<div style="width:100%"> 
+                    <h1 id="backendLoginMessage" class="h1"> {{message}} </h1>
+				 
                         <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Log in">
+						</div>
                     </form>
                     <a href=""  id = "register"class="register" >Register</a>
                   
@@ -59,7 +62,7 @@ src="https://code.jquery.com/jquery-3.2.1.min.js"
 	               	</div>
 	            </div> 
 				<div class="main-login main-center">
-					<form class="form-horizontal" method="post" action="#">
+					<form class="form-horizontal" method="post" action="/login">
 						
 						<div class="form-group">
 							<label for="name" class="cols-sm-2 control-label">Your Name</label>
@@ -118,7 +121,7 @@ src="https://code.jquery.com/jquery-3.2.1.min.js"
 						</div>
 
 						<div class="form-group ">
-							<button type="button" id="registerButton"  class="btn btn-primary btn-lg btn-block login-button">Register</button>
+							<button type="submit" id="registerButton"  class="btn btn-primary btn-lg btn-block login-button">Register</button>
 						</div>
 						<div class="login-register">
 				            <a href="/login" id="loginLink">Login</a>
