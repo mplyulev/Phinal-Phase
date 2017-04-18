@@ -3,24 +3,51 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+var session = require("express-session");
 var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
+ 
 var monk = require('monk');
+ 
+ 
+var router = express.Router();
 
-var db;
+
+
+
+
+
 var uri = "mongodb://al_n:phinalphase123@phinalphase-shard-00-00-h6f3e.mongodb.net:27017,phinalphase-shard-00-01-h6f3e.mongodb.net:27017,phinalphase-shard-00-02-h6f3e.mongodb.net:27017/PhinalPhase?ssl=true&replicaSet=PhinalPhase-shard-0&authSource=admin";
 MongoClient.connect(uri, function(err, database) {
     db = database;
     database.close();
+ 
 });
+var db = monk(uri);
+// var users = db.get("users");
+// console.log(users);
+// users.insert({ name: 'Pesho', bigdata:"123"});
+// users.find().then(function (data) {
+//     console.log(data);
+// });
+ 
 
+ 
 
-
+//routes
+var login = require('./routes/login');
+var registration = require('./routes/registration');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var pp = require('./routes/pp');
 
+
 var app = express();
+
+app.use(function(req, res, next) {
+    req.db = db;
+    next();
+});
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -34,16 +61,35 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({secret:"phinalphase1234"}));
+app.use(router);
 app.use(express.static(path.join(__dirname, 'public')));
+// app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); 
+// app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));  
+// app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));  
 
-app.use(function(req, res, next) {
-    req.db = db;
-    next();
-});
 
-app.use('/', index);
-app.use('/users', users);
+
+function requireLogin (req, res, next)  {
+    if (req.session.username == "asd") {
+          next();       
+    }
+    else  {
+         console.log("greshka"); 
+        res.redirect('/login');
+    }
+}
+
+app.use('/login', login);
 app.use('/pp', pp);
+
+
+app.use('/registration', registration);
+app.use('/',requireLogin, index);
+app.use('/users',requireLogin, users);
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

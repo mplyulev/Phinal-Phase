@@ -276,7 +276,6 @@ phinalphase.Creature.prototype.dying = function () {
             } else {
                 var otherPlayer = phinalphase.players.children[0];
             }
-
             phinalphase.game.time.events.add(3000, function () {
                 if (this.lives > 0) {
                     this.lives--;
