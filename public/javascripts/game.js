@@ -1,7 +1,7 @@
 var phinalphase = phinalphase || {};
 
 phinalphase.Game = function () { };
-
+var worldScale = 1;
 phinalphase.Game.prototype = {
 
     preload: function () {
@@ -10,24 +10,31 @@ phinalphase.Game.prototype = {
 
     },
 
+
+
     create: function () {
-        this.game.updatables = [function () {
-            if (!phinalphase.players.children[0].alive && !phinalphase.players.children[1].alive) {
-                // phinalphase.game.state.start('Boot', true, false);
-                window.location = '';
-            }
-        }];
+
+        // boundsPoint = new Phaser.Point(0, 0);
+        // viewRect = new Phaser.Rectangle(0, 0, phinalphase.game.width, phinalphase.game.height);
+
+        // phinalphase.game.world.setBounds(-1000, -1000, 2000, 2000);
+
+        // phinalphase.game.camera.x = (phinalphase.game.width * -0.5);
+        // phinalphase.game.camera.y = (phinalphase.game.height * -0.5);
+
+        this.game.updatables = [];
 
 
 
         var tiles = [
-            ['forest', 'gameTiles']
+            ['cifiSheet', 'gameTiles']
         ]
 
         var layers = [
             // ['bg', 'bgImg'],
-
+            ['backgroundLayer', 'background'],
             ['blockedLayer', 'block'],
+
             // ["water", "water"],
 
 
@@ -37,38 +44,43 @@ phinalphase.Game.prototype = {
         // console.log(blockedLayer);
         // this.game.add.sprite(200, 200, 'cloud');
         var objects = [
-            ["background", "object", "background"],
-            ["rocks", "object", "rocks"],
-            ["tree", "object", "tree"],
-            ["movable", "object", "tree"],
-            ["bush", "objectsDamage", "bush"],
-            ["skeleton", "sceneObjects", "sceneObject"],
-            ["cutTree", "sceneObjects", "sceneObject"],
-            ["movingPlatform", "movingPlatform", "movingPlatform"],
-            ["staticPlatform", "movingPlatform", "static"],
-            ["saw", "saw", "saw"],
-            ["sawHorizontal", "sawHorizontal", "sawHorizontal"],
-            ["sign2", "sceneObjects", "sceneObject"],
-            ["cross", "sceneObjects", "sceneObject"],
-            ["acid", "objectsDamage", "acid"],
-            ["potion", "potion", "potion"],
-            ["tree", "sceneObjects", "sceneObject"],
+            // ["background", "object", "background"],
+            // ["rocks", "object", "rocks"],
+            // ["tree", "object", "tree"],
+            // ["movable", "object", "tree"],
+            // ["bush", "objectsDamage", "bush"],
+            // ["skeleton", "sceneObjects", "sceneObject"],
+            // ["cutTree", "sceneObjects", "sceneObject"],
+            // ["movingPlatform", "movingPlatform", "movingPlatform"],
+            // ["staticPlatform", "movingPlatform", "static"],
+            // ["saw", "saw", "saw"],
+            // ["sawHorizontal", "sawHorizontal", "sawHorizontal"],
+            // ["sign2", "sceneObjects", "sceneObject"],
+            // ["cross", "sceneObjects", "sceneObject"],
+            // ["acid", "objectsDamage", "acid"],
+            // ["potion", "potion", "potion"],
+            // ["tree", "sceneObjects", "sceneObject"],
 
-            ["mushroom", "potion", "mushroom"],
-            ["bush5", "sceneObjects", "bush5"],
-            ['crate', 'object', 'crate']
-
-
+            // ["mushroom", "potion", "mushroom"],
+            // ["bush5", "sceneObjects", "bush5"],
+            // ['crate', 'object', 'crate']
 
 
 
-            // ["spike", "object", "tree"],
+
+
+            ["spikes", "objects", "spikes"],
+            ["spawn", "spawns", "spawns"],
+            ["movingPlatform", "objects", "movingPlatforms"],
+            ["saw", "objects", "saws"],
+            ["sawHorizontal", "objects", "sawsHorizontal"],
             // ["tree", "object", "tree"],
             // ['bush', 'objects', 'bush'],
 
         ]
 
         phinalphase.createMap('testlevel', tiles, layers, objects);
+
 
 
         var backgroundMusic1 = new buzz.sound("/assets/Sound/forest", {
@@ -84,21 +96,52 @@ phinalphase.Game.prototype = {
             loop: true
         });
 
-
+        phinalphase.players = phinalphase.game.add.group();
         phinalphase.createPlayerCop(this);
         phinalphase.createPlayerNinja(this);
-        phinalphase.createClouds();
+        // phinalphase.createClouds();
 
 
 
         this.game.updatables.push(function () {
             phinalphase.updatePlayerNinja(this);
             phinalphase.updatePlayerCop(this);
+
+            phinalphase.players.children.forEach(function(grp) {
+                grp.children.forEach(function(p) {
+                    phinalphase.game.world.wrap(p, 0, true);
+                    p.skills.forEach(function(skill){
+                        if (skill instanceof phinalphase.Projectile) {
+                            skill.weapon.bullets.children.forEach(function(b) {
+                                phinalphase.game.world.wrap(b, 0, true);
+                            }, this); 
+                        }
+                    }, this);
+                }, this);
+                
+            }, this);
+            
         }.bind(this));
+
+        
 
     },
 
     update: function () {
+
+        // if (phinalphase.game.input.keyboard.isDown(Phaser.Keyboard.Q)) {
+        //     worldScale += 0.05;
+        // }
+        // else if (phinalphase.game.input.keyboard.isDown(Phaser.Keyboard.A)) {
+        //     worldScale -= 0.05;
+        // }
+
+        // worldScale = Phaser.Math.clamp(worldScale, 0.25, 2);
+
+        // // set our world scale as needed
+        // phinalphase.game.world.scale.set(worldScale);
+
+
         this.game.updatables.forEach(function (f) {
             f();
         }, this);
@@ -108,16 +151,13 @@ phinalphase.Game.prototype = {
 
         this.game.camera.deadzone = new Phaser.Rectangle(0, 0, 600, 400);
         // this.playerCop.body.moves = false;
-        if ((this.playerCop.x > this.playerNinja.x && this.playerCop.alive)|| !this.playerNinja.alive) {
+        if ((this.playerCop.x > this.playerNinja.x && this.playerCop.alive) || !this.playerNinja.alive) {
             this.game.camera.follow(this.playerCop);
             this.game.camera.focusOnXY(this.playerCop.x + 54, this.playerCop.y);
 
         } else {
             this.game.camera.follow(this.playerNinja);
             this.game.camera.focusOnXY(this.playerNinja.x + 54, this.playerNinja.y)
-        }
-        if (this.playerCop.x < this.playerNinja.x) {
-
         }
 
     },

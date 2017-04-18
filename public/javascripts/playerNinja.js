@@ -61,7 +61,6 @@ phinalphase.createPlayerNinja = function (that) {
             },
             bullet: {
                 number: 1,
-                killType: 'KILL_CAMERA_BOUNDS',
                 speed: 500,
                 scaleX: 0.3,
                 scaleY: 0.3,
@@ -100,7 +99,7 @@ phinalphase.createPlayerNinja = function (that) {
             bonusDefense: 5
         }
     ]
-    that.playerNinja = new phinalphase.Player(that.game, 250, 350, 'playerNinja', 'Idle_000', 1000, 0.5, 1, -700, 300, 0.1, 0, anim, skills);
+    that.playerNinja = new phinalphase.PlayerFirstTeam(that.game, 0, 0, 'playerNinja', 'Idle_000', 1000, 0.5, 1, -700, 300, 0.1, 0, anim, skills);
     that.playerNinja.checkWorldBounds = true;
     that.playerNinja.walkingSound = new buzz.sound("/assets/Sound/footstep09", {
         formats: ["ogg"],
