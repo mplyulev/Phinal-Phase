@@ -35,9 +35,9 @@ src="https://code.jquery.com/jquery-3.2.1.min.js"
       {{!--<img src="/assets/logo.png" id="smalllogo"class = "navbar-brand img-responsive" alt="game logo">--}}
      
       </div>
-      <button class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-volume-down"></span></button>
-      <button class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-volume-off"></span></button>
-      <button  class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-volume-up"></span></button>
+      <button id="volumeDown" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-volume-down"></span></button>
+      <button id="volumeOff" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-volume-off"></span></button>
+      <button id="volumeUp" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-volume-up"></span></button>
       <div id="navbar3" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
           <li class="active"><a href="#">Home</a></li>
@@ -59,6 +59,7 @@ src="https://code.jquery.com/jquery-3.2.1.min.js"
     <!--/.container-fluid -->
   </nav>
 </div>
+<audio id="audio" src="assets/sound/forest.ogg" loop="loop"></audio>
 <body>
    <script type="text/javascript"src="/javascripts/website/indexFront.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> 
