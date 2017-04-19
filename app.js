@@ -6,10 +6,10 @@ var cookieParser = require('cookie-parser');
 var session = require("express-session");
 var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
- 
+
 var monk = require('monk');
- 
- 
+
+
 var router = express.Router();
 
 
@@ -18,10 +18,10 @@ var router = express.Router();
 
 
 var uri = "mongodb://al_n:phinalphase123@phinalphase-shard-00-00-h6f3e.mongodb.net:27017,phinalphase-shard-00-01-h6f3e.mongodb.net:27017,phinalphase-shard-00-02-h6f3e.mongodb.net:27017/PhinalPhase?ssl=true&replicaSet=PhinalPhase-shard-0&authSource=admin";
-MongoClient.connect(uri, function(err, database) {
+MongoClient.connect(uri, function (err, database) {
     db = database;
     database.close();
- 
+
 });
 var db = monk(uri);
 // var users = db.get("users");
@@ -30,9 +30,9 @@ var db = monk(uri);
 // users.find().then(function (data) {
 //     console.log(data);
 // });
- 
 
- 
+
+
 
 //routes
 var login = require('./routes/login');
@@ -43,13 +43,40 @@ var pp = require('./routes/pp');
 
 
 var app = express();
+var server = require('http').Server(app);
+var socket = require('./socketServer');
 
-app.use(function(req, res, next) {
+socket.getSocket(server);
+
+
+
+
+
+app.use(function (req, res, next) {
     req.db = db;
     next();
 });
 
-app.set('port', (process.env.PORT || 5000));
+// app.set('port', (process.env.PORT || 8080));
+
+server.listen(8081, function () {
+    console.log('Listening on ' + server.address().port);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -61,7 +88,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({secret:"phinalphase1234"}));
+app.use(session({ secret: "phinalphase1234" }));
 app.use(router);
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); 
@@ -92,14 +119,14 @@ app.use('/users',requireLogin, users);
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -109,8 +136,8 @@ app.use(function(err, req, res, next) {
     res.render('error');
 });
 
-app.listen(app.get('port'), function() {
-    console.log('Node app is running on port', app.get('port'));
-});
+// app.listen(app.get('port'), function() {
+//     console.log('Node app is running on port', app.get('port'));
+// });
 
 module.exports = app;

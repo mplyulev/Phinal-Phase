@@ -38,8 +38,7 @@ phinalphase.createClouds = function() {
             phinalphase.game.collLayer = this[ele[0]];
             this.map.setCollisionBetween(1, 200000, true, ele[1]);
             this.game.updatables.push(function() {
-                this.game.physics.arcade.collide(phinalphase.team1, this[ele[0]], null, null, this)
-                this.game.physics.arcade.collide(phinalphase.team2, this[ele[0]], null, null, this);
+                this.game.physics.arcade.collide(phinalphase.players, this[ele[0]], null, null, this);
             }.bind(this));
         }
         if (this[ele[0]].layer.properties.layerType == 'background') {

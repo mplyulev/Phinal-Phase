@@ -8,12 +8,7 @@ phinalphase.Skill = function (user, energyReq, key, frame, cooldown, userAnim, s
     this.cooldown = cooldown;
     this.userAnim = userAnim;
     this.stop = stop;
-
-    if (this.user instanceof phinalphase.PlayerFirstTeam) {
-        this.userEnemy = 'team2';
-    } else {
-        this.userEnemy = 'team1';
-    }
+    this.userEnemy = 'players';
 
 };
 
@@ -253,8 +248,8 @@ phinalphase.Projectile = function (user, energyReq, key, frame, cooldown, userAn
     this.weapon.bullets.forEach(function (p) {
         p.anchor.setTo(0.5, 0.5);
         p.scale.setTo(bullet.scaleX, bullet.scaleY);
-        p.body.width = p.width -20;
-        p.body.height = p.height -10;
+        p.body.width = p.width - 20;
+        p.body.height = p.height - 10;
     }, this);
 
     if (bullet.repeat) {

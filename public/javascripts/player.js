@@ -1,35 +1,32 @@
 var phinalphase = phinalphase || {};
 
-
-// constructor for creatures
-
-phinalphase.Creature = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, energyRegen, defense, animations, skills) {
-    Phaser.Sprite.call(this, game, x, y, key, frame);
+phinalphase.Player = function (player) {
+    Phaser.Sprite.call(this, phinalphase.game, player.x, player.y, player.key, player.frame);
+    this.game = phinalphase.game;
     this.game.physics.arcade.enable(this);
-    this.health = 100;
-    this.energy = 100;
-    this.lives = 3;
-    this.energyRegen = energyRegen;
-    this.defense = defense;
-    this.body.gravity.y = gravity;
-    this.anchor.setTo(anchorX, anchorY);
-    this.jumpHeight = jumpHeight;
-    this.speedX = speedX;
-    this.wasMoving = false;
-    this.isInAir = false;
-    this.busy = false;
-    this.canAttackAgain = true;
-    this.alive = true;
-    this.isFlinched = false;
-    this.canBeHitted = true;
-    this.animationsObject = animations;
-    this.oldCropY = 0;
-    this.oldCropX = 0;
+    this.anchor.setTo(0.5, 1);
     this.body.checkCollision.up = false;
-    if (animations) {
-        this.addAnimation(animations);
+    this.health = player.health;
+    this.energy = player.energy;
+    this.energyRegen = player.energyRegen;
+    this.defense = player.defense;
+    this.body.gravity.y = player.gravity;
+    this.jumpHeight = player.jumpHeight;
+    this.speedX = player.speed;
+    this.isInAir = player.isInAir;
+    this.busy = player.busy;
+    this.canAttackAgain = player.canAttackAgain;
+    this.alive = player.alive;
+    this.isFlinched = player.isFlinched;
+    this.canBeHitted = player.canBeHitted;
+    this.animationsObject = player.anim;
+    this.oldCropY = player.oldCropY;
+    this.oldCropX = player.oldCropX;
+    
+    if (player.anim) {
+        this.addAnimation(player.anim);
     }
-    if (skills) {
+    if (player.skills) {
         this.skills = [];
         skills.forEach(function (skill) {
             if (skill.type == 'aurabuff') {
@@ -53,14 +50,15 @@ phinalphase.Creature = function (game, x, y, key, frame, gravity, anchorX, ancho
 
 
         }, this);
+        phinalphase.players.add(this);
     }
 
 
 }
-phinalphase.Creature.prototype = Object.create(Phaser.Sprite.prototype);
-phinalphase.Creature.prototype.constructor = phinalphase.Creature;
+phinalphase.Player.prototype = Object.create(Phaser.Sprite.prototype);
+phinalphase.Player.prototype.constructor = phinalphase.Player;
 
-phinalphase.Creature.prototype.addAnimation = function (animations) {
+phinalphase.Player.prototype.addAnimation = function (animations) {
     for (var key in animations) {
         if (animations.hasOwnProperty(key)) {
             var arr = animations[key];
@@ -70,12 +68,7 @@ phinalphase.Creature.prototype.addAnimation = function (animations) {
     }
 };
 
-phinalphase.Creature.prototype.play = function (animation, looping, cb) {
-    if (this.body.velocity.x) {
-        this.wasMoving = true;
-    } else {
-        this.wasMoving = false;
-    }
+phinalphase.Player.prototype.play = function (animation, looping, cb) {
 
     this.animations.play(animation);
     for (var key in this.animationsObject) {
@@ -143,7 +136,7 @@ phinalphase.Creature.prototype.play = function (animation, looping, cb) {
 };
 
 
-phinalphase.Creature.prototype.jump = function () {
+phinalphase.Player.prototype.jump = function () {
     this.body.velocity.y = this.jumpHeight;
     this.play(this.animationsObject.jumpStart[0], false, function () {
         if (this.animations.currentAnim.name == this.animationsObject.jumpStart[0]) {
@@ -153,25 +146,25 @@ phinalphase.Creature.prototype.jump = function () {
 }
 
 
-phinalphase.Creature.prototype.moveSides = function (sideNum) {
+phinalphase.Player.prototype.moveSides = function (sideNum) {
     this.scale.setTo(sideNum, 1);
     if (sideNum < 0) {
         this.body.velocity.x = -this.speedX;
     } else {
         this.body.velocity.x = this.speedX;
     }
-    if (this.isInAir && (this instanceof phinalphase.PlayerFirstTeam || this instanceof phinalphase.PlayerSecondTeam)) {
+    if (this.isInAir) {
         this.play(this.animationsObject.jumpAir[0]);
     } else {
         this.play(this.animationsObject.run[0]);
     }
 }
 
-phinalphase.Creature.prototype.stay = function () {
+phinalphase.Player.prototype.stay = function () {
     this.play(this.animationsObject.idle[0]);
 }
 
-phinalphase.Creature.prototype.attack = function () {
+phinalphase.Player.prototype.attack = function () {
     this.busy = true;
     this.play(this.animationsObject.attack[0], false, function () {
         this.play(this.animationsObject.idle[0]);
@@ -179,11 +172,11 @@ phinalphase.Creature.prototype.attack = function () {
     });
 }
 
-phinalphase.Creature.prototype.fall = function () {
+phinalphase.Player.prototype.fall = function () {
     this.play(this.animationsObject.jumpFall[0]);
 }
 
-phinalphase.Creature.prototype.act = function (act, cause) {
+phinalphase.Player.prototype.act = function (act, cause) {
     if (this.alive) {
 
         if (act != 'DIE' && this.isFlinched) {
@@ -234,7 +227,7 @@ phinalphase.Creature.prototype.act = function (act, cause) {
     }
 };
 
-phinalphase.Creature.prototype.getHitted = function (dmgDealer) {
+phinalphase.Player.prototype.getHitted = function (dmgDealer) {
     if (dmgDealer.damage - this.defense > 0) {
         this.health -= (dmgDealer.damage - this.defense);
     }
@@ -244,7 +237,7 @@ phinalphase.Creature.prototype.getHitted = function (dmgDealer) {
     this.act('FLINCH');
 };
 
-phinalphase.Creature.prototype.flinch = function () {
+phinalphase.Player.prototype.flinch = function () {
     this.busy = false;
     this.isFlinched = true;
     this.canBeHitted = false;
@@ -266,7 +259,7 @@ phinalphase.Creature.prototype.flinch = function () {
 
 };
 
-phinalphase.Creature.prototype.dying = function () {
+phinalphase.Player.prototype.dying = function () {
     this.alive = false;
     this.play(this.animationsObject.death[0], false, function () {
         this.kill();
@@ -274,7 +267,7 @@ phinalphase.Creature.prototype.dying = function () {
     });
 };
 
-phinalphase.Creature.prototype.updateCreature = function () {
+phinalphase.Player.prototype.Update = function () {
     if (isNaN(this.body.velocity.y)) {
         this.body.velocity.y = 20;
     }
@@ -311,7 +304,7 @@ phinalphase.Creature.prototype.updateCreature = function () {
     }
 }
 
-phinalphase.Creature.prototype.overlapGlitchHandle = function (other) {
+phinalphase.Player.prototype.overlapGlitchHandle = function (other) {
     var overlap = Math.abs(this.body.overlapX);
     var backOverlap = Math.abs(Math.abs(this.body.overlapX) - (Math.abs(other.width) + Math.abs(this.width)));
     if (other.body.touching.up) {
@@ -339,7 +332,7 @@ phinalphase.Creature.prototype.overlapGlitchHandle = function (other) {
 }
 
 
-phinalphase.Creature.prototype.respawn = function () {
+phinalphase.Player.prototype.respawn = function () {
     phinalphase.game.time.events.add(3000, function () {
 
         this.alive = true;
@@ -362,45 +355,3 @@ phinalphase.Creature.prototype.respawn = function () {
 
     }, this);
 }
-
-
-
-
-
-
-phinalphase.PlayerFirstTeam = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, energyRegen, defense, animations, skills) {
-    phinalphase.Creature.apply(this, arguments);
-    if (phinalphase.team1 != undefined) {
-        phinalphase.team1.add(this);
-    } else {
-        phinalphase.team1 = phinalphase.game.add.group();
-        phinalphase.players.add(phinalphase.team1);
-        phinalphase.team1.add(this);
-    }
-    this.kill();
-    this.respawn();
-}
-
-
-phinalphase.PlayerFirstTeam.prototype = Object.create(phinalphase.Creature.prototype);
-phinalphase.PlayerFirstTeam.prototype.constructor = phinalphase.PlayerFirstTeam;
-
-
-
-
-
-
-phinalphase.PlayerSecondTeam = function (game, x, y, key, frame, gravity, anchorX, anchorY, jumpHeight, speedX, energyRegen, defense, animations, skills) {
-    phinalphase.Creature.apply(this, arguments);
-    if (phinalphase.team2 != undefined) {
-        phinalphase.team2.add(this);
-    } else {
-        phinalphase.team2 = phinalphase.game.add.group();
-        phinalphase.players.add(phinalphase.team2);
-        phinalphase.team2.add(this);
-    }
-    this.kill();
-    this.respawn();
-}
-phinalphase.PlayerSecondTeam.prototype = Object.create(phinalphase.Creature.prototype);
-phinalphase.PlayerSecondTeam.prototype.constructor = phinalphase.PlayerSecondTeam;

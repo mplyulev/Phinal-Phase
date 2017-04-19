@@ -1,27 +1,70 @@
 var phinalphase = phinalphase || {};
 
 phinalphase.Game = function () { };
-var worldScale = 1;
+
+phinalphase.Game.addNewPlayer = function (player, main) {
+    if (player.x == 0) {
+        player.x = phinalphase.spawns.children[player.id % phinalphase.spawns.children.length].x;
+        player.y = phinalphase.spawns.children[player.id % phinalphase.spawns.children.length].y;
+    }
+
+    phinalphase.Game.playerMap[player.id] = new phinalphase.Player(player);
+
+    if (main) {
+        phinalphase.clientPlayer = phinalphase.Game.playerMap[player.id];
+        phinalphase.game.camera.follow(phinalphase.Game.playerMap[player.id]);
+    }
+
+}
+
+phinalphase.Game.addOldPlayer = function (player) {
+    phinalphase.Game.playerMap[player.id] = new phinalphase.Player(player);
+}
+
+phinalphase.Game.removePlayer = function (id) {
+    phinalphase.Game.playerMap[id].destroy();
+    delete phinalphase.Game.playerMap[id];
+};
+
+phinalphase.Game.playerAct = function (id, act) {
+    phinalphase.Game.playerMap[id].act(act);
+};
+
+phinalphase.Game.updatePlayer = function (serverPlayer) {
+    var player = phinalphase.Game.playerMap[serverPlayer.id]
+    phinalphase.clientPlayer = player;
+    player.Update();
+    var newPlayer = {
+        x: player.x,
+        y: player.y,
+        health: player.health,
+        energy: player.energy,
+        isInAir: player.isInAir,
+        busy: player.busy,
+        canAttackAgain: player.canAttackAgain,
+        alive: player.alive,
+        isFlinched: player.isFlinched,
+        canBeHitted: player.canBeHitted,
+        oldCropY: player.oldCropY,
+        oldCropX: player.oldCropX
+    }
+    Client.sendUpdates(newPlayer);
+
+};
+
+
+
 phinalphase.Game.prototype = {
 
     preload: function () {
-
+        this.game.stage.disableVisibilityChange = true;
         this.game.time.advancedTiming = true;
-
     },
 
 
 
     create: function () {
-
-        // boundsPoint = new Phaser.Point(0, 0);
-        // viewRect = new Phaser.Rectangle(0, 0, phinalphase.game.width, phinalphase.game.height);
-
-        // phinalphase.game.world.setBounds(-1000, -1000, 2000, 2000);
-
-        // phinalphase.game.camera.x = (phinalphase.game.width * -0.5);
-        // phinalphase.game.camera.y = (phinalphase.game.height * -0.5);
-
+        phinalphase.Game.playerMap = {};
         this.game.updatables = [];
 
 
@@ -97,49 +140,75 @@ phinalphase.Game.prototype = {
         });
 
         phinalphase.players = phinalphase.game.add.group();
-        phinalphase.createPlayerCop(this);
-        phinalphase.createPlayerNinja(this);
+        // phinalphase.createPlayerCop(this);
+        // phinalphase.createPlayerNinja(this);
         // phinalphase.createClouds();
 
 
 
         this.game.updatables.push(function () {
-            phinalphase.updatePlayerNinja(this);
-            phinalphase.updatePlayerCop(this);
+            // phinalphase.updatePlayerNinja(this);
+            // phinalphase.updatePlayerCop(this);
 
-            phinalphase.players.children.forEach(function(grp) {
-                grp.children.forEach(function(p) {
-                    phinalphase.game.world.wrap(p, 0, true);
-                    p.skills.forEach(function(skill){
-                        if (skill instanceof phinalphase.Projectile) {
-                            skill.weapon.bullets.children.forEach(function(b) {
-                                phinalphase.game.world.wrap(b, 0, true);
-                            }, this); 
-                        }
-                    }, this);
-                }, this);
-                
-            }, this);
-            
+            // phinalphase.players.children.forEach(function(grp) {
+            //     grp.children.forEach(function(p) {
+            //         phinalphase.game.world.wrap(p, 0, true);
+            //         p.skills.forEach(function(skill){
+            //             if (skill instanceof phinalphase.Projectile) {
+            //                 skill.weapon.bullets.children.forEach(function(b) {
+            //                     phinalphase.game.world.wrap(b, 0, true);
+            //                 }, this); 
+            //             }
+            //         }, this);
+            //     }, this);
+
+            // }, this);
+
         }.bind(this));
 
-        
 
+        Client.askNewPlayer();
     },
 
     update: function () {
 
-        // if (phinalphase.game.input.keyboard.isDown(Phaser.Keyboard.Q)) {
-        //     worldScale += 0.05;
-        // }
-        // else if (phinalphase.game.input.keyboard.isDown(Phaser.Keyboard.A)) {
-        //     worldScale -= 0.05;
-        // }
+        Client.reqUpdate();
+        if (phinalphase.clientPlayer) {
 
-        // worldScale = Phaser.Math.clamp(worldScale, 0.25, 2);
+            var player = phinalphase.clientPlayer;
 
-        // // set our world scale as needed
-        // phinalphase.game.world.scale.set(worldScale);
+            if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
+                Client.sendAct('RIGHT');
+            } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
+                Client.sendAct('LEFT');
+            } else {
+                if (!player.isInAir) {
+                    Client.sendAct();
+                }
+            }
+
+            if (player.body.velocity.y > 0 && player.isInAir) {
+                Client.sendAct('FALL');
+            }
+            if (this.game.input.keyboard.isDown(Phaser.Keyboard.UP) && !player.isInAir) {
+                Client.sendAct('UP');
+            }
+
+            if (this.game.input.keyboard.isDown(Phaser.Keyboard.L)) {
+                Client.sendAct('SKILL', 2);
+            }
+
+            if (this.game.input.keyboard.isDown(Phaser.Keyboard.O)) {
+                Client.sendAct('SKILL', 0);
+            }
+            if (this.game.input.keyboard.isDown(Phaser.Keyboard.P)) {
+                Client.sendAct('SKILL', 1);
+            }
+            if (this.game.input.keyboard.isDown(Phaser.Keyboard.K)) {
+                Client.sendAct('SKILL', 3);
+            }
+
+        }
 
 
         this.game.updatables.forEach(function (f) {
@@ -148,31 +217,19 @@ phinalphase.Game.prototype = {
 
 
 
-
-        this.game.camera.deadzone = new Phaser.Rectangle(0, 0, 600, 400);
-        // this.playerCop.body.moves = false;
-        if ((this.playerCop.x > this.playerNinja.x && this.playerCop.alive) || !this.playerNinja.alive) {
-            this.game.camera.follow(this.playerCop);
-            this.game.camera.focusOnXY(this.playerCop.x + 54, this.playerCop.y);
-
-        } else {
-            this.game.camera.follow(this.playerNinja);
-            this.game.camera.focusOnXY(this.playerNinja.x + 54, this.playerNinja.y)
-        }
-
     },
 
     render: function () {
 
 
         this.game.debug.text(this.game.time.fps || '--', 20, 70, "#00ff00", "40px Courier");
-        this.game.debug.spriteBounds(this.playerNinja);
-        this.game.debug.spriteBounds(this.playerNinja.skills[2].weapon);
-        this.game.debug.spriteInfo(this.playerNinja, 32, 32);
-        this.game.debug.bodyInfo(this.playerNinja, 100, 150);
-        this.game.debug.body(this.playerNinja);
-        this.game.debug.spriteBounds(this.playerCop);
-        this.game.debug.spriteInfo(this.playerCop, 532, 32);
+        // this.game.debug.spriteBounds(this.playerNinja);
+        // this.game.debug.spriteBounds(this.playerNinja.skills[2].weapon);
+        // this.game.debug.spriteInfo(this.playerNinja, 32, 32);
+        // this.game.debug.bodyInfo(this.playerNinja, 100, 150);
+        // this.game.debug.body(this.playerNinja);
+        // this.game.debug.spriteBounds(this.playerCop);
+        // this.game.debug.spriteInfo(this.playerCop, 532, 32);
     }
 
 };

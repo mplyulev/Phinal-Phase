@@ -111,7 +111,7 @@
     <property name="usability" value="damageMoving"/>
    </properties>
   </object>
-  <object id="23" x="783.333" y="577.273" width="57.5758" height="57.5758">
+  <object id="23" x="765.151" y="571.212" width="57.5758" height="57.5758">
    <properties>
     <property name="damage" type="int" value="20"/>
     <property name="sprite" value="saw"/>
@@ -129,35 +129,35 @@
   </object>
  </objectgroup>
  <objectgroup name="spawns">
-  <object id="13" x="154.545" y="1668.18" width="64" height="64">
+  <object id="13" x="327.272" y="365.15" width="64" height="64">
    <properties>
     <property name="sprite" value="none"/>
     <property name="type" value="spawn"/>
     <property name="usability" value="none"/>
    </properties>
   </object>
-  <object id="16" x="1698.3" y="1692.24" width="64" height="64">
+  <object id="16" x="461.936" y="340.725" width="64" height="64">
    <properties>
     <property name="sprite" value="none"/>
     <property name="type" value="spawn"/>
     <property name="usability" value="none"/>
    </properties>
   </object>
-  <object id="17" x="132.669" y="464.97" width="64" height="64">
+  <object id="17" x="372.063" y="325.576" width="64" height="64">
    <properties>
     <property name="sprite" value="none"/>
     <property name="type" value="spawn"/>
     <property name="usability" value="none"/>
    </properties>
   </object>
-  <object id="18" x="1089.21" y="286.182" width="64" height="64">
+  <object id="18" x="431.634" y="237.697" width="64" height="64">
    <properties>
     <property name="sprite" value="none"/>
     <property name="type" value="spawn"/>
     <property name="usability" value="none"/>
    </properties>
   </object>
-  <object id="19" x="625.576" y="1119.52" width="64" height="64">
+  <object id="19" x="543.758" y="346.793" width="64" height="64">
    <properties>
     <property name="sprite" value="none"/>
     <property name="type" value="spawn"/>
