@@ -10,7 +10,7 @@
 
 #login {
     padding-top: 50px;
-    display:none;
+     display:none;
     background-color: black;
 }
 #login .form-wrap {
@@ -174,9 +174,9 @@ textarea:focus, input:focus button:focus{
     outline: none;
 }
 
-#registrationWrapper {
+/*#registrationWrapper {
     display:none;
-}
+}*/
 
  #logo2 {
     display:block;
@@ -193,15 +193,12 @@ input[type="text"] {
     text-align: center;
 }
  
- #backendLoginMessage { 
+ #backendLoginMessage,#messageUsernameTaken,#messageEmailTaken { 
       color:  #D21C1E;
     text-align: center;
+     font-size: 1.0em;
  }
- @media all and (max-width:700px) { /* screen size until 500px */
-    #backendLoginMessage {
-        font-size: 0.8em; /* 0.8x default size */
-        }
-    }
+  
  #registerButton {
      background-color:#D21C1E;
      outline : hidden;

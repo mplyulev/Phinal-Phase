@@ -73,17 +73,14 @@ function requireLogin (req, res, next)  {
           next();       
     }
     else  {
-         res.redirect('login',{message:"asdas"});
+         res.redirect('/login');
     }
 }
 
 app.use('/login', login);
+app.use('/registration', registration);
 app.use('/', requireLogin,index);
 app.use('/pp', pp);
-
-
-app.use('/registration', registration);
-
 app.use('/users', users);
 
 
