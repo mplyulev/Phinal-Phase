@@ -6,22 +6,14 @@ var cookieParser = require('cookie-parser');
 var session = require("express-session");
 var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
- 
 var monk = require('monk');
- 
- 
 var router = express.Router();
-
-
-
-
 
 
 var uri = "mongodb://al_n:phinalphase123@phinalphase-shard-00-00-h6f3e.mongodb.net:27017,phinalphase-shard-00-01-h6f3e.mongodb.net:27017,phinalphase-shard-00-02-h6f3e.mongodb.net:27017/PhinalPhase?ssl=true&replicaSet=PhinalPhase-shard-0&authSource=admin";
 MongoClient.connect(uri, function(err, database) {
     db = database;
     database.close();
- 
 });
   db = monk(uri);
 
@@ -34,11 +26,7 @@ app.use(function(req, res, next) {
 });
 
 
-// usersList = db.create("users");
-// users.insert([{ username: 'misho' ,  password: '1234' }]);
-// users.find().then(function (data) {
-//     console.log(data);
-// })
+ 
 
 //routes
 var login = require('./routes/login');
@@ -76,10 +64,10 @@ function requireLogin (req, res, next)  {
          res.redirect('/login');
     }
 }
-
 app.use('/login', login);
 app.use('/registration', registration);
-app.use('/', requireLogin,index);
+app.use('/',requireLogin, index);
+app.use('/index',requireLogin, index);
 app.use('/pp', pp);
 app.use('/users', users);
 
