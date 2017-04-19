@@ -10,7 +10,7 @@
 
 #login {
     padding-top: 50px;
-    display:none;
+     display:none;
     background-color: black;
 }
 #login .form-wrap {
@@ -174,9 +174,9 @@ textarea:focus, input:focus button:focus{
     outline: none;
 }
 
-#registrationWrapper {
+/*#registrationWrapper {
     display:none;
-}
+}*/
 
  #logo2 {
     display:block;
@@ -190,8 +190,15 @@ input[type="text"] {
  
 #nameValidation,#emailValidation,#passwordValidation,#passwordConfirmValidation,#usernameValidation {
     color:  #D21C1E;
+    text-align: center;
 }
  
+ #backendLoginMessage,#messageUsernameTaken,#messageEmailTaken { 
+      color:  #D21C1E;
+    text-align: center;
+     font-size: 1.0em;
+ }
+  
  #registerButton {
      background-color:#D21C1E;
      outline : hidden;

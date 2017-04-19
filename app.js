@@ -9,30 +9,26 @@ var MongoClient = require('mongodb').MongoClient;
 
 var monk = require('monk');
 
-
 var router = express.Router();
-
-
-
-
 
 
 var uri = "mongodb://al_n:phinalphase123@phinalphase-shard-00-00-h6f3e.mongodb.net:27017,phinalphase-shard-00-01-h6f3e.mongodb.net:27017,phinalphase-shard-00-02-h6f3e.mongodb.net:27017/PhinalPhase?ssl=true&replicaSet=PhinalPhase-shard-0&authSource=admin";
 MongoClient.connect(uri, function (err, database) {
     db = database;
     database.close();
-
 });
-var db = monk(uri);
-// var users = db.get("users");
-// console.log(users);
-// users.insert({ name: 'Pesho', bigdata:"123"});
-// users.find().then(function (data) {
-//     console.log(data);
-// });
+  db = monk(uri);
+
+ 
+
+ var app = express();
+app.use(function(req, res, next) {
+    req.db = db;
+    next();
+});
 
 
-
+ 
 
 //routes
 var login = require('./routes/login');
@@ -91,29 +87,24 @@ app.use(cookieParser());
 app.use(session({ secret: "phinalphase1234" }));
 app.use(router);
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); 
-// app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));  
-// app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));  
+ 
 
 
 
 function requireLogin (req, res, next)  {
-    if (req.session.username == "asd") {
+    if (req.session.userId != undefined) {
           next();       
     }
     else  {
-         console.log("greshka"); 
-        res.redirect('/login');
+         res.redirect('/login');
     }
 }
-
 app.use('/login', login);
-app.use('/pp', pp);
-
-
 app.use('/registration', registration);
 app.use('/',requireLogin, index);
-app.use('/users',requireLogin, users);
+app.use('/index',requireLogin, index);
+app.use('/pp', pp);
+app.use('/users', users);
 
 
 
