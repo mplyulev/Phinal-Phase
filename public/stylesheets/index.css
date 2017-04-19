@@ -1,15 +1,22 @@
-  
+
  #logo2 {
      margin:0 auto; 
      padding-bottom:100px;
      padding-top:30px;
+    
+     position:relative;
+   opacity:0;
+  
+     
  }
+   #logo2 { transition: all 1.6s ease-in-out; }
+#logo2:hover { transform: scale(1.2); }
  #navbar { 
    background-color:black;
- 
  }
  #logoContainer { 
      width:100%;
+
      height: auto;
      background-color:black;
      background-image: url(" /assets/space2.jpg");
