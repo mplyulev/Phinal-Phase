@@ -99,11 +99,13 @@ function requireLogin (req, res, next)  {
          res.redirect('/login');
     }
 }
+
+app.use('/pp', pp);
 app.use('/login', login);
 app.use('/registration', registration);
 app.use('/',requireLogin, index);
 app.use('/index',requireLogin, index);
-app.use('/pp', pp);
+
 app.use('/users', users);
 
 
