@@ -7,6 +7,7 @@ var app  = angular.module("myApp",["ngRoute"]);
      .when("pp", {
          templateUrl: "/HTML/phinalphase.html",
      }) 
+  
  });
 
 //  app.controller("logoutController", function ($scope) {

@@ -9,6 +9,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>PhinalPhase</title>
       <link rel="stylesheet" href="/stylesheets/index.css">
+			<link rel="stylesheet" href="/stylesheets/starfield.css">
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <script type="text/javascript" src={{script}}></script>
    <script type="text/javascript"src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
@@ -22,7 +23,7 @@ src="https://code.jquery.com/jquery-3.2.1.min.js"
 </head>
  <body>
 <div id="logoContainer" >
-<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+<svg id="svgText" version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
 	 width="600px" height="100px" viewBox="0 0 600 100">
 <style type="text/css">
 
@@ -116,11 +117,12 @@ src="https://code.jquery.com/jquery-3.2.1.min.js"
 	</defs>
 
 <g>
-	<text x="0" y="100">SVG GLITCH</text>
+	<text id="welcomeMessage" x="0" y="100">Welcome {{message}}! Are you ready for the ....</text>
 </g>
 </svg>
   <img src="/assets/logo.png" class="img-responsive" id="logo2" alt="game logo">
 <div class="mainContainer">
+	
   <nav id = "navbar"class="navbar navbar-inverse navbar-static-top">
     <div class="container">
       <div class="navbar-header">
@@ -133,9 +135,11 @@ src="https://code.jquery.com/jquery-3.2.1.min.js"
       {{!--<img src="/assets/logo.png" id="smalllogo"class = "navbar-brand img-responsive" alt="game logo">--}}
      
       </div>
+			<div id="volumeControl">
       <button id="volumeDown" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-volume-down"></span></button>
       <button id="volumeOff" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-volume-off"></span></button>
       <button id="volumeUp" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-volume-up"></span></button>
+			</div>
       <div id="navbar3" class="navbar-collapse collapse">
         <ul id="navbarUl" class="nav navbar-nav navbar-right">
           <li class="active"><a href="#">Home</a></li>
@@ -161,9 +165,19 @@ src="https://code.jquery.com/jquery-3.2.1.min.js"
  
 <div ng-view>
 </div>
-<audio id="audio" src="assets/sound/forest.ogg" loop="loop"></audio>
+<audio id="audioClick" src="assets/sound/button21.wav" ></audio>
+<audio id="audio" src="assets/sound/forest.ogg" ></audio>
+<audio id="audioMenu" src="assets/sound/menuSelect.wav" ></audio>
    <script type="text/javascript"src="/javascripts/website/indexFront.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> 
  
+<div id="space">
+  <div class="stars"></div>
+  <div class="stars"></div>
+  <div class="stars"></div>
+  <div class="stars"></div>
+  <div class="stars"></div>
+</div>
+
 </body>
 </html>
