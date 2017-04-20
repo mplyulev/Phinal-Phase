@@ -7,6 +7,7 @@ router.get('/', function(req, res, next) {
         .then(function (data) {
           var loggedInUser = data[0].username;
   console.log(loggedInUser)
+  
     res.render('index',{message:loggedInUser});
   });
 });
