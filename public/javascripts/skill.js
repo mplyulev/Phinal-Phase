@@ -8,7 +8,6 @@ phinalphase.Skill = function (user, energyReq, key, frame, cooldown, userAnim, s
     this.cooldown = cooldown;
     this.userAnim = userAnim;
     this.stop = stop;
-    this.userEnemy = 'players';
 
 };
 
@@ -86,7 +85,10 @@ phinalphase.MeleeAttack.prototype.use = function () {
         }
         this.weapon.revive();
         var collideFunction = function () {
-            phinalphase.game.physics.arcade.overlap(phinalphase[this.userEnemy], this.weapon, function (weapon, enemy) {
+            phinalphase.game.physics.arcade.overlap(phinalphase.players, this.weapon, function (weapon, enemy) {
+                if (enemy == this.user) {
+                    return;
+                }
                 enemy.act('STRIKED', this);
                 var that = enemy;
                 eval(this.enemyCollide);
@@ -204,7 +206,10 @@ phinalphase.AuraSkillDmg.prototype.use = function () {
         this.aura.aura = true;
 
         var collideFunction = function () {
-            phinalphase.game.physics.arcade.overlap(phinalphase[this.userEnemy], this.aura, function (aura, enemy) {
+            phinalphase.game.physics.arcade.overlap(phinalphase.players, this.aura, function (aura, enemy) {
+                if (enemy == this.user) {
+                    return;
+                }
                 enemy.act('STRIKED', this);
                 var that = enemy;
                 eval(this.enemyCollide);
@@ -242,10 +247,16 @@ phinalphase.Projectile = function (user, energyReq, key, frame, cooldown, userAn
 
 
     var collideFunction = function () {
-        phinalphase.game.physics.arcade.overlap(phinalphase[this.userEnemy], this.weapon.bullets, function (enemy, bullet) {
+        phinalphase.game.physics.arcade.overlap(phinalphase.players, this.weapon.bullets, function (enemy, bullet) {
+            if (enemy == this.user) {
+                return;
+            }
             enemy.act('STRIKED', this);
             var that = enemy;
             eval(this.enemyCollide);
+            bullet.kill();
+        }, null, this);
+        phinalphase.game.physics.arcade.collide(phinalphase.game.collLayer, this.weapon.bullets, function (bullet, layer) {
             bullet.kill();
         }, null, this);
     }.bind(this);

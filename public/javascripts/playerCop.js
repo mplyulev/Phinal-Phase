@@ -110,7 +110,10 @@ var skillsCop = [
 
 
             var collideFunction = function () {
-                phinalphase.game.physics.arcade.overlap(phinalphase[that.userEnemy], that.splash, function (aura, enemy) {
+                phinalphase.game.physics.arcade.overlap(phinalphase.players, that.splash, function (aura, enemy) {
+                    if (that.user == enemy) {
+                        return;
+                    }
                     enemy.act('STRIKED', that);
                 }, null, that);
             }.bind(that);

@@ -72,7 +72,7 @@ phinalphase.Preload.prototype = {
 
 
 
-
+        //Players
         this.load.image('bullet', '/assets/images/bullet2.png');
         this.load.atlas('playerNinja', '/assets/images/Players/Swordsman/hero1.png', '/assets/images/Players/Swordsman/hero1.json');
         this.load.spritesheet('fireball', '/assets/images/Players/Swordsman/fireball.png', 333, 199);
@@ -82,6 +82,11 @@ phinalphase.Preload.prototype = {
 
 
 
+        //user interface
+        this.load.image('healthContainer', '/assets/GUI/healthContainer.png');
+        this.load.image('healthbar', '/assets/GUI/healthbar.png');
+        this.load.image('energyContainer', '/assets/GUI/energyContainer.png');
+        this.load.image('energybar', '/assets/GUI/energybar.png');
 
         //MainMenu
 

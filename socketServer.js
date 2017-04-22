@@ -6,7 +6,6 @@ function getSocket(server) {
 
     io.on('connection', function (socket) {
         socket.on('newplayer', function (data) {
-            console.log(data);
             server.connectedUsers++;
             socket.player = data;
             socket.player.isHost = false;

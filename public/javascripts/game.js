@@ -194,6 +194,25 @@ phinalphase.Game.prototype = {
 
 
         Client.askNewPlayer([phinalphase.playerNinja, phinalphase.playerCop]);
+
+        this.healthContainer = this.game.add.sprite(10, 10, 'healthContainer');
+        this.healthContainer.scale.setTo(0.5);
+        this.healthContainer.fixedToCamera = true;
+
+        this.healthbar = this.game.add.sprite(74, 26, 'healthbar');
+        this.healthbar.scale.setTo(0.5);
+        this.healthbarWidth = this.healthbar.width;
+        this.healthbar.fixedToCamera = true;
+
+
+        this.energyContainer = this.game.add.sprite(10, 80, 'energyContainer');
+        this.energyContainer.scale.setTo(0.4);
+        this.energyContainer.fixedToCamera = true;
+
+        this.energybar = this.game.add.sprite(60, 93, 'energybar');
+        this.energybar.scale.setTo(0.4);
+        this.energybarWidth = this.energybar.width;
+        this.energybar.fixedToCamera = true;
     },
 
     update: function () {
@@ -212,6 +231,19 @@ phinalphase.Game.prototype = {
         var player = phinalphase.Game.playerMap[phinalphase.playerID];
 
         if (player) {
+            if (player.health / 100 <= 0) {
+                this.healthbar.width = 0;
+            } else {
+                this.healthbar.width = this.healthbarWidth * (player.health / 100);
+            }
+            if (player.energy / 100 <= 0) {
+                this.energybar.width = 0;
+            } else {
+                this.energybar.width = this.energybarWidth * (player.energy / 100);
+            }
+
+
+
             Client.sync(player.x, player.y);
 
             // phinalphase.deltaTime = (this.game.time.elapsedMS * this.game.time.fps) / 1000;
