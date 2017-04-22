@@ -13,7 +13,7 @@ var anim = {
     block: ['block', 'Block Parry_', 0, 19, '', 3, 20, 0, 0]
 };
 
-var skills = [
+var skillsNinja = [
     {
         type: 'aurabuff',
         enerReq: 10,
@@ -24,12 +24,8 @@ var skills = [
         stop: true,
         duration: 10,
         anim: ['pop', 'pop_explosion', 1, 18, '', 4, 15],
-        effects: function (that) {
-            that.speedX += 100;
-        },
-        afterEffects: function (that) {
-            that.speedX -= 100;
-        }
+        effects: 'that.speed += 100',
+        afterEffects: 'that.speed -= 100'
     },
     // {
     //     type: 'auradmg',
@@ -56,9 +52,7 @@ var skills = [
         userAnim: anim.block[0],
         stop: true,
         dmg: 10,
-        enemyCollide: function () {
-
-        },
+        enemyCollide: '',
         bullet: {
             number: 1,
             speed: 500,
@@ -78,9 +72,7 @@ var skills = [
         userAnim: anim.attack[0],
         stop: false,
         dmg: 10,
-        enemyCollide: function () {
-
-        },
+        enemyCollide: '',
         weapon: {
             offsetX: 60,
             offsetY: -30,
@@ -111,7 +103,7 @@ phinalphase.playerNinja = {
     energyRegen: 0.1,
     defense: 0,
     anim: anim,
-    skills: skills
+    skills: skillsNinja
 }
 // that.playerNinja.checkWorldBounds = true;
 // that.playerNinja.walkingSound = new buzz.sound("/assets/Sound/footstep09", {

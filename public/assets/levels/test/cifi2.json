@@ -72,103 +72,38 @@
                 }, 
                 {
                  "height":57.5758,
-                 "id":20,
-                 "name":"",
-                 "properties":
-                    {
-                     "damage":20,
-                     "sprite":"saw",
-                     "type":"saw",
-                     "usability":"damageMoving"
-                    },
-                 "propertytypes":
-                    {
-                     "damage":"int",
-                     "sprite":"string",
-                     "type":"string",
-                     "usability":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":57.5758,
-                 "x":793.939,
-                 "y":1536.36
-                }, 
-                {
-                 "height":57.5758,
-                 "id":22,
-                 "name":"",
-                 "properties":
-                    {
-                     "damage":20,
-                     "sprite":"saw",
-                     "type":"saw",
-                     "usability":"damageMoving"
-                    },
-                 "propertytypes":
-                    {
-                     "damage":"int",
-                     "sprite":"string",
-                     "type":"string",
-                     "usability":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":57.5758,
-                 "x":1559.09,
-                 "y":513.636
-                }, 
-                {
-                 "height":57.5758,
                  "id":23,
                  "name":"",
                  "properties":
                     {
+                     "currentPos":0,
                      "damage":20,
+                     "goingDown":true,
+                     "maxPos":500,
+                     "speed":3,
                      "sprite":"saw",
                      "type":"saw",
-                     "usability":"damageMoving"
+                     "usability":"damageMoving",
+                     "way":"y"
                     },
                  "propertytypes":
                     {
+                     "currentPos":"int",
                      "damage":"int",
+                     "goingDown":"bool",
+                     "maxPos":"int",
+                     "speed":"int",
                      "sprite":"string",
                      "type":"string",
-                     "usability":"string"
+                     "usability":"string",
+                     "way":"string"
                     },
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":57.5758,
-                 "x":765.151181818182,
-                 "y":571.212393939394
-                }, 
-                {
-                 "height":57.5758,
-                 "id":25,
-                 "name":"",
-                 "properties":
-                    {
-                     "damage":20,
-                     "sprite":"saw",
-                     "type":"sawHorizontal",
-                     "usability":"damageMovingHorizontal"
-                    },
-                 "propertytypes":
-                    {
-                     "damage":"int",
-                     "sprite":"string",
-                     "type":"string",
-                     "usability":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":57.5758,
-                 "x":959.091,
-                 "y":1574.24
+                 "x":762.120696969697,
+                 "y":453.030181818182
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -202,8 +137,8 @@
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":327.272272727273,
-                 "y":365.149696969697
+                 "x":327.272,
+                 "y":365.15
                 }, 
                 {
                  "height":64,
@@ -225,8 +160,8 @@
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":461.936363636364,
-                 "y":340.724848484849
+                 "x":461.936,
+                 "y":340.725
                 }, 
                 {
                  "height":64,
@@ -248,8 +183,8 @@
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":372.062939393939,
-                 "y":325.576060606061
+                 "x":372.063,
+                 "y":325.576
                 }, 
                 {
                  "height":64,
@@ -271,8 +206,8 @@
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":431.634242424242,
-                 "y":237.697151515151
+                 "x":431.634,
+                 "y":237.697
                 }, 
                 {
                  "height":64,
@@ -294,8 +229,8 @@
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":543.757818181818,
-                 "y":346.792727272727
+                 "x":543.758,
+                 "y":346.793
                 }],
          "opacity":1,
          "type":"objectgroup",

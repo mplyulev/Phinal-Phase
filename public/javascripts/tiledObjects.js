@@ -15,7 +15,7 @@ phinalphase.оbjectGroupFromTiled = function (type, map, layerName, groupName) {
             } else {
                 ele.x -= map.tileWidth;
             }
-            
+
             res.push(ele);
 
         }
@@ -51,7 +51,7 @@ phinalphase.оbjectGroupFromTiled = function (type, map, layerName, groupName) {
             }
             sprite[key] = ele.properties[key];
         });
-
+        phinalphase.Game.objectMap.push(sprite);
     });
 
     function usabilityApply(uab) {
@@ -65,23 +65,29 @@ phinalphase.оbjectGroupFromTiled = function (type, map, layerName, groupName) {
 
 
         if (uab == 'damageMoving') {
+            phinalphase[groupName].children.forEach(function (object) {
+                object.anchor.setTo(0.5, 0.5);
+            }, this);
             phinalphase.game.updatables.push(function () {
                 this.physics.arcade.overlap(phinalphase.players, phinalphase[groupName], function (player, groupName) {
                     player.act('STRIKED', groupName);
                 }, null, this);
+                phinalphase[groupName].children.forEach(function (object) {
+                    if (object.maxPos > object.currentPos && object.goingDown) {
+                        object.angle += 15;
+                        object[object.way] += object.speed;
+                        object.currentPos += object.speed;
+                    } else {
+                        object.angle += 15;
+                        object.goingDown = false;
+                        object[object.way] -= object.speed;
+                        object.currentPos -= object.speed;
+                        if (object.currentPos <= 0) {
+                            object.goingDown = true;
+                        }
+                    }
+                }, this);
             }.bind(phinalphase.game));
-            phinalphase[groupName].children.forEach(function (element) {
-                element.anchor.setTo(0.5, 0.5);
-                element.body.velocity.y = -250;
-
-                phinalphase.game.time.events.loop(0.01, function () {
-                    element.angle += 15;
-                });
-                phinalphase.game.time.events.loop(1500, function () {
-                    element.body.velocity.y = element.body.velocity.y * (-1);
-                    element.angle = element.angle * (-1);
-                });
-            }, this);
         }
 
 

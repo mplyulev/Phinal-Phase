@@ -83,10 +83,19 @@ phinalphase.Preload.prototype = {
 
 
 
+        //MainMenu
+
+        this.load.image('playButton', '/assets/GUI/play.png');
+        this.load.image('menuBG', '/assets/GUI/menuBG.png');
+        this.load.spritesheet('buttonOnOff', '/assets/GUI/onoff.png', 175, 175);
+        this.load.image('ninjaLogo', '/assets/GUI/ninjaLogo.png');
+        this.load.image('copLogo', '/assets/GUI/copLogo.png');
+
+
     },
     create: function () {
 
-        this.state.start('Game');
+        this.state.start('MainMenu');
     }
 
 };

@@ -88,7 +88,8 @@ phinalphase.MeleeAttack.prototype.use = function () {
         var collideFunction = function () {
             phinalphase.game.physics.arcade.overlap(phinalphase[this.userEnemy], this.weapon, function (weapon, enemy) {
                 enemy.act('STRIKED', this);
-                this.enemyCollide(enemy);
+                var that = enemy;
+                eval(this.enemyCollide);
             }, null, this);
         }.bind(this);
         this.user.play(this.userAnim, false, function () {
@@ -143,7 +144,8 @@ phinalphase.AuraSkillBuff.prototype.use = function () {
         phinalphase.game.time.events.add(this.cooldown * 1000, function () {
             this.isOnCD = false;
         }, this);
-        this.effects(this.user);
+        var that = this.user;
+        eval(this.effects);
         this.user.play(this.userAnim);
         if (this.stop) {
             this.user.animations.stop();
@@ -159,7 +161,8 @@ phinalphase.AuraSkillBuff.prototype.use = function () {
             this.user.busy = false;
             this.aura.animations.currentAnim.onComplete._bindings.pop();
             phinalphase.game.time.events.add(this.duration * 1000, function () {
-                this.afterEffects(this.user);
+                var that = this.user;
+                eval(this.afterEffects);
             }, this);
 
         }, this);
@@ -203,7 +206,8 @@ phinalphase.AuraSkillDmg.prototype.use = function () {
         var collideFunction = function () {
             phinalphase.game.physics.arcade.overlap(phinalphase[this.userEnemy], this.aura, function (aura, enemy) {
                 enemy.act('STRIKED', this);
-                this.enemyCollide(enemy);
+                var that = enemy;
+                eval(this.enemyCollide);
             }, null, this);
         }.bind(this);
         phinalphase.game.updatables.push(collideFunction);
@@ -240,7 +244,8 @@ phinalphase.Projectile = function (user, energyReq, key, frame, cooldown, userAn
     var collideFunction = function () {
         phinalphase.game.physics.arcade.overlap(phinalphase[this.userEnemy], this.weapon.bullets, function (enemy, bullet) {
             enemy.act('STRIKED', this);
-            this.enemyCollide(enemy);
+            var that = enemy;
+            eval(this.enemyCollide);
             bullet.kill();
         }, null, this);
     }.bind(this);
@@ -308,5 +313,5 @@ phinalphase.Special = function (user, energyReq, key, frame, cooldown, userAnim,
 phinalphase.Special.prototype = Object.create(phinalphase.Skill.prototype);
 phinalphase.Special.prototype.constructor = phinalphase.Special;
 phinalphase.Special.prototype.use = function () {
-    this.special(this);
+    eval(this.special);
 }
