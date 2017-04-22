@@ -7,6 +7,7 @@
     <title>Login</title>
 
     <link rel="stylesheet" href="/stylesheets/login.css">
+    <link rel="stylesheet" href="/stylesheets/starfield.css">
 <script
 src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -17,13 +18,20 @@ src="https://code.jquery.com/jquery-3.2.1.min.js"
 		<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
 </head>
 <body id="body">
+    <div id="space">
+  <div class="stars"></div>
+  <div class="stars"></div>
+  <div class="stars"></div>
+  <div class="stars"></div>
+  <div class="stars"></div>
+</div>
 <section id="login">
     	<img src="/assets/logo.png" class="img-responsive" id="logo2" alt="game logo">
     <div class="container">
     	<div class="row">
     	    <div class="col-xs-12">
         	    <div class="form-wrap">
-                <h1>Log in with your username</h1>
+                <h1 id="loginHeading">Log in with your username</h1>
                     <form role="form" action="/login" method="post" id="login-form" autocomplete="off">
                         <div class="form-group">
                             <label for="usernameLogin" class="sr-only">Username</label>

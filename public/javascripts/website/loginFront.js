@@ -131,10 +131,8 @@ $(function() {
 $("#usernameLogin,#key").on('focus',function (){
     $('#backendLoginMessage').fadeOut(1000);
 })
-//  $('registerButton').click( function() {
-//         $('form-horizontal').submit();
-//     });
 });
+
  
  
  
