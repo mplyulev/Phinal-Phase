@@ -1,15 +1,15 @@
 var phinalphase = phinalphase || {};
 
 // phinalphase.createPlayerNinja = function (that) {
-var anim = {
+var animNinja = {
     idle: ['idle', 'Idle_', 0, 11, '', 3, 15, 0, 0],
     run: ['run', 'Run_', 0, 12, '', 3, 15, 0, 0],
     jumpStart: ['jumpStart', 'Jump Start_', 0, 11, '', 3, 15, 0, 0],
     jumpAir: ['jumpAir', 'Jump On Air_', 0, 0, '', 3, 15, 0, 0],
     jumpFall: ['jumpFall', 'Jump Fall_', 0, 0, '', 3, 15, 0, 0],
-    attack: ['attack1', 'Attack_', 0, 13, '', 3, 20, 11, 0],
+    attack: ['attack1', 'Attack_', 0, 13, '', 3, 20, -11, 0],
     hurt: ['hurt', 'Hurt_', 0, 11, '', 3, 20, 0, 0],
-    death: ['death', 'Death_', 0, 19, '', 3, 20, 10, 0],
+    death: ['death', 'Death_', 0, 19, '', 3, 20, -10, 0],
     block: ['block', 'Block Parry_', 0, 19, '', 3, 20, 0, 0]
 };
 
@@ -20,7 +20,7 @@ var skillsNinja = [
         key: 'popAura',
         frame: 'pop_explosion0001',
         cooldown: 15,
-        userAnim: anim.block[0],
+        userAnim: animNinja.block[0],
         stop: true,
         duration: 10,
         anim: ['pop', 'pop_explosion', 1, 18, '', 4, 15],
@@ -39,7 +39,7 @@ var skillsNinja = [
     //     enemyCollide: function (enemy) {
 
     //     },
-    //     userAnim: anim.block[0],
+    //     userAnim: animNinja.block[0],
     //     stop: true
     // },
 
@@ -49,7 +49,7 @@ var skillsNinja = [
         key: 'fireball',
         frame: 'fireball',
         cooldown: 1,
-        userAnim: anim.block[0],
+        userAnim: animNinja.block[0],
         stop: true,
         dmg: 10,
         enemyCollide: '',
@@ -69,7 +69,7 @@ var skillsNinja = [
         key: undefined,
         frame: undefined,
         cooldown: 0,
-        userAnim: anim.attack[0],
+        userAnim: animNinja.attack[0],
         stop: false,
         dmg: 10,
         enemyCollide: '',
@@ -86,7 +86,7 @@ var skillsNinja = [
         key: undefined,
         frame: undefined,
         cooldown: 0,
-        userAnim: anim.block[0],
+        userAnim: animNinja.block[0],
         stop: false,
         bonusDefense: 5
     }
@@ -102,7 +102,7 @@ phinalphase.playerNinja = {
     speed: 300,
     energyRegen: 0.1,
     defense: 0,
-    anim: anim,
+    anim: animNinja,
     skills: skillsNinja
 }
 // that.playerNinja.checkWorldBounds = true;

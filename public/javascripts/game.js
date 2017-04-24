@@ -19,6 +19,7 @@ phinalphase.Game.addNewPlayer = function (player, main, host) {
         }
         phinalphase.playerID = player.id;
         phinalphase.game.camera.follow(phinalphase.Game.playerMap[player.id]);
+        phinalphase.game.camera.deadzone = new Phaser.Rectangle(300, 200, 200, 150);
     }
 
 }
@@ -66,8 +67,7 @@ phinalphase.Game.updatePlayer = function (id) {
         alive: player.alive,
         isFlinched: player.isFlinched,
         canBeHitted: player.canBeHitted,
-        oldCropY: player.oldCropY,
-        oldCropX: player.oldCropX,
+        changingOffset: player.changingOffset,
         energyRegen: player.energyRegen,
         defense: player.defense,
         gravity: player.body.gravity.y,
@@ -231,6 +231,9 @@ phinalphase.Game.prototype = {
         var player = phinalphase.Game.playerMap[phinalphase.playerID];
 
         if (player) {
+            Client.sync(player.x, player.y);
+
+
             if (player.health / 100 <= 0) {
                 this.healthbar.width = 0;
             } else {
@@ -243,9 +246,7 @@ phinalphase.Game.prototype = {
             }
 
 
-
-            Client.sync(player.x, player.y);
-
+            // phinalphase.deltaTime = this.game.time.physicsElapsed; 
             // phinalphase.deltaTime = (this.game.time.elapsedMS * this.game.time.fps) / 1000;
 
             if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
@@ -258,7 +259,7 @@ phinalphase.Game.prototype = {
                 }
             }
 
-            if (player.body.velocity.y > 0 && player.isInAir) {
+            if (player.body.velocity.y > 100 && player.isInAir) {
                 Client.sendAct('FALL');
             }
             if (this.game.input.keyboard.isDown(Phaser.Keyboard.UP) && !player.isInAir) {
@@ -290,17 +291,20 @@ phinalphase.Game.prototype = {
 
     },
 
-    render: function () {
+    // render: function () {
 
 
-        // this.game.debug.text(this.game.time.fps || '--', 20, 70, "#00ff00", "40px Courier");
-        // this.game.debug.spriteBounds(this.playerNinja);
-        // this.game.debug.spriteBounds(this.playerNinja.skills[2].weapon);
-        // this.game.debug.spriteInfo(this.playerNinja, 32, 32);
-        // this.game.debug.bodyInfo(this.playerNinja, 100, 150);
-        // this.game.debug.body(this.playerNinja);
-        // this.game.debug.spriteBounds(this.playerCop);
-        // this.game.debug.spriteInfo(this.playerCop, 532, 32);
-    }
+    //     // this.game.debug.text(this.game.time.fps || '--', 20, 70, "#00ff00", "40px Courier");
+    //     // this.game.debug.spriteBounds(this.playerNinja);
+    //     // this.game.debug.spriteBounds(this.playerNinja.skills[2].weapon);
+    //     // this.game.debug.spriteInfo(this.playerNinja, 32, 32);
+    //     // this.game.debug.bodyInfo(this.playerNinja, 100, 150);
+    //     // this.game.debug.body(this.playerNinja);
+    //     // if (phinalphase.Game.playerMap[phinalphase.playerID]) {
+    //     //     // this.game.debug.spriteBounds(phinalphase.Game.playerMap[phinalphase.playerID]);
+    //     //     this.game.debug.body(phinalphase.Game.playerMap[phinalphase.playerID]);
+    //     // }
+    //     // this.game.debug.spriteInfo(this.playerCop, 532, 32);
+    // }
 
 };

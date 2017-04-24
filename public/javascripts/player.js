@@ -18,8 +18,7 @@ phinalphase.Player = function (player) {
     this.alive = player.alive;
     this.isFlinched = player.isFlinched;
     this.canBeHitted = player.canBeHitted;
-    this.oldCropY = player.oldCropY;
-    this.oldCropX = player.oldCropX;
+    this.changingOffset = player.changingOffset;
 
     if (player.anim) {
         this.animationsObject = player.anim;
@@ -68,8 +67,14 @@ phinalphase.Player.prototype.addAnimation = function (animations) {
 };
 
 phinalphase.Player.prototype.play = function (animation, looping, cb) {
-
+    var prevAnimName = this.animations.currentAnim.name;
+    if ((this.changingOffset && prevAnimName != animation) && !this.busy && !this.isFlinched) {
+        return;
+    }
     this.animations.play(animation);
+    if (prevAnimName == animation) {
+        var isSameAnim = true;
+    }
     for (var key in this.animationsObject) {
         if (this.animationsObject.hasOwnProperty(key)) {
             var element = this.animationsObject[key];
@@ -79,44 +84,34 @@ phinalphase.Player.prototype.play = function (animation, looping, cb) {
             }
         }
     }
-    if (this.body.touching.down || this.body.touching.right) {
-        this.body.height += this.oldCropY;
-        this.y -= this.oldCropY;
 
-        this.body.width += cropX;
-        this.x -= cropX;
+
+    var diffX = Math.abs(this.width) - this.body.width;
+    var diffY = Math.abs(this.height) - this.body.height;
+
+
+    if (!isSameAnim) {
+        this.changingOffset = true;
+
+        phinalphase.game.time.events.add(100, function () {
+            this.changingOffset = false;
+        }.bind(this));
+        var diffH = this.height - this.body.height;
+        diffY += cropY;
+
+        this.body.offset.y = diffY;
+        this.y += cropY * -1;
     }
 
 
-    this.oldCropY = cropY || 0;
-    this.oldCropX = cropX || 0;
-
-    if (cropY != undefined) {
-        this.body.height = (this.height - cropY);
-        this.y += cropY;
+    if (diffX > 0) {
+        this.body.offset.x = diffX / 2;
     } else {
-        this.body.height = this.height;
+        this.body.offset.x = 0;
     }
-    var diff = Math.abs(this.width) - this.body.width;
+    this.body.offset.x += cropX;
+    this.x += cropX * -1
 
-    if (diff > 0) {
-        this.body.offset.setTo(diff / 2, 0);
-    } else {
-        this.body.offset.setTo(0, 0);
-    }
-
-
-    // if (cropX != undefined) {
-    //     if (cropX <= 0) {
-    //         this.body.width = (Math.abs(this.width) - cropX);
-    //         this.x += cropX;
-    //     } else {
-    //         this.body.width = (Math.abs(this.width) + cropX);
-    //     }
-
-    // } else {
-    //     this.body.width = Math.abs(this.width);
-    // }
 
     if (looping === false) {
         this.animations.currentAnim.loop = false;
@@ -151,12 +146,12 @@ phinalphase.Player.prototype.moveSides = function (sideNum) {
         // this.body.velocity.x = -(this.speed * phinalphase.deltaTime);
         this.body.velocity.x = -this.speed;
     } else {
-        // this.body.velocity.x = (this.speed * phinalphase.deltaTime);
+        // this.x += (5 * phinalphase.deltaTime);
         this.body.velocity.x = this.speed;
     }
-    if (this.isInAir) {
+    if (this.isInAir && this.body.velocity.y <= 0) {
         this.play(this.animationsObject.jumpAir[0]);
-    } else {
+    } else if (this.body.velocity.y <= 0) {
         this.play(this.animationsObject.run[0]);
     }
 }
