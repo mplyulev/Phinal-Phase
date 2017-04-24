@@ -32,10 +32,13 @@ app.use(function(req, res, next) {
 
 //routes
 var login = require('./routes/login');
+var logout = require('./routes/logout');
 var registration = require('./routes/registration');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var pp = require('./routes/pp');
+var data = require('./routes/data');
+var dataRanklist = require('./routes/dataRanklist');
 
 
 var app = express();
@@ -90,10 +93,13 @@ function requireLogin (req, res, next)  {
 app.use('/pp', pp);
 app.use('/login', login);
 app.use('/registration', registration);
+app.use('/logout',requireLogin, logout);
 app.use('/',requireLogin, index);
 app.use('/index',requireLogin, index);
 app.use("/login#/changePassword",requireLogin);
 app.use('/users', users);
+app.use('/data', data);
+app.use('/dataRanklist', dataRanklist);
 
 
 

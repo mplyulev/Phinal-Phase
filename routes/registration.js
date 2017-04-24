@@ -20,8 +20,8 @@ router.post('/', function(req, res, next) {
                  res.render("registration" ,{messageUsernameTaken:"This username is already taken."});
             }
             if (data1.length==0 && data2.length==0) {
-                users.insert({name:name,username:username,email:email,password:password});
-                res.render("login");
+                users.insert({name:name,username:username,email:email,password:password, avatarURL:"https://rockymountainradar.com/landing/images/blank-avatar.png"});
+                res.redirect("/login");
             }
         });
     })

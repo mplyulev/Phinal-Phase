@@ -1,0 +1,42 @@
+<div ng-app="myApp" ng-controller='ranklistController'>
+<table>
+  <tr>
+    <th class="ranklistTd">#</th>
+    <th class="ranklistTd">Avatar</th>
+    <th class="ranklistTd">Username</th>
+    <th class="ranklistTd">Kills</th>
+    <th class="ranklistTd">Deaths</th>
+    <th class="ranklistTd">Score</th>
+  </tr>
+  <tr ng-repeat="user in data">
+    <td class="ranklistTd">{{ $index + 1 }}</td>
+    <td  id="avatarData"> <img class="img-responsive" id="ranklistAvatar"ng-src="{{user.avatarURL}}" alt=""></td>
+    <td class="ranklistTd" id="ranklistUsername">{{ user.username }}</td>
+    <td>{{ user.kills }}</td>
+    <td>{{ user.deaths }}</td>
+    <td>{{ user.score }}</td>
+   
+    <!--<td>{{ user.Country }}</td>-->
+  </tr>
+  <!--<tr>
+    <td>Peter</td>
+    <td>Griffin</td>
+    <td>$100</td>
+  </tr>
+  <tr>
+    <td>Lois</td>
+    <td>Griffin</td>
+    <td>$150</td>
+  </tr>
+  <tr>
+    <td>Joe</td>
+    <td>Swanson</td>
+    <td>$300</td>
+  </tr>
+  <tr>
+    <td>Cleveland</td>
+    <td>Brown</td>
+    <td>$250</td>
+</tr>
+</table>-->
+</div>

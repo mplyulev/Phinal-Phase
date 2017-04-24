@@ -5,9 +5,10 @@ var users = db.get('users');
 router.post('/', function (req, res, next) {
     var usernameLogin = req.body.usernameLogin;
     var passwordLogin = req.body.key;
-    users.find({ username: usernameLogin} ,{password: passwordLogin })
+    users.find({ username: usernameLogin ,password: passwordLogin })
         .then(function (data) {
             if (data.length > 0) {
+                var loggedInUser = data[0].username;
                 console.log(data);
                 req.session.userId = data[0]._id;
                 res.redirect('/index');

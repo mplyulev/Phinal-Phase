@@ -1,9 +1,4 @@
-  html{
-     height: auto;
-  
- 	background-color: black;
- 	font-family: 'Oxygen', sans-serif;
-}
+ 
 #body {
     background-color:black;
 }
@@ -191,6 +186,9 @@ input[type="text"] {
 #nameValidation,#emailValidation,#passwordValidation,#passwordConfirmValidation,#usernameValidation {
     color:  #D21C1E;
     text-align: center;
+}
+#usernameLogin {
+    text-indent: 10px;
 }
  
  #backendLoginMessage,#messageUsernameTaken,#messageEmailTaken { 
