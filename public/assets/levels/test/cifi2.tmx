@@ -95,36 +95,17 @@
     <property name="usability" value="movingPlatform"/>
    </properties>
   </object>
-  <object id="20" x="793.939" y="1536.36" width="57.5758" height="57.5758">
+  <object id="23" x="762.121" y="453.03" width="57.5758" height="57.5758">
    <properties>
+    <property name="currentPos" type="int" value="0"/>
     <property name="damage" type="int" value="20"/>
+    <property name="goingDown" type="bool" value="true"/>
+    <property name="maxPos" type="int" value="500"/>
+    <property name="speed" type="int" value="3"/>
     <property name="sprite" value="saw"/>
     <property name="type" value="saw"/>
     <property name="usability" value="damageMoving"/>
-   </properties>
-  </object>
-  <object id="22" x="1559.09" y="513.636" width="57.5758" height="57.5758">
-   <properties>
-    <property name="damage" type="int" value="20"/>
-    <property name="sprite" value="saw"/>
-    <property name="type" value="saw"/>
-    <property name="usability" value="damageMoving"/>
-   </properties>
-  </object>
-  <object id="23" x="765.151" y="571.212" width="57.5758" height="57.5758">
-   <properties>
-    <property name="damage" type="int" value="20"/>
-    <property name="sprite" value="saw"/>
-    <property name="type" value="saw"/>
-    <property name="usability" value="damageMoving"/>
-   </properties>
-  </object>
-  <object id="25" x="959.091" y="1574.24" width="57.5758" height="57.5758">
-   <properties>
-    <property name="damage" type="int" value="20"/>
-    <property name="sprite" value="saw"/>
-    <property name="type" value="sawHorizontal"/>
-    <property name="usability" value="damageMovingHorizontal"/>
+    <property name="way" value="y"/>
    </properties>
   </object>
  </objectgroup>

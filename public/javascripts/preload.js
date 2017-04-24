@@ -72,7 +72,7 @@ phinalphase.Preload.prototype = {
 
 
 
-
+        //Players
         this.load.image('bullet', '/assets/images/bullet2.png');
         this.load.atlas('playerNinja', '/assets/images/Players/Swordsman/hero1.png', '/assets/images/Players/Swordsman/hero1.json');
         this.load.spritesheet('fireball', '/assets/images/Players/Swordsman/fireball.png', 333, 199);
@@ -82,11 +82,25 @@ phinalphase.Preload.prototype = {
 
 
 
+        //user interface
+        this.load.image('healthContainer', '/assets/GUI/healthContainer.png');
+        this.load.image('healthbar', '/assets/GUI/healthbar.png');
+        this.load.image('energyContainer', '/assets/GUI/energyContainer.png');
+        this.load.image('energybar', '/assets/GUI/energybar.png');
+
+        //MainMenu
+
+        this.load.image('playButton', '/assets/GUI/play.png');
+        this.load.image('menuBG', '/assets/GUI/menuBG.png');
+        this.load.spritesheet('buttonOnOff', '/assets/GUI/onoff.png', 175, 175);
+        this.load.image('ninjaLogo', '/assets/GUI/ninjaLogo.png');
+        this.load.image('copLogo', '/assets/GUI/copLogo.png');
+
 
     },
     create: function () {
 
-        this.state.start('Game');
+        this.state.start('MainMenu');
     }
 
 };

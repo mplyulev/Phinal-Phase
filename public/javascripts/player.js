@@ -5,30 +5,29 @@ phinalphase.Player = function (player) {
     this.game = phinalphase.game;
     this.game.physics.arcade.enable(this);
     this.anchor.setTo(0.5, 1);
-    this.body.checkCollision.up = false;
     this.health = player.health;
     this.energy = player.energy;
     this.energyRegen = player.energyRegen;
     this.defense = player.defense;
     this.body.gravity.y = player.gravity;
     this.jumpHeight = player.jumpHeight;
-    this.speedX = player.speed;
+    this.speed = player.speed;
     this.isInAir = player.isInAir;
     this.busy = player.busy;
     this.canAttackAgain = player.canAttackAgain;
     this.alive = player.alive;
     this.isFlinched = player.isFlinched;
     this.canBeHitted = player.canBeHitted;
-    this.animationsObject = player.anim;
     this.oldCropY = player.oldCropY;
     this.oldCropX = player.oldCropX;
-    
+
     if (player.anim) {
+        this.animationsObject = player.anim;
         this.addAnimation(player.anim);
     }
     if (player.skills) {
         this.skills = [];
-        skills.forEach(function (skill) {
+        player.skills.forEach(function (skill) {
             if (skill.type == 'aurabuff') {
                 this.skills.push(new phinalphase.AuraSkillBuff(this, skill.enerReq, skill.key, skill.frame, skill.cooldown, skill.userAnim, skill.stop, skill.duration, skill.anim, skill.effects, skill.afterEffects));
             }
@@ -149,9 +148,11 @@ phinalphase.Player.prototype.jump = function () {
 phinalphase.Player.prototype.moveSides = function (sideNum) {
     this.scale.setTo(sideNum, 1);
     if (sideNum < 0) {
-        this.body.velocity.x = -this.speedX;
+        // this.body.velocity.x = -(this.speed * phinalphase.deltaTime);
+        this.body.velocity.x = -this.speed;
     } else {
-        this.body.velocity.x = this.speedX;
+        // this.body.velocity.x = (this.speed * phinalphase.deltaTime);
+        this.body.velocity.x = this.speed;
     }
     if (this.isInAir) {
         this.play(this.animationsObject.jumpAir[0]);

@@ -63,19 +63,6 @@ server.listen(5000, function () {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
