@@ -7,7 +7,14 @@ var app  = angular.module("myApp",["ngRoute"]);
      .when("pp", {
          templateUrl: "/HTML/phinalphase.html",
      }) 
-  
+ });
+
+ app.controller("avatarController",  function($scope,$http)  {
+$http.get("data").then(function (response)  {
+$scope.data = response.data;
+console.log("check controller");
+
+});
  });
 
 //  app.controller("logoutController", function ($scope) {
