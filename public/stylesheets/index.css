@@ -1,4 +1,14 @@
 
+html  {
+  overflow-x:hidden;
+ 
+ /*background-color: black;*/
+}
+body {
+  height:800px;
+ background-image: url("/assets/space2.jpg");
+ /*background-color: black;*/
+}
 #logo2 {
      margin:0 auto; 
      padding-bottom:100px;
@@ -7,11 +17,13 @@
      position:relative;
      opacity:0; 
  }
-
+#planet  {
+  width:10%;
+}
 #logo2 { transition: all 1.6s ease-in-out; }
 #logo2:hover { transform: scale(1.2); }
 #navbar { 
-  background: rgba(0, 0, 0, 0.5); 
+  background: rgba(0, 0, 0, 0.9); 
     top:30px;
  }
 
@@ -24,7 +36,7 @@
 
 #logoContainer { 
      width:100%;
-     height:500px;
+     height:1100px;
      text-align: center;
      height: auto;
      background-color:black;
@@ -32,9 +44,7 @@
 
       background-position: center; 
  }
- .navbar3 {
-   background-color:black;
- }
+ 
 .mainContainer .navbar-brand {
   height: 100px;
 }
@@ -51,7 +61,7 @@
 }
 
  #welcomeMessage,#passwordChangedMessage,#wrongPasswordMessage { 
- font-size:33px;
+ font-size:35px;
  }
  #passwordTooShortMessage  {
    font-size:15px;
@@ -77,6 +87,18 @@
     padding: 6px 12px;
     background: rgba(0,0,0,0.15);
     border-radius: 3px 0 0 3px;
+}
+
+.panel  {
+  bottom :30px;
+  position:relative;
+}
+
+.panel-title  {
+color:white;
+ }
+.panel-heading {
+  background-color: black;
 }
 
 .panel-body  {
@@ -105,11 +127,11 @@
 
 svg{
   width: 100%;
-  height: 350px;
+  height:350px;
   display: block;
   position: relative;
-  top:50px;
-  left:22%;
+ bottom:0;
+  left:23%;
   margin: 0 auto;
 
 }
@@ -138,6 +160,10 @@ svg{
    width:100%;
  }
 
+ .stars { 
+   height:1200px;
+ }
+
 #avatar { 
   margin:0 auto;
   display:block;
@@ -162,9 +188,15 @@ svg{
   margin-top:4%;
   border-radius: 3px;
   cursor: pointer;
+  margin:0 auto;
+  display:block;
 }
 
- 
+ #ranklistAvatar {
+ width:100px;
+ height: auto;
+   float:left;
+ }
 
 #saveButton:focus {
   background: #e0e0e0;
@@ -195,3 +227,41 @@ color:white;
  }
 
  
+
+ table {
+    border-collapse: collapse;
+    width: 100%;
+    top:13px;
+    position:relative;
+     
+}
+
+th, td {
+    text-align: left;
+    padding: 18px;
+    border:1px solid black;
+    
+}
+td { 
+   background-color: #f2f2f2;
+}
+
+
+th {
+    background-color: #4CAF50;
+    color: black;
+}
+
+#avatarData  {
+  width:100px;
+  height:100px;
+  box-shadow: 1px 2px 23px green;
+}
+
+.ranklistTd  {
+  text-align:center;
+  font-size:30px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  text-shadow: 1px 1px 21px green;
+  box-shadow: 1px 2px 23px green;
+}

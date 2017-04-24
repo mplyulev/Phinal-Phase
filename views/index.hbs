@@ -14,7 +14,7 @@
   <script type="text/javascript" src={{script}}></script>
    <script type="text/javascript"src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
-   <script type="text/javascript"src="/javascripts/website/AngularMain.js">></script>
+   <script type="text/javascript"src="/javascripts/website/AngularMain.js"></script>
 
 <script
 	src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -23,7 +23,7 @@
   
 </head>
  <body>
-<div id="logoContainer" >
+ 
 <svg id="svgText" version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
 	 width="600px" height="100px" viewBox="0 0 600 100">
 <style type="text/css">
@@ -122,6 +122,7 @@
 	<text id="passwordChangedMessage" x="0" y="100">&nbsp&nbsp{{message3}}</text>
 	<text id="wrongPasswordMessage" x="0" y="100">&nbsp&nbsp{{message4}}</text>
 	<text id="passwordTooShortMessage" x="0" y="100">&nbsp&nbsp{{message5}}</text>
+ 
 </g>
 </svg>
   <img src="/assets/logo.png" class="img-responsive" id="logo2" alt="game logo">
@@ -171,8 +172,8 @@
 
  <div ng-controller="avatarController">
 <div ng-view>
-	<img ng-src="data[0].avatarURL"
-</div>
+ 
+</div>		
 </div>
 
 <audio id="audioClick" src="assets/sound/button21.wav" ></audio>
@@ -189,7 +190,6 @@
   <div class="stars"></div>
   <div class="stars"></div>
 </div>
-
 
 
 	 <div ng-controller='avatarController'>   

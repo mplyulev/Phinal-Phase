@@ -1,4 +1,6 @@
 $(function() { 
+      
+ 
      $("#logo2").delay(4000).animate({opacity: '1'},1000);
      $("#logo2").animate({top: '30'},500);
      $("#audio")[0].play();

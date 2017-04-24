@@ -8,6 +8,7 @@ router.post('/', function (req, res, next) {
     users.find({ username: usernameLogin ,password: passwordLogin })
         .then(function (data) {
             if (data.length > 0) {
+                var loggedInUser = data[0].username;
                 console.log(data);
                 req.session.userId = data[0]._id;
                 res.redirect('/index');

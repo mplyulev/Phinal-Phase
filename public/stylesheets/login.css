@@ -187,6 +187,9 @@ input[type="text"] {
     color:  #D21C1E;
     text-align: center;
 }
+#usernameLogin {
+    text-indent: 10px;
+}
  
  #backendLoginMessage,#messageUsernameTaken,#messageEmailTaken { 
       color:  #D21C1E;

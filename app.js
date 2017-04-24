@@ -38,6 +38,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var pp = require('./routes/pp');
 var data = require('./routes/data');
+var dataRanklist = require('./routes/dataRanklist');
 
 
 var app = express();
@@ -98,6 +99,7 @@ app.use('/index',requireLogin, index);
 app.use("/login#/changePassword",requireLogin);
 app.use('/users', users);
 app.use('/data', data);
+app.use('/dataRanklist', dataRanklist);
 
 
 
