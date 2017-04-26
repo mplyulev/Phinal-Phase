@@ -3,6 +3,7 @@ function getSocket(server) {
     var io = require('socket.io', { rememberTransport: false, transports: ['WebSocket', 'Flash Socket', 'AJAX long-polling'] }).listen(server);
     server.lastPlayderID = 0;
     server.connectedUsers = 0;
+    server.matchTime = 300000;
 
     io.on('connection', function (socket) {
         socket.on('newplayer', function (data) {
@@ -23,9 +24,10 @@ function getSocket(server) {
             socket.player.oldCropY = 0;
             socket.player.kills = 0;
             socket.player.deaths = 0;
+            socket.player.score = 0;
 
 
-            socket.emit('allplayers', { players: getAllPlayers(), id: socket.player.id });
+            socket.emit('allplayers', { players: getAllPlayers(), id: socket.player.id, timer: server.matchTime });
             socket.broadcast.emit('newplayer', socket.player);
 
 
@@ -45,7 +47,12 @@ function getSocket(server) {
 
             socket.on('sync', function (data) {
                 socket.broadcast.emit('sync', { id: socket.player.id, x: data.x, y: data.y });
+            }); 
+
+            socket.on('syncTimer', function (data) {
+                server.matchTime = data;
             });
+
 
             socket.on('act', function (data) {
                 io.emit('act', { id: socket.player.id, act: data.act, cause: data.cause });

@@ -22,6 +22,10 @@ Client.sync = function (x, y) {
     Client.socket.emit('sync', { x: x, y: y });
 }
 
+Client.syncTimer = function (dur) {
+    Client.socket.emit('syncTimer', dur);
+}
+
 Client.sendUpdates = function (properties) {
     Client.socket.emit('update', properties);
 }
@@ -34,12 +38,13 @@ Client.socket.on('newplayer', function (data) {
 Client.socket.on('allplayers', function (data) {
     var players = data.players;
     var id = data.id;
+    var timer = data.timer;
     for (var i = 0; i < players.length; i++) {
         if (players[i].id == id) {
             if (players[i].isHost) {
-                phinalphase.Game.addNewPlayer(players[i], true, true);
+                phinalphase.Game.addNewPlayer(players[i], true, true, timer);
             } else {
-                phinalphase.Game.addNewPlayer(players[i], true);
+                phinalphase.Game.addNewPlayer(players[i], true, undefined, timer);
             }
         } else {
             phinalphase.Game.addOldPlayer(players[i]);

@@ -100,8 +100,10 @@ phinalphase.MeleeAttack.prototype.use = function () {
             this.user.play(this.userAnim, false, function () {
                 phinalphase.game.updatables.splice(phinalphase.game.updatables.indexOf(collideFunction), 1);
                 this.user.play(this.user.animationsObject.idle[0]);
-                this.user.busy = false;
                 this.weapon.kill();
+                phinalphase.game.time.events.add(50, function () {
+                    this.user.busy = false;
+                }.bind(this));
             }.bind(this));
 
 
@@ -229,15 +231,6 @@ phinalphase.AuraSkillDmg.prototype.use = function () {
 
     }
 }
-
-
-
-
-
-
-
-
-
 
 
 phinalphase.Projectile = function (user, energyReq, key, frame, cooldown, userAnim, stop, dmg, enemyCollide, bullet, offsetX, offsetY) {

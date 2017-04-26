@@ -120,7 +120,7 @@
 </data>
  </layer>
  <objectgroup name="objects">
-  <object id="23" x="837.03" y="130" width="57.5758" height="57.5758">
+  <object id="23" x="870.364" y="133.03" width="57.5758" height="57.5758">
    <properties>
     <property name="currentPos" type="int" value="0"/>
     <property name="damage" type="int" value="20"/>
@@ -192,7 +192,7 @@
     <property name="way" value="x"/>
    </properties>
   </object>
-  <object id="35" x="1095.94" y="130" width="57.5758" height="57.5758">
+  <object id="35" x="1123.21" y="133.03" width="57.5758" height="57.5758">
    <properties>
     <property name="currentPos" type="int" value="0"/>
     <property name="damage" type="int" value="20"/>
@@ -269,7 +269,7 @@
   <object id="50" x="723.955" y="552.303" width="80.09" height="39.394">
    <properties>
     <property name="currentPos" type="int" value="0"/>
-    <property name="maxPos" type="int" value="700"/>
+    <property name="maxPos" type="int" value="690"/>
     <property name="speed" type="int" value="2"/>
     <property name="sprite" value="platform"/>
     <property name="type" value="platform"/>
@@ -297,7 +297,7 @@
     <property name="use" value="heal"/>
    </properties>
   </object>
-  <object id="53" x="1443.94" y="443.939" width="57.5758" height="57.5758">
+  <object id="53" x="1437.88" y="395.455" width="57.5758" height="57.5758">
    <properties>
     <property name="currentPos" type="int" value="0"/>
     <property name="damage" type="int" value="20"/>

@@ -207,7 +207,6 @@ phinalphase.оbjectGroupFromTiled = function (type, map, layerName, groupName) {
         if (uab == 'movable') {
             phinalphase[groupName].children.forEach(function (ele) {
                 phinalphase.game.physics.arcade.enable(ele);
-                ele.body.collideWorldBounds = true;
                 ele.colided = false;
                 ele.body.gravity.y = 500;
                 ele.body.drag.x = 3000;
@@ -215,6 +214,7 @@ phinalphase.оbjectGroupFromTiled = function (type, map, layerName, groupName) {
             }, this);
             phinalphase.game.updatables.push(function () {
                 phinalphase[groupName].children.forEach(function (ele) {
+                    phinalphase.game.world.wrap(ele, 0, true);
                     if (!ele.colided) {
                         ele.body.immovable = true;
                     } else {

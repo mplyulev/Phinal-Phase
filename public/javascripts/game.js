@@ -11,7 +11,7 @@ phinalphase.putDeltaSpeed = function (speed) {
 }
 
 
-phinalphase.Game.addNewPlayer = function (player, main, host) {
+phinalphase.Game.addNewPlayer = function (player, main, host, timer) {
     if (player.x == 0) {
         var spawnCoor = Math.floor(Math.random() * phinalphase.spawns.children.length);
         player.x = phinalphase.spawns.children[spawnCoor].x;
@@ -20,6 +20,7 @@ phinalphase.Game.addNewPlayer = function (player, main, host) {
     phinalphase.Game.playerMap[player.id] = new phinalphase.Player(player);
 
     if (main) {
+        phinalphase.matchTime = timer;
         if (host) {
             phinalphase.isHost = true;
         }
@@ -104,7 +105,8 @@ phinalphase.Game.updatePlayer = function (id) {
         oldCropX: player.oldCropX,
         oldCropY: player.oldCropY,
         kills: player.kills,
-        deaths: player.deaths
+        deaths: player.deaths,
+        score: player.score
     }
     Client.sendUpdates(newPlayer);
 };
@@ -277,9 +279,48 @@ phinalphase.Game.prototype = {
         });
         this.deathsText.fixedToCamera = true;
 
+
+
+
+        phinalphase.game.time.events.add(1000, function () {
+            this.matchTimer = this.game.time.create(false);
+
+            this.matchTimer.add(phinalphase.matchTime || 20000, function () {
+
+            }, this);
+
+            this.matchTimer.start();
+        }.bind(this));
+
+
+
+
+        this.matchTimerText = this.game.add.text(450, 20, "__", {
+            font: "20px Arial",
+            fill: "#AAA",
+            align: "center"
+        });
+        this.matchTimerText.fixedToCamera = true;
+
+
+
+
     },
 
     update: function () {
+
+
+        if (this.matchTimer) {
+            var min = Math.floor((this.matchTimer.duration / 1000) / 60);
+            if (min.toString().length <= 1) {
+                min = '0' + min;
+            }
+            var sec = Math.floor((this.matchTimer.duration / 1000) % 60);
+            if (sec.toString().length <= 1) {
+                sec = '0' + sec;
+            }
+            this.matchTimerText.setText(min + ':' +  sec);
+        }
 
 
         if (phinalphase.isHost) {
@@ -294,6 +335,9 @@ phinalphase.Game.prototype = {
             }, this);
             Client.syncObjects(objectsCoor);
             phinalphase.hostUpd++;
+            if (this.matchTimer) {
+                Client.syncTimer(this.matchTimer.duration);
+            }
         }
 
         Client.reqUpdate();

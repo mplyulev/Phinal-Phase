@@ -23,6 +23,7 @@ phinalphase.Player = function (player) {
     this.oldCropY = player.oldCropY;
     this.kills = player.kills;
     this.deaths = player.deaths;
+    this.score = player.score;
 
     if (player.anim) {
         this.animationsObject = player.anim;
@@ -246,8 +247,10 @@ phinalphase.Player.prototype.getHitted = function (dmgDealer) {
     }
     if (this.health <= 0) {
         if (dmgDealer.kills) {
+            dmgDealer.score += 10;
             dmgDealer.kills++;
         } else if (dmgDealer.user) {
+            dmgDealer.user.score += 10;
             dmgDealer.user.kills++;
         }
         this.act('DIE');
@@ -287,6 +290,7 @@ phinalphase.Player.prototype.flinch = function (dmgDealer) {
 phinalphase.Player.prototype.dying = function () {
     this.alive = false;
     this.deaths++;
+    this.score -= 5;
     this.play(this.animationsObject.death[0], false, function () {
         this.kill();
         this.respawn();
@@ -318,7 +322,7 @@ phinalphase.Player.prototype.Update = function () {
     }, this);
 
     if (this.energy < 100 && this.energy + this.energyRegen <= 100) {
-        this.energy += this.energyRegen;
+        this.energy += phinalphase.putDeltaSpeed(this.energyRegen);
     } else if (this.energy < 100) {
         this.energy = 100;
     }
