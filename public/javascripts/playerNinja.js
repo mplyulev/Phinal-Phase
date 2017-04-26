@@ -1,6 +1,5 @@
 var phinalphase = phinalphase || {};
 
-// phinalphase.createPlayerNinja = function (that) {
 var animNinja = {
     idle: ['idle', 'Idle_', 0, 11, '', 3, 15, 0, 0],
     run: ['run', 'Run_', 0, 12, '', 3, 15, 0, 0],
@@ -16,10 +15,10 @@ var animNinja = {
 var skillsNinja = [
     {
         type: 'aurabuff',
-        enerReq: 10,
+        enerReq: 30,
         key: 'popAura',
         frame: 'pop_explosion0001',
-        cooldown: 15,
+        cooldown: 20,
         userAnim: animNinja.block[0],
         stop: true,
         duration: 10,
@@ -48,11 +47,16 @@ var skillsNinja = [
         enerReq: 10,
         key: 'fireball',
         frame: 'fireball',
-        cooldown: 1,
+        cooldown: 10,
         userAnim: animNinja.block[0],
         stop: true,
         dmg: 10,
-        enemyCollide: '',
+        enemyCollide: `
+        (function(enemy){
+            enemy.body.velocity.x = 0;            
+            enemy.body.velocity.y = -phinalphase.putDeltaSpeed(400);;
+        }.bind(this))(enemy);
+            `,
         bullet: {
             number: 1,
             speed: 500,
@@ -71,12 +75,16 @@ var skillsNinja = [
         cooldown: 0,
         userAnim: animNinja.attack[0],
         stop: false,
-        dmg: 10,
-        enemyCollide: '',
+        dmg: 20,
+        enemyCollide: `
+        (function(enemy){
+            enemy.body.velocity.x = 0;          
+        }.bind(this))(enemy);
+        `,
         weapon: {
-            offsetX: 60,
+            offsetX: 50,
             offsetY: -30,
-            height: 50,
+            height: 60,
             width: 50
         }
     },

@@ -4,12 +4,18 @@ phinalphase.Game = function () { };
 
 phinalphase.deltaTime = 0;
 phinalphase.isHost = false;
+phinalphase.hostUpd = 0;
+
+phinalphase.putDeltaSpeed = function (speed) {
+    return (speed * phinalphase.game.time.physicsElapsed) * phinalphase.game.time.fps;
+}
 
 
 phinalphase.Game.addNewPlayer = function (player, main, host) {
     if (player.x == 0) {
-        player.x = phinalphase.spawns.children[player.id % phinalphase.spawns.children.length].x;
-        player.y = phinalphase.spawns.children[player.id % phinalphase.spawns.children.length].y;
+        var spawnCoor = Math.floor(Math.random() * phinalphase.spawns.children.length);
+        player.x = phinalphase.spawns.children[spawnCoor].x;
+        player.y = phinalphase.spawns.children[spawnCoor].y;
     }
     phinalphase.Game.playerMap[player.id] = new phinalphase.Player(player);
 
@@ -38,16 +44,38 @@ phinalphase.Game.playerAct = function (id, act, cause) {
 };
 
 phinalphase.Game.syncPlayer = function (id, x, y) {
+    var oldX = phinalphase.Game.playerMap[id].x;
+    var oldY = phinalphase.Game.playerMap[id].y;
     phinalphase.Game.playerMap[id].x = x;
     phinalphase.Game.playerMap[id].y = y;
+    if (phinalphase.Game.playerMap[id].body.embedded) {
+        phinalphase.Game.playerMap[id].x = oldX;
+        phinalphase.Game.playerMap[id].y = oldY;
+    }
 };
 
 phinalphase.Game.syncObjects = function (data) {
     phinalphase.Game.objectMap.forEach(function (object, index) {
+        var oldX = object.x;
+        var oldY = object.y;
+        var oldPos = object.currentPos;
+
         object.x = data[index][0];
         object.y = data[index][1];
         if (object.currentPos) {
             object.currentPos = data[index][2];
+        }
+        if (data[index][3]) {
+            object.revive();
+        } else {
+            object.kill();
+        }
+        if (object.body.embedded) {
+            object.x = oldX;
+            object.y = oldY;
+            if (object.currentPos) {
+                object.currentPos = oldPos;
+            }
         }
     }, this);
 }
@@ -72,7 +100,9 @@ phinalphase.Game.updatePlayer = function (id) {
         defense: player.defense,
         gravity: player.body.gravity.y,
         jumpHeight: player.jumpHeight,
-        speed: player.speed
+        speed: player.speed,
+        oldCropX: player.oldCropX,
+        oldCropY: player.oldCropY
     }
     Client.sendUpdates(newPlayer);
 };
@@ -84,7 +114,7 @@ phinalphase.Game.prototype = {
     preload: function () {
         this.game.forceSingleUpdate = false;
         this.game.stage.disableVisibilityChange = true;
-        // this.game.time.advancedTiming = true;
+        this.game.time.advancedTiming = true;
     },
 
 
@@ -104,6 +134,7 @@ phinalphase.Game.prototype = {
         var layers = [
             // ['bg', 'bgImg'],
             ['backgroundLayer', 'background'],
+            ['backgroundLayer2', 'background2'],
             ['blockedLayer', 'block'],
 
             // ["water", "water"],
@@ -142,9 +173,14 @@ phinalphase.Game.prototype = {
 
             ["spikes", "objects", "spikes"],
             ["spawn", "spawns", "spawns"],
-            ["movingPlatform", "objects", "movingPlatforms"],
+            ["platform", "objects", "platforms"],
             ["saw", "objects", "saws"],
-            ["sawHorizontal", "objects", "sawsHorizontal"],
+            ["potionH", "objects", "potionsH"],
+            ["potionP", "objects", "potionsP"],
+            ["potionE", "objects", "potionsE"],
+            ["box", "objects", "boxs"],
+            ["toxic", "objects", "toxic"],
+            ["spikes", "objects", "spikes"],
             // ["tree", "object", "tree"],
             // ['bush', 'objects', 'bush'],
 
@@ -221,9 +257,15 @@ phinalphase.Game.prototype = {
         if (phinalphase.isHost) {
             var objectsCoor = {};
             phinalphase.Game.objectMap.forEach(function (object, index) {
-                objectsCoor[index] = [object.x, object.y, object.currentPos];
+                if (phinalphase.hostUpd < 5) {
+                    objectsCoor[index] = [object.x, object.y, object.currentPos, true];
+                    object.revive();
+                } else {
+                    objectsCoor[index] = [object.x, object.y, object.currentPos, object.alive];
+                }
             }, this);
             Client.syncObjects(objectsCoor);
+            phinalphase.hostUpd++;
         }
 
         Client.reqUpdate();
@@ -245,10 +287,6 @@ phinalphase.Game.prototype = {
                 this.energybar.width = this.energybarWidth * (player.energy / 100);
             }
 
-
-            // phinalphase.deltaTime = this.game.time.physicsElapsed; 
-            // phinalphase.deltaTime = (this.game.time.elapsedMS * this.game.time.fps) / 1000;
-
             if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
                 Client.sendAct('RIGHT');
             } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
@@ -259,24 +297,25 @@ phinalphase.Game.prototype = {
                 }
             }
 
-            if (player.body.velocity.y > 100 && player.isInAir) {
+            if (player.body.velocity.y > 200 && player.isInAir) {
                 Client.sendAct('FALL');
             }
             if (this.game.input.keyboard.isDown(Phaser.Keyboard.UP) && !player.isInAir) {
                 Client.sendAct('UP');
             }
 
-            if (this.game.input.keyboard.isDown(Phaser.Keyboard.L)) {
-                Client.sendAct('SKILL', 2);
-            }
 
-            if (this.game.input.keyboard.isDown(Phaser.Keyboard.O)) {
+
+            if (this.game.input.keyboard.isDown(Phaser.Keyboard.Q)) {
                 Client.sendAct('SKILL', 0);
             }
-            if (this.game.input.keyboard.isDown(Phaser.Keyboard.P)) {
+            if (this.game.input.keyboard.isDown(Phaser.Keyboard.W)) {
                 Client.sendAct('SKILL', 1);
             }
-            if (this.game.input.keyboard.isDown(Phaser.Keyboard.K)) {
+            if (this.game.input.keyboard.isDown(Phaser.Keyboard.E)) {
+                Client.sendAct('SKILL', 2);
+            }
+            if (this.game.input.keyboard.isDown(Phaser.Keyboard.R)) {
                 Client.sendAct('SKILL', 3);
             }
 

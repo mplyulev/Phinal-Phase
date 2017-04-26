@@ -19,6 +19,8 @@ phinalphase.Player = function (player) {
     this.isFlinched = player.isFlinched;
     this.canBeHitted = player.canBeHitted;
     this.changingOffset = player.changingOffset;
+    this.oldCropX = player.oldCropX;
+    this.oldCropY = player.oldCropY;
 
     if (player.anim) {
         this.animationsObject = player.anim;
@@ -93,7 +95,7 @@ phinalphase.Player.prototype.play = function (animation, looping, cb) {
     if (!isSameAnim) {
         this.changingOffset = true;
 
-        phinalphase.game.time.events.add(100, function () {
+        phinalphase.game.time.events.add(0, function () {
             this.changingOffset = false;
         }.bind(this));
         var diffH = this.height - this.body.height;
@@ -101,7 +103,13 @@ phinalphase.Player.prototype.play = function (animation, looping, cb) {
 
         this.body.offset.y = diffY;
         this.y += cropY * -1;
+
+        if (this.body.touching.down) {
+            this.y += this.oldCropY;
+        }
     }
+
+    this.oldCropY = cropY;
 
 
     if (diffX > 0) {
@@ -112,6 +120,8 @@ phinalphase.Player.prototype.play = function (animation, looping, cb) {
     this.body.offset.x += cropX;
     this.x += cropX * -1
 
+
+    this.oldCropX = cropX;
 
     if (looping === false) {
         this.animations.currentAnim.loop = false;
@@ -131,7 +141,7 @@ phinalphase.Player.prototype.play = function (animation, looping, cb) {
 
 
 phinalphase.Player.prototype.jump = function () {
-    this.body.velocity.y = this.jumpHeight;
+    this.body.velocity.y = phinalphase.putDeltaSpeed(this.jumpHeight);
     this.play(this.animationsObject.jumpStart[0], false, function () {
         if (this.animations.currentAnim.name == this.animationsObject.jumpStart[0]) {
             this.play(this.animationsObject.jumpAir[0]);
@@ -143,16 +153,18 @@ phinalphase.Player.prototype.jump = function () {
 phinalphase.Player.prototype.moveSides = function (sideNum) {
     this.scale.setTo(sideNum, 1);
     if (sideNum < 0) {
-        // this.body.velocity.x = -(this.speed * phinalphase.deltaTime);
-        this.body.velocity.x = -this.speed;
+        this.body.velocity.x = -phinalphase.putDeltaSpeed(this.speed);
     } else {
-        // this.x += (5 * phinalphase.deltaTime);
-        this.body.velocity.x = this.speed;
+        this.body.velocity.x = phinalphase.putDeltaSpeed(this.speed);
     }
     if (this.isInAir && this.body.velocity.y <= 0) {
-        this.play(this.animationsObject.jumpAir[0]);
-    } else if (this.body.velocity.y <= 0) {
-        this.play(this.animationsObject.run[0]);
+        if (!(this.animationsObject.flyIdle && phinalphase.game.input.keyboard.isDown(Phaser.Keyboard.E))) {
+            this.play(this.animationsObject.jumpAir[0]);
+        }
+    } else if (this.body.velocity.y <= 0 || this.body.touching.down) {
+        if (!(this.animationsObject.flyIdle && phinalphase.game.input.keyboard.isDown(Phaser.Keyboard.E))) {
+            this.play(this.animationsObject.run[0]);
+        }
     }
 }
 
@@ -186,6 +198,12 @@ phinalphase.Player.prototype.act = function (act, cause) {
         if (act == 'STRIKED' && !this.canBeHitted) {
             return;
         }
+        if (this.animationsObject.flyIdle) {
+            if ((act == 'FALL' || !act) && phinalphase.game.input.keyboard.isDown(Phaser.Keyboard.E)) {
+                return;
+            }
+        }
+
 
         switch (act) {
 
@@ -205,13 +223,10 @@ phinalphase.Player.prototype.act = function (act, cause) {
                 this.getHitted(cause);
                 break;
             case 'FLINCH':
-                this.flinch();
+                this.flinch(cause);
                 break;
             case 'DIE':
                 this.dying();
-                break;
-            case 'FLYFORWARD':
-                this.flyForward();
                 break;
             case 'SKILL':
                 this.skills[cause].use();
@@ -230,19 +245,26 @@ phinalphase.Player.prototype.getHitted = function (dmgDealer) {
     if (this.health <= 0) {
         this.act('DIE');
     }
-    this.act('FLINCH');
+    this.act('FLINCH', dmgDealer);
 };
 
-phinalphase.Player.prototype.flinch = function () {
+phinalphase.Player.prototype.flinch = function (dmgDealer) {
     this.busy = false;
     this.isFlinched = true;
     this.canBeHitted = false;
-    this.body.velocity.y = -300;
-    if (this.scale.x <= 0) {
-        this.body.velocity.x = 100;
+    if (dmgDealer.body) {
+        this.body.velocity.y = -phinalphase.putDeltaSpeed(300);
+
+        if (dmgDealer.body.center.x > this.body.center.x) {
+            this.body.velocity.x = -phinalphase.putDeltaSpeed(100);
+        } else {
+            this.body.velocity.x = phinalphase.putDeltaSpeed(100);
+        }
     } else {
-        this.body.velocity.x = -100;
+        this.body.velocity.y = -phinalphase.putDeltaSpeed(100);
+        this.body.velocity.x = 0;
     }
+
 
     this.play(this.animationsObject.hurt[0], false, function () {
         this.isFlinched = false;
@@ -264,8 +286,11 @@ phinalphase.Player.prototype.dying = function () {
 };
 
 phinalphase.Player.prototype.Update = function () {
+    if (!this.alive) {
+        return;
+    }
     if (isNaN(this.body.velocity.y)) {
-        this.body.velocity.y = 20;
+        this.body.velocity.y = phinalphase.putDeltaSpeed(20);
     }
     if (!this.isFlinched) {
         this.body.velocity.x = 0;
@@ -273,6 +298,9 @@ phinalphase.Player.prototype.Update = function () {
     if (this.body.blocked.down || this.body.touching.down) {
         this.isInAir = false;
     } else {
+        if (this.animations.currentAnim.name == 'idle') {
+            this.play(this.animationsObject.jumpStart[0]);
+        }
         this.isInAir = true;
     }
     this.children.forEach(function (skill) {
@@ -287,16 +315,12 @@ phinalphase.Player.prototype.Update = function () {
         this.energy = 100;
     }
 
-    if (phinalphase.game.world.height < this.y) {
-        this.act('DIE');
-    }
-
     if (this.body.velocity.y < this.jumpHeight) {
-        this.body.velocity.y = this.jumpHeight;
+        this.body.velocity.y = phinalphase.putDeltaSpeed(this.jumpHeight);
     }
 
     if (this.body.velocity.y > Math.abs(this.jumpHeight)) {
-        this.body.velocity.y = Math.abs(this.jumpHeight);
+        this.body.velocity.y = Math.abs(phinalphase.putDeltaSpeed(this.jumpHeight));
     }
 }
 
@@ -338,13 +362,14 @@ phinalphase.Player.prototype.respawn = function () {
             }, this);
             child.kill();
         }, this);
-        this.x = phinalphase.spawns.children[0].x;
-        this.y = phinalphase.spawns.children[0].y;
-        phinalphase.spawns.children.push(phinalphase.spawns.children.shift());
+        var spawnCoor = Math.floor(Math.random() * phinalphase.spawns.children.length);
+        this.x = phinalphase.spawns.children[spawnCoor].x;
+        this.y = phinalphase.spawns.children[spawnCoor].y;
         this.body.velocity.y = 0;
         this.body.velocity.x = 0;
         this.canBeHitted = false;
         this.revive();
+        this.energy = 0;
         phinalphase.game.time.events.add(1000, function () {
             this.canBeHitted = true;
         }, this);

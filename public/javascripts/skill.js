@@ -84,25 +84,29 @@ phinalphase.MeleeAttack.prototype.use = function () {
             return;
         }
         this.weapon.revive();
-        var collideFunction = function () {
-            phinalphase.game.physics.arcade.overlap(phinalphase.players, this.weapon, function (weapon, enemy) {
-                if (enemy == this.user) {
-                    return;
-                }
-                enemy.act('STRIKED', this);
-                var that = enemy;
-                eval(this.enemyCollide);
-            }, null, this);
-        }.bind(this);
-        this.user.play(this.userAnim, false, function () {
-            phinalphase.game.updatables.splice(phinalphase.game.updatables.indexOf(collideFunction), 1);
-            this.user.play(this.user.animationsObject.idle[0]);
-            this.user.busy = false;
-            this.weapon.kill();
+        phinalphase.game.time.events.add(100, function () {
+
+
+            var collideFunction = function () {
+                phinalphase.game.physics.arcade.overlap(phinalphase.players, this.weapon, function (weapon, enemy) {
+                    if (enemy == this.user) {
+                        return;
+                    }
+                    enemy.act('STRIKED', this);
+                    var that = enemy;
+                    eval(this.enemyCollide);
+                }, null, this);
+            }.bind(this);
+            this.user.play(this.userAnim, false, function () {
+                phinalphase.game.updatables.splice(phinalphase.game.updatables.indexOf(collideFunction), 1);
+                this.user.play(this.user.animationsObject.idle[0]);
+                this.user.busy = false;
+                this.weapon.kill();
+            }.bind(this));
+
+
+            phinalphase.game.updatables.push(collideFunction);
         }.bind(this));
-
-
-        phinalphase.game.updatables.push(collideFunction);
     }
 }
 
@@ -288,29 +292,34 @@ phinalphase.Projectile.prototype.use = function () {
     if (this.weapon.bullets.countLiving() == this.bullet.number) {
         return;
     }
-    if (!this.checkEnergy()) {
-        return;
-    }
-    this.user.busy = true;
-    this.user.play(this.userAnim, false, function () {
-        if (!this.stop) {
-            this.user.busy = false;
-        }
-    }.bind(this));
-    if (this.stop) {
-        this.user.animations.stop();
-        phinalphase.game.time.events.add(500, function () {
-            this.user.busy = false;
-        }, this);
-    }
-
 
     if (this.user.scale.x > 0) {
         this.weapon.fireAngle = Phaser.ANGLE_RIGHT;
     } else {
         this.weapon.fireAngle = Phaser.ANGLE_LEFT;
     }
-    this.weapon.fire()
+
+    if (this.user.energy >= this.energyReq) {
+        var fired = this.weapon.fire()
+    }
+
+    if (fired) {
+        if (!this.checkEnergy()) {
+            return;
+        }
+        this.user.busy = true;
+        this.user.play(this.userAnim, false, function () {
+            if (!this.stop) {
+                this.user.busy = false;
+            }
+        }.bind(this));
+        if (this.stop) {
+            this.user.animations.stop();
+            phinalphase.game.time.events.add(500, function () {
+                this.user.busy = false;
+            }, this);
+        }
+    }
 }
 
 

@@ -19,6 +19,8 @@ function getSocket(server) {
             socket.player.isFlinched = false;
             socket.player.canBeHitted = true;
             socket.player.changingOffset = false;
+            socket.player.oldCropX = 0;
+            socket.player.oldCropY = 0;
 
 
             socket.emit('allplayers', { players: getAllPlayers(), id: socket.player.id });

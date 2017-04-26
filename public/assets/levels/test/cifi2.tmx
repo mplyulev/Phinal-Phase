@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="64" tileheight="64" nextobjectid="26">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="64" tileheight="64" nextobjectid="76">
  <tileset firstgid="1" name="cifiSheet" tilewidth="64" tileheight="64" tilecount="28" columns="28">
   <image source="../../SpritesheetsАndTilesets/cifi/Tiles/cifiSheet.png" width="1792" height="64"/>
   <tile id="17">
@@ -48,97 +48,340 @@
 2147483653,5,2147483653,5,2147483653,5,2147483653,5,2147483653,5,2147483653,5,2147483653,5,2147483653,5,2147483653,5,2147483653,5,2147483653,5,2147483653,5,2147483653,5,2147483653,5,2147483653,5
 </data>
  </layer>
+ <layer name="background2" width="30" height="30">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,11,11,0,0,0,0,0,0,0,11,11,12,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,11,12,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,11,11,12,10,11,12,10,11,12,0,0,3221225482,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,3221225482,3221225484,0,3221225482,3221225484,0,3221225482,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
  <layer name="block" width="30" height="30">
   <properties>
    <property name="layerType" value="block"/>
   </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,18,18,18,18,18,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,18,18,18,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,3221225490,3221225490,3221225490,18,18,18,0,0,0,0,0,0,0,18,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,1610612754,0,18,0,0,2684354578,0,0,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,18,0,0,1610612754,0,18,0,0,2684354578,0,0,18,0,0,0,0,0,0,0,0,0,3221225490,3221225490,3221225490,3221225490,3221225490,0,0,
-0,18,2684354578,18,18,18,0,0,0,1610612754,2684354578,18,18,18,18,18,0,0,18,18,18,0,0,18,18,2684354578,0,0,0,0,
-0,0,2684354578,0,0,0,0,0,0,1610612754,0,0,0,0,0,1610612754,0,0,18,0,0,0,0,0,0,2684354578,0,0,0,0,
-0,0,2684354578,0,0,0,0,18,18,18,0,0,0,0,0,1610612754,0,0,18,0,0,0,0,0,0,2684354578,0,18,18,18,
-18,18,18,18,3221225490,0,0,0,0,1610612754,18,0,0,3221225490,3221225490,1610612754,18,18,18,18,18,18,18,18,18,18,0,0,0,0,
-0,0,18,0,1610612754,18,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,18,0,0,0,18,0,0,0,0,
-0,0,0,0,1610612754,0,0,0,0,0,0,18,0,0,0,0,0,0,0,0,0,18,0,0,0,18,18,0,0,0,
-0,18,18,18,18,18,0,0,2684354578,18,18,18,0,0,18,18,18,18,18,0,0,18,18,0,0,18,0,0,18,18,
-0,0,0,0,2684354578,0,0,0,2684354578,0,0,0,0,0,0,0,0,0,0,18,0,18,0,0,0,18,0,0,0,0,
-0,0,18,0,2684354578,0,0,18,2684354578,0,0,0,0,18,0,0,0,0,0,0,0,18,0,0,0,18,0,0,0,0,
-0,3221225490,3221225490,3221225490,2684354578,0,0,0,3221225490,3221225490,3221225490,18,0,0,1610612754,0,0,18,18,18,18,18,18,18,0,18,18,18,0,0,
-0,0,1610612754,18,18,18,0,0,0,1610612754,0,0,0,0,1610612754,18,0,2684354578,0,0,0,0,0,0,0,18,0,0,0,0,
-0,0,1610612754,0,0,0,0,0,0,1610612754,0,0,0,18,1610612754,0,0,2684354578,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,1610612754,18,0,0,0,18,18,18,18,18,0,0,3221225490,3221225490,3221225490,2684354578,0,0,18,2684354578,0,0,0,0,0,0,0,0,
-0,0,0,0,0,18,0,2684354578,0,0,0,0,0,0,0,18,0,0,0,0,0,2684354578,0,0,18,18,18,18,0,0,
-0,0,0,0,3221225490,3221225490,3221225490,2684354578,0,0,0,0,0,0,0,0,0,0,0,18,0,2684354578,0,0,0,0,0,0,0,0,
-1610612754,0,0,0,0,0,0,2684354578,0,0,18,18,18,18,18,18,18,18,18,18,18,2684354578,18,0,0,0,0,0,0,1610612754,
-1610612754,0,0,0,0,0,0,0,0,0,0,0,0,0,18,18,18,0,0,0,0,0,0,0,0,0,0,0,0,1610612754,
-1610612754,0,0,0,0,0,0,0,0,0,0,0,0,0,18,18,18,0,0,0,0,0,0,0,0,0,0,0,0,1610612754,
-18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
+0,18,18,18,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,18,18,18,18,0,
+0,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,18,0,
+0,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,18,18,0,0,0,0,18,0,
+0,18,18,18,18,18,18,18,18,18,18,18,0,0,0,0,0,0,0,18,18,18,18,18,18,18,18,18,18,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,18,18,0,0,0,0,0,0,
+0,0,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,18,0,0,18,0,0,0,0,0,
+0,18,18,18,18,18,0,0,0,0,0,0,0,0,0,18,18,0,0,0,18,0,0,0,0,0,0,0,0,0,
+0,0,18,0,0,18,18,18,0,0,1610612745,0,0,2684354569,0,0,0,0,0,18,18,0,0,0,0,0,0,0,0,0,
+0,0,18,0,0,0,0,0,0,0,1610612745,0,0,2684354569,0,0,0,0,18,18,0,18,0,0,18,18,18,18,18,0,
+0,0,18,18,18,18,18,18,18,0,1610612745,0,0,2684354569,0,0,0,18,18,0,0,0,18,18,0,0,0,0,0,0,
+0,0,0,0,0,18,0,0,0,0,1610612745,0,0,2684354569,0,0,18,18,0,0,0,0,0,0,0,0,0,0,18,0,
+0,0,0,0,18,18,18,0,0,0,1610612745,0,0,2684354569,0,0,0,0,0,0,0,0,0,0,0,0,18,18,18,0,
+0,0,0,0,0,18,0,0,0,0,1610612745,0,0,2684354569,0,18,18,18,18,18,18,0,0,0,0,0,0,0,0,0,
+0,0,18,18,18,18,18,18,18,0,1610612745,0,0,2684354569,0,0,0,18,0,0,18,18,0,0,18,18,18,18,18,0,
+0,0,0,0,0,0,0,0,0,0,1610612745,0,0,2684354569,0,0,0,18,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,18,0,0,0,18,18,18,1610612745,0,0,2684354569,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,18,0,18,0,18,0,0,2684354564,0,0,0,0,0,18,18,18,18,18,18,0,0,18,18,18,18,18,0,
+0,0,0,18,18,18,18,18,18,0,2684354564,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,18,18,18,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,18,18,0,0,0,0,0,18,0,0,0,
+0,0,18,0,0,0,0,18,18,18,18,18,18,18,18,0,0,18,0,0,0,0,0,0,0,18,18,18,18,0,
+0,0,0,18,0,0,0,18,0,0,0,0,0,0,0,0,0,0,18,0,0,0,0,0,18,0,0,0,0,0,
+0,0,0,0,18,0,0,18,0,0,18,18,18,18,0,0,0,0,0,0,0,0,0,18,18,0,0,0,0,0,
+0,0,0,0,0,0,18,18,0,0,0,0,0,18,0,0,0,0,18,18,18,18,0,0,18,18,0,0,18,0,
+0,0,0,0,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,18,0,0,0,0,0,0,0,0,
+0,0,0,18,0,0,0,0,0,0,0,18,0,18,0,0,0,18,0,0,18,18,18,18,0,0,18,18,18,0,
+0,0,18,0,0,0,0,0,0,0,0,0,0,18,0,0,0,18,0,0,0,0,0,0,0,18,18,0,0,0,
+18,18,18,18,18,0,0,0,0,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
  <objectgroup name="objects">
-  <object id="15" x="1281.82" y="390.909" width="75.7576" height="42.4242">
-   <properties>
-    <property name="changeDirTime" type="int" value="3000"/>
-    <property name="speed" type="int" value="200"/>
-    <property name="sprite" value="platform"/>
-    <property name="type" value="movingPlatform"/>
-    <property name="usability" value="movingPlatform"/>
-   </properties>
-  </object>
-  <object id="23" x="762.121" y="453.03" width="57.5758" height="57.5758">
+  <object id="23" x="837.03" y="130" width="57.5758" height="57.5758">
    <properties>
     <property name="currentPos" type="int" value="0"/>
     <property name="damage" type="int" value="20"/>
-    <property name="goingDown" type="bool" value="true"/>
-    <property name="maxPos" type="int" value="500"/>
-    <property name="speed" type="int" value="3"/>
+    <property name="maxPos" type="int" value="200"/>
+    <property name="speed" type="int" value="2"/>
+    <property name="spin" type="int" value="15"/>
     <property name="sprite" value="saw"/>
     <property name="type" value="saw"/>
     <property name="usability" value="damageMoving"/>
     <property name="way" value="y"/>
    </properties>
   </object>
+  <object id="26" x="526.06" y="1106.79" width="28" height="32">
+   <properties>
+    <property name="heal" type="int" value="20"/>
+    <property name="respawnTime" type="int" value="30"/>
+    <property name="sprite" value="potionH"/>
+    <property name="type" value="potionH"/>
+    <property name="usability" value="consumable"/>
+    <property name="use" value="heal"/>
+   </properties>
+  </object>
+  <object id="28" x="1188.79" y="790.119" width="28" height="32">
+   <properties>
+    <property name="damage" type="int" value="10"/>
+    <property name="respawnTime" type="int" value="30"/>
+    <property name="sprite" value="potionP"/>
+    <property name="type" value="potionP"/>
+    <property name="usability" value="consumable"/>
+    <property name="use" value="poison"/>
+   </properties>
+  </object>
+  <object id="29" x="142.485" y="1299.09" width="28" height="32">
+   <properties>
+    <property name="energy" type="int" value="10"/>
+    <property name="respawnTime" type="int" value="30"/>
+    <property name="sprite" value="potionE"/>
+    <property name="type" value="potionE"/>
+    <property name="usability" value="consumable"/>
+    <property name="use" value="energy"/>
+   </properties>
+  </object>
+  <object id="30" x="1434" y="1167.45" width="80.09" height="39.394">
+   <properties>
+    <property name="currentPos" type="int" value="0"/>
+    <property name="maxPos" type="int" value="180"/>
+    <property name="speed" type="int" value="2"/>
+    <property name="sprite" value="platform"/>
+    <property name="type" value="platform"/>
+    <property name="usability" value="movingPlatform"/>
+    <property name="way" value="y"/>
+   </properties>
+  </object>
+  <object id="31" x="523.759" y="1288.61" width="50" height="50">
+   <properties>
+    <property name="sprite" value="box"/>
+    <property name="type" value="box"/>
+    <property name="usability" value="movable"/>
+   </properties>
+  </object>
+  <object id="34" x="779.955" y="264.303" width="80.09" height="39.394">
+   <properties>
+    <property name="currentPos" type="int" value="0"/>
+    <property name="maxPos" type="int" value="350"/>
+    <property name="speed" type="int" value="2"/>
+    <property name="sprite" value="platform"/>
+    <property name="type" value="platform"/>
+    <property name="usability" value="movingPlatform"/>
+    <property name="way" value="x"/>
+   </properties>
+  </object>
+  <object id="35" x="1095.94" y="130" width="57.5758" height="57.5758">
+   <properties>
+    <property name="currentPos" type="int" value="0"/>
+    <property name="damage" type="int" value="20"/>
+    <property name="maxPos" type="int" value="200"/>
+    <property name="speed" type="int" value="2"/>
+    <property name="spin" type="int" value="15"/>
+    <property name="sprite" value="saw"/>
+    <property name="type" value="saw"/>
+    <property name="usability" value="damageMoving"/>
+    <property name="way" value="y"/>
+   </properties>
+  </object>
+  <object id="36" x="1283.21" y="995.212" width="57.5758" height="57.5758">
+   <properties>
+    <property name="currentPos" type="int" value="0"/>
+    <property name="damage" type="int" value="20"/>
+    <property name="maxPos" type="int" value="300"/>
+    <property name="speed" type="int" value="2"/>
+    <property name="spin" type="int" value="15"/>
+    <property name="sprite" value="saw"/>
+    <property name="type" value="saw"/>
+    <property name="usability" value="damageMoving"/>
+    <property name="way" value="x"/>
+   </properties>
+  </object>
+  <object id="37" x="897" y="1729" width="64" height="64">
+   <properties>
+    <property name="damage" type="int" value="20"/>
+    <property name="sprite" value="toxic"/>
+    <property name="type" value="toxic"/>
+    <property name="usability" value="damage"/>
+   </properties>
+  </object>
+  <object id="43" x="897" y="1699" width="64" height="32">
+   <properties>
+    <property name="damage" type="int" value="20"/>
+    <property name="sprite" value="toxictop"/>
+    <property name="type" value="toxic"/>
+    <property name="usability" value="damage"/>
+   </properties>
+  </object>
+  <object id="46" x="961" y="1728.5" width="64" height="64">
+   <properties>
+    <property name="damage" type="int" value="20"/>
+    <property name="sprite" value="toxic"/>
+    <property name="type" value="toxic"/>
+    <property name="usability" value="damage"/>
+   </properties>
+  </object>
+  <object id="47" x="961" y="1698.5" width="64" height="32">
+   <properties>
+    <property name="damage" type="int" value="20"/>
+    <property name="sprite" value="toxictop"/>
+    <property name="type" value="toxic"/>
+    <property name="usability" value="damage"/>
+   </properties>
+  </object>
+  <object id="48" x="1025" y="1728.5" width="64" height="64">
+   <properties>
+    <property name="damage" type="int" value="20"/>
+    <property name="sprite" value="toxic"/>
+    <property name="type" value="toxic"/>
+    <property name="usability" value="damage"/>
+   </properties>
+  </object>
+  <object id="49" x="1024" y="1699.5" width="64" height="32">
+   <properties>
+    <property name="damage" type="int" value="20"/>
+    <property name="sprite" value="toxictop"/>
+    <property name="type" value="toxic"/>
+    <property name="usability" value="damage"/>
+   </properties>
+  </object>
+  <object id="50" x="723.955" y="552.303" width="80.09" height="39.394">
+   <properties>
+    <property name="currentPos" type="int" value="0"/>
+    <property name="maxPos" type="int" value="720"/>
+    <property name="speed" type="int" value="2"/>
+    <property name="sprite" value="platform"/>
+    <property name="type" value="platform"/>
+    <property name="usability" value="movingPlatform"/>
+    <property name="way" value="y"/>
+   </properties>
+  </object>
+  <object id="51" x="778.364" y="1427.33" width="28" height="32">
+   <properties>
+    <property name="energy" type="int" value="10"/>
+    <property name="respawnTime" type="int" value="30"/>
+    <property name="sprite" value="potionE"/>
+    <property name="type" value="potionE"/>
+    <property name="usability" value="consumable"/>
+    <property name="use" value="energy"/>
+   </properties>
+  </object>
+  <object id="52" x="1362.36" y="524.303" width="36" height="40">
+   <properties>
+    <property name="heal" type="int" value="30"/>
+    <property name="respawnTime" type="int" value="30"/>
+    <property name="sprite" value="potionH"/>
+    <property name="type" value="potionH"/>
+    <property name="usability" value="consumable"/>
+    <property name="use" value="heal"/>
+   </properties>
+  </object>
+  <object id="53" x="1443.94" y="443.939" width="57.5758" height="57.5758">
+   <properties>
+    <property name="currentPos" type="int" value="0"/>
+    <property name="damage" type="int" value="20"/>
+    <property name="maxPos" type="int" value="100"/>
+    <property name="speed" type="int" value="2"/>
+    <property name="spin" type="int" value="15"/>
+    <property name="sprite" value="saw"/>
+    <property name="type" value="saw"/>
+    <property name="usability" value="damageMoving"/>
+    <property name="way" value="y"/>
+   </properties>
+  </object>
+  <object id="57" x="263.242" y="1116.12" width="50" height="40">
+   <properties>
+    <property name="damage" type="int" value="10"/>
+    <property name="sprite" value="spikes"/>
+    <property name="type" value="spikes"/>
+    <property name="usability" value="damage"/>
+   </properties>
+  </object>
+  <object id="58" x="390.394" y="1113.97" width="50" height="40">
+   <properties>
+    <property name="damage" type="int" value="10"/>
+    <property name="sprite" value="spikes"/>
+    <property name="type" value="spikes"/>
+    <property name="usability" value="damage"/>
+   </properties>
+  </object>
+  <object id="59" x="1659.85" y="1048.61" width="50" height="40">
+   <properties>
+    <property name="damage" type="int" value="10"/>
+    <property name="sprite" value="spikes"/>
+    <property name="type" value="spikes"/>
+    <property name="usability" value="damage"/>
+   </properties>
+  </object>
+  <object id="60" x="1345.06" y="1500.12" width="50" height="40">
+   <properties>
+    <property name="damage" type="int" value="10"/>
+    <property name="sprite" value="spikes"/>
+    <property name="type" value="spikes"/>
+    <property name="usability" value="damage"/>
+   </properties>
+  </object>
+  <object id="61" x="319.788" y="410.242" width="50" height="40">
+   <properties>
+    <property name="damage" type="int" value="10"/>
+    <property name="sprite" value="spikes"/>
+    <property name="type" value="spikes"/>
+    <property name="usability" value="damage"/>
+   </properties>
+  </object>
+  <object id="62" x="1466.91" y="155.667" width="50" height="40">
+   <properties>
+    <property name="damage" type="int" value="10"/>
+    <property name="sprite" value="spikes"/>
+    <property name="type" value="spikes"/>
+    <property name="usability" value="damage"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="spawns">
-  <object id="13" x="327.272" y="365.15" width="64" height="64">
+  <object id="18" x="1685.53" y="196.697" width="10" height="10">
    <properties>
     <property name="sprite" value="none"/>
     <property name="type" value="spawn"/>
     <property name="usability" value="none"/>
    </properties>
   </object>
-  <object id="16" x="461.936" y="340.725" width="64" height="64">
+  <object id="69" x="307.121" y="188.939" width="10" height="10">
    <properties>
     <property name="sprite" value="none"/>
     <property name="type" value="spawn"/>
     <property name="usability" value="none"/>
    </properties>
   </object>
-  <object id="17" x="372.063" y="325.576" width="64" height="64">
+  <object id="70" x="282.879" y="1731.36" width="10" height="10">
    <properties>
     <property name="sprite" value="none"/>
     <property name="type" value="spawn"/>
     <property name="usability" value="none"/>
    </properties>
   </object>
-  <object id="18" x="431.634" y="237.697" width="64" height="64">
-   <properties>
-    <property name="sprite" value="none"/>
-    <property name="type" value="spawn"/>
-    <property name="usability" value="none"/>
-   </properties>
-  </object>
-  <object id="19" x="543.758" y="346.793" width="64" height="64">
+  <object id="71" x="1658.64" y="1461.67" width="10" height="10">
    <properties>
     <property name="sprite" value="none"/>
     <property name="type" value="spawn"/>

@@ -22,11 +22,16 @@ phinalphase.Preload.prototype = {
         // this.load.image('gameTiles', '../../Assets/SpritesheetsandTilesets/ci-fi/Tiles/cifiSheet.png');
         // this.load.image('background3', '../../assets/images/01trees.png');
 
-
-
-        this.load.image('spikes', '/assets/SpritesheetsАndTilesets/cifi/Tiles/spike.png');
-        this.load.image('platform', '/assets/SpritesheetsАndTilesets/cifi/Tiles/platform.png');
-        this.load.image('saw', '/assets/SpritesheetsАndTilesets/cifi/Objects/saw.png');
+        this.load.image('spikes', '/assets/SpritesheetsАndTilesets/mainobjects/Spike.png');
+        this.load.image('toxic', '/assets/SpritesheetsАndTilesets/mainobjects/toxic.png');
+        this.load.image('toxictop', '/assets/SpritesheetsАndTilesets/mainobjects/toxictop.png');
+        this.load.image('box', '/assets/SpritesheetsАndTilesets/mainobjects/box.png');
+        this.load.image('potionH', '/assets/SpritesheetsАndTilesets/mainobjects/pt1.png');
+        this.load.image('potionE', '/assets/SpritesheetsАndTilesets/mainobjects/pt2.png');
+        this.load.image('potionP', '/assets/SpritesheetsАndTilesets/mainobjects/pt3.png');
+        this.load.image('spikes', '/assets/SpritesheetsАndTilesets/mainobjects/spike.png');
+        this.load.image('platform', '/assets/SpritesheetsАndTilesets/mainobjects/platform.png');
+        this.load.image('saw', '/assets/SpritesheetsАndTilesets/mainobjects/saw.png');
         this.load.tilemap('testlevel', '/assets/levels/test/cifi2.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.image('gameTiles', '/assets/SpritesheetsАndTilesets/cifi/Tiles/cifiSheet.png');
         // this.load.image('tree1', '/assets/SpritesheetsАndTilesets/forest/object/Tree_2.png');
@@ -49,11 +54,9 @@ phinalphase.Preload.prototype = {
         // this.load.image('cross2', '/assets/SpritesheetsАndTilesets/forest/object/Tomb1.png');
         // this.load.image('leftPlatform', '/assets/SpritesheetsАndTilesets/forest/object/platform3.png');
         // this.load.image('acid', '/assets/SpritesheetsАndTilesets/forest/object/acid.png');
-        // this.load.image('potion', '/assets/SpritesheetsАndTilesets/forest/object/potion.png');
         // this.load.image('meteorite', '/assets/SpritesheetsАndTilesets/forest/object/meteorite.png');
         // this.load.image('treeDesert', '/assets/SpritesheetsАndTilesets/forest/object/Tree.png');
         // this.load.image('sign2', '/assets/SpritesheetsАndTilesets/gy/Objects/ArrowSign.png');
-        // this.load.image('crate', '/assets/SpritesheetsandTilesets/forest/Objects/Crate.png');
 
         // this.load.image('spikes', '/assets/images/Players/Swordsman/spike.png');
         // this.load.image('background', '/assets/images/background/PARALLAX/background.png');

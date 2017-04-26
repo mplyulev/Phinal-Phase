@@ -20,10 +20,10 @@ var animCop = {
 var skillsCop = [
     {
         type: 'proj',
-        enerReq: 5,
+        enerReq: 10,
         key: 'bullet',
         frame: 'bullet',
-        cooldown: 0.75,
+        cooldown: 2,
         userAnim: animCop.attack[0],
         stop: false,
         dmg: 10,
@@ -31,8 +31,8 @@ var skillsCop = [
         bullet: {
             number: 30,
             speed: 750,
-            scaleX: 0.2,
-            scaleY: 0.2,
+            scaleX: 0.1,
+            scaleY: 0.1,
         },
         offsetX: 10,
         offsetY: -30
@@ -46,12 +46,21 @@ var skillsCop = [
         userAnim: animCop.knockback[0],
         stop: false,
         dmg: 5,
-        enemyCollide: '',
+        enemyCollide: `
+            (function(enemy){
+                enemy.body.velocity.y = -phinalphase.putDeltaSpeed(200);;
+                if (this.user.scale.x > 0) {
+                    enemy.body.velocity.x = phinalphase.putDeltaSpeed(300);
+                } else {
+                    enemy.body.velocity.x = -phinalphase.putDeltaSpeed(300);;
+                }
+            }.bind(this))(enemy);
+        `,
         weapon: {
-            offsetX: 60,
+            offsetX: 30,
             offsetY: -30,
-            height: 50,
-            width: 50
+            height: 20,
+            width: 20
         }
     },
     {
@@ -67,7 +76,7 @@ var skillsCop = [
             return;
         }
         that.user.play(that.userAnim);
-        that.user.body.velocity.y -= 23;
+        that.user.body.velocity.y -= phinalphase.putDeltaSpeed(23);
         })(this)`
     },
 
@@ -93,7 +102,7 @@ var skillsCop = [
             var oldJumpHeight = that.user.jumpHeight
             that.user.jumpHeight = -900;
 
-            that.user.body.velocity.y = 900;
+            that.user.body.velocity.y = phinalphase.putDeltaSpeed(900);
 
             if (that.splash == undefined) {
                 that.splash = phinalphase.game.make.sprite(0, that.user.height / 2, that.key);
