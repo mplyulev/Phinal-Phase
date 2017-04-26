@@ -488,7 +488,7 @@
                  "properties":
                     {
                      "currentPos":0,
-                     "maxPos":720,
+                     "maxPos":700,
                      "speed":2,
                      "sprite":"platform",
                      "type":"platform",

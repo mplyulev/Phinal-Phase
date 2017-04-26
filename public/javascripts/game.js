@@ -102,7 +102,9 @@ phinalphase.Game.updatePlayer = function (id) {
         jumpHeight: player.jumpHeight,
         speed: player.speed,
         oldCropX: player.oldCropX,
-        oldCropY: player.oldCropY
+        oldCropY: player.oldCropY,
+        kills: player.kills,
+        deaths: player.deaths
     }
     Client.sendUpdates(newPlayer);
 };
@@ -249,6 +251,32 @@ phinalphase.Game.prototype = {
         this.energybar.scale.setTo(0.4);
         this.energybarWidth = this.energybar.width;
         this.energybar.fixedToCamera = true;
+
+
+        this.kills = this.game.add.sprite(270, 15, 'kills');
+        this.kills.scale.setTo(0.06);
+        this.kills.fixedToCamera = true;
+
+
+        this.killsText = this.game.add.text(315, 35, "__", {
+            font: "20px Arial",
+            fill: "#AAA",
+            align: "center"
+        });
+        this.killsText.fixedToCamera = true;
+
+
+        this.deaths = this.game.add.sprite(265, 70, 'deaths');
+        this.deaths.scale.setTo(0.05);
+        this.deaths.fixedToCamera = true;
+
+        this.deathsText = this.game.add.text(315, 85, "__", {
+            font: "20px Arial",
+            fill: "#AAA",
+            align: "center"
+        });
+        this.deathsText.fixedToCamera = true;
+
     },
 
     update: function () {
@@ -275,6 +303,8 @@ phinalphase.Game.prototype = {
         if (player) {
             Client.sync(player.x, player.y);
 
+            this.killsText.setText(player.kills);
+            this.deathsText.setText(player.deaths);
 
             if (player.health / 100 <= 0) {
                 this.healthbar.width = 0;

@@ -90,11 +90,13 @@ phinalphase.Preload.prototype = {
         this.load.image('healthbar', '/assets/GUI/healthbar.png');
         this.load.image('energyContainer', '/assets/GUI/energyContainer.png');
         this.load.image('energybar', '/assets/GUI/energybar.png');
+        this.load.image('deaths', '/assets/GUI/deaths.png');
+        this.load.image('kills', '/assets/GUI/kills.png');
 
         //MainMenu
 
         this.load.image('playButton', '/assets/GUI/play.png');
-        this.load.image('menuBG', '/assets/GUI/menuBG.png');
+        this.load.image('menuBG', '/assets/GUI/menuBG.jpg');
         this.load.spritesheet('buttonOnOff', '/assets/GUI/onoff.png', 175, 175);
         this.load.image('ninjaLogo', '/assets/GUI/ninjaLogo.png');
         this.load.image('copLogo', '/assets/GUI/copLogo.png');

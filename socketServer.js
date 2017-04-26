@@ -21,6 +21,8 @@ function getSocket(server) {
             socket.player.changingOffset = false;
             socket.player.oldCropX = 0;
             socket.player.oldCropY = 0;
+            socket.player.kills = 0;
+            socket.player.deaths = 0;
 
 
             socket.emit('allplayers', { players: getAllPlayers(), id: socket.player.id });

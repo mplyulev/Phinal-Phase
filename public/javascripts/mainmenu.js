@@ -13,11 +13,11 @@ phinalphase.MainMenu.prototype = {
 
     create: function () {
 
-        this.game.stage.backgroundColor = '#AAA';
+        this.game.stage.backgroundColor = '#000';
 
-        this.background = this.game.add.sprite(125, 0, 'menuBG');
+        this.background = this.game.add.sprite(0, 0, 'menuBG');
 
-        this.background.scale.setTo(0.9);
+        this.background.scale.setTo(0.5);
 
         phinalphase.selectedChar = 0;
 

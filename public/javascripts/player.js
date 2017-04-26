@@ -21,6 +21,8 @@ phinalphase.Player = function (player) {
     this.changingOffset = player.changingOffset;
     this.oldCropX = player.oldCropX;
     this.oldCropY = player.oldCropY;
+    this.kills = player.kills;
+    this.deaths = player.deaths;
 
     if (player.anim) {
         this.animationsObject = player.anim;
@@ -243,6 +245,11 @@ phinalphase.Player.prototype.getHitted = function (dmgDealer) {
         this.health -= (dmgDealer.damage - this.defense);
     }
     if (this.health <= 0) {
+        if (dmgDealer.kills) {
+            dmgDealer.kills++;
+        } else if (dmgDealer.user) {
+            dmgDealer.user.kills++;
+        }
         this.act('DIE');
     }
     this.act('FLINCH', dmgDealer);
@@ -279,6 +286,7 @@ phinalphase.Player.prototype.flinch = function (dmgDealer) {
 
 phinalphase.Player.prototype.dying = function () {
     this.alive = false;
+    this.deaths++;
     this.play(this.animationsObject.death[0], false, function () {
         this.kill();
         this.respawn();

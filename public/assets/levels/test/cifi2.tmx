@@ -269,7 +269,7 @@
   <object id="50" x="723.955" y="552.303" width="80.09" height="39.394">
    <properties>
     <property name="currentPos" type="int" value="0"/>
-    <property name="maxPos" type="int" value="720"/>
+    <property name="maxPos" type="int" value="700"/>
     <property name="speed" type="int" value="2"/>
     <property name="sprite" value="platform"/>
     <property name="type" value="platform"/>

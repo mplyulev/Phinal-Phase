@@ -3,6 +3,9 @@ var router = express.Router();
 
 router.get('/', function (req, res, next) {
   res.render('pp', {
+    styles: [
+      {style: "/stylesheets/pp.css"}
+    ],
     headScripts: [
       { script: "//cdn.jsdelivr.net/phaser/2.6.2/phaser.min.js" },
       { script: "//cdnjs.cloudflare.com/ajax/libs/buzz/1.2.0/buzz.min.js" },
@@ -18,7 +21,7 @@ router.get('/', function (req, res, next) {
       { script: "/javascripts/playerNinja.js" },
       { script: "/javascripts/playerCop.js" },
       { script: "/javascripts/game.js" }
-    ]
+    ],
   });
 });
 

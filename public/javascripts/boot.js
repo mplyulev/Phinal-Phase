@@ -17,9 +17,9 @@ phinalphase.Boot.prototype = {
 
         // this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
-        // this.scale.pageAlignHorizontally = true;
+        this.scale.pageAlignHorizontally = true;
 
-        // this.scale.pageAlignVertically = true; 
+        this.scale.pageAlignVertically = true; 
 
         // this.scale.refresh(true);
 
