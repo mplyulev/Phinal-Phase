@@ -388,6 +388,11 @@ th {
  color:black;
 }
 
+#usernameTableHeader:hover  {
+   cursor: pointer;
+   text-shadow: 2px 2px 21px white;
+}
+
 #myStatsContainer h3 {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
    letter-spacing: 1px;

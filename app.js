@@ -10,6 +10,15 @@ var MongoClient = require('mongodb').MongoClient;
 var monk = require('monk');
 
 var router = express.Router();
+ 
+ 
+ 
+var nodemailer = require("nodemailer");
+
+// create reusable transport method (opens pool of SMTP connections)
+
+
+ 
 
 
 var uri = "mongodb://al_n:phinalphase123@phinalphase-shard-00-00-h6f3e.mongodb.net:27017,phinalphase-shard-00-01-h6f3e.mongodb.net:27017,phinalphase-shard-00-02-h6f3e.mongodb.net:27017/PhinalPhase?ssl=true&replicaSet=PhinalPhase-shard-0&authSource=admin";
@@ -39,6 +48,7 @@ var users = require('./routes/users');
 var pp = require('./routes/pp');
 var data = require('./routes/data');
 var dataRanklist = require('./routes/dataRanklist');
+var forgotPassword = require('./routes/forgotPassword');
 
 
 var app = express();
@@ -92,6 +102,7 @@ function requireLogin (req, res, next)  {
 
 app.use('/pp', pp);
 app.use('/login', login);
+app.use('/forgotPassword', forgotPassword);
 app.use('/registration', registration);
 app.use('/logout',requireLogin, logout);
 app.use('/',requireLogin, index);
@@ -100,6 +111,7 @@ app.use("/login#/changePassword",requireLogin);
 app.use('/users', users);
 app.use('/data', data);
 app.use('/dataRanklist', dataRanklist);
+
 
 
 

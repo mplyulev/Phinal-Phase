@@ -168,10 +168,11 @@ input::-webkit-input-placeholder {
 textarea:focus, input:focus button:focus{
     outline: none;
 }
-
+ 
 /*#registrationWrapper {
     display:none;
-}*/
+}*/ 
+
 
  #logo2 {
     display:block;
@@ -203,4 +204,46 @@ input[type="text"] {
     
  }
 
+ #forgotPassword {
+     display:block;
+     margin:0 auto;
+     text-align: center;
+ }
+
+ #sendPasswordHeading  {
+     text-align:center;
+     color:white;
+ }
+ #loginLink {
+     text-align:center;
+     display:block;
+     margin:0 auto;
+
+     width:10%;
+ }
+
+#lostPassEmail  {
+    width:50%;
+    margin:0 auto;
+   text-align: center;
+}
+
+#register  {
+    display:block;
+    margin:0 auto;
+    width:10%;
  
+
+}
+#btn-sendMail  {
+      display:block;
+    margin:0 auto;
+width:70%;
+   
+}
+ 
+
+#register { 
+    margin:0 auto;
+    display:block;
+}
