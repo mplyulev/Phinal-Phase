@@ -2,9 +2,10 @@ $(function() {
     $('#backendLoginMessage').delay(5000).fadeOut(1000);
     $("#audio")[0].play();
     $('#login').delay(1000).fadeIn(1500);
-    $("#register").on("click", function (event) { 
+    $("#register,#register2").on("click", function (event) { 
           event.preventDefault();
         $('#login').fadeOut(1000);
+        $("#forgotPasswordContainer").fadeOut(1000);
       setTimeout(function ()  {
              window.location.href = "http://localhost:5000/registration";
         },2000);
@@ -19,6 +20,7 @@ $(function() {
         $("#emailValidation").fadeOut(1000);
         $("#passwordValidation").fadeOut(1000);
         $("#passwordConfirmValidation").fadeOut(1000);
+        $("#forgotPasswordContainer").fadeOut(1000);
         $('#login').delay(1500).fadeIn(1500);
         setTimeout(function() {
        window.location.href = "http://localhost:5000/login";
@@ -131,6 +133,16 @@ $(function() {
 $("#usernameLogin,#key").on('focus',function (){
     $('#backendLoginMessage').fadeOut(1000);
 })
+
+$("#forgotPassword").on("click", function(event) {
+    event.preventDefault();
+    console.log("asd")
+         $('#login').fadeOut(1000);
+         setTimeout(function ()  {
+             window.location.href = "http://localhost:5000/forgotPassword";
+        },2000);
+
+});
 });
 
  

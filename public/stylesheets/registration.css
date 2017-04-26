@@ -47,6 +47,7 @@ input::-webkit-input-placeholder {
 #registrationWrapper  {
 	position:relative;
 	bottom:50px;
+	/*background-color: rgba(0, 0, 0, 0);*/
 }
 
  .img-responsive {

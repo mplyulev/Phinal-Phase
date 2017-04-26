@@ -1,42 +1,44 @@
-<div ng-app="myApp" ng-controller='ranklistController'>
-<table>
-  <tr>
+<div id="ranklistContainer" ng-app="myApp" ng-controller='ranklistController'>
+
+  <table ng-controller="nameSortController">
+  
+    <tr> 
+  <th id ="sortAlphabeticaly"class = "ranklistTd"> 
+     
+    <div >
+     <th class="ranklistTd" id="searchByName"><h4>Search by Username :<h4> <input ng-model="user" id="searchInput"/> 
+     </div> 
+     <hr>
+     
+      <h4>Close Ranklist <h4>  
+        <div class="roundedOne">
+	<input type="checkbox" value="None" onchange="window.location.hash='' "  id="roundedOne" name="check" />
+	<label for="roundedOne"></label>
+</div> 
+
+<table class = "table-responsive" ng-controller="usernameSortController">
+  <tr >
     <th class="ranklistTd">#</th>
     <th class="ranklistTd">Avatar</th>
-    <th class="ranklistTd">Username</th>
+    <!--<th class="ranklistTd">Username</th>-->
+    <th class="ranklistTd" id="usernameTableHeader"
+         ng-click="orderByField='username'; reverseSort = !reverseSort">
+            Username <span ng-show="orderByField == 'username'"><span style="position:relative; bottom:3px" ng-show="!reverseSort">&uarr;</span><span style="position:relative; bottom:3px" ng-show="reverseSort">&darr;</span></span>
+         
+        </th>
     <th class="ranklistTd">Kills</th>
     <th class="ranklistTd">Deaths</th>
     <th class="ranklistTd">Score</th>
   </tr>
-  <tr ng-repeat="user in data">
+  <tr ng-repeat="user in data | filter : user | filter : username | orderBy:orderByField:reverseSort ">
     <td class="ranklistTd">{{ $index + 1 }}</td>
-    <td  id="avatarData"> <img class="img-responsive" id="ranklistAvatar"ng-src="{{user.avatarURL}}" alt=""></td>
+    <td class="ranklistTd" id="avatarData"> <img class="img-responsive" id="ranklistAvatar"ng-src="{{user.avatarURL}}" alt=""></td>
     <td class="ranklistTd" id="ranklistUsername">{{ user.username }}</td>
-    <td>{{ user.kills }}</td>
-    <td>{{ user.deaths }}</td>
-    <td>{{ user.score }}</td>
-   
-    <!--<td>{{ user.Country }}</td>-->
+    <td class="ranklistTd">{{ user.kills }}</td>
+    <td class="ranklistTd">{{ user.deaths }}</td>
+    <td class="ranklistTd">{{ user.score }}</td>
   </tr>
-  <!--<tr>
-    <td>Peter</td>
-    <td>Griffin</td>
-    <td>$100</td>
-  </tr>
-  <tr>
-    <td>Lois</td>
-    <td>Griffin</td>
-    <td>$150</td>
-  </tr>
-  <tr>
-    <td>Joe</td>
-    <td>Swanson</td>
-    <td>$300</td>
-  </tr>
-  <tr>
-    <td>Cleveland</td>
-    <td>Brown</td>
-    <td>$250</td>
-</tr>
-</table>-->
 </div>
+</table>
+</table>
+ <script type="text/javascript"src="../javascripts/website/indexFront.js"></script>

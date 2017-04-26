@@ -7,6 +7,9 @@ var app  = angular.module("myApp",["ngRoute"]);
      .when("/ranklist", {
          templateUrl: "/HTML/ranklist.htm",
      }) 
+     .when("/myStatistics", {
+         templateUrl: "/HTML/myStatistics.htm",
+     }) 
      .when("pp", {
          templateUrl: "/HTML/phinalphase.html",
      }) 
@@ -23,8 +26,34 @@ console.log("check controller");
 $http.get("dataRanklist").then(function (response)  {
 $scope.data = response.data;
 console.log("check controller");
-console.log( response.data)
 });
  });
+ app.controller("nameSortController",  function($scope,$http)  {
+    $scope.filterString = '';
+    $scope.sortByName = false;
+    $scope.sortOrder = '';
+    $scope.setSortOrder = function()
+    {
+        if($scope.sortByName)
+        {
+            $scope.sortOrder = 'username';   
+        }
+        else
+        {
+            $scope.sortOrder = '';
+        }
+    }
+ });
+ 
+app.controller('usernameSortController', function($scope,$http) {
+    $http.get("dataRanklist").then(function (response)  {
+$scope.data = response.data;
+console.log("check controller");
+  $scope.orderByField = 'username';
+  $scope.reverseSort = false;
+});
+});
+
+ 
 
  
