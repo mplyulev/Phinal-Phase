@@ -24,6 +24,7 @@ phinalphase.Player = function (player) {
     this.kills = player.kills;
     this.deaths = player.deaths;
     this.score = player.score;
+    this.username = player.username;
 
     if (player.anim) {
         this.animationsObject = player.anim;

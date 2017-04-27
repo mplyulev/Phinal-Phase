@@ -18,7 +18,7 @@ var app  = angular.module("myApp",["ngRoute"]);
      }) 
  });
 
- app.controller("avatarController",  function($scope,$http)  {
+app.controller("avatarController",  function($scope,$http)  {
 $http.get("data").then(function (response)  {
 $scope.data = response.data;
 console.log("check controller");

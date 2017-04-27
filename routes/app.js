@@ -6,19 +6,14 @@ var cookieParser = require('cookie-parser');
 var session = require("express-session");
 var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
-
 var monk = require('monk');
-
 var router = express.Router();
- 
- 
- 
 var nodemailer = require("nodemailer");
 
 // create reusable transport method (opens pool of SMTP connections)
 
 
- 
+
 
 
 var uri = "mongodb://al_n:phinalphase123@phinalphase-shard-00-00-h6f3e.mongodb.net:27017,phinalphase-shard-00-01-h6f3e.mongodb.net:27017,phinalphase-shard-00-02-h6f3e.mongodb.net:27017/PhinalPhase?ssl=true&replicaSet=PhinalPhase-shard-0&authSource=admin";
@@ -26,18 +21,18 @@ MongoClient.connect(uri, function (err, database) {
     db = database;
     database.close();
 });
-  db = monk(uri);
+db = monk(uri);
 
- 
 
- var app = express();
-app.use(function(req, res, next) {
+
+var app = express();
+app.use(function (req, res, next) {
     req.db = db;
     next();
 });
 
 
- 
+
 
 //routes
 var login = require('./routes/login');
@@ -51,11 +46,11 @@ var dataRanklist = require('./routes/dataRanklist');
 var forgotPassword = require('./routes/forgotPassword');
 
 
-var app = express();
-var server = require('http').Server(app);
-var socket = require('./socketServer');
 
-socket.getSocket(server);
+// var server = require('http').Server(app);
+// var socket = require('./socketServer');
+
+// socket.getSocket(server);
 
 
 
@@ -87,16 +82,16 @@ app.use(cookieParser());
 app.use(session({ secret: "phinalphase1234" }));
 app.use(router);
 app.use(express.static(path.join(__dirname, 'public')));
- 
 
 
 
-function requireLogin (req, res, next)  {
+
+function requireLogin(req, res, next) {
     if (req.session.userId != undefined) {
-          next();       
+        next();
     }
-    else  {
-         res.redirect('/login');
+    else {
+        res.redirect('/login');
     }
 }
 
@@ -104,10 +99,10 @@ app.use('/pp', pp);
 app.use('/login', login);
 app.use('/forgotPassword', forgotPassword);
 app.use('/registration', registration);
-app.use('/logout',requireLogin, logout);
-app.use('/',requireLogin, index);
-app.use('/index',requireLogin, index);
-app.use("/login#/changePassword",requireLogin);
+app.use('/logout', requireLogin, logout);
+app.use('/', requireLogin, index);
+app.use('/index', requireLogin, index);
+app.use("/login#/changePassword", requireLogin);
 app.use('/users', users);
 app.use('/data', data);
 app.use('/dataRanklist', dataRanklist);

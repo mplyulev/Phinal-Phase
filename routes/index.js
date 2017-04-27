@@ -11,7 +11,6 @@ router.get('/', function(req, res, next) {
     res.render('index',{message:"  Welcome, " + loggedInUser +"!", message2:loggedInUser});
   });
 });
-
 router.post("/", function (req, res, next)  {
   var currentPassword = req.body.currentPassword;
   var newPassword = req.body.newPassword;
@@ -41,5 +40,4 @@ router.post("/", function (req, res, next)  {
      }
   });
 })
-
 module.exports = router;

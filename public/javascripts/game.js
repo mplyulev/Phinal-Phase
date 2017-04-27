@@ -232,8 +232,9 @@ phinalphase.Game.prototype = {
 
         }.bind(this));
 
-
-        Client.askNewPlayer([phinalphase.playerNinja, phinalphase.playerCop]);
+        phinalphase.game.time.events.add(5000, function () {
+            Client.askNewPlayer([phinalphase.playerNinja, phinalphase.playerCop]);
+        }.bind(this));
 
         this.healthContainer = this.game.add.sprite(10, 10, 'healthContainer');
         this.healthContainer.scale.setTo(0.5);
@@ -319,7 +320,7 @@ phinalphase.Game.prototype = {
             if (sec.toString().length <= 1) {
                 sec = '0' + sec;
             }
-            this.matchTimerText.setText(min + ':' +  sec);
+            this.matchTimerText.setText(min + ':' + sec);
         }
 
 
