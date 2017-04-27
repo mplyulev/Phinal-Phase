@@ -49,7 +49,6 @@ var pp = require('./routes/pp');
 var data = require('./routes/data');
 var dataRanklist = require('./routes/dataRanklist');
 var forgotPassword = require('./routes/forgotPassword');
-var message = require('./routes/message');
 
 
 var app = express();
@@ -112,7 +111,6 @@ app.use("/login#/changePassword",requireLogin);
 app.use('/users', users);
 app.use('/data', data);
 app.use('/dataRanklist', dataRanklist);
-app.use('/message', message);
 
 
 

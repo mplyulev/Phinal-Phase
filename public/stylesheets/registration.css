@@ -67,5 +67,7 @@ textarea:focus, input:focus button:focus{
     outline: none;
 }
 
-
+#regFormContainer  {
+	background-color: rgba(0,0,0,0);
+}
  

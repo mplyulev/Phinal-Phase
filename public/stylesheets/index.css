@@ -435,3 +435,68 @@ th {
   width:70%;
   }*/
 }
+
+#subject  {
+  height:30px;
+  position:relative ;
+  background-color:rgba(0,255,0,0.5);
+  display :block;
+  margin:0 auto;
+  box-shadow:1px 21px 21px black;
+    margin-bottom:30px;
+    color:black;
+  
+ font-size:20px;
+ text-align: center;
+  font-family: Impact, Haettenschweiler
+}
+#messageMail {
+  margin:0 auto;
+  display:block;
+    box-shadow:1px 21px 21px black;
+  background-color:rgba(0,255,0,0.5);
+  color:white;
+   
+   font-size:20px;
+     font-weight: lighter;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  
+}
+#messageMail::placeholder  {
+  color:white;
+ 
+     font-weight: lighter;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size:30px;
+}
+#subject::placeholder  {
+  color:black;
+ font-size:20px;
+ text-align: center;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+ 
+}
+#contactForm {
+  position:relative;
+  z-index:1000;
+  margin-top:50px;
+  /*background-color: black;*/
+}
+
+#messageSubmit  {
+  display: block;
+  margin:0 auto;
+  margin-top:30px;
+  background-color:white;
+  width:30%;
+  color:black;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+#messageSubmit:hover  {
+  box-shadow:2px 2px 21px green;
+}
+#messageSubmit:active  {
+  box-shadow:2px 2px 21px white;
+ 
+}

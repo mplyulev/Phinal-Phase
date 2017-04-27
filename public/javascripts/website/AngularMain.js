@@ -10,6 +10,9 @@ var app  = angular.module("myApp",["ngRoute"]);
      .when("/myStatistics", {
          templateUrl: "/HTML/myStatistics.htm",
      }) 
+     .when("/contacts", {
+         templateUrl: "/HTML/contacts.htm",
+     }) 
      .when("pp", {
          templateUrl: "/HTML/phinalphase.html",
      }) 
