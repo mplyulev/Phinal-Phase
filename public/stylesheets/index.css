@@ -5,11 +5,21 @@ html  {
  /*background-color: black;*/
 }
 #body {
-  height:233px;
- background-image: url("/assets/space2.jpg");
- background-repeat: repeat-y;
+ 
+   /*background-image: url("/assets/space3.jpeg");*/
+  
  background-color:black;
  /*background-color: black;*/
+}
+
+#upperContainer {
+   background-image: url("/assets/space2.jpg");
+}
+#bottomContainer {
+  background-image: url("/assets/space3.jpg");
+  z-index: 10000;
+  height:800px;
+  background-repeat: repeat-y
 }
 #logo2 {
      margin:0 auto; 
@@ -27,6 +37,7 @@ html  {
 #navbar { 
   background: rgba(0, 0, 0, 0.9); 
     top:30px;
+    
  }
 
  #navbarUl li a { 
@@ -38,7 +49,7 @@ html  {
 
 #logoContainer { 
      width:100%;
-     height:1100px;
+     height:1200px;
      text-align: center;
      height: auto;
      background-color:black;
@@ -91,31 +102,31 @@ html  {
     border-radius: 3px 0 0 3px;
 }
 
-.panel  {
-  bottom :30px;
-  position:relative;
-}
+ 
 
 
-.panel-title  {
-color:white;
- }
-.panel-heading {
-  background-color: black;
-}
-
-.panel-body  {
-  margin:0 auto;
-  display:block;
-  background-color:black;
-}
+  
 .container { 
   position:relative;
   left:6%;
   z-index: 103;
 }
- 
- 
+
+#panelHeading {
+  background-color: green
+}
+ #panelTitle {
+   text-align:center;
+   color:white;
+   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+   background-color: rgba(0, 0, 0, 0.9);
+ }
+ #panel {
+   background-color: rgba(0,255,0,0.5);
+   border:2px solid black;
+   border-radius:5px;
+   padding:30px;
+ }
 @media (max-width: 1000px) {
   .container {
     left:0%;
@@ -140,7 +151,7 @@ svg{
 }
  
   
-
+ 
 
  
 #text{ 
@@ -156,9 +167,16 @@ svg{
    display:block;
    margin-bottom:4%;
    margin-top:3%;
-    
+   color:white;
+   background-color:rgba(0, 0, 0, 0.6)
  }
  
+#currentPassword::placeholder, #newPassword::placeholder, #url::placeholder {
+  color:white;
+  font-size:0.9em;
+ 
+}
+
  #url {
    width:100%;
  }
@@ -182,18 +200,27 @@ svg{
 
  
 #saveButton {
-  background:  #e0e0e0;
-  border: 1px solid #ccc;
-  -webkit-box-shadow: 1px 1px 2px #ccc;
-     -moz-box-shadow: 1px 1px 2px #ccc;
-      box-shadow: 1px 1px 2px #ccc;
-  padding: 5px 30px;
-  margin-top:4%;
-  border-radius: 3px;
+   position: relative;
+   top:20px;
+   background-color: white;
+   box-shadow:2px 2px 21px white;
   cursor: pointer;
   margin:0 auto;
   display:block;
+  border:none;
+  color:black;
+  border-radius: 5px;
 }
+#saveButton:focus {
+ box-shadow: 1px 1px 25px black;
+  outline: none;        
+}
+#saveButton:hover {
+ box-shadow: 1px 1px 35px white;
+  outline: none;        
+}
+
+
 
  #ranklistAvatar {
  width:100px;
@@ -202,14 +229,6 @@ svg{
  margin:0 auto;
  }
 
-#saveButton:focus {
-  background: #e0e0e0;
-  outline: none;
-  -webkit-box-shadow: inset 0px 0px 4px #ccc;
-     -moz-box-shadow: inset 0px 0px 4px #ccc;
-          box-shadow: inset 0px 0px 4px red;
-          
-}
 
 
 #changePasswordForm {
@@ -417,28 +436,6 @@ th {
 }
 
 
-
-/*MEDIA QUERIES*/
-@media (max-width: 800px) {
-  .ranklistTd  {
-  text-align:center;
-  font-size:15px;
-  font-weight: lighter;
-  }
-}
-  @media (max-width: 970px) {
-  .h3  {
-  top:3px;
-  }
- #myStatsContainer img  {
-   width:300px;
-   margin:0 auto;
- }
-  /*table  {
-  width:70%;
-  }*/
-}
-
 #subject  {
   height:30px;
   position:relative ;
@@ -479,11 +476,16 @@ th {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
  
 }
+
 #contactForm {
   position:relative;
   z-index:1000;
-  margin-top:50px;
+ 
   /*background-color: black;*/
+}
+#messageForm {
+  position: relative;
+  top:100px;
 }
 
 #messageSubmit  {
@@ -518,15 +520,126 @@ th {
  #changePasswordForm h5 { 
    color:white;
    text-align: center;
-   
+   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: lighter;
+    font-size:1.5em;
   
  }
 #oldAvatarH5,#newAvatarH5 { 
  color:white;
+ font-size:1.5em;
  text-align: center;
  position:relative;
  left:55%;
+ font-weight: lighter;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   
 }
  
  
+@-webkit-keyframes planet-rotation {
+    from {
+        background-position: 0% 0%;
+    }
+    to {
+        background-position: -200% 0%;
+    }
+}
+@keyframes planet-rotation {
+    from {
+        background-position: 0% 0%;
+    }
+    to {
+        background-position: -200% 0%;
+    }
+}
+
+ 
+
+.containerPlanet {
+ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ display:inline;
+  margin:0 auto;
+ 
+}
+
+.planet-image {
+     width: 15vw;
+     height: 15vw;
+   
+     border-radius: 50%;
+     display:block;
+     margin:0 auto;
+     position: relative;
+     top:260px;
+     background: #303030 url('http://img11.deviantart.net/b5ce/i/2006/110/1/b/lava_planet_texture_by_sadronmeldir.jpg') repeat-x;
+     background-size: cover;
+     -webkit-animation: planet-rotation 30s linear infinite;
+}
+
+.planet-image:after {
+    position: absolute;
+    content: '';
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    
+    height: 100%;
+    border-radius: 50%;
+    background-image:
+        -webkit-radial-gradient(16% 50%, 30% 50%, rgba(255,240,230,.6), transparent),
+        linear-gradient(to right, rgba(255,240,220,0.5) 12%, rgba(255,240,220,0) 40%, rgba(0,0,0,0.64) 60%, rgba(0,0,0,1) 100%);
+    box-shadow: inset 10px 0 30px rgba(255,240,220,0.4);
+}
+
+.planet-image:before {
+                content: '';
+                position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+  background: transparent url('http://rojo2.com/img/texture-01-clouds.png') repeat-x;
+  background-size: cover;
+  -webkit-animation: planet-rotation 18s linear infinite;
+}
+
+
+ 
+/*MEDIA QUERIES*/
+@media (max-width: 380px) {
+  #currentPassword, #newPassword, #url  {
+   width:200px ;
+   margin:0 auto;
+   display:block;
+   position:relative;
+   right:50%;
+  }
+}
+
+
+@media (max-width: 800px) {
+  .ranklistTd  {
+  text-align:center;
+  font-size:15px;
+  font-weight: lighter;
+  }
+ 
+}
+  @media (max-width: 970px) {
+  .h3  {
+  top:3px;
+  }
+ #myStatsContainer img  {
+   width:300px;
+   margin:0 auto;
+ }
+  /*table  {
+  width:70%;
+  }*/
+}

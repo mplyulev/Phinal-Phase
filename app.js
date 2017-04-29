@@ -10,7 +10,7 @@ var bcrypt = require('bcryptjs');
 var monk = require('monk');
 var flash  = require('req-flash');
 var router = express.Router();
- 
+var flash = require('connect-flash');
  
  
 var nodemailer = require("nodemailer");
@@ -102,6 +102,11 @@ function requireLogin (req, res, next)  {
          res.redirect('/login');
     }
 }
+
+ 
+ 
+ 
+ 
 
 app.use('/pp', pp);
 app.use('/forgotPassword', forgotPassword);
