@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <section ng-controller='messageController' id="contactForm">              
+        <form action="/message" method="post" id ="messageForm" >
+            <input type="text" name="subject" id="subject" placeholder="Subject">
+            <div style="height:15px">   
+                <h1 id="noSuccess2">Please enter a subject!</h1>
+            </div>
+            <textarea rows="7" cols="50" name="messageMail" class="messageMail" id="messageMail" placeholder="Enter your message here"></textarea>
+            <div style="height:15px">   
+                <h1 id="noSuccess">Please enter a message!</h1>
+                <h1 id="success">Your message was successfully sent!</h1>
+            </div>
+            <input  type="submit"  class="btn btn-custom btn-lg btn-block" id="messageSubmit" value="Send" onClick ="console.log('asdasd')">;
+        </form>
+    </section>
+</body>
+</html>
+
+
+
+
+
+ 

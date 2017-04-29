@@ -6,9 +6,9 @@ var cookieParser = require('cookie-parser');
 var session = require("express-session");
 var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
-
+var bcrypt = require('bcryptjs');
 var monk = require('monk');
-
+var flash  = require('req-flash');
 var router = express.Router();
  
  
@@ -52,6 +52,7 @@ var forgotPassword = require('./routes/forgotPassword');
 var message = require('./routes/message');
 
 
+
 var app = express();
 var server = require('http').Server(app);
 var socket = require('./socketServer');
@@ -88,6 +89,7 @@ app.use(cookieParser());
 app.use(session({ secret: "phinalphase1234" }));
 app.use(router);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(flash());
  
 
 
@@ -102,8 +104,9 @@ function requireLogin (req, res, next)  {
 }
 
 app.use('/pp', pp);
-app.use('/login', login);
 app.use('/forgotPassword', forgotPassword);
+app.use('/login', login);
+
 app.use('/registration', registration);
 app.use('/logout',requireLogin, logout);
 app.use('/',requireLogin, index);

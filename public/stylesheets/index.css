@@ -4,9 +4,11 @@ html  {
  
  /*background-color: black;*/
 }
-body {
-  height:800px;
+#body {
+  height:233px;
  background-image: url("/assets/space2.jpg");
+ background-repeat: repeat-y;
+ background-color:black;
  /*background-color: black;*/
 }
 #logo2 {
@@ -94,6 +96,7 @@ body {
   position:relative;
 }
 
+
 .panel-title  {
 color:white;
  }
@@ -133,7 +136,7 @@ svg{
  bottom:0;
   left:23%;
   margin: 0 auto;
-
+  
 }
  
   
@@ -161,7 +164,7 @@ svg{
  }
 
  .stars { 
-   height:1200px;
+   height:300px;
  }
 
 #avatar { 
@@ -338,7 +341,7 @@ th {
 	height: 16px;
 	background: #00bf00;
 
-	background: -webkit-linear-gradient(top, #00bf00 0%, #009400 100%);
+	background: -webkit-linear-gradient(top, green 0%,  green 100%);
 	background: -moz-linear-gradient(top, #00bf00 0%, #009400 100%);
 	background: -o-linear-gradient(top, #00bf00 0%, #009400 100%);
 	background: -ms-linear-gradient(top, #00bf00 0%, #009400 100%);
@@ -373,7 +376,7 @@ th {
   top:70px;
   border:2px solid black;
   background-color:white;
-  height:500px;
+  height:550px;
   
 }
 
@@ -405,7 +408,7 @@ th {
 }
 #avatarBig  {
   display:block;
-  width:30%;
+  width:20%;
   height:auto;
   border:3px solid green;
   padding:10px;
@@ -500,3 +503,30 @@ th {
   box-shadow:2px 2px 21px white;
  
 }
+
+
+#success,#noSuccess,#noSuccess2    {
+        color:  #D21C1E;
+    text-align: center;
+     font-size: 1.0em;
+     font-weight:bold;
+ display:none;
+     height:10px;
+ }
+ 
+
+ #changePasswordForm h5 { 
+   color:white;
+   text-align: center;
+   
+  
+ }
+#oldAvatarH5,#newAvatarH5 { 
+ color:white;
+ text-align: center;
+ position:relative;
+ left:55%;
+  
+}
+ 
+ 

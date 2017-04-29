@@ -39,9 +39,9 @@ $(function() {
     $("#navbarUl").on( "click", "a", function() {
     $("#audioClick")[0].play();
 });
-        $("#radio").prop("volume",0.2);
+        $("#radio").prop("volume",0.5);
      $("#radio")[0].play();
 
-   
+
     
 });

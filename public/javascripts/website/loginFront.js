@@ -1,4 +1,23 @@
 $(function() {
+    function removeHash () { 
+    var scrollV, scrollH, loc = window.location;
+    if ("pushState" in history)
+        history.pushState("", document.title, loc.pathname + loc.search);
+    else {
+        // Prevent scrolling by storing the page's current scroll offset
+        scrollV = document.body.scrollTop;
+        scrollH = document.body.scrollLeft;
+
+        loc.hash = "";
+
+        // Restore the scroll offset, should be flicker free
+        document.body.scrollTop = scrollV;
+        document.body.scrollLeft = scrollH;
+    }
+}
+
+
+
     $('#backendLoginMessage').delay(5000).fadeOut(1000);
     $("#audio")[0].play();
     $('#login').delay(1000).fadeIn(1500);
@@ -7,11 +26,11 @@ $(function() {
         $('#login').fadeOut(1000);
         $("#forgotPasswordContainer").fadeOut(1000);
       setTimeout(function ()  {
-             window.location.href = "http://localhost:5000/registration";
+             window.location.hash = "registration";
         },2000);
      $("#registrationWrapper").delay(1700).fadeIn(1500);    
     });  
-    $("#loginLink").on('click', function(event) {
+    $("#loginLink,#loginLink2").on('click', function(event) {
         event.preventDefault();
         $('#registrationWrapper').fadeOut(1500);
         $("#backendLoginMessage").fadeOut(1000);
@@ -23,7 +42,7 @@ $(function() {
         $("#forgotPasswordContainer").fadeOut(1000);
         $('#login').delay(1500).fadeIn(1500);
         setTimeout(function() {
-       window.location.href = "http://localhost:5000/login";
+      removeHash();
         },2000 );
     });
 
@@ -136,14 +155,13 @@ $("#usernameLogin,#key").on('focus',function (){
 
 $("#forgotPassword").on("click", function(event) {
     event.preventDefault();
-    console.log("asd")
-         $('#login').fadeOut(1000);
-         setTimeout(function ()  {
-             window.location.href = "http://localhost:5000/forgotPassword";
-        },2000);
+    $('#login').fadeOut(1000);
+    window.location.hash = "forgottenPassword";
+    $("#forgotPasswordContainer").delay(1500).fadeIn(1000);   
+});
+});
 
-});
-});
+
 
  
  
