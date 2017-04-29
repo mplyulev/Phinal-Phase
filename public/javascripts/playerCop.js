@@ -48,11 +48,11 @@ var skillsCop = [
         dmg: 5,
         enemyCollide: `
             (function(enemy){
-                enemy.body.velocity.y = -phinalphase.putDeltaSpeed(200);;
+                enemy.body.velocity.y = -200;
                 if (this.user.scale.x > 0) {
-                    enemy.body.velocity.x = phinalphase.putDeltaSpeed(300);
+                    enemy.body.velocity.x = 300;
                 } else {
-                    enemy.body.velocity.x = -phinalphase.putDeltaSpeed(300);;
+                    enemy.body.velocity.x = -300;
                 }
             }.bind(this))(enemy);
         `,
@@ -76,7 +76,7 @@ var skillsCop = [
             return;
         }
         that.user.play(that.userAnim);
-        that.user.body.velocity.y -= phinalphase.putDeltaSpeed(23);
+        that.user.body.velocity.y -= 23;
         })(this)`
     },
 
@@ -102,7 +102,7 @@ var skillsCop = [
             var oldJumpHeight = that.user.jumpHeight
             that.user.jumpHeight = -900;
 
-            that.user.body.velocity.y = phinalphase.putDeltaSpeed(900);
+            that.user.body.velocity.y = 900;
 
             if (that.splash == undefined) {
                 that.splash = phinalphase.game.make.sprite(0, that.user.height / 2, that.key);

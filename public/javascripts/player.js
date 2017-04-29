@@ -146,6 +146,9 @@ phinalphase.Player.prototype.play = function (animation, looping, cb) {
 
 phinalphase.Player.prototype.jump = function () {
     this.body.velocity.y = this.jumpHeight;
+    // this.body.stopVelocityOnCollide = false;
+    // this.body.moveTo(500, 300, Phaser.ANGLE_UP);
+
     this.play(this.animationsObject.jumpStart[0], false, function () {
         if (this.animations.currentAnim.name == this.animationsObject.jumpStart[0]) {
             this.play(this.animationsObject.jumpAir[0]);
@@ -155,12 +158,14 @@ phinalphase.Player.prototype.jump = function () {
 
 
 phinalphase.Player.prototype.moveSides = function (sideNum) {
-    this.body.velocity.x = 300;
     this.scale.setTo(sideNum, 1);
     if (sideNum < 0) {
-        this.body.velocity.x = -phinalphase.putDeltaSpeed(this.speed);
+        this.body.velocity.x = -this.speed;
+        // this.body.velocity.x = -phinalphase.putDeltaSpeed(this.speed);
     } else {
-        this.body.velocity.x = phinalphase.putDeltaSpeed(this.speed);
+        this.body.velocity.x = this.speed;
+
+        // this.body.velocity.x = phinalphase.putDeltaSpeed(this.speed);
     }
     if (this.isInAir && this.body.velocity.y <= 0) {
         if (!(this.animationsObject.flyIdle && phinalphase.game.input.keyboard.isDown(Phaser.Keyboard.E))) {
@@ -265,15 +270,15 @@ phinalphase.Player.prototype.flinch = function (dmgDealer) {
     this.isFlinched = true;
     this.canBeHitted = false;
     if (dmgDealer.body) {
-        this.body.velocity.y = -phinalphase.putDeltaSpeed(300);
+        this.body.velocity.y = -300;
 
         if (dmgDealer.body.center.x > this.body.center.x) {
-            this.body.velocity.x = -phinalphase.putDeltaSpeed(100);
+            this.body.velocity.x = -100;
         } else {
-            this.body.velocity.x = phinalphase.putDeltaSpeed(100);
+            this.body.velocity.x = 100;
         }
     } else {
-        this.body.velocity.y = -phinalphase.putDeltaSpeed(100);
+        this.body.velocity.y = -100;
         this.body.velocity.x = 0;
     }
 
@@ -303,13 +308,22 @@ phinalphase.Player.prototype.updatePlayer = function () {
     if (!this.alive) {
         return;
     }
+
+
+    var player = phinalphase.Game.playerMap[phinalphase.playerID];
     if (isNaN(this.body.velocity.y)) {
-        this.body.velocity.y = phinalphase.putDeltaSpeed(20);
+        this.body.velocity.y = 20;
     }
     if (!this.isFlinched) {
+        if (this.body.velocity.x == 0 && this == player && !this.isInAir) {
+            Client.sync(this.x, this.y);
+        }
         this.body.velocity.x = 0;
     }
     if (this.body.blocked.down || this.body.touching.down) {
+        if (this.isInAir && this == player) {
+            Client.sync(this.x, this.y);
+        }
         this.isInAir = false;
     } else {
         if (this.animations.currentAnim.name == 'idle') {
@@ -324,17 +338,17 @@ phinalphase.Player.prototype.updatePlayer = function () {
     }, this);
 
     if (this.energy < 100 && this.energy + this.energyRegen <= 100) {
-        this.energy += phinalphase.putDeltaSpeed(this.energyRegen);
+        this.energy += this.energyRegen;
     } else if (this.energy < 100) {
         this.energy = 100;
     }
 
     if (this.body.velocity.y < this.jumpHeight) {
-        this.body.velocity.y = phinalphase.putDeltaSpeed(this.jumpHeight);
+        this.body.velocity.y = this.jumpHeight;
     }
 
     if (this.body.velocity.y > Math.abs(this.jumpHeight)) {
-        this.body.velocity.y = Math.abs(phinalphase.putDeltaSpeed(this.jumpHeight));
+        this.body.velocity.y = Math.abs(this.jumpHeight);
     }
 }
 

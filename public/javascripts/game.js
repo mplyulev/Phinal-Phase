@@ -10,6 +10,8 @@ phinalphase.putDeltaSpeed = function (speed) {
     return (speed * phinalphase.game.time.physicsElapsed) * phinalphase.game.time.fps;
 }
 
+
+// Useful functions to keep the code more "DRY"
 phinalphase.fixedSprite = function (x, y, sprite, scale) {
     var fixedSprite = phinalphase.game.add.sprite(x, y, sprite);
     fixedSprite.scale.setTo(scale);
@@ -31,20 +33,35 @@ phinalphase.fixedText = function (x, y, text, font, color, align) {
 }
 
 
-phinalphase.updateObjects = function (newplayer, id) {
+phinalphase.updateObjects = function (newplayer, id, updateGames, respawnObjects) {
     objectsForServer = [];
     phinalphase.Game.objectMap.forEach(function (object, index) {
+        var isAlive = object.alive;
+        if (respawnObjects) {
+            isAlive = true;
+            object.revive();
+        }
         objectsForServer[index] = {
             x: object.x,
             y: object.y,
-            currentPos: object.currentPos
+            currentPos: object.currentPos,
+            respawn: isAlive
         }
-    })
-    Client.updateServerObjects({ objects: objectsForServer, newplayer: newplayer, id: id });
+    });
+
+    if (updateGames) {
+        Client.syncObjects(objectsForServer);
+    } else {
+        Client.updateServerObjects({ objects: objectsForServer, newplayer: newplayer, id: id });
+    }
 
 }
 
 
+
+
+
+//Functions that handle the data recieved from the server
 
 phinalphase.Game.addNewPlayer = function (player, main, host, timer) {
     if (player.x == 0) {
@@ -137,20 +154,22 @@ phinalphase.Game.playerAct = function (id, act, cause) {
 };
 
 phinalphase.Game.syncPlayer = function (id, x, y) {
-    var oldX = phinalphase.Game.playerMap[id].x;
-    var oldY = phinalphase.Game.playerMap[id].y;
-    phinalphase.Game.playerMap[id].x = x;
-    phinalphase.Game.playerMap[id].y = y;
+    if (phinalphase.Game.playerMap[id]) {
+        var oldX = phinalphase.Game.playerMap[id].x;
+        var oldY = phinalphase.Game.playerMap[id].y;
+        phinalphase.Game.playerMap[id].x = x;
+        phinalphase.Game.playerMap[id].y = y;
+    }
 };
 
 phinalphase.Game.syncObjects = function (data) {
     phinalphase.Game.objectMap.forEach(function (object, index) {
-        object.x = data[index][0];
-        object.y = data[index][1];
+        object.x = data[index].x;
+        object.y = data[index].y;
         if (object.currentPos) {
-            object.currentPos = data[index][2];
+            object.currentPos = data[index].currentPos;
         }
-        if (data[index][3]) {
+        if (data[index].respawn) {
             object.revive();
         } else {
             object.kill();
@@ -215,68 +234,7 @@ phinalphase.Game.prototype = {
         this.game.updatables = [];
 
 
-        console.log(this);
-        // var tiles = [
-        //     ['cifiSheet', 'gameTiles']
-        // ]
-
-        // var layers = [
-        //     // ['bg', 'bgImg'],
-        //     ['backgroundLayer', 'background'],
-        //     ['backgroundLayer2', 'background2'],
-        //     ['blockedLayer', 'block'],
-
-        //     // ["water", "water"],
-
-
-        // ];
-
-
-        // // console.log(blockedLayer);
-        // // this.game.add.sprite(200, 200, 'cloud');
-        // var objects = [
-        //     // ["background", "object", "background"],
-        //     // ["rocks", "object", "rocks"],
-        //     // ["tree", "object", "tree"],
-        //     // ["movable", "object", "tree"],
-        //     // ["bush", "objectsDamage", "bush"],
-        //     // ["skeleton", "sceneObjects", "sceneObject"],
-        //     // ["cutTree", "sceneObjects", "sceneObject"],
-        //     // ["movingPlatform", "movingPlatform", "movingPlatform"],
-        //     // ["staticPlatform", "movingPlatform", "static"],
-        //     // ["saw", "saw", "saw"],
-        //     // ["sawHorizontal", "sawHorizontal", "sawHorizontal"],
-        //     // ["sign2", "sceneObjects", "sceneObject"],
-        //     // ["cross", "sceneObjects", "sceneObject"],
-        //     // ["acid", "objectsDamage", "acid"],
-        //     // ["potion", "potion", "potion"],
-        //     // ["tree", "sceneObjects", "sceneObject"],
-
-        //     // ["mushroom", "potion", "mushroom"],
-        //     // ["bush5", "sceneObjects", "bush5"],
-        //     // ['crate', 'object', 'crate']
-
-
-
-
-
-        //     ["spikes", "objects", "spikes"],
-        //     ["spawn", "spawns", "spawns"],
-        //     ["platform", "objects", "platforms"],
-        //     ["saw", "objects", "saws"],
-        //     ["potionH", "objects", "potionsH"],
-        //     ["potionP", "objects", "potionsP"],
-        //     ["potionE", "objects", "potionsE"],
-        //     ["box", "objects", "boxs"],
-        //     ["toxic", "objects", "toxic"],
-        //     ["spikes", "objects", "spikes"],
-        //     // ["tree", "object", "tree"],
-        //     // ['bush', 'objects', 'bush'],
-
-        // ]
-
-        // phinalphase.createMap('testlevel', tiles, layers, objects);
-
+      
         // var backgroundMusic1 = new buzz.sound("/assets/Sound/forest", {
         //     formats: ["ogg"],
         //     preload: true,
@@ -290,10 +248,6 @@ phinalphase.Game.prototype = {
         //     loop: true
         // });
 
-        // phinalphase.createPlayerCop(this);
-        // phinalphase.createPlayerNinja(this);
-        // phinalphase.createClouds();
-        // phinalphase.players = phinalphase.game.add.group();
 
         Client.newPlayer([phinalphase.playerNinja, phinalphase.playerCop]);
 
@@ -354,24 +308,17 @@ phinalphase.Game.prototype = {
 
 
 
-        // if (phinalphase.isHost) {
-        //     var objectsCoor = {};
-        //     phinalphase.Game.objectMap.forEach(function (object, index) {
-        //         if (phinalphase.hostUpd < 5) {
-        //             objectsCoor[index] = [object.x, object.y, object.currentPos, true];
-        //             object.revive();
-        //         } else {
-        //             objectsCoor[index] = [object.x, object.y, object.currentPos, object.alive];
-        //         }
-        //     }, this);
-        //     Client.syncObjects(objectsCoor);
-        //     phinalphase.hostUpd++;
-        //     if (this.matchTimer) {
-        //         Client.syncTimer(this.matchTimer.duration);
-        //     }
-        // }
+        if (phinalphase.isHost) {
 
-        // Client.reqUpdate();
+
+            phinalphase.updateObjects(false, undefined, true, false);
+
+            phinalphase.hostUpd++;
+            // if (this.matchTimer) {
+            //     Client.syncTimer(this.matchTimer.duration);
+            // }
+        }
+
 
         var player = phinalphase.Game.playerMap[phinalphase.playerID];
 

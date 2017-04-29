@@ -62,6 +62,7 @@ Client.socket.on('allplayers', function (data) {
 
 Client.socket.on('changeHost', function () {
     phinalphase.isHost = true;
+    phinalphase.updateObjects(false, undefined, true, true);
 });
 
 Client.socket.on('requireUpdate', function (id) {

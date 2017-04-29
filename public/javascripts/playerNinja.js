@@ -54,7 +54,7 @@ var skillsNinja = [
         enemyCollide: `
         (function(enemy){
             enemy.body.velocity.x = 0;            
-            enemy.body.velocity.y = -phinalphase.putDeltaSpeed(400);;
+            enemy.body.velocity.y = -400;
         }.bind(this))(enemy);
             `,
         bullet: {
