@@ -10,6 +10,7 @@
   <title>PhinalPhase</title>
       <link rel="stylesheet" href="/stylesheets/index.css">
 			<link rel="stylesheet" href="/stylesheets/starfield.css">
+				<link rel="stylesheet" type="text/css" href="/stylesheets/registration.css">
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <script type="text/javascript" src={{script}}></script>
    <script type="text/javascript"src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
@@ -22,7 +23,7 @@
   crossorigin="anonymous"></script>
   
 </head>
- <body>
+ <body id="body">
  
 <svg id="svgText" version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
 	 width="600px" height="100px" viewBox="0 0 600 100">
@@ -149,11 +150,10 @@
       <div id="navbar3" class="navbar-collapse collapse">
 
         <ul id="navbarUl" class="nav navbar-nav navbar-right">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#/ranklist">Ranklist</a></li>
+          <li><a href="#">Home</a></li>
+          <li><a href="#/ranklist" id="ranklistMenuButton">Ranklist</a></li>
           <li><a href="pp">Multiplayer</a></li>
-          <li><a href="#">Hot Seat</a></li>
-          <li><a href="#/contacts">Contacts</a></li>
+          <li><a href="#/contacts" id="contacts">Contacts</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My Account <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
