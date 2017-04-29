@@ -2,8 +2,16 @@ var Client = {};
 
 Client.socket = io.connect();
 
-Client.askNewPlayer = function (characters) {
+Client.newPlayer = function (characters) {
     Client.socket.emit('newplayer', characters[phinalphase.selectedChar]);
+}
+
+Client.createPlayer = function () {
+    Client.socket.emit('createPlayer');
+}
+
+Client.updateServerObjects = function (objects) {
+    Client.socket.emit('updateServerObjects', objects);
 }
 
 Client.syncObjects = function (data) {
@@ -14,8 +22,8 @@ Client.sendAct = function (act, cause) {
     Client.socket.emit('act', { act: act, cause: cause });
 }
 
-Client.reqUpdate = function () {
-    Client.socket.emit('reqUpdate');
+Client.update = function () {
+    Client.socket.emit('updatePlayers');
 }
 
 Client.sync = function (x, y) {
@@ -26,8 +34,8 @@ Client.syncTimer = function (dur) {
     Client.socket.emit('syncTimer', dur);
 }
 
-Client.sendUpdates = function (properties) {
-    Client.socket.emit('update', properties);
+Client.sendUpdatesPlayer = function (properties) {
+    Client.socket.emit('updatePlayer', properties);
 }
 
 
@@ -56,7 +64,11 @@ Client.socket.on('changeHost', function () {
     phinalphase.isHost = true;
 });
 
-Client.socket.on('update', function (id) {
+Client.socket.on('requireUpdate', function (id) {
+    phinalphase.Game.updateServerInfo(id);
+});
+
+Client.socket.on('updatePlayer', function (id) {
     phinalphase.Game.updatePlayer(id);
 });
 
@@ -70,6 +82,10 @@ Client.socket.on('syncObjects', function (data) {
 
 Client.socket.on('act', function (data) {
     phinalphase.Game.playerAct(data.id, data.act, data.cause);
+});
+
+Client.socket.on('createMap', function (data) {
+    phinalphase.Game.createMapFromServer(data);
 });
 
 Client.socket.on('remove', function (id) {

@@ -145,7 +145,7 @@ phinalphase.Player.prototype.play = function (animation, looping, cb) {
 
 
 phinalphase.Player.prototype.jump = function () {
-    this.body.velocity.y = phinalphase.putDeltaSpeed(this.jumpHeight);
+    this.body.velocity.y = this.jumpHeight;
     this.play(this.animationsObject.jumpStart[0], false, function () {
         if (this.animations.currentAnim.name == this.animationsObject.jumpStart[0]) {
             this.play(this.animationsObject.jumpAir[0]);
@@ -155,6 +155,7 @@ phinalphase.Player.prototype.jump = function () {
 
 
 phinalphase.Player.prototype.moveSides = function (sideNum) {
+    this.body.velocity.x = 300;
     this.scale.setTo(sideNum, 1);
     if (sideNum < 0) {
         this.body.velocity.x = -phinalphase.putDeltaSpeed(this.speed);
@@ -298,7 +299,7 @@ phinalphase.Player.prototype.dying = function () {
     });
 };
 
-phinalphase.Player.prototype.Update = function () {
+phinalphase.Player.prototype.updatePlayer = function () {
     if (!this.alive) {
         return;
     }
@@ -378,6 +379,7 @@ phinalphase.Player.prototype.respawn = function () {
         var spawnCoor = Math.floor(Math.random() * phinalphase.spawns.children.length);
         this.x = phinalphase.spawns.children[spawnCoor].x;
         this.y = phinalphase.spawns.children[spawnCoor].y;
+        Client.sync(this.x, this.y);
         this.body.velocity.y = 0;
         this.body.velocity.x = 0;
         this.canBeHitted = false;

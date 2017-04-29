@@ -10,6 +10,41 @@ phinalphase.putDeltaSpeed = function (speed) {
     return (speed * phinalphase.game.time.physicsElapsed) * phinalphase.game.time.fps;
 }
 
+phinalphase.fixedSprite = function (x, y, sprite, scale) {
+    var fixedSprite = phinalphase.game.add.sprite(x, y, sprite);
+    fixedSprite.scale.setTo(scale);
+    fixedSprite.fixedToCamera = true;
+
+    return fixedSprite;
+
+}
+
+
+phinalphase.fixedText = function (x, y, text, font, color, align) {
+    var fixedText = this.game.add.text(x, y, text, {
+        font: font,
+        fill: color,
+        align: align
+    });
+    fixedText.fixedToCamera = true;
+    return fixedText;
+}
+
+
+phinalphase.updateObjects = function (newplayer, id) {
+    objectsForServer = [];
+    phinalphase.Game.objectMap.forEach(function (object, index) {
+        objectsForServer[index] = {
+            x: object.x,
+            y: object.y,
+            currentPos: object.currentPos
+        }
+    })
+    Client.updateServerObjects({ objects: objectsForServer, newplayer: newplayer, id: id });
+
+}
+
+
 
 phinalphase.Game.addNewPlayer = function (player, main, host, timer) {
     if (player.x == 0) {
@@ -27,9 +62,66 @@ phinalphase.Game.addNewPlayer = function (player, main, host, timer) {
         phinalphase.playerID = player.id;
         phinalphase.game.camera.follow(phinalphase.Game.playerMap[player.id]);
         phinalphase.game.camera.deadzone = new Phaser.Rectangle(300, 200, 200, 150);
+
+        var player = phinalphase.Game.playerMap[phinalphase.playerID];
+        Client.sync(player.x, player.y);
     }
 
 }
+
+phinalphase.Game.createMapFromServer = function (objectsFromServer) {
+    var tiles = [
+        ['cifiSheet', 'gameTiles']
+    ]
+
+    var layers = [
+        ['backgroundLayer', 'background'],
+        ['backgroundLayer2', 'background2'],
+        ['blockedLayer', 'block'],
+    ];
+
+    var objects = [
+
+        ["spikes", "objects", "spikes"],
+        ["spawn", "spawns", "spawns"],
+        ["platform", "objects", "platforms"],
+        ["saw", "objects", "saws"],
+        ["potionH", "objects", "potionsH"],
+        ["potionP", "objects", "potionsP"],
+        ["potionE", "objects", "potionsE"],
+        ["box", "objects", "boxs"],
+        ["toxic", "objects", "toxic"],
+        ["spikes", "objects", "spikes"],
+    ]
+
+    phinalphase.createMap('testlevel', tiles, layers, objects);
+
+    if (objectsFromServer) {
+        objectsFromServer.forEach(function (serverObject, index) {
+            Object.keys(serverObject).forEach(function (key) {
+                phinalphase.Game.objectMap[index][key] = serverObject[key];
+            });
+        })
+    } else {
+        phinalphase.updateObjects(true);
+    }
+
+    phinalphase.players = phinalphase.game.add.group();
+    Client.createPlayer();
+    this.healthContainer = phinalphase.fixedSprite(10, 10, 'healthContainer', 0.5);
+    this.healthbar = phinalphase.fixedSprite(74, 26, 'healthbar', 0.5);
+    this.healthbarWidth = this.healthbar.width;
+    this.energyContainer = phinalphase.fixedSprite(10, 80, 'energyContainer', 0.4);
+    this.energybar = phinalphase.fixedSprite(60, 93, 'energybar', 0.4);
+    this.energybarWidth = this.energybar.width;
+    this.kills = phinalphase.fixedSprite(270, 15, 'kills', 0.06);
+    this.killsText = phinalphase.fixedText(315, 35, "__", "20px Arial", "#AAA", "center");
+    this.deaths = phinalphase.fixedSprite(265, 70, 'deaths', 0.05);
+    this.deathsText = phinalphase.fixedText(315, 85, "__", "20px Arial", "#AAA", "center");
+
+
+
+}.bind(phinalphase.Game);
 
 phinalphase.Game.addOldPlayer = function (player) {
     phinalphase.Game.playerMap[player.id] = new phinalphase.Player(player);
@@ -49,18 +141,10 @@ phinalphase.Game.syncPlayer = function (id, x, y) {
     var oldY = phinalphase.Game.playerMap[id].y;
     phinalphase.Game.playerMap[id].x = x;
     phinalphase.Game.playerMap[id].y = y;
-    if (phinalphase.Game.playerMap[id].body.embedded) {
-        phinalphase.Game.playerMap[id].x = oldX;
-        phinalphase.Game.playerMap[id].y = oldY;
-    }
 };
 
 phinalphase.Game.syncObjects = function (data) {
     phinalphase.Game.objectMap.forEach(function (object, index) {
-        var oldX = object.x;
-        var oldY = object.y;
-        var oldPos = object.currentPos;
-
         object.x = data[index][0];
         object.y = data[index][1];
         if (object.currentPos) {
@@ -71,21 +155,14 @@ phinalphase.Game.syncObjects = function (data) {
         } else {
             object.kill();
         }
-        if (object.body.embedded) {
-            object.x = oldX;
-            object.y = oldY;
-            if (object.currentPos) {
-                object.currentPos = oldPos;
-            }
-        }
     }, this);
 }
 
-phinalphase.Game.updatePlayer = function (id) {
-    var player = phinalphase.Game.playerMap[id];
-    phinalphase.Game.playerMap[id].Update();
+phinalphase.Game.updateServerInfo = function (id) {
+    var player = phinalphase.Game.playerMap[phinalphase.playerID];
+    player.updatePlayer();
 
-    var newPlayer = {
+    var updatedPlayer = {
         x: player.x,
         y: player.y,
         health: player.health,
@@ -108,8 +185,16 @@ phinalphase.Game.updatePlayer = function (id) {
         deaths: player.deaths,
         score: player.score
     }
-    Client.sendUpdates(newPlayer);
+    Client.sendUpdatesPlayer(updatedPlayer);
+    if (phinalphase.isHost) {
+        phinalphase.updateObjects(false, id);
+    }
 };
+
+phinalphase.Game.updatePlayer = function (id) {
+    var player = phinalphase.Game.playerMap[id];
+    player.updatePlayer();
+}
 
 
 
@@ -130,69 +215,67 @@ phinalphase.Game.prototype = {
         this.game.updatables = [];
 
 
+        console.log(this);
+        // var tiles = [
+        //     ['cifiSheet', 'gameTiles']
+        // ]
 
-        var tiles = [
-            ['cifiSheet', 'gameTiles']
-        ]
+        // var layers = [
+        //     // ['bg', 'bgImg'],
+        //     ['backgroundLayer', 'background'],
+        //     ['backgroundLayer2', 'background2'],
+        //     ['blockedLayer', 'block'],
 
-        var layers = [
-            // ['bg', 'bgImg'],
-            ['backgroundLayer', 'background'],
-            ['backgroundLayer2', 'background2'],
-            ['blockedLayer', 'block'],
-
-            // ["water", "water"],
-
-
-        ];
+        //     // ["water", "water"],
 
 
-        // console.log(blockedLayer);
-        // this.game.add.sprite(200, 200, 'cloud');
-        var objects = [
-            // ["background", "object", "background"],
-            // ["rocks", "object", "rocks"],
-            // ["tree", "object", "tree"],
-            // ["movable", "object", "tree"],
-            // ["bush", "objectsDamage", "bush"],
-            // ["skeleton", "sceneObjects", "sceneObject"],
-            // ["cutTree", "sceneObjects", "sceneObject"],
-            // ["movingPlatform", "movingPlatform", "movingPlatform"],
-            // ["staticPlatform", "movingPlatform", "static"],
-            // ["saw", "saw", "saw"],
-            // ["sawHorizontal", "sawHorizontal", "sawHorizontal"],
-            // ["sign2", "sceneObjects", "sceneObject"],
-            // ["cross", "sceneObjects", "sceneObject"],
-            // ["acid", "objectsDamage", "acid"],
-            // ["potion", "potion", "potion"],
-            // ["tree", "sceneObjects", "sceneObject"],
-
-            // ["mushroom", "potion", "mushroom"],
-            // ["bush5", "sceneObjects", "bush5"],
-            // ['crate', 'object', 'crate']
+        // ];
 
 
+        // // console.log(blockedLayer);
+        // // this.game.add.sprite(200, 200, 'cloud');
+        // var objects = [
+        //     // ["background", "object", "background"],
+        //     // ["rocks", "object", "rocks"],
+        //     // ["tree", "object", "tree"],
+        //     // ["movable", "object", "tree"],
+        //     // ["bush", "objectsDamage", "bush"],
+        //     // ["skeleton", "sceneObjects", "sceneObject"],
+        //     // ["cutTree", "sceneObjects", "sceneObject"],
+        //     // ["movingPlatform", "movingPlatform", "movingPlatform"],
+        //     // ["staticPlatform", "movingPlatform", "static"],
+        //     // ["saw", "saw", "saw"],
+        //     // ["sawHorizontal", "sawHorizontal", "sawHorizontal"],
+        //     // ["sign2", "sceneObjects", "sceneObject"],
+        //     // ["cross", "sceneObjects", "sceneObject"],
+        //     // ["acid", "objectsDamage", "acid"],
+        //     // ["potion", "potion", "potion"],
+        //     // ["tree", "sceneObjects", "sceneObject"],
+
+        //     // ["mushroom", "potion", "mushroom"],
+        //     // ["bush5", "sceneObjects", "bush5"],
+        //     // ['crate', 'object', 'crate']
 
 
 
-            ["spikes", "objects", "spikes"],
-            ["spawn", "spawns", "spawns"],
-            ["platform", "objects", "platforms"],
-            ["saw", "objects", "saws"],
-            ["potionH", "objects", "potionsH"],
-            ["potionP", "objects", "potionsP"],
-            ["potionE", "objects", "potionsE"],
-            ["box", "objects", "boxs"],
-            ["toxic", "objects", "toxic"],
-            ["spikes", "objects", "spikes"],
-            // ["tree", "object", "tree"],
-            // ['bush', 'objects', 'bush'],
-
-        ]
-
-        phinalphase.createMap('testlevel', tiles, layers, objects);
 
 
+        //     ["spikes", "objects", "spikes"],
+        //     ["spawn", "spawns", "spawns"],
+        //     ["platform", "objects", "platforms"],
+        //     ["saw", "objects", "saws"],
+        //     ["potionH", "objects", "potionsH"],
+        //     ["potionP", "objects", "potionsP"],
+        //     ["potionE", "objects", "potionsE"],
+        //     ["box", "objects", "boxs"],
+        //     ["toxic", "objects", "toxic"],
+        //     ["spikes", "objects", "spikes"],
+        //     // ["tree", "object", "tree"],
+        //     // ['bush', 'objects', 'bush'],
+
+        // ]
+
+        // phinalphase.createMap('testlevel', tiles, layers, objects);
 
         // var backgroundMusic1 = new buzz.sound("/assets/Sound/forest", {
         //     formats: ["ogg"],
@@ -207,12 +290,12 @@ phinalphase.Game.prototype = {
         //     loop: true
         // });
 
-        phinalphase.players = phinalphase.game.add.group();
         // phinalphase.createPlayerCop(this);
         // phinalphase.createPlayerNinja(this);
         // phinalphase.createClouds();
+        // phinalphase.players = phinalphase.game.add.group();
 
-
+        Client.newPlayer([phinalphase.playerNinja, phinalphase.playerCop]);
 
         this.game.updatables.push(function () {
 
@@ -232,76 +315,23 @@ phinalphase.Game.prototype = {
 
         }.bind(this));
 
-        phinalphase.game.time.events.add(5000, function () {
-            Client.askNewPlayer([phinalphase.playerNinja, phinalphase.playerCop]);
+        this.game.updatables.push(function () {
+            phinalphase.TiledGroups.forEach(function (grp) {
+                grp.updatable();
+            }, this);
         }.bind(this));
 
-        this.healthContainer = this.game.add.sprite(10, 10, 'healthContainer');
-        this.healthContainer.scale.setTo(0.5);
-        this.healthContainer.fixedToCamera = true;
 
-        this.healthbar = this.game.add.sprite(74, 26, 'healthbar');
-        this.healthbar.scale.setTo(0.5);
-        this.healthbarWidth = this.healthbar.width;
-        this.healthbar.fixedToCamera = true;
-
-
-        this.energyContainer = this.game.add.sprite(10, 80, 'energyContainer');
-        this.energyContainer.scale.setTo(0.4);
-        this.energyContainer.fixedToCamera = true;
-
-        this.energybar = this.game.add.sprite(60, 93, 'energybar');
-        this.energybar.scale.setTo(0.4);
-        this.energybarWidth = this.energybar.width;
-        this.energybar.fixedToCamera = true;
-
-
-        this.kills = this.game.add.sprite(270, 15, 'kills');
-        this.kills.scale.setTo(0.06);
-        this.kills.fixedToCamera = true;
-
-
-        this.killsText = this.game.add.text(315, 35, "__", {
-            font: "20px Arial",
-            fill: "#AAA",
-            align: "center"
-        });
-        this.killsText.fixedToCamera = true;
-
-
-        this.deaths = this.game.add.sprite(265, 70, 'deaths');
-        this.deaths.scale.setTo(0.05);
-        this.deaths.fixedToCamera = true;
-
-        this.deathsText = this.game.add.text(315, 85, "__", {
-            font: "20px Arial",
-            fill: "#AAA",
-            align: "center"
-        });
-        this.deathsText.fixedToCamera = true;
-
-
-
-
-        phinalphase.game.time.events.add(1000, function () {
-            this.matchTimer = this.game.time.create(false);
-
+        phinalphase.game.time.events.add(5000, function () {
+            this.matchTimer = this.time.create(false);
             this.matchTimer.add(phinalphase.matchTime || 20000, function () {
 
             }, this);
-
             this.matchTimer.start();
+            this.matchTimerText = phinalphase.fixedText(450, 20, "__", "20px Arial", "#AAA", "center");
+
         }.bind(this));
 
-
-
-
-        this.matchTimerText = this.game.add.text(450, 20, "__", {
-            font: "20px Arial",
-            fill: "#AAA",
-            align: "center"
-        });
-        this.matchTimerText.fixedToCamera = true;
 
 
 
@@ -309,7 +339,6 @@ phinalphase.Game.prototype = {
     },
 
     update: function () {
-
 
         if (this.matchTimer) {
             var min = Math.floor((this.matchTimer.duration / 1000) / 60);
@@ -324,82 +353,101 @@ phinalphase.Game.prototype = {
         }
 
 
-        if (phinalphase.isHost) {
-            var objectsCoor = {};
-            phinalphase.Game.objectMap.forEach(function (object, index) {
-                if (phinalphase.hostUpd < 5) {
-                    objectsCoor[index] = [object.x, object.y, object.currentPos, true];
-                    object.revive();
-                } else {
-                    objectsCoor[index] = [object.x, object.y, object.currentPos, object.alive];
-                }
-            }, this);
-            Client.syncObjects(objectsCoor);
-            phinalphase.hostUpd++;
-            if (this.matchTimer) {
-                Client.syncTimer(this.matchTimer.duration);
-            }
-        }
 
-        Client.reqUpdate();
+        // if (phinalphase.isHost) {
+        //     var objectsCoor = {};
+        //     phinalphase.Game.objectMap.forEach(function (object, index) {
+        //         if (phinalphase.hostUpd < 5) {
+        //             objectsCoor[index] = [object.x, object.y, object.currentPos, true];
+        //             object.revive();
+        //         } else {
+        //             objectsCoor[index] = [object.x, object.y, object.currentPos, object.alive];
+        //         }
+        //     }, this);
+        //     Client.syncObjects(objectsCoor);
+        //     phinalphase.hostUpd++;
+        //     if (this.matchTimer) {
+        //         Client.syncTimer(this.matchTimer.duration);
+        //     }
+        // }
+
+        // Client.reqUpdate();
 
         var player = phinalphase.Game.playerMap[phinalphase.playerID];
 
         if (player) {
-            Client.sync(player.x, player.y);
 
-            this.killsText.setText(player.kills);
-            this.deathsText.setText(player.deaths);
 
-            if (player.health / 100 <= 0) {
-                this.healthbar.width = 0;
-            } else {
-                this.healthbar.width = this.healthbarWidth * (player.health / 100);
+            this.game.updatables.forEach(function (f) {
+                f();
+            }, this);
+
+            player.updatePlayer();
+            Client.update();
+
+
+            if (phinalphase.Game.killsText && phinalphase.Game.deathsText) {
+                phinalphase.Game.killsText.setText(player.kills);
+                phinalphase.Game.deathsText.setText(player.deaths);
+
+                if (player.health / 100 <= 0) {
+                    phinalphase.Game.healthbar.width = 0;
+                } else {
+                    phinalphase.Game.healthbar.width = phinalphase.Game.healthbarWidth * (player.health / 100);
+                }
+                if (player.energy / 100 <= 0) {
+                    phinalphase.Game.energybar.width = 0;
+                } else {
+                    phinalphase.Game.energybar.width = phinalphase.Game.energybarWidth * (player.energy / 100);
+                }
             }
-            if (player.energy / 100 <= 0) {
-                this.energybar.width = 0;
-            } else {
-                this.energybar.width = this.energybarWidth * (player.energy / 100);
-            }
+
 
             if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
                 Client.sendAct('RIGHT');
+                player.act('RIGHT');
             } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
                 Client.sendAct('LEFT');
+                player.act('LEFT');
             } else {
                 if (!player.isInAir) {
                     Client.sendAct();
+                    player.act();
                 }
             }
 
             if (player.body.velocity.y > 200 && player.isInAir) {
                 Client.sendAct('FALL');
+                player.act('FALL');
             }
             if (this.game.input.keyboard.isDown(Phaser.Keyboard.UP) && !player.isInAir) {
                 Client.sendAct('UP');
+                player.act('UP');
             }
 
 
 
             if (this.game.input.keyboard.isDown(Phaser.Keyboard.Q)) {
                 Client.sendAct('SKILL', 0);
+                player.act('SKILL', 0);
             }
             if (this.game.input.keyboard.isDown(Phaser.Keyboard.W)) {
                 Client.sendAct('SKILL', 1);
+                player.act('SKILL', 1);
             }
             if (this.game.input.keyboard.isDown(Phaser.Keyboard.E)) {
                 Client.sendAct('SKILL', 2);
+                player.act('SKILL', 2);
             }
             if (this.game.input.keyboard.isDown(Phaser.Keyboard.R)) {
                 Client.sendAct('SKILL', 3);
+                player.act('SKILL', 3);
             }
 
         }
 
 
-        this.game.updatables.forEach(function (f) {
-            f();
-        }, this);
+
 
 
 

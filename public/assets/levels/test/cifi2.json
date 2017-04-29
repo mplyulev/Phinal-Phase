@@ -86,95 +86,119 @@
                  "type":"",
                  "visible":true,
                  "width":57.5758,
-                 "x":870.363515151515,
-                 "y":133.030303030303
+                 "x":870.364,
+                 "y":133.03
                 }, 
                 {
-                 "height":32,
+                 "height":31.896292088924,
                  "id":26,
                  "name":"",
                  "properties":
                     {
+                     "currentPos":0,
                      "heal":20,
+                     "maxPos":10,
                      "respawnTime":30,
+                     "speed":0.3,
                      "sprite":"potionH",
                      "type":"potionH",
                      "usability":"consumable",
-                     "use":"heal"
+                     "use":"heal",
+                     "way":"y"
                     },
                  "propertytypes":
                     {
+                     "currentPos":"int",
                      "heal":"int",
+                     "maxPos":"int",
                      "respawnTime":"int",
+                     "speed":"float",
                      "sprite":"string",
                      "type":"string",
                      "usability":"string",
-                     "use":"string"
+                     "use":"string",
+                     "way":"string"
                     },
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":28,
-                 "x":526.060181818182,
-                 "y":1106.78787878788
+                 "width":27.9092555778085,
+                 "x":526.851947638135,
+                 "y":1107.93253709284
                 }, 
                 {
-                 "height":32,
+                 "height":31.896292088924,
                  "id":28,
                  "name":"",
                  "properties":
                     {
+                     "currentPos":0,
                      "damage":10,
+                     "maxPos":10,
                      "respawnTime":30,
+                     "speed":0.3,
                      "sprite":"potionP",
                      "type":"potionP",
                      "usability":"consumable",
-                     "use":"poison"
+                     "use":"poison",
+                     "way":"y"
                     },
                  "propertytypes":
                     {
+                     "currentPos":"int",
                      "damage":"int",
+                     "maxPos":"int",
                      "respawnTime":"int",
+                     "speed":"float",
                      "sprite":"string",
                      "type":"string",
                      "usability":"string",
-                     "use":"string"
+                     "use":"string",
+                     "way":"string"
                     },
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":28,
-                 "x":1188.78787878788,
-                 "y":790.118787878788
+                 "width":27.9092555778085,
+                 "x":1187.43412439103,
+                 "y":792.287827339972
                 }, 
                 {
-                 "height":32,
+                 "height":31.896292088924,
                  "id":29,
                  "name":"",
                  "properties":
                     {
+                     "currentPos":0,
                      "energy":10,
+                     "maxPos":10,
                      "respawnTime":30,
+                     "speed":0.3,
                      "sprite":"potionE",
                      "type":"potionE",
                      "usability":"consumable",
-                     "use":"energy"
+                     "use":"energy",
+                     "way":"y"
                     },
                  "propertytypes":
                     {
+                     "currentPos":"int",
                      "energy":"int",
+                     "maxPos":"int",
                      "respawnTime":"int",
+                     "speed":"float",
                      "sprite":"string",
                      "type":"string",
                      "usability":"string",
-                     "use":"string"
+                     "use":"string",
+                     "way":"string"
                     },
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":28,
-                 "x":142.484545454545,
-                 "y":1299.08636363636
+                 "width":27.9092555778085,
+                 "x":144.520065200353,
+                 "y":1299.60931736471
                 }, 
                 {
                  "height":39.394,
@@ -227,8 +251,8 @@
                  "type":"",
                  "visible":true,
                  "width":50,
-                 "x":523.759393939394,
-                 "y":1288.60593939394
+                 "x":523.759,
+                 "y":1288.61
                 }, 
                 {
                  "height":39.394,
@@ -294,7 +318,7 @@
                  "visible":true,
                  "width":57.5758,
                  "x":1123.21,
-                 "y":133.030303030303
+                 "y":133.03
                 }, 
                 {
                  "height":57.5758,
@@ -513,62 +537,78 @@
                  "y":552.303
                 }, 
                 {
-                 "height":32,
+                 "height":31.896292088924,
                  "id":51,
                  "name":"",
                  "properties":
                     {
+                     "currentPos":0,
                      "energy":10,
+                     "maxPos":10,
                      "respawnTime":30,
+                     "speed":0.3,
                      "sprite":"potionE",
                      "type":"potionE",
                      "usability":"consumable",
-                     "use":"energy"
+                     "use":"energy",
+                     "way":"y"
                     },
                  "propertytypes":
                     {
+                     "currentPos":"int",
                      "energy":"int",
+                     "maxPos":"int",
                      "respawnTime":"int",
+                     "speed":"float",
                      "sprite":"string",
                      "type":"string",
                      "usability":"string",
-                     "use":"string"
+                     "use":"string",
+                     "way":"string"
                     },
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":28,
-                 "x":778.36365,
-                 "y":1427.33335
+                 "width":27.9092555778085,
+                 "x":778.338262613256,
+                 "y":1427.43370791108
                 }, 
                 {
-                 "height":40,
+                 "height":39.870365111155,
                  "id":52,
                  "name":"",
                  "properties":
                     {
+                     "currentPos":0,
                      "heal":30,
+                     "maxPos":10,
                      "respawnTime":30,
+                     "speed":0.3,
                      "sprite":"potionH",
                      "type":"potionH",
                      "usability":"consumable",
-                     "use":"heal"
+                     "use":"heal",
+                     "way":"y"
                     },
                  "propertytypes":
                     {
+                     "currentPos":"int",
                      "heal":"int",
+                     "maxPos":"int",
                      "respawnTime":"int",
+                     "speed":"float",
                      "sprite":"string",
                      "type":"string",
                      "usability":"string",
-                     "use":"string"
+                     "use":"string",
+                     "way":"string"
                     },
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":36,
-                 "x":1362.36365,
-                 "y":524.303046969697
+                 "width":35.8833286000395,
+                 "x":1360.44160619961,
+                 "y":527.333303030303
                 }, 
                 {
                  "height":57.5758,
@@ -602,8 +642,8 @@
                  "type":"",
                  "visible":true,
                  "width":57.5758,
-                 "x":1437.87876666667,
-                 "y":395.454524242424
+                 "x":1437.88,
+                 "y":395.455
                 }, 
                 {
                  "height":40,
@@ -627,8 +667,8 @@
                  "type":"",
                  "visible":true,
                  "width":50,
-                 "x":263.242424242424,
-                 "y":1116.12121212121
+                 "x":263.242,
+                 "y":1116.12
                 }, 
                 {
                  "height":40,
@@ -652,8 +692,8 @@
                  "type":"",
                  "visible":true,
                  "width":50,
-                 "x":390.393939393939,
-                 "y":1113.9696969697
+                 "x":390.394,
+                 "y":1113.97
                 }, 
                 {
                  "height":40,
@@ -677,8 +717,8 @@
                  "type":"",
                  "visible":true,
                  "width":50,
-                 "x":1659.84848484848,
-                 "y":1048.60606060606
+                 "x":1659.85,
+                 "y":1048.61
                 }, 
                 {
                  "height":40,
@@ -702,8 +742,8 @@
                  "type":"",
                  "visible":true,
                  "width":50,
-                 "x":1345.06060606061,
-                 "y":1500.12121212121
+                 "x":1345.06,
+                 "y":1500.12
                 }, 
                 {
                  "height":40,
@@ -727,8 +767,8 @@
                  "type":"",
                  "visible":true,
                  "width":50,
-                 "x":319.787878787879,
-                 "y":410.242424242424
+                 "x":319.788,
+                 "y":410.242
                 }, 
                 {
                  "height":40,
@@ -752,8 +792,8 @@
                  "type":"",
                  "visible":true,
                  "width":50,
-                 "x":1466.90909090909,
-                 "y":155.666666666667
+                 "x":1466.91,
+                 "y":155.667
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -787,8 +827,8 @@
                  "type":"",
                  "visible":true,
                  "width":10,
-                 "x":1685.52745454545,
-                 "y":196.697303030303
+                 "x":1685.53,
+                 "y":196.697
                 }, 
                 {
                  "height":10,
@@ -810,8 +850,8 @@
                  "type":"",
                  "visible":true,
                  "width":10,
-                 "x":307.121212121212,
-                 "y":188.939393939394
+                 "x":307.121,
+                 "y":188.939
                 }, 
                 {
                  "height":10,
@@ -833,8 +873,8 @@
                  "type":"",
                  "visible":true,
                  "width":10,
-                 "x":282.878787878788,
-                 "y":1731.36363636364
+                 "x":282.879,
+                 "y":1731.36
                 }, 
                 {
                  "height":10,
@@ -856,8 +896,8 @@
                  "type":"",
                  "visible":true,
                  "width":10,
-                 "x":1658.63636363636,
-                 "y":1461.66666666667
+                 "x":1658.64,
+                 "y":1461.67
                 }],
          "opacity":1,
          "type":"objectgroup",
