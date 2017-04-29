@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcrypt');
+var flash = require("connect-flash")
 
 
 // Load the password hash from DB
@@ -23,7 +24,8 @@ router.post('/', function (req, res, next) {
                 res.redirect('/index');
             } 
             else {
-                res.render('login', { message: 'Wrong username or password.' });
+                req.flash('/login', 'it worked');
+                // res.render("/login",  req.flash('/login', 'it worked'));
                  console.log(bcrypt.compareSync(passwordLogin, data[0].password));
               
             }

@@ -15,7 +15,7 @@
   <script type="text/javascript" src={{script}}></script>
    <script type="text/javascript"src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
-   <script type="text/javascript"src="/javascripts/website/AngularMain.js"></script>
+   <script type="text/javascript"src="/javascripts/websiteControllers/AngularMain.js"></script>
 
 <script
 	src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -24,7 +24,8 @@
   
 </head>
  <body id="body">
- 
+ <div id="upperContainer"> 
+	 
 <svg id="svgText" version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
 	 width="600px" height="100px" viewBox="0 0 600 100">
 <style type="text/css">
@@ -127,6 +128,7 @@
 </g>
 </svg>
   <img src="/assets/logo.png" class="img-responsive" id="logo2" alt="game logo">
+	</div>
 <div class="mainContainer">
 	
   <nav id = "navbar"class="navbar navbar-inverse navbar-static-top">
@@ -169,19 +171,20 @@
     <!--/.container-fluid -->
   </nav>
   
-</div>
+<div id="bottomContainer">
+<div>
 
- <div ng-controller="avatarController">
-<div ng-view>
- 
+</div>
+ <div  ng-controller="avatarController">
+<div id="view" ng-view>
 </div>		
 </div>
-
+</div>
 <audio id="audioClick" src="assets/sound/button21.wav" ></audio>
 <audio id="radio" src="assets/sound/radio.mp3" ></audio>
 <audio id="audio" src="assets/sound/forest.ogg" ></audio>
 <audio id="audioMenu" src="assets/sound/menuSelect.wav" ></audio>
-   <script type="text/javascript"src="/javascripts/website/indexFront.js"></script>
+   <script type="text/javascript" src="/javascripts/websiteControllers/indexFront.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> 
  
 <div id="space">
@@ -191,10 +194,18 @@
   <div class="stars"></div>
   <div class="stars"></div>
 </div>
+ <div id="space2">
+  <div class="stars2"></div>
+  <div class="stars2"></div>
+  <div class="stars2"></div>
+  <div class="stars2"></div>
+  <div class="stars2"></div>
+</div>
 
 
-	 <div ng-controller='avatarController'>   
-                           <img alt="" class="img-thumbnail img-responsive" id="avatar" ng-src="{{avatarURL}}">  
+	 <div ng-controller='avatarController'>  
+		  
+                           {{!--<img alt="" class="img-thumbnail img-responsive" id="avatar" ng-src="{{avatarURL}}">  --}}
                              </div>   
 
 </body>
