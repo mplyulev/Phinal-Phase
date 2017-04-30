@@ -14,6 +14,7 @@ html  {
 
 #upperContainer {
    background-image: url("/assets/space2.jpg");
+   height:450px;
 }
 #bottomContainer {
   background-image: url("/assets/space3.jpg");
@@ -24,7 +25,7 @@ html  {
 #logo2 {
      margin:0 auto; 
      padding-bottom:100px;
-     padding-top:30px;
+     padding-top:130px;
      z-index: 99;
      position:relative;
      opacity:0; 
@@ -220,7 +221,11 @@ svg{
   outline: none;        
 }
 
-
+#messageTo { 
+  color:white;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  text-align: center;
+}
 
  #ranklistAvatar {
  width:100px;
@@ -229,7 +234,9 @@ svg{
  margin:0 auto;
  }
 
-
+#ranklistTable .ranklistUsername {
+  cursor:pointer;
+}
 
 #changePasswordForm {
    margin:0 auto;
@@ -301,7 +308,9 @@ th {
   text-shadow: 1px 1px 21px green;
   box-shadow: 1px 2px 23px green;
 }
- 
+.ranklistUsername h1 {
+  cursor: pointer;
+}
 
 .roundedOne {
 	width: 28px;
@@ -480,15 +489,17 @@ th {
 #contactForm {
   position:relative;
   z-index:1000;
+  top:50px;
+   background-color:rgba(0, 0, 0, 0.6);
  
   /*background-color: black;*/
 }
 #messageForm {
   position: relative;
-  top:100px;
+  
 }
 
-#messageSubmit  {
+#messageSubmit,#messageToUserSubmit  {
   display: block;
   margin:0 auto;
   margin-top:30px;
@@ -507,7 +518,7 @@ th {
 }
 
 
-#success,#noSuccess,#noSuccess2    {
+#noSuccess,#noSuccess2    {
         color:  #D21C1E;
     text-align: center;
      font-size: 1.0em;
@@ -515,7 +526,14 @@ th {
  display:none;
      height:10px;
  }
- 
+ #successMessageToUser,#success {
+           color:  green;
+    text-align: center;
+     font-size: 1.0em;
+     font-weight:bold;
+ display:none;
+     height:10px;
+ }
 
  #changePasswordForm h5 { 
    color:white;
@@ -535,81 +553,17 @@ th {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   
 }
+ #usermessageContactForm { 
+   position:absolute;
+   z-index:100;
+   display:none;
+   top:50px;
+   background-color:rgba(0, 0, 0, 0.6);
+   position:relative;
+   margin: 0 auto;
+ }
  
  
-@-webkit-keyframes planet-rotation {
-    from {
-        background-position: 0% 0%;
-    }
-    to {
-        background-position: -200% 0%;
-    }
-}
-@keyframes planet-rotation {
-    from {
-        background-position: 0% 0%;
-    }
-    to {
-        background-position: -200% 0%;
-    }
-}
-
- 
-
-.containerPlanet {
- 
-  display: flex;
-  justify-content: center;
-  align-items: center;
- display:inline;
-  margin:0 auto;
- 
-}
-
-.planet-image {
-     width: 15vw;
-     height: 15vw;
-   
-     border-radius: 50%;
-     display:block;
-     margin:0 auto;
-     position: relative;
-     top:260px;
-     background: #303030 url('http://img11.deviantart.net/b5ce/i/2006/110/1/b/lava_planet_texture_by_sadronmeldir.jpg') repeat-x;
-     background-size: cover;
-     -webkit-animation: planet-rotation 30s linear infinite;
-}
-
-.planet-image:after {
-    position: absolute;
-    content: '';
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    
-    height: 100%;
-    border-radius: 50%;
-    background-image:
-        -webkit-radial-gradient(16% 50%, 30% 50%, rgba(255,240,230,.6), transparent),
-        linear-gradient(to right, rgba(255,240,220,0.5) 12%, rgba(255,240,220,0) 40%, rgba(0,0,0,0.64) 60%, rgba(0,0,0,1) 100%);
-    box-shadow: inset 10px 0 30px rgba(255,240,220,0.4);
-}
-
-.planet-image:before {
-                content: '';
-                position: absolute;
-  top: -4px;
-  left: -4px;
-  right: -4px;
-  bottom: -4px;
-  border-radius: 50%;
-  background: transparent url('http://rojo2.com/img/texture-01-clouds.png') repeat-x;
-  background-size: cover;
-  -webkit-animation: planet-rotation 18s linear infinite;
-}
-
-
  
 /*MEDIA QUERIES*/
 @media (max-width: 380px) {

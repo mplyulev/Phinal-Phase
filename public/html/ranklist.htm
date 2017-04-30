@@ -1,4 +1,21 @@
-<div id="ranklistContainer" ng-app="myApp" ng-controller='ranklistController'>
+<div id="ranklistContainer"   ng-controller='ranklistController'>
+  <section id="usermessageContactForm">              
+        <form action="/userToUserMessage" method="post" id ="usermessageForm" class="form-horizontal" >
+       <input id="hiddenInputHelper" name="messageTarget" type="text">  </input>
+        <h1  id="messageTo" class="h1"> </h1>
+            <input class="form-group" type="text" name="subject" id="subject" placeholder="Subject">
+            <div  style="height:15px">   
+                <h1 id="noSuccess2">Please enter a subject!</h1>
+            </div>
+            <textarea rows="7" cols="50" name="messageMail" class="messageMail" id="messageMail" placeholder="Enter your message here"></textarea>
+            <div style="height:15px">   
+                <h1 id="noSuccess">Please enter a message!</h1>
+                <h1 id="successMessageToUser">Your message was successfully sent!</h1>
+            </div>
+            <input  type="submit"  class="btn btn-custom btn-lg btn-block" id="messageToUserSubmit" value="Send" onClick ="console.log('asdasd')">;
+        </form>
+    </section>
+    <div id="toggledRanklistContainer">
     <table ng-controller="nameSortController">
       <tr> 
         <th id ="sortAlphabeticaly"class = "ranklistTd"> 
@@ -12,7 +29,7 @@
 	      <label for="roundedOne"></label>
       </div> 
 
-  <table class = "table-responsive" ng-controller="usernameSortController">
+  <table id="ranklistTable" class = "table-responsive" ng-controller="usernameSortController">
   <tr>
     <th class="ranklistTd">#</th>
     <th class="ranklistTd">Avatar</th>
@@ -28,12 +45,17 @@
   <tr ng-repeat="user in data | filter : user | filter : username | orderBy:orderByField:reverseSort ">
       <td class="ranklistTd">{{ $index + 1 }}</td>
       <td class="ranklistTd" id="avatarData"> <img class="img-responsive" id="ranklistAvatar"ng-src="{{user.avatarURL}}" alt=""></td>
-      <td class="ranklistTd" id="ranklistUsername">{{ user.username }}</td>
+      <td class="ranklistTd ranklistUsername" id="ranklistUsername"> {{ user.username }} </td>
       <td class="ranklistTd">{{ user.kills }}</td>
       <td class="ranklistTd">{{ user.deaths }}</td>
       <td class="ranklistTd">{{ user.score }}</td>
   </tr>
+  
 </div>
 </table>
 </table>
+</div>
+</div>
+
+ 
  <script type="text/javascript"src="../javascripts/websiteControllers/indexFront.js"></script>

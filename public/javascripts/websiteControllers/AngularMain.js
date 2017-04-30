@@ -13,6 +13,9 @@ var app  = angular.module("myApp",["ngRoute"]);
      .when("/contacts", {
          templateUrl: "/HTML/contacts.html",
      }) 
+     .when("/messages", {
+         templateUrl: "/HTML/messages.htm",
+     }) 
      .when("pp", {
          templateUrl: "/HTML/phinalphase.html",
      }) 
@@ -29,21 +32,35 @@ app.controller("ranklistController",  function($scope,$http)  {
 $http.get("dataRanklist").then(function (response)  {
 $scope.data = response.data;
 console.log("check controller");
+
 });
-var roundedOne = angular.element( document.querySelector( '#roundedOne' ) );
+var roundedOne = angular.element( document.querySelector('#roundedOne'));
 var ranklistContainer = angular.element( document.querySelector( '#ranklistContainer' ) );
 var ranklistMenuButton = angular.element( document.querySelector( '#ranklistMenuButton' ) );
 $(roundedOne).on("click", function () {
     $(ranklistContainer).delay(1000).fadeOut(1000);
 });
  $(ranklistMenuButton).on("click", function () {
-    $(ranklistContainer).fadeIn(1000); 
+    // $(ranklistContainer).fadeIn(1000); 
+});
+$("#ranklistTable").on("click",".ranklistUsername", function (event) {
+    $("#messageTo").text("Send a message to " + event.target.textContent) 
+    $("#usermessageContactForm").delay(1000).fadeIn(1000);
+    $("#toggledRanklistContainer").fadeOut(1000);
+    $("#hiddenInputHelper").val(event.target.textContent.substr(1));
+    $("#hiddenInputHelper").css("display","none");
+});
+    $("#messageToUserSubmit").on("click", function() {
+        $("#successMessageToUser").fadeIn(1000);
+        $("#usermessageContactForm").delay(3000).fadeOut(1000);
+        $("#toggledRanklistContainer").delay(4000).fadeIn(1000);
+        console.log("asdasd");
     });
  });
 
 
 
-app.controller("nameSortController",  function($scope,$http)  {
+app.controller("nameSortController",  function($scope)  {
     $scope.filterString = '';
     $scope.sortByName = false;
     $scope.sortOrder = '';
@@ -91,12 +108,21 @@ app.controller('messageController', function($scope) {
     });  
 });
 
+
+
+app.controller("userToUserMessageController",  function($scope,$http)  {
+$http.get("data").then(function (response)  {
+$scope.data = response.data[0].inboxMessages;
+ console.log($scope.data);
+});
+});
+
 app.controller('usernameSortController', function($scope,$http) {
     $http.get("dataRanklist").then(function (response)  {
-$scope.data = response.data;
-console.log("check controller");
-  $scope.orderByField = 'username';
-  $scope.reverseSort = false;
+    $scope.data = response.data;
+    console.log("check controller");
+    $scope.orderByField = 'username';
+    $scope.reverseSort = false;
 });
 });
 
