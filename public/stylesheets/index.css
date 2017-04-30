@@ -200,7 +200,7 @@ svg{
  
 
  
-#saveButton {
+#saveButton,#backToMessages {
    position: relative;
    top:20px;
    background-color: white;
@@ -212,12 +212,16 @@ svg{
   color:black;
   border-radius: 5px;
 }
-#saveButton:focus {
+#saveButton:focus,#backToMessages:focus {
  box-shadow: 1px 1px 25px black;
   outline: none;        
 }
-#saveButton:hover {
+#saveButton:hover,#backToMessages:hover {
  box-shadow: 1px 1px 35px white;
+  outline: none;        
+}
+ #backToMessages:active {
+ box-shadow: 1px 1px 35px black;
   outline: none;        
 }
 
@@ -452,36 +456,36 @@ th {
   display :block;
   margin:0 auto;
   box-shadow:1px 21px 21px black;
-    margin-bottom:30px;
-    color:black;
-  
- font-size:20px;
- text-align: center;
+  margin-bottom:30px;
+  color:black;
+  font-size:20px;
+  text-align: center;
   font-family: Impact, Haettenschweiler
 }
-#messageMail {
+#messageMail,#userMessageContainer {
   margin:0 auto;
   display:block;
-    box-shadow:1px 21px 21px black;
+  box-shadow:1px 21px 21px black;
   background-color:rgba(0,255,0,0.5);
   color:white;
-   
-   font-size:20px;
-     font-weight: lighter;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  
+  word-wrap:break-word ;
+  text-indent:20px;
+  font-size:20px;
+  width:50%;
+  font-weight: lighter;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
 #messageMail::placeholder  {
   color:white;
- 
-     font-weight: lighter;
+  font-weight: lighter;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size:30px;
 }
 #subject::placeholder  {
   color:black;
- font-size:20px;
- text-align: center;
+  font-size:20px;
+  text-align: center;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
  
 }
@@ -499,7 +503,7 @@ th {
   
 }
 
-#messageSubmit,#messageToUserSubmit  {
+#messageSubmit,#messageToUserSubmit,#backToMessages  {
   display: block;
   margin:0 auto;
   margin-top:30px;
@@ -526,13 +530,13 @@ th {
  display:none;
      height:10px;
  }
- #successMessageToUser,#success {
-           color:  green;
+ #successMessageToUser,#success {    
+    color:  green;
     text-align: center;
-     font-size: 1.0em;
-     font-weight:bold;
- display:none;
-     height:10px;
+    font-size: 1.0em;
+    font-weight:bold;
+    display:none;
+    height:10px;
  }
 
  #changePasswordForm h5 { 
@@ -563,8 +567,49 @@ th {
    margin: 0 auto;
  }
  
+ .messagesTh {
+   cursor:pointer;
+ }
  
+ #userMessageBody {
+   background-color:rgba(0,255,0,0.5);
+   margin:0 auto;
+   width:70%;
+   font-size:1em;
+   height: auto;
+   color:white;
+   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+   font-weight:lighter;
+   text-indent: 20px;
+   letter-spacing: 1.2px;
+ }
  
+ #messageBodyTd { 
+   display:none;
+ }
+ 
+ #messageBodyTextParagraph {
+   margin:20px;
+   line-height: 20px;
+ }
+
+ #userMessageContainer{ 
+   display:none;
+   z-index:10000;
+ 
+   position:relative;
+ }
+ 
+ #backToMessages{ 
+  margin:0 auto;
+   display:block;
+   top:80px;
+   position: relative;
+   width:50%;
+   height:50px;
+   font-weight: lighter;
+   font-size:20px;
+ }
 /*MEDIA QUERIES*/
 @media (max-width: 380px) {
   #currentPassword, #newPassword, #url  {
@@ -573,6 +618,15 @@ th {
    display:block;
    position:relative;
    right:50%;
+  }
+  #messageMail,#userMessageContainer  {
+    width:100%;
+    word-wrap:break-word ;
+    text-indent:20px;
+  }
+
+  #messageMail::placeholder,userMessageContainer::placeholder {
+    font-size:1.0em;
   }
 }
 

@@ -36,4 +36,7 @@ $(function() {
 });
     $("#radio").prop("volume",0.5);
     $("#radio")[0].play();
+    $(".messagesTh").on("click", function ( ) {
+        console.log("asdasd")
+    })
 });

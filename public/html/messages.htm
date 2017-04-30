@@ -1,36 +1,27 @@
- 
+  <script type="text/javascript" src="/javascripts/websiteControllers/indexFront.js"></script>
  
  <div ng-app="myApp">
  <div  ng-controller="userToUserMessageController" id="messagesContainer"> 
-  <table id="ranklistTable" class = "table-responsive">>
+  <table id="messagesTable" class = "table-responsive">>
+      <tr>
+          <th class="ranklistTd ">Sender</th>
+          <th class="ranklistTd ">Subject</th>
+          <th class="ranklistTd ">Date</th>
+      </tr>
+      <tr id="messagesTr" data-ng-repeat="message in data | orderBy: '-date' " >
+      
+          <td class="ranklistTd messagesTh">{{ message.sender }}</td>
+          <td class="ranklistTd messagesTh">{{ message.subject }}</td>
+          <td class="ranklistTd messagesTh">{{ message.date | date : format : medium}}</td>
+          <td  id="messageBodyTd"  class="ranklistTd messagesTh">{{ message.messageBody}}</td>
+          <div id="messageMail">{{message.messageBody}}</div>
+      </tr>
+ 
+      <div id="userMessageContainer">
+          <h3 class="h3" id="messageFrom"></h3>
+          <h5  id = "messageBodyTextParagraph" class="h5"> <h5> 
+          <button id="backToMessages"   >Back to messages</button> 
+      </div> 
  
 
-
-
-
-  <tr>
-    <th class="ranklistTd">Sender</th>
-    <th class="ranklistTd">Subject</th>
-    <th class="ranklistTd">Date</th>
-  </tr>
- <tr data-ng-repeat="message in data">
-      <!--<td class="ranklistTd ranklistUsername" id="ranklistUsername"> {{ user.username }} </td>-->
-      <td class="ranklistTd">{{ message.sender }}</td>
-      <td class="ranklistTd">{{ message.subject }}</td>
-      <td class="ranklistTd">{{ message.date}}</td>
-  </tr>
- 
-  
-      <!--<td style="font-size:15px">Sender: {{message.sender}}<td>
-      <td style="font-size:15px">{{message.subject}}<td>
-      <td style="font-size:15px">{{message.messageBody}}<td>
-      <td style="font-size:15px">{{message.date}}<td>-->
-      <!--<td class="ranklistTd" id="avatarData"> <img class="img-responsive" id="ranklistAvatar"ng-src="{{user.avatarURL}}" alt=""></td>
-      <td class="ranklistTd ranklistUsername" id="ranklistUsername"> {{ message.subject }} </td>
-      <td class="ranklistTd">{{ {{ message.messageBody }} }}</td>
-      <td class="ranklistTd">{{ {{ message.date }} }}</td>!-->
-<!--   
-  </tr>
-  </table>-->
-</div>
 </div>
