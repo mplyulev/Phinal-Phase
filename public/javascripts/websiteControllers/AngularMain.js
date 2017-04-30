@@ -49,11 +49,17 @@ $("#ranklistTable").on("click",".ranklistUsername", function (event) {
     $("#toggledRanklistContainer").fadeOut(1000);
     $("#hiddenInputHelper").val(event.target.textContent.substr(1));
     $("#hiddenInputHelper").css("display","none");
+    $("#subject,#messageMail,#noSuccess,#noSuccess2").val("");
+
+   
 });
     $("#messageToUserSubmit").on("click", function() {
         $("#successMessageToUser").fadeIn(1000);
         $("#usermessageContactForm").delay(3000).fadeOut(1000);
         $("#toggledRanklistContainer").delay(4000).fadeIn(1000);
+        $("#successMessageToUser").delay(2000).fadeOut(1000);
+   
+
         console.log("asdasd");
     });
  });
@@ -113,7 +119,7 @@ app.controller('messageController', function($scope) {
 app.controller("userToUserMessageController",  function($scope,$http)  {
 $http.get("data").then(function (response)  {
 $scope.data = response.data[0].inboxMessages;
- console.log($scope.data);
+console.log($scope.data.length);
 });
 $("#messagesTable").on("click",".messagesTh", function (event) {
     var clickedRow = event.target; 
@@ -125,8 +131,8 @@ $("#messagesTable").on("click",".messagesTh", function (event) {
     $("#messagesTable").delay(300).fadeOut(1000);
 });
     $("#backToMessages").on("click", function() {
-        $("#userMessageContainer").delay(300).fadeOut(1000);
-         $("#messagesTable").delay(1200).fadeIn(1000);
+    $("#userMessageContainer").delay(300).fadeOut(1000);
+    $("#messagesTable").delay(1200).fadeIn(1000);
     })
 });
 

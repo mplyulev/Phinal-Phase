@@ -1,4 +1,5 @@
-<div id="ranklistContainer"   ng-controller='ranklistController'>
+<div id="ranklistContainer" ng-app="myApp" ng-controller='ranklistController'>
+    <div ng-cotroller="userMessageObserveController"></div>
   <section id="usermessageContactForm">              
         <form action="/userToUserMessage" method="post" id ="usermessageForm" class="form-horizontal" >
        <input id="hiddenInputHelper" name="messageTarget" type="text">  </input>

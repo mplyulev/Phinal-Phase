@@ -40,7 +40,7 @@ router.post('/', function(req, res, next) {
                     from: "Phinal Phase  <PhinalPhaseTheGame@gmail.com>",  
                     to: email, 
                     subject: "Welcome to PhinalPhase! ",  
-                    html:"<img src='http://i.imgur.com/iuzDfkx.png' style='margin-bottom:30px; display:block;margin:0 auto;'></br><h1 style='font-family:impact; text-align:center; text-shadow:1px 2px 21px #FF0000'>Greetings  "  + username + "! Welcome to the PHINAL PHASE!</h1>" + "<p style='font-size:20px; text-align:center; font-family:impact;'>Your account details are:   Username:"  + username + "      Password:   " + password + "</p>"   // html body
+                    html:"<img src='http://i.imgur.com/iuzDfkx.png' style='margin-bottom:30px; display:block;margin:0 auto;'></br><h1 style='font-family:impact; text-align:center; text-shadow:1px 2px 21px #FF0000'>Greetings  "  + username + "! Welcome to the PHINAL PHASE!</h1>"    
                 }
                 smtpTransport.sendMail(mailOptions, function(error, response){
                     if(error){
