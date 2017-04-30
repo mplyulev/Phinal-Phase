@@ -1,1 +1,36 @@
  
+ 
+ <div ng-app="myApp">
+ <div  ng-controller="userToUserMessageController" id="messagesContainer"> 
+  <table id="ranklistTable" class = "table-responsive">>
+ 
+
+
+
+
+  <tr>
+    <th class="ranklistTd">Sender</th>
+    <th class="ranklistTd">Subject</th>
+    <th class="ranklistTd">Date</th>
+  </tr>
+ <tr data-ng-repeat="message in data">
+      <!--<td class="ranklistTd ranklistUsername" id="ranklistUsername"> {{ user.username }} </td>-->
+      <td class="ranklistTd">{{ message.sender }}</td>
+      <td class="ranklistTd">{{ message.subject }}</td>
+      <td class="ranklistTd">{{ message.date}}</td>
+  </tr>
+ 
+  
+      <!--<td style="font-size:15px">Sender: {{message.sender}}<td>
+      <td style="font-size:15px">{{message.subject}}<td>
+      <td style="font-size:15px">{{message.messageBody}}<td>
+      <td style="font-size:15px">{{message.date}}<td>-->
+      <!--<td class="ranklistTd" id="avatarData"> <img class="img-responsive" id="ranklistAvatar"ng-src="{{user.avatarURL}}" alt=""></td>
+      <td class="ranklistTd ranklistUsername" id="ranklistUsername"> {{ message.subject }} </td>
+      <td class="ranklistTd">{{ {{ message.messageBody }} }}</td>
+      <td class="ranklistTd">{{ {{ message.date }} }}</td>!-->
+<!--   
+  </tr>
+  </table>-->
+</div>
+</div>
