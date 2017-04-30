@@ -135,6 +135,7 @@ phinalphase.TiledGroupDamage.prototype.collideLayer = null;
 
 
 phinalphase.TiledGroupDamage.prototype.overlapPlayer = function (player, object) {
+    player.body.velocity.y -= 10;
     player.act('STRIKED', object);
 }
 

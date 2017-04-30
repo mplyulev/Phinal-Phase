@@ -38,6 +38,9 @@ Client.sendUpdatesPlayer = function (properties) {
     Client.socket.emit('updatePlayer', properties);
 }
 
+Client.sendScore = function (data) {
+    Client.socket.emit('score', data);
+}
 
 Client.socket.on('newplayer', function (data) {
     phinalphase.Game.addNewPlayer(data);
@@ -89,8 +92,18 @@ Client.socket.on('createMap', function (data) {
     phinalphase.Game.createMapFromServer(data);
 });
 
+Client.socket.on('stopGame', function () {
+    phinalphase.Game.getScore();
+});
+
 Client.socket.on('endGame', function () {
-    console.log('end');
+    setTimeout(function () {
+        window.location.assign("http://localhost:5000/");
+    }, 5000);
+});
+
+Client.socket.on('samePerson', function (id) {
+    window.location.assign("http://localhost:5000/");
 });
 
 Client.socket.on('remove', function (id) {

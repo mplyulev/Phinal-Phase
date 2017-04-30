@@ -1,16 +1,8 @@
-function getSocket(server, user, now) {
+function getSocket(server, user) {
     var io = require('socket.io', { rememberTransport: false, transports: ['WebSocket', 'Flash Socket', 'AJAX long-polling'] }).listen(server);
-    if (now) {
-
-    }
-
 
     serverInfo = {
-        user: user,
-        lastPlayerID: 0,
-        connectedUsers: 0,
-        matchTime: 300000,
-        haveTimer: false
+        user: user
     }
     server.lastPlayerID = 0;
     server.connectedUsers = 0;
@@ -19,35 +11,41 @@ function getSocket(server, user, now) {
 
 
     serverObjects = [];
-    // if (user) {
-    // username = user;
-    // }
-    // server.asd = username;
-    // console.log("USERNAME          ", username); //1 2 
 
 
     io.on('connection', function (socket) {
+        // Object.keys(io.sockets.connected).forEach(function (socketID) {
+        //     if (io.sockets.connected[socketID].player) {
+        //         if (io.sockets.connected[socketID].player.username == serverInfo.user[0].username) {
+        //             io.to(socket.id).emit('samePerson');
+
+        //             samePerson = true;
+        //         }
+        //     }
+        // });
 
         if (!server.haveTimer) {
             server.haveTimer = true;
             timer = setInterval(function () {
                 server.matchTime -= 1000;
-                if (server.matchTime <= 0) {
-                    io.emit('endGame');
+                if (server.matchTime <= 270000) {
+                    io.emit('stopGame');
                     clearInterval(timer);
+                    server.haveTimer = false;
+                    server.matchTime = 300000;
                 }
             }, 1000);
         }
 
 
         socket.on('newplayer', function (data) {
-            // server.user = username;
+
 
             server.connectedUsers++;
             socket.player = data;
             socket.player.isHost = false;
             socket.player.id = server.lastPlayerID++;
-            socket.player.username = "asd"//serverInfo.user;
+            socket.player.username = serverInfo.user[0].username;
             socket.player.health = 100;
             socket.player.energy = 100;
             socket.player.isInAir = false;
@@ -70,7 +68,19 @@ function getSocket(server, user, now) {
             }
 
 
+            socket.on('score', function (data) {
+                Object.keys(data).forEach(function (key) {
+                    socket.player[key] = data[key];
+                });
+                var player = serverInfo.user[0];
+                var killsSum = data.kills + player.kills;
+                var deathsSum = data.deaths + player.deaths;
+                var scoreSum = data.score + player.score;
+                users.update({ username: socket.player.username }, { $set: { kills: killsSum, deaths: deathsSum, score: scoreSum } }).then(function () {
+                    io.to(socket.id).emit('endGame');
+                });
 
+            });
 
             socket.on('createPlayer', function (data) {
                 socket.emit('allplayers', { players: getAllPlayers(), id: socket.player.id, timer: server.matchTime });

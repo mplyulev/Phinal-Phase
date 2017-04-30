@@ -225,6 +225,16 @@ phinalphase.Game.updatePlayer = function (id) {
     player.updatePlayer();
 }
 
+phinalphase.Game.getScore = function () {
+    phinalphase.game.matchTimerText.setText('00:00');
+    phinalphase.game.endText = phinalphase.fixedText(400, 250, "The Match Ended", "40px Arial", "#AAA", "center");
+    phinalphase.game.endText.anchor.setTo(0.5);
+    setTimeout(function () {
+    phinalphase.game.paused = true;        
+    }, 500);
+    var player = phinalphase.Game.playerMap[phinalphase.playerID];
+    Client.sendScore({ kills: player.kills, deaths: player.deaths, score: player.score });
+}
 
 
 phinalphase.Game.prototype = {
@@ -287,13 +297,10 @@ phinalphase.Game.prototype = {
 
 
         phinalphase.game.time.events.add(2000, function () {
-            this.matchTimer = this.time.create(false);
-            this.matchTimer.add(phinalphase.matchTime || 20000, function () {
-
-            }, this);
-            this.matchTimer.start();
-            this.matchTimerText = phinalphase.fixedText(450, 20, "__", "20px Arial", "#AAA", "center");
-
+            phinalphase.game.matchTimer = this.time.create(false);
+            phinalphase.game.matchTimer.add(phinalphase.matchTime || 20000, null, this);
+            phinalphase.game.matchTimer.start();
+            phinalphase.game.matchTimerText = phinalphase.fixedText(450, 20, "__", "20px Arial", "#AAA", "center");
         }.bind(this));
 
 
@@ -304,16 +311,16 @@ phinalphase.Game.prototype = {
 
     update: function () {
 
-        if (this.matchTimer) {
-            var min = Math.floor((this.matchTimer.duration / 1000) / 60);
+        if (phinalphase.game.matchTimer) {
+            var min = Math.floor((phinalphase.game.matchTimer.duration / 1000) / 60);
             if (min.toString().length <= 1) {
                 min = '0' + min;
             }
-            var sec = Math.floor((this.matchTimer.duration / 1000) % 60);
+            var sec = Math.floor((phinalphase.game.matchTimer.duration / 1000) % 60);
             if (sec.toString().length <= 1) {
                 sec = '0' + sec;
             }
-            this.matchTimerText.setText(min + ':' + sec);
+            phinalphase.game.matchTimerText.setText(min + ':' + sec);
         }
 
 

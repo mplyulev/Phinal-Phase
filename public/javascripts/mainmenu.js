@@ -58,11 +58,18 @@ phinalphase.MainMenu.prototype = {
         this.buttons.add(this.char1Btn);
         this.buttons.add(this.char2Btn);
 
-        this.button = this.game.add.button(this.game.world.centerX - 95, 400, 'playButton', function () {
+        this.button = this.game.add.button(this.game.world.centerX - 40, 450, 'playButton', function () {
+            this.button.frame = 1;
             this.state.start('Game');
         }, this);
 
-        this.button.scale.setTo(0.5);
+        this.button.onInputOver.add(function () {
+            this.button.frame = 1;
+        }, this);
+        this.button.onInputOut.add(function () {
+            this.button.frame = 0;
+        }, this);
+        this.button.scale.setTo(0.4);
 
 
 

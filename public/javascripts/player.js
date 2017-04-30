@@ -311,8 +311,8 @@ phinalphase.Player.prototype.updatePlayer = function () {
         return;
     }
 
-    this.usernameText.x = this.body.x + 10;
-    this.usernameText.y = this.body.y - 25;
+    this.usernameText.x = this.body.x;
+    this.usernameText.y = this.body.y - 35;
 
     var player = phinalphase.Game.playerMap[phinalphase.playerID];
     if (isNaN(this.body.velocity.y)) {

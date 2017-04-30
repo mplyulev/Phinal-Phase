@@ -95,7 +95,7 @@ phinalphase.Preload.prototype = {
 
         //MainMenu
 
-        this.load.image('playButton', '/assets/GUI/play.png');
+        this.load.spritesheet('playButton', '/assets/GUI/play.png', 175, 175);
         this.load.image('menuBG', '/assets/GUI/menuBG.jpg');
         this.load.spritesheet('buttonOnOff', '/assets/GUI/onoff.png', 175, 175);
         this.load.image('ninjaLogo', '/assets/GUI/ninjaLogo.png');
