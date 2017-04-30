@@ -9,7 +9,6 @@
           <th class="ranklistTd ">Date</th>
       </tr>
       <tr id="messagesTr" data-ng-repeat="message in data | orderBy: '-date' " >
-      
           <td class="ranklistTd messagesTh">{{ message.sender }}</td>
           <td class="ranklistTd messagesTh">{{ message.subject }}</td>
           <td class="ranklistTd messagesTh">{{ message.date | date : format : medium}}</td>
