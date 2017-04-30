@@ -25,6 +25,8 @@ phinalphase.Player = function (player) {
     this.deaths = player.deaths;
     this.score = player.score;
     this.username = player.username;
+    this.usernameText = phinalphase.fixedText(player.x, player.x, this.username, "20px Arial", "#AAA", "center");
+    this.usernameText.fixedToCamera = false;
 
     if (player.anim) {
         this.animationsObject = player.anim;
@@ -309,6 +311,8 @@ phinalphase.Player.prototype.updatePlayer = function () {
         return;
     }
 
+    this.usernameText.x = this.body.x + 10;
+    this.usernameText.y = this.body.y - 25;
 
     var player = phinalphase.Game.playerMap[phinalphase.playerID];
     if (isNaN(this.body.velocity.y)) {

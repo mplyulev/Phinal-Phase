@@ -89,6 +89,10 @@ Client.socket.on('createMap', function (data) {
     phinalphase.Game.createMapFromServer(data);
 });
 
+Client.socket.on('endGame', function () {
+    console.log('end');
+});
+
 Client.socket.on('remove', function (id) {
     phinalphase.Game.removePlayer(id);
 });

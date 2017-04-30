@@ -137,7 +137,6 @@ phinalphase.Game.createMapFromServer = function (objectsFromServer) {
     this.deathsText = phinalphase.fixedText(315, 85, "__", "20px Arial", "#AAA", "center");
 
 
-
 }.bind(phinalphase.Game);
 
 phinalphase.Game.addOldPlayer = function (player) {
@@ -145,6 +144,7 @@ phinalphase.Game.addOldPlayer = function (player) {
 }
 
 phinalphase.Game.removePlayer = function (id) {
+    phinalphase.Game.playerMap[id].usernameText.destroy();
     phinalphase.Game.playerMap[id].destroy();
     delete phinalphase.Game.playerMap[id];
 };
@@ -154,21 +154,31 @@ phinalphase.Game.playerAct = function (id, act, cause) {
 };
 
 phinalphase.Game.syncPlayer = function (id, x, y) {
-    if (phinalphase.Game.playerMap[id]) {
-        var oldX = phinalphase.Game.playerMap[id].x;
-        var oldY = phinalphase.Game.playerMap[id].y;
-        phinalphase.Game.playerMap[id].x = x;
-        phinalphase.Game.playerMap[id].y = y;
+    var player = phinalphase.Game.playerMap[id];
+
+    if (player) {
+        var oldX = player.x;
+        var oldY = player.y - 5;
+
+        player.x = x;
+        player.y = y;
+        if (player.body.embedded) {
+            player.x = oldX;
+            player.y = oldY;
+        }
+
     }
 };
 
 phinalphase.Game.syncObjects = function (data) {
     phinalphase.Game.objectMap.forEach(function (object, index) {
+
         object.x = data[index].x;
         object.y = data[index].y;
         if (object.currentPos) {
             object.currentPos = data[index].currentPos;
         }
+
         if (data[index].respawn) {
             object.revive();
         } else {
@@ -234,7 +244,7 @@ phinalphase.Game.prototype = {
         this.game.updatables = [];
 
 
-      
+
         // var backgroundMusic1 = new buzz.sound("/assets/Sound/forest", {
         //     formats: ["ogg"],
         //     preload: true,
@@ -276,7 +286,7 @@ phinalphase.Game.prototype = {
         }.bind(this));
 
 
-        phinalphase.game.time.events.add(5000, function () {
+        phinalphase.game.time.events.add(2000, function () {
             this.matchTimer = this.time.create(false);
             this.matchTimer.add(phinalphase.matchTime || 20000, function () {
 

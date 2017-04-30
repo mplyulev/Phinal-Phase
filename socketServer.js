@@ -9,8 +9,14 @@ function getSocket(server, user, now) {
         user: user,
         lastPlayerID: 0,
         connectedUsers: 0,
-        matchTime: 300000
+        matchTime: 300000,
+        haveTimer: false
     }
+    server.lastPlayerID = 0;
+    server.connectedUsers = 0;
+    server.matchTime = server.matchTime || 300000;
+    server.haveTimer = false;
+
 
     serverObjects = [];
     // if (user) {
@@ -22,14 +28,26 @@ function getSocket(server, user, now) {
 
     io.on('connection', function (socket) {
 
+        if (!server.haveTimer) {
+            server.haveTimer = true;
+            timer = setInterval(function () {
+                server.matchTime -= 1000;
+                if (server.matchTime <= 0) {
+                    io.emit('endGame');
+                    clearInterval(timer);
+                }
+            }, 1000);
+        }
+
+
         socket.on('newplayer', function (data) {
             // server.user = username;
 
-            serverInfo.connectedUsers++;
+            server.connectedUsers++;
             socket.player = data;
             socket.player.isHost = false;
-            socket.player.id = serverInfo.lastPlayerID++;
-            // socket.player.username = serverInfo.user[0].username;
+            socket.player.id = server.lastPlayerID++;
+            socket.player.username = "asd"//serverInfo.user;
             socket.player.health = 100;
             socket.player.energy = 100;
             socket.player.isInAir = false;
@@ -45,7 +63,7 @@ function getSocket(server, user, now) {
             socket.player.deaths = 0;
             socket.player.score = 0;
 
-            if (serverInfo.connectedUsers > 1) {
+            if (server.connectedUsers > 1) {
                 socket.broadcast.emit('requireUpdate', socket.player.id);
             } else {
                 io.to(socket.id).emit('createMap', serverObjects);
@@ -55,7 +73,7 @@ function getSocket(server, user, now) {
 
 
             socket.on('createPlayer', function (data) {
-                socket.emit('allplayers', { players: getAllPlayers(), id: socket.player.id, timer: serverInfo.matchTime });
+                socket.emit('allplayers', { players: getAllPlayers(), id: socket.player.id, timer: server.matchTime });
                 socket.broadcast.emit('newplayer', socket.player);
             });
 
@@ -73,7 +91,7 @@ function getSocket(server, user, now) {
                             io.to(socketID).emit('createMap', serverObjects);
                         }
                     });
-                    
+
                 }
             });
 
@@ -90,7 +108,7 @@ function getSocket(server, user, now) {
             });
 
             socket.on('syncTimer', function (data) {
-                serverInfo.matchTime = data;
+                server.matchTime = data;
             });
 
 
@@ -99,8 +117,8 @@ function getSocket(server, user, now) {
             });
 
             socket.on('disconnect', function () {
-                serverInfo.connectedUsers--;
-                if (socket.player.isHost && serverInfo.connectedUsers != 0) {
+                server.connectedUsers--;
+                if (socket.player.isHost && server.connectedUsers != 0) {
                     var foundNewHost = false;
                     Object.keys(io.sockets.connected).forEach(function (socketID) {
                         if (socketID != socket.id && !foundNewHost) {
@@ -120,7 +138,7 @@ function getSocket(server, user, now) {
         var players = [];
         Object.keys(io.sockets.connected).forEach(function (socketID) {
             var player = io.sockets.connected[socketID].player;
-            if (serverInfo.connectedUsers == 1) {
+            if (server.connectedUsers == 1) {
                 player.isHost = true;
             }
             if (player) players.push(player);
