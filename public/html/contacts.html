@@ -7,7 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    <section ng-controller='messageController' id="contactForm">              
+    
+    <section ng-controller='messageController' id="contactForm">   
+        <h1 id="messageTo"  class="h1" >You have questions? Send us a message!</h1>           
         <form action="/message" method="post" id ="messageForm" >
             <input type="text" name="subject" id="subject" placeholder="Subject">
             <div style="height:15px">   

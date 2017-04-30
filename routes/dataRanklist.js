@@ -4,7 +4,6 @@ users=db.get("users");
 router.get('/', function(req, res, next) {
     users.find()
         .then(function (data) {  
-          console.log(data);
           res.json(data);
   }).catch(function(err) {
     res.json(500 , err);

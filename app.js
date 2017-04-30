@@ -8,25 +8,15 @@ var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
 var bcrypt = require('bcryptjs');
 var monk = require('monk');
-var flash  = require('req-flash');
 var router = express.Router();
-var flash = require('connect-flash');
- 
- 
 var nodemailer = require("nodemailer");
-
-// create reusable transport method (opens pool of SMTP connections)
-
-
- 
-
 
 var uri = "mongodb://al_n:phinalphase123@phinalphase-shard-00-00-h6f3e.mongodb.net:27017,phinalphase-shard-00-01-h6f3e.mongodb.net:27017,phinalphase-shard-00-02-h6f3e.mongodb.net:27017/PhinalPhase?ssl=true&replicaSet=PhinalPhase-shard-0&authSource=admin";
 MongoClient.connect(uri, function (err, database) {
     db = database;
     database.close();
 });
-  db = monk(uri);
+db = monk(uri);
 
  
 
@@ -50,6 +40,8 @@ var data = require('./routes/data');
 var dataRanklist = require('./routes/dataRanklist');
 var forgotPassword = require('./routes/forgotPassword');
 var message = require('./routes/message');
+var userToUserMessage = require('./routes/userToUserMessage');
+ 
 
 
 
@@ -89,7 +81,7 @@ app.use(cookieParser());
 app.use(session({ secret: "phinalphase1234" }));
 app.use(router);
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(flash());
+ 
  
 
 
@@ -121,6 +113,7 @@ app.use('/users', users);
 app.use('/data', data);
 app.use('/dataRanklist', dataRanklist);
 app.use('/message', message);
+app.use('/userToUserMessage', userToUserMessage);
 
 
 
