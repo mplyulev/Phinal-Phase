@@ -1,6 +1,5 @@
 var phinalphase = phinalphase || {};
 
-// phinalphase.createPlayerCop = function (that) {
 var animCop = {
     idle: ['idle', 'Idle_', 0, 11, '', 3, 15, 0, 0],
     run: ['run', 'Run_', 0, 13, '', 3, 15, -8, 0],
@@ -75,6 +74,7 @@ var skillsCop = [
         if (!that.checkEnergy()) {
             return;
         }
+        phinalphase.sounds.playerCop.jetpack.play();
         that.user.play(that.userAnim);
         that.user.body.velocity.y -= 23;
         })(this)`
@@ -155,7 +155,6 @@ var skillsCop = [
 ]
 
 
-// that.playerCop = new phinalphase.PlayerSecondTeam(that.game, 0, 0, 'playerCop', 'Idle_000', 1000, 0.5, 1, -600, 300, 0.1, 5, anim, skills);
 phinalphase.playerCop = {
     x: 0,
     y: 0,
@@ -169,147 +168,3 @@ phinalphase.playerCop = {
     anim: animCop,
     skills: skillsCop
 }
-
-    // that.playerCop.flyForward = function () {
-    //     that.playerCop.play(this.animationsObject.flyForward[0]);
-    // }
-
-
-    // that.playerCop.noEnergySound = new buzz.sound("/assets/Sound/powerDrain", {
-    //     formats: ["ogg"],
-    //     preload: true,
-    // });
-
-    // that.playerCop.walkingSound = new buzz.sound("/assets/Sound/footstep04", {
-    //     formats: ["ogg"],
-    //     volume: 20,
-    //     preload: true,
-    // });
-    // that.playerCop.jetPackSound = new buzz.sound("/assets/Sound/jetpack", {
-    //     formats: ["mp3"],
-    //     volume: 30,
-    //     preload: true,
-    // });
-    // that.playerCop.hurtSound = new buzz.sound("/assets/Sound//player/pain", {
-    //     formats: ["wav"],
-    //     volume: 30,
-    //     preload: true,
-    // });
-    // that.playerCop.dieSound = new buzz.sound("/assets/Sound//player/die", {
-    //     formats: ["wav"],
-    //     volume: 30,
-    //     preload: true,
-    // });
-    // that.playerCop.shootSound = new buzz.sound("/assets/Sound/launches/iceball", {
-    //     formats: ["wav"],
-    //     preload: true,
-    // });
-    // that.playerCop.jumpSound = new buzz.sound("/assets/Sound/jump", {
-    //     formats: ["mp3"],
-    //     preload: true,
-    //     volume: 60
-    // });
-    // that.playerCop.fallingSound = new buzz.sound("/assets/Sound/falling", {
-    //     formats: ["ogg"],
-    //     preload: true,
-    //     volume: 60
-    // });
-    // that.playerCop.shootSound.setSpeed(2.2);
-    // that.playerCop.meleeSound = new buzz.sound("/assets/Sound/meleCop", {
-    //     formats: ["wav"],
-    //     preload: true,
-    //     volume: 60
-    // });
-    // that.playerCop.healSound = new buzz.sound("/assets/Sound/spell3", {
-    //     formats: ["wav"],
-    //     preload: true,
-    //     volume: 60
-    // });
-
-
-
-
-
-//     that.playerCop.playCopSounds = function () {
-//         if (that.game.input.keyboard.isDown(Phaser.Keyboard.D) && !that.playerCop.isInAir && !that.playerCop.busy) {
-//             that.playerCop.walkingSound.play();
-//         } else if (that.game.input.keyboard.isDown(Phaser.Keyboard.A) && !that.playerCop.isInAir && !that.playerCop.busy) {
-//             that.playerCop.walkingSound.play();
-//         }
-//         if (that.game.input.keyboard.isDown(Phaser.Keyboard.W) && that.playerCop.body.blocked.down) {
-//             that.playerCop.jumpSound.play();
-//         }
-//         if (that.playerCop.isInAir && that.playerCop.body.blocked.down) {
-//             that.playerCop.walkingSound.play();
-//         }
-//         if (that.game.input.keyboard.isDown(Phaser.Keyboard.V)) {
-//             that.playerCop.shootSound.play();
-//         }
-//         if (that.playerCop.energy <= 0.2) {
-//             that.playerCop.noEnergySound.play();
-//         }
-//         if (that.game.input.keyboard.isDown(Phaser.Keyboard.G) && that.playerCop.energy > 0.2) {
-//             that.playerCop.jetPackSound.play();
-//         }
-//         if (that.game.input.keyboard.isDown(Phaser.Keyboard.B)) {
-//             that.playerCop.meleeSound.play();
-//         }
-//         if (that.playerCop.isFlinched) {
-//             that.playerCop.hurtSound.play();
-//         }
-//         if (!that.playerCop.alive) {
-//             that.playerCop.dieSound.play();
-//         }
-//         if (that.playerCop.y > 700) {
-//             that.playerCop.fallingSound.play();
-//         }
-//     }
-
-
-
-//     that.playerCop.checkWorldBounds = true;
-//     //  that.healthbarShape = null;
-
-
-// }
-
-
-// phinalphase.updatePlayerCop = function (that) {
-//     that.playerCop.playCopSounds();
-//     that.playerCop.updateCreature();
-//     if (that.game.input.keyboard.isDown(Phaser.Keyboard.D)) {
-//         that.playerCop.act('RIGHT');
-//     } else if (that.game.input.keyboard.isDown(Phaser.Keyboard.A)) {
-//         that.playerCop.act('LEFT');
-//     } else {
-//         if (!that.playerCop.isInAir) {
-//             that.playerCop.act();
-//         }
-//     }
-//     if (that.playerCop.body.velocity.y > 0 && that.playerCop.isInAir) {
-//         that.playerCop.act('FALL');
-//     }
-//     if (that.game.input.keyboard.isDown(Phaser.Keyboard.W) && !that.playerCop.isInAir) {
-//         that.playerCop.act('UP');
-
-//     }
-//     if (that.game.input.keyboard.isDown(Phaser.Keyboard.V)) {
-//         that.playerCop.act('SKILL', 0);
-//     }
-//     if (that.game.input.keyboard.isDown(Phaser.Keyboard.G)) {
-//         that.playerCop.act('SKILL', 2);
-//     }
-//     if (that.game.input.keyboard.isDown(Phaser.Keyboard.B)) {
-//         that.playerCop.act('SKILL', 1);
-//     }
-//     if (that.game.input.keyboard.isDown(Phaser.Keyboard.H)) {
-//         that.playerCop.act('SKILL', 3);
-//     }
-//     if (that.game.input.keyboard.isDown(Phaser.Keyboard.G) && that.game.input.keyboard.isDown(Phaser.Keyboard.D)) {
-//         that.playerCop.act('FLYFORWARD');
-//     }
-//     if (that.game.input.keyboard.isDown(Phaser.Keyboard.G) && that.game.input.keyboard.isDown(Phaser.Keyboard.A)) {
-//         that.playerCop.scale.setTo(-1, 1);
-//         that.playerCop.act('FLYFORWARD');
-//     }
-// }

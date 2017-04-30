@@ -2,6 +2,8 @@ var phinalphase = phinalphase || {};
 
 phinalphase.TiledGroups = [];
 
+//Factory method for groups of objects that come from Tiled
+
 phinalphase.TiledGroupMaker = function () {
     this.createGroup = function (usability) {
         var group;
@@ -260,7 +262,7 @@ phinalphase.TiledGroupConsumable.prototype.overlapPlayer = function (player, obj
             if (player.health > 100) {
                 player.health = 100;
             }
-            // player.healSound.play();
+            phinalphase.sounds.all.heal.play();
             break;
         case "poison":
             if (player == phinalphase.Game.playerMap[phinalphase.playerID]) {

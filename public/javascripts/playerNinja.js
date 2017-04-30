@@ -26,22 +26,6 @@ var skillsNinja = [
         effects: 'that.speed += 100',
         afterEffects: 'that.speed -= 100'
     },
-    // {
-    //     type: 'auradmg',
-    //     enerReq: 10,
-    //     key: 'popAura',
-    //     frame: 'pop_explosion0001',
-    //     duration: 10,
-    //     cooldown: 15,
-    //     anim: ['pop', 'pop_explosion', 1, 18, '', 4, 15],
-    //     dmg: 10,
-    //     enemyCollide: function (enemy) {
-
-    //     },
-    //     userAnim: animNinja.block[0],
-    //     stop: true
-    // },
-
     {
         type: 'proj',
         enerReq: 10,
@@ -99,7 +83,7 @@ var skillsNinja = [
         bonusDefense: 5
     }
 ]
-// that.playerNinja = new phinalphase.Player(that.game, 0, 0, 'playerNinja', 'Idle_000', 1000, 0.5, 1, -700, 300, 0.1, 0, anim, skills);
+
 phinalphase.playerNinja = {
     x: 0,
     y: 0,
@@ -113,107 +97,4 @@ phinalphase.playerNinja = {
     anim: animNinja,
     skills: skillsNinja
 }
-// that.playerNinja.checkWorldBounds = true;
-// that.playerNinja.walkingSound = new buzz.sound("/assets/Sound/footstep09", {
-//     formats: ["ogg"],
-//     volume: 20,
-//     preload: true,
-// });
-// that.playerNinja.jumpSound = new buzz.sound("/assets/Sound/jump", {
-//     formats: ["mp3"],
-//     volume: 60,
-//     preload: true,
-// });
-// that.playerNinja.swordSound = new buzz.sound("/assets/Sound/sword", {
-//     formats: ["wav"],
-//     volume: 60,
-//     preload: true,
-// });
-// that.playerNinja.swordSound.setSpeed(0.6);
 
-// that.playerNinja.hurtSound = new buzz.sound("/assets/Sound/pain2", {
-//     formats: ["wav"],
-//     volume: 60,
-//     preload: true,
-// });
-// that.playerNinja.powerUpSound = new buzz.sound("/assets/Sound/teleport", {
-//     formats: ["wav"],
-//     volume: 60,
-//     preload: true,
-// });
-// that.playerNinja.dieSound = new buzz.sound("/assets/Sound/player/die", {
-//     formats: ["wav"],
-//     volume: 60,
-//     preload: true,
-// });
-// that.playerNinja.healSound = new buzz.sound("/assets/Sound/spell3", {
-//     formats: ["wav"],
-//     preload: true,
-//     volume: 60
-// });   
-
-
-
-
-// that.playerNinja.playNinjaSounds = function () {
-//     if (that.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT) && !that.playerNinja.isInAir && !that.playerNinja.busy) {
-//         that.playerNinja.walkingSound.play();
-//     } else if (that.game.input.keyboard.isDown(Phaser.Keyboard.LEFT) && !that.playerNinja.isInAir && !that.playerNinja.busy) {
-//         that.playerNinja.walkingSound.play();
-//     }
-//     if (that.game.input.keyboard.isDown(Phaser.Keyboard.UP) && that.playerNinja.body.blocked.down) {
-//         that.playerNinja.jumpSound.play();
-//     }
-//     if (that.playerNinja.isInAir && that.playerNinja.body.blocked.down) {
-//         that.playerNinja.walkingSound.play();
-//     }
-//     if (that.game.input.keyboard.isDown(Phaser.Keyboard.L)) {
-//         that.playerNinja.swordSound.play();
-//     }
-//     if (that.game.input.keyboard.isDown(Phaser.Keyboard.O)) {
-//         that.playerNinja.powerUpSound.play();
-//     }
-//     if (that.playerNinja.isFlinched) {
-//         that.playerNinja.hurtSound.play();
-//     }
-//     if (!that.playerNinja.alive) {
-//         that.playerNinja.dieSound.play();
-//     }
-// }
-// return that.playerNinja;
-// }
-
-phinalphase.updatePlayerNinja = function (that) {
-    that.playerNinja.playNinjaSounds();
-    that.playerNinja.updateCreature();
-    if (that.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-        that.playerNinja.act('RIGHT');
-    } else if (that.game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
-        that.playerNinja.act('LEFT');
-    } else {
-        if (!that.playerNinja.isInAir) {
-            that.playerNinja.act();
-        }
-    }
-    if (that.playerNinja.body.velocity.y > 0 && that.playerNinja.isInAir) {
-        that.playerNinja.act('FALL');
-    }
-    if (that.game.input.keyboard.isDown(Phaser.Keyboard.UP) && !that.playerNinja.isInAir) {
-        that.playerNinja.act('UP');
-    }
-
-    if (that.game.input.keyboard.isDown(Phaser.Keyboard.L)) {
-        that.playerNinja.act('SKILL', 2);
-    }
-
-    if (that.game.input.keyboard.isDown(Phaser.Keyboard.O)) {
-        that.playerNinja.act('SKILL', 0);
-    }
-    if (that.game.input.keyboard.isDown(Phaser.Keyboard.P)) {
-        that.playerNinja.act('SKILL', 1);
-    }
-    if (that.game.input.keyboard.isDown(Phaser.Keyboard.K)) {
-        that.playerNinja.act('SKILL', 3);
-    }
-
-}

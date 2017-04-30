@@ -28,7 +28,7 @@ function getSocket(server, user) {
             server.haveTimer = true;
             timer = setInterval(function () {
                 server.matchTime -= 1000;
-                if (server.matchTime <= 270000) {
+                if (server.matchTime <= 0) {
                     io.emit('stopGame');
                     clearInterval(timer);
                     server.haveTimer = false;

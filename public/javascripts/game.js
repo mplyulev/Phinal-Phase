@@ -6,12 +6,12 @@ phinalphase.deltaTime = 0;
 phinalphase.isHost = false;
 phinalphase.hostUpd = 0;
 
+// Useful functions to keep the code more "DRY"
 phinalphase.putDeltaSpeed = function (speed) {
     return (speed * phinalphase.game.time.physicsElapsed) * phinalphase.game.time.fps;
 }
 
 
-// Useful functions to keep the code more "DRY"
 phinalphase.fixedSprite = function (x, y, sprite, scale) {
     var fixedSprite = phinalphase.game.add.sprite(x, y, sprite);
     fixedSprite.scale.setTo(scale);
@@ -50,6 +50,7 @@ phinalphase.updateObjects = function (newplayer, id, updateGames, respawnObjects
     });
 
     if (updateGames) {
+        //the host updates the objects for everyone else
         Client.syncObjects(objectsForServer);
     } else {
         Client.updateServerObjects({ objects: objectsForServer, newplayer: newplayer, id: id });
@@ -63,6 +64,15 @@ phinalphase.updateObjects = function (newplayer, id, updateGames, respawnObjects
 
 //Functions that handle the data recieved from the server
 
+
+/**
+ * adds new player to the game, it can be another player that joins the game at some point
+ * or yourself (main). This player can be host.
+ * @param {object} player
+ * @param {boolean} main
+ * @param {boolean} host
+ * @param {number} timer
+ */
 phinalphase.Game.addNewPlayer = function (player, main, host, timer) {
     if (player.x == 0) {
         var spawnCoor = Math.floor(Math.random() * phinalphase.spawns.children.length);
@@ -86,6 +96,7 @@ phinalphase.Game.addNewPlayer = function (player, main, host, timer) {
 
 }
 
+// uses information from server to build the map for the new player
 phinalphase.Game.createMapFromServer = function (objectsFromServer) {
     var tiles = [
         ['cifiSheet', 'gameTiles']
@@ -111,7 +122,7 @@ phinalphase.Game.createMapFromServer = function (objectsFromServer) {
         ["spikes", "objects", "spikes"],
     ]
 
-    phinalphase.createMap('testlevel', tiles, layers, objects);
+    phinalphase.createMap('scifiArena', tiles, layers, objects);
 
     if (objectsFromServer) {
         objectsFromServer.forEach(function (serverObject, index) {
@@ -158,7 +169,7 @@ phinalphase.Game.syncPlayer = function (id, x, y) {
 
     if (player) {
         var oldX = player.x;
-        var oldY = player.y - 5;
+        var oldY = player.y;
 
         player.x = x;
         player.y = y;
@@ -230,7 +241,7 @@ phinalphase.Game.getScore = function () {
     phinalphase.game.endText = phinalphase.fixedText(400, 250, "The Match Ended", "40px Arial", "#AAA", "center");
     phinalphase.game.endText.anchor.setTo(0.5);
     setTimeout(function () {
-    phinalphase.game.paused = true;        
+        phinalphase.game.paused = true;
     }, 500);
     var player = phinalphase.Game.playerMap[phinalphase.playerID];
     Client.sendScore({ kills: player.kills, deaths: player.deaths, score: player.score });
@@ -255,18 +266,13 @@ phinalphase.Game.prototype = {
 
 
 
-        // var backgroundMusic1 = new buzz.sound("/assets/Sound/forest", {
-        //     formats: ["ogg"],
-        //     preload: true,
-        //     autoplay: true,
-        //     loop: true
-        // });
-        // var backgroundMusic2 = new buzz.sound("/assets/Sound/swamp", {
-        //     formats: ["ogg"],
-        //     preload: true,
-        //     autoplay: true,
-        //     loop: true
-        // });
+        var backgroundMusic1 = new buzz.sound("/assets/Sound/bgmusic", {
+            formats: ["mp3"],
+            preload: true,
+            autoplay: true,
+            loop: true,
+            volume: 40
+        });
 
 
         Client.newPlayer([phinalphase.playerNinja, phinalphase.playerCop]);
@@ -326,14 +332,8 @@ phinalphase.Game.prototype = {
 
 
         if (phinalphase.isHost) {
-
-
             phinalphase.updateObjects(false, undefined, true, false);
-
             phinalphase.hostUpd++;
-            // if (this.matchTimer) {
-            //     Client.syncTimer(this.matchTimer.duration);
-            // }
         }
 
 
@@ -411,26 +411,6 @@ phinalphase.Game.prototype = {
         }
 
 
-
-
-
-
     },
-
-    // render: function () {
-
-
-    //     // this.game.debug.text(this.game.time.fps || '--', 20, 70, "#00ff00", "40px Courier");
-    //     // this.game.debug.spriteBounds(this.playerNinja);
-    //     // this.game.debug.spriteBounds(this.playerNinja.skills[2].weapon);
-    //     // this.game.debug.spriteInfo(this.playerNinja, 32, 32);
-    //     // this.game.debug.bodyInfo(this.playerNinja, 100, 150);
-    //     // this.game.debug.body(this.playerNinja);
-    //     // if (phinalphase.Game.playerMap[phinalphase.playerID]) {
-    //     //     // this.game.debug.spriteBounds(phinalphase.Game.playerMap[phinalphase.playerID]);
-    //     //     this.game.debug.body(phinalphase.Game.playerMap[phinalphase.playerID]);
-    //     // }
-    //     // this.game.debug.spriteInfo(this.playerCop, 532, 32);
-    // }
 
 };

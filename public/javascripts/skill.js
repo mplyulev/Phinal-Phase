@@ -1,5 +1,7 @@
 var phinalphase = phinalphase || {};
 
+//skills for players
+
 phinalphase.Skill = function (user, energyReq, key, frame, cooldown, userAnim, stop) {
     this.user = user;
     this.energyReq = energyReq;
@@ -83,6 +85,7 @@ phinalphase.MeleeAttack.prototype.use = function () {
             this.user.busy = false;
             return;
         }
+        phinalphase.sounds[this.user.key].melee.play();
         this.weapon.revive();
         phinalphase.game.time.events.add(100, function () {
 
@@ -292,7 +295,7 @@ phinalphase.Projectile.prototype.use = function () {
         this.weapon.fireAngle = Phaser.ANGLE_LEFT;
     }
 
-    if (this.user.energy >= this.energyReq) {
+    if (this.user.energy >= this.energyReq) {    
         var fired = this.weapon.fire()
     }
 
@@ -300,6 +303,9 @@ phinalphase.Projectile.prototype.use = function () {
         if (!this.checkEnergy()) {
             return;
         }
+        if (phinalphase.sounds[this.user.key].shoot) {
+            phinalphase.sounds[this.user.key].shoot.play();
+        }   
         this.user.busy = true;
         this.user.play(this.userAnim, false, function () {
             if (!this.stop) {

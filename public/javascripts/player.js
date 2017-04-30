@@ -76,6 +76,7 @@ phinalphase.Player.prototype.addAnimation = function (animations) {
 
 phinalphase.Player.prototype.play = function (animation, looping, cb) {
     var prevAnimName = this.animations.currentAnim.name;
+    //if player is changing his body offset and the animations is different the function is stopped due to  animation glitches
     if ((this.changingOffset && prevAnimName != animation) && !this.busy && !this.isFlinched) {
         return;
     }
@@ -93,6 +94,8 @@ phinalphase.Player.prototype.play = function (animation, looping, cb) {
         }
     }
 
+    //change body position to keep it always in the middle and down of the Sprite
+    //also possible to adjust it if needed
 
     var diffX = Math.abs(this.width) - this.body.width;
     var diffY = Math.abs(this.height) - this.body.height;
@@ -148,9 +151,7 @@ phinalphase.Player.prototype.play = function (animation, looping, cb) {
 
 phinalphase.Player.prototype.jump = function () {
     this.body.velocity.y = this.jumpHeight;
-    // this.body.stopVelocityOnCollide = false;
-    // this.body.moveTo(500, 300, Phaser.ANGLE_UP);
-
+    phinalphase.sounds[this.key].jump.play();
     this.play(this.animationsObject.jumpStart[0], false, function () {
         if (this.animations.currentAnim.name == this.animationsObject.jumpStart[0]) {
             this.play(this.animationsObject.jumpAir[0]);
@@ -166,7 +167,6 @@ phinalphase.Player.prototype.moveSides = function (sideNum) {
         // this.body.velocity.x = -phinalphase.putDeltaSpeed(this.speed);
     } else {
         this.body.velocity.x = this.speed;
-
         // this.body.velocity.x = phinalphase.putDeltaSpeed(this.speed);
     }
     if (this.isInAir && this.body.velocity.y <= 0) {
@@ -174,6 +174,7 @@ phinalphase.Player.prototype.moveSides = function (sideNum) {
             this.play(this.animationsObject.jumpAir[0]);
         }
     } else if (this.body.velocity.y <= 0 || this.body.touching.down) {
+        phinalphase.sounds[this.key].run.play();
         if (!(this.animationsObject.flyIdle && phinalphase.game.input.keyboard.isDown(Phaser.Keyboard.E))) {
             this.play(this.animationsObject.run[0]);
         }
@@ -268,6 +269,7 @@ phinalphase.Player.prototype.getHitted = function (dmgDealer) {
 };
 
 phinalphase.Player.prototype.flinch = function (dmgDealer) {
+    phinalphase.sounds[this.key].hurt.play();
     this.busy = false;
     this.isFlinched = true;
     this.canBeHitted = false;
@@ -300,6 +302,7 @@ phinalphase.Player.prototype.dying = function () {
     this.alive = false;
     this.deaths++;
     this.score -= 5;
+    phinalphase.sounds.all.die.play();
     this.play(this.animationsObject.death[0], false, function () {
         this.kill();
         this.respawn();
@@ -325,8 +328,12 @@ phinalphase.Player.prototype.updatePlayer = function () {
         this.body.velocity.x = 0;
     }
     if (this.body.blocked.down || this.body.touching.down) {
-        if (this.isInAir && this == player) {
-            Client.sync(this.x, this.y);
+        if (this.isInAir) {
+            if (this.body.blocked.down && !this.body.touching.down)
+            phinalphase.sounds[this.key].jump.play();
+            if (this == player) {
+                Client.sync(this.x, this.y);
+            }
         }
         this.isInAir = false;
     } else {
