@@ -637,17 +637,27 @@ th {
   font-size:15px;
   font-weight: lighter;
   }
- 
+ .h3  {
+  top:50px;
+  }
 }
   @media (max-width: 970px) {
-  .h3  {
-  top:3px;
+  #myStatsContainer .h3  {
+  top:30px;
   }
  #myStatsContainer img  {
    width:300px;
    margin:0 auto;
  }
-  /*table  {
-  width:70%;
-  }*/
 }
+
+  @media (max-width: 1300px) {
+  #myStatsContainer .h3  {
+  top:30px;
+  position:relative;
+  }
+  #myStatsContainer img  {
+    display:block;
+    margin:0 auto;
+  }
+  }

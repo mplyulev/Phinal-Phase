@@ -3,11 +3,6 @@ var router = express.Router();
 var bcrypt = require('bcrypt');
  
 
-
-// Load the password hash from DB
-// Let's assume it's stored in a variable called `hash`
- 
-
 var users = db.get('users');
 router.post('/', function (req, res, next) {
     var usernameLogin = req.body.usernameLogin.trim();
