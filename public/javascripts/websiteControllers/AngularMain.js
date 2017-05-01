@@ -74,7 +74,7 @@ app.controller("nameSortController",  function($scope)  {
         }
         else
         {
-            $scope.sortOrder = '';
+            $scope.sortOrder = 'mitko';
         }
     }
  });
