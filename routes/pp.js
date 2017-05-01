@@ -7,7 +7,6 @@ var socket = require('../socketServer');
 var users = db.get("users");
 
 router.get('/', function (req, res, next) {
-  // console.log("asdasdasdasdasda245345" + req.session.userId);
   users.find({ _id: req.session.userId }).then(function (user) {
     socket.getSocket(server, user, true);
   });

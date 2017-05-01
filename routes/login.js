@@ -1,23 +1,23 @@
 var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcrypt');
- 
+
 
 var users = db.get('users');
 router.post('/', function (req, res, next) {
     var usernameLogin = req.body.usernameLogin.trim();
     var passwordLogin = req.body.key;
-    
 
-    users.find({ username: usernameLogin  })
+
+    users.find({ username: usernameLogin })
         .then(function (data) {
             if (data.length > 0 && bcrypt.compareSync(passwordLogin, data[0].password)) {
                 req.session.username = data[0].username;
                 req.session.userId = data[0]._id;
                 res.redirect('/index');
-            } 
-            else  {
-                res.render("login", {message:"Wrong username or password!"});
+            }
+            else {
+                res.render("login", { message: "Wrong username or password!" });
             }
         });
 });

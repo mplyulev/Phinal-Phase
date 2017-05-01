@@ -1,5 +1,3 @@
-$(function() {
-    $('#logo').fadeIn(3000) ;
-    console.log("asdasd");
-   
+$(function () {
+    $('#logo').fadeIn(3000);
 });
