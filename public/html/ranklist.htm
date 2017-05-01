@@ -32,16 +32,16 @@
 
   <table id="ranklistTable" class = "table-responsive" ng-controller="usernameSortController">
   <tr>
-    <th class="ranklistTd">#</th>
-    <th class="ranklistTd">Avatar</th>
-    <!--<th class="ranklistTd">Username</th>-->
-    <th class="ranklistTd" id="usernameTableHeader"
-         ng-click="orderByField='username'; reverseSort = !reverseSort">
-            Username <span ng-show="orderByField == 'username'"><span style="position:relative; bottom:3px" ng-show="!reverseSort">&uarr;</span><span style="position:relative; bottom:3px" ng-show="reverseSort">&darr;</span></span>
+        <th class="ranklistTd">#</th>
+        <th class="ranklistTd">Avatar</th>
+        <!--<th class="ranklistTd">Username</th>-->
+        <th class="ranklistTd" id="usernameTableHeader"
+            ng-click="orderByField='username'; reverseSort = !reverseSort">
+                Username <span ng-show="orderByField == 'username'"><span style="position:relative; bottom:3px" ng-show="!reverseSort">&uarr;</span><span style="position:relative; bottom:3px" ng-show="reverseSort">&darr;</span></span>
         </th>
-    <th class="ranklistTd">Kills</th>
-    <th class="ranklistTd">Deaths</th>
-    <th class="ranklistTd">Score</th>
+        <th class="ranklistTd">Kills</th>
+        <th class="ranklistTd">Deaths</th>
+        <th class="ranklistTd">Score</th>
   </tr>
   <tr ng-repeat="user in data | filter : user | filter : username | orderBy:orderByField:reverseSort ">
       <td class="ranklistTd">{{ $index + 1 }}</td>
