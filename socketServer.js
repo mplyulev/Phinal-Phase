@@ -14,15 +14,14 @@ function getSocket(server, user) {
 
 
     io.on('connection', function (socket) {
-        // Object.keys(io.sockets.connected).forEach(function (socketID) {
-        //     if (io.sockets.connected[socketID].player) {
-        //         if (io.sockets.connected[socketID].player.username == serverInfo.user[0].username) {
-        //             io.to(socket.id).emit('samePerson');
-
-        //             samePerson = true;
-        //         }
-        //     }
-        // });
+        Object.keys(io.sockets.connected).forEach(function (socketID) {
+            if (io.sockets.connected[socketID].player) {
+                if (io.sockets.connected[socketID].player.username == serverInfo.user[0].username) {
+                    io.to(socket.id).emit('samePerson');
+                    samePerson = true;
+                }
+            }
+        });
 
         if (!server.haveTimer) {
             server.haveTimer = true;
@@ -116,11 +115,6 @@ function getSocket(server, user) {
             socket.on('sync', function (data) {
                 socket.broadcast.emit('sync', { id: socket.player.id, x: data.x, y: data.y });
             });
-
-            socket.on('syncTimer', function (data) {
-                server.matchTime = data;
-            });
-
 
             socket.on('act', function (data) {
                 socket.broadcast.emit('act', { id: socket.player.id, act: data.act, cause: data.cause });

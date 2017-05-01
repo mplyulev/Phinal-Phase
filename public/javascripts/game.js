@@ -238,11 +238,13 @@ phinalphase.Game.updatePlayer = function (id) {
 
 phinalphase.Game.getScore = function () {
     phinalphase.game.matchTimerText.setText('00:00');
+
     phinalphase.game.endText = phinalphase.fixedText(400, 250, "The Match Ended", "40px Arial", "#AAA", "center");
     phinalphase.game.endText.anchor.setTo(0.5);
     setTimeout(function () {
         phinalphase.game.paused = true;
-    }, 500);
+    }, 300);
+
     var player = phinalphase.Game.playerMap[phinalphase.playerID];
     Client.sendScore({ kills: player.kills, deaths: player.deaths, score: player.score });
 }
@@ -325,7 +327,11 @@ phinalphase.Game.prototype = {
             if (sec.toString().length <= 1) {
                 sec = '0' + sec;
             }
-            phinalphase.game.matchTimerText.setText(min + ':' + sec);
+
+            if (phinalphase.game.matchTimerText.text != '00:00') {
+                phinalphase.game.matchTimerText.setText(min + ':' + sec);
+            }
+
         }
 
 

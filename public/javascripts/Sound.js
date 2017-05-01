@@ -34,7 +34,7 @@ phinalphase.sounds = {
             volume: 60,
             preload: true,
         }),
-        powerup: new buzz.sound("/assets/Sound/teleport", {
+        buff: new buzz.sound("/assets/Sound/teleport", {
             formats: ["wav"],
             volume: 60,
             preload: true,

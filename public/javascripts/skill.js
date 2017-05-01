@@ -152,6 +152,7 @@ phinalphase.AuraSkillBuff.prototype.use = function () {
             this.isOnCD = false;
             return;
         }
+        phinalphase.sounds[this.user.key].buff.play();
         phinalphase.game.time.events.add(this.cooldown * 1000, function () {
             this.isOnCD = false;
         }, this);

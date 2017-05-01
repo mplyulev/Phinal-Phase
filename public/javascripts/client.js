@@ -30,10 +30,6 @@ Client.sync = function (x, y) {
     Client.socket.emit('sync', { x: x, y: y });
 }
 
-Client.syncTimer = function (dur) {
-    Client.socket.emit('syncTimer', dur);
-}
-
 Client.sendUpdatesPlayer = function (properties) {
     Client.socket.emit('updatePlayer', properties);
 }
