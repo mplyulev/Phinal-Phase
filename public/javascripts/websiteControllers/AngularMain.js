@@ -58,13 +58,9 @@ $("#ranklistTable").on("click",".ranklistUsername", function (event) {
         $("#usermessageContactForm").delay(3000).fadeOut(1000);
         $("#toggledRanklistContainer").delay(4000).fadeIn(1000);
         $("#successMessageToUser").delay(2000).fadeOut(1000);
-   
-
         console.log("asdasd");
     });
  });
-
-
 
 app.controller("nameSortController",  function($scope)  {
     $scope.filterString = '';

@@ -16,7 +16,6 @@ router.post('/', function (req, res, next) {
 
     users.find({ username: usernameLogin  })
         .then(function (data) {
-           
             if (data.length > 0 && bcrypt.compareSync(passwordLogin, data[0].password)) {
                 req.session.username = data[0].username;
                 req.session.userId = data[0]._id;
