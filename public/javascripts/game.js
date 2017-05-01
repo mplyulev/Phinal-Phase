@@ -260,12 +260,14 @@ phinalphase.Game.prototype = {
 
     create: function () {
 
+        // player and object maps
         phinalphase.Game.playerMap = {};
         phinalphase.Game.objectMap = [];
+        //array used for updating via functions
         this.game.updatables = [];
 
 
-
+        //background music
         var backgroundMusic1 = new buzz.sound("/assets/Sound/bgmusic", {
             formats: ["mp3"],
             preload: true,
@@ -274,13 +276,12 @@ phinalphase.Game.prototype = {
             volume: 40
         });
 
-
+        //creating the new player
         Client.newPlayer([phinalphase.playerNinja, phinalphase.playerCop]);
 
+        //all players and spells have world wrap
         this.game.updatables.push(function () {
-
             phinalphase.players.children.forEach(function (p) {
-
                 phinalphase.game.world.wrap(p, 0, true);
                 p.skills.forEach(function (skill) {
                     if (skill instanceof phinalphase.Projectile) {
@@ -289,19 +290,17 @@ phinalphase.Game.prototype = {
                         }, this);
                     }
                 }, this);
-
-
             }, this);
-
         }.bind(this));
 
+        //update all groups with objects from Tiled
         this.game.updatables.push(function () {
             phinalphase.TiledGroups.forEach(function (grp) {
                 grp.updatable();
             }, this);
         }.bind(this));
 
-
+        //add timer
         phinalphase.game.time.events.add(2000, function () {
             phinalphase.game.matchTimer = this.time.create(false);
             phinalphase.game.matchTimer.add(phinalphase.matchTime || 20000, null, this);

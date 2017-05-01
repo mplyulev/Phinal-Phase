@@ -1,7 +1,7 @@
 var Client = {};
 
 Client.socket = io.connect();
-
+//sends information for the chosen character
 Client.newPlayer = function (characters) {
     Client.socket.emit('newplayer', characters[phinalphase.selectedChar]);
 }

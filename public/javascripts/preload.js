@@ -30,7 +30,7 @@ phinalphase.Preload.prototype = {
         this.load.image('spikes', '/assets/SpritesheetsАndTilesets/mainobjects/spike.png');
         this.load.image('platform', '/assets/SpritesheetsАndTilesets/mainobjects/platform.png');
         this.load.image('saw', '/assets/SpritesheetsАndTilesets/mainobjects/saw.png');
-        this.load.tilemap('scifiArena', '/assets/levels/test/cifi2.json', null, Phaser.Tilemap.TILED_JSON);
+        this.load.tilemap('scifiArena', '/assets/levels/1/cifi2.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.image('gameTiles', '/assets/SpritesheetsАndTilesets/cifi/Tiles/cifiSheet.png');
 
 
