@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="6d0acb21-a14e-4748-818b-e6a5f036bb39" name="phinal-phase" url="http://realm49.imperiaonline.org">
+        <fileTransfer host="realm49.imperiaonline.org" port="22" rootFolder="/srv/www/vhosts/dev12.io.web/phinal-phase" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
