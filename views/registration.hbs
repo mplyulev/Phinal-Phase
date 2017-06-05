@@ -2,11 +2,11 @@
 <html lang="en">
     <head> 
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-<script
-src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="/stylesheets/starfield.css">
+        <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/stylesheets/starfield.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="/stylesheets/registration.css">
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
@@ -18,29 +18,24 @@ src="https://code.jquery.com/jquery-3.2.1.min.js"
 	</head>
 	<body>
 		<div id="space">
-  <div class="stars"></div>
-  <div class="stars"></div>
-  <div class="stars"></div>
-  <div class="stars"></div>
-  <div class="stars"></div>
-</div>
+            <div class="stars"></div>
+            <div class="stars"></div>
+            <div class="stars"></div>
+            <div class="stars"></div>
+            <div class="stars"></div>
+        </div>
 		<div class="container" id="registrationWrapper2">
 			<div class="row main">
 				<div class="panel-heading">
 	               <div class="panel-title text-center">
-	               
-	               				<img src="/assets/logo.png" id = "logo" class="img-responsive" alt="game logo">
-							  
+                       <img src="/assets/logo.png" id = "logo" class="img-responsive" alt="game logo">
 
-
-	               	</div>
+                   </div>
 	            </div> 
 				<div id="regFormContainer" class="main-login main-center">
 					<form class="form-horizontal" method="post"   action="/registration">
-						
 						<div class="form-group">
 							<label for="name" class="cols-sm-2 control-label">Your Name</label>
-		
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
@@ -49,7 +44,6 @@ src="https://code.jquery.com/jquery-3.2.1.min.js"
 								<span id="nameValidation" style="display:none">Please enter a valid name. Name must contain only letters.</span>
 							</div>
 						</div>
-
 						<div class="form-group">
 							<label for="email" class="cols-sm-2 control-label">Your Email</label>
 							<div class="cols-sm-10">
@@ -61,7 +55,6 @@ src="https://code.jquery.com/jquery-3.2.1.min.js"
 								<h3 id="messageEmailTaken" class="h3"> {{messageEmailTaken}} </h3>
 							</div>
 						</div>
-
 						<div class="form-group">
 							<label for="username" class="cols-sm-2 control-label">Username</label>
 							<div class="cols-sm-10">
@@ -69,11 +62,10 @@ src="https://code.jquery.com/jquery-3.2.1.min.js"
 									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
 									<input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
 								</div>
-									<span id="usernameValidation" style="display:none" >Please enter your username.</span>
-									<span id="messageUsernameTaken" >{{messageUsernameTaken}}</span>
+                                <span id="usernameValidation" style="display:none" >Please enter your username.</span>
+                                <span id="messageUsernameTaken" >{{messageUsernameTaken}}</span>
 							</div>
 						</div>
-
 						<div class="form-group">
 							<label for="password" class="cols-sm-2 control-label">Password</label>
 							<div class="cols-sm-10">
@@ -84,7 +76,6 @@ src="https://code.jquery.com/jquery-3.2.1.min.js"
 								<span id="passwordValidation" style="display:none">Password should be at least 6 charachters long.</span>
 							</div>
 						</div>
-
 						<div class="form-group">
 							<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
 							<div class="cols-sm-10">
@@ -95,10 +86,8 @@ src="https://code.jquery.com/jquery-3.2.1.min.js"
 								<span id="passwordConfirmValidation" style="display:none">The passwords don't match.</span>
 							</div>
 						</div>
-
 						<div class="form-group ">
 							<button type="submit" id="registerButton"  class="btn btn-primary btn-lg btn-block login-button">Register</button>
-							{{!--<span id="successful" >{{message}}</span>--}}
 						</div>
 						<div class="login-register">
 				            <a href="" id="loginLink">Login</a>
@@ -107,9 +96,7 @@ src="https://code.jquery.com/jquery-3.2.1.min.js"
 				</div>
 			</div>
 		</div>
-
- 
-
+        
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>      
     <script src = "/javascripts/websiteControllers/loginFront.js">  type = "text/javascript">       </script>                                                      
     <script src = "//cdnjs.cloudflare.com/ajax/libs/buzz/1.2.0/buzz.min.js">  type = "text/javascript">       </script>    

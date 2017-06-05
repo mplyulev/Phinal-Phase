@@ -1,20 +1,19 @@
-body, html{
-     height: 100%;
- 	background-repeat: no-repeat;
- 
- 	font-family: 'Oxygen', sans-serif;
+body, html {
+	height: 100%;
+	background-repeat: no-repeat;
+	font-family: 'Oxygen', sans-serif;
 }
 
-.main{
+.main {
  	margin-top: 70px;
 }
 
 
-.form-group{
+.form-group {
 	margin-bottom: 15px;
 }
 
-label{
+label {
 	margin-bottom: 15px;
 	color:white;
 }
@@ -32,7 +31,6 @@ input::-webkit-input-placeholder {
  	margin: 0 auto;
  	max-width: 330px;
     padding: 40px 40px;
-
 }
 
 .login-button{
@@ -47,14 +45,13 @@ input::-webkit-input-placeholder {
 #registrationWrapper  {
 	position:relative;
 	bottom:50px;
-	/*background-color: rgba(0, 0, 0, 0);*/
 }
 
- .img-responsive {
-	 display:block;
-	 margin:0 auto;
-	 position:relative;
- }
+.img-responsive {
+	display:block;
+	margin:0 auto;
+	position:relative;
+}
 
 .register { 
 	background-color: #D21C1E;
@@ -63,11 +60,11 @@ input::-webkit-input-placeholder {
 #registerButton:hover {
 	font-weight: bold;
 }
-textarea:focus, input:focus button:focus{
+textarea:focus, input:focus button:focus {
     outline: none;
 }
 
-#regFormContainer  {
+#regFormContainer {
 	background-color: rgba(0,0,0,0);
 }
  

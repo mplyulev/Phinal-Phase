@@ -5,9 +5,10 @@
 
 #login {
     padding-top: 50px;
-     display:none;
+    display:none;
     background-color: black;
 }
+
 #login .form-wrap {
     width: 30%;
     margin: 0 auto;
@@ -19,9 +20,11 @@
     font-weight: bold;
     padding-bottom: 20px;
 }
+
 #login .form-group {
     margin-bottom: 25px;
 }
+
 #login .checkbox {
     margin-bottom: 20px;
     position: relative;
@@ -31,6 +34,7 @@
     -o-user-select: none;
     user-select: none;
 }
+
 #login .checkbox.show:before {
     content: '\e013';
     color:  #D21C1E;
@@ -64,55 +68,50 @@
 	display: block;
 }
 
- 
 .form-control {
     color: #212121;
 }
+
 .btn-custom {
     color: #fff;
 	background-color:  #D21C1E;
 }
+
 .btn-custom:hover,
 .btn-custom:focus {
     color: #fff;
 }
 
- 
- 
 #footer p {
     margin-bottom: 0;
 }
+
 #footer a {
     color: inherit;
 }
 
- .img-responsive {
-	 display:block;
-	 margin:0 auto;
-	 position:relative;
- }
-
-
- body, html{
-     height: 100%;
- 	background-repeat: no-repeat;
- 	background-color: black;
- 	font-family: 'Oxygen', sans-serif;
+.img-responsive {
+    display:block;
+    margin:0 auto;
+    position:relative;
 }
 
-.main{
+ body, html {
+    height: 100%;
+    background-repeat: no-repeat;
+    background-color: black;
+    font-family: 'Oxygen', sans-serif;
+}
+
+.main {
  	margin-top: 70px;
 }
 
- 
-
- 
-
-.form-group{
+.form-group {
 	margin-bottom: 15px;
 }
 
-label{
+label {
 	margin-bottom: 15px;
 	color:white;
 }
@@ -123,53 +122,53 @@ input::-webkit-input-placeholder {
     padding-top: 3px;
 }
 
-.main-login{
- 	background-color: black;
-	  
-	 border-radius: 30px;
+.main-login {
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
     border-radius: 2px;
     -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    background-color: black;
+    border-radius: 30px;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-
 }
 
-.main-center{
+.main-center {
  	margin-top: 30px;
  	margin: 0 auto;
  	max-width: 330px;
     padding: 40px 40px;
-
 }
 
-.login-button{
+.login-button {
 	margin-top: 5px;
 }
 
-.login-register{
+.login-register {
 	font-size: 11px;
 	text-align: center;
 }
 
- .img-responsive {
-	 display:block;
-	 margin:0 auto;
-	 position:relative;
- }
+.img-responsive {
+    display:block;
+    margin:0 auto;
+    position:relative;
+}
 
 .register { 
-	 text-align:center;
-	outline:none;
+    text-align:center;
+    outline:none;
     display:block;
     margin:0 auto;
 }
-textarea:focus, input:focus button:focus{
+
+textarea:focus,
+input:focus,
+button:focus {
     outline: none;
 }
  
- #registrationWrapper {
+#registrationWrapper {
     display:none;
     position:relative;
     bottom:60px;
@@ -179,89 +178,91 @@ textarea:focus, input:focus button:focus{
     bottom:60px;
 }
 
-
-
- #logo2 {
+#logo2 {
     display:block;
-     margin:0 auto;
-     position:relative;
+    margin:0 auto;
+    position:relative;
 }
+
 input[type="text"] {
     margin:0;
     padding:0;
 }
  
-#nameValidation,#emailValidation,#passwordValidation,#passwordConfirmValidation,#usernameValidation {
+#nameValidation,
+#emailValidation,
+#passwordValidation,
+#passwordConfirmValidation,
+#usernameValidation {
     color:  #D21C1E;
     text-align: center;
 }
+
 #usernameLogin {
     text-indent: 10px;
 }
  
- #backendLoginMessage,#messageUsernameTaken,#messageEmailTaken,#successful { 
-      color:  #D21C1E;
+#backendLoginMessage,
+#messageUsernameTaken,
+#messageEmailTaken,
+#successful {
+    color:  #D21C1E;
     text-align: center;
-     font-size: 1.0em;
+    font-size: 1.0em;
  }
   
- #registerButton {
+#registerButton {
      background-color:#D21C1E;
      outline : hidden;
      z-index:1000;
-    
- }
+}
 
- #forgotPassword {
+#forgotPassword {
      display:block;
      margin:0 auto;
      text-align: center;
- }
+}
 
- #sendPasswordHeading  {
+#sendPasswordHeading {
      text-align:center;
      color:white;
- }
- #loginLink, #loginLink2 {
+}
+#loginLink, #loginLink2 {
      text-align:center;
      display:block;
      margin:0 auto;
-
      width:10%;
- }
-
-#lostPassEmail  {
-    width:50%;
-    margin:0 auto;
-   text-align: center;
 }
 
-#register  {
+#lostPassEmail {
+    width:50%;
+    margin:0 auto;
+    text-align: center;
+}
+
+#register {
     display:block;
     margin:0 auto;
     width:10%;
- 
+}
 
+#btn-sendMail {
+    display: block;
+    margin: 0 auto;
+    width: 70%;
 }
-#btn-sendMail  {
-      display:block;
-    margin:0 auto;
-width:70%;
-   
-}
- 
 
 #register { 
     margin:0 auto;
     display:block;
 }
 
- #regFormContainer  {
-     background-color: rgba(0, 0, 0, 0);
- }
+#regFormContainer  {
+    background-color: rgba(0, 0, 0, 0);
+}
 
- #forgotPasswordContainer {
-     display:none;
-     position: relative;
-     top:40px;
- }
+#forgotPasswordContainer {
+    display:none;
+    position: relative;
+    top:40px;
+}
